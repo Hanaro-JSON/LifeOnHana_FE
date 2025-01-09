@@ -1,12 +1,30 @@
 "use client";
+
 import { LoginHeader } from "@/components/LoginHeader";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 import logoDetail from "@/assets/logoDetail.png";
 import logoText from "@/assets/logoText.png";
+import { authenticate } from "@/actions/myauth";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 function SigninCard() {
+  const router = useRouter();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setErrorMsg(null);
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const result = await authenticate(formData);
+    if (result.error) {
+      setErrorMsg(result.error);
+    } else if (result.redirectUrl) {
+      router.replace(result.redirectUrl);
+    }
+  };
   return (
     <div className="bg-gray-100">
       <LoginHeader />
@@ -17,13 +35,17 @@ function SigninCard() {
             <Image src={logoText} alt="LogoText" className="mb-2" />
             <Image src={logoDetail} alt="LogoDetail" className="mb-2" />
           </div>
-          <form className="w-full max-w-64 flex flex-col pt-5">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-64 flex flex-col pt-5"
+          >
             <label className="text-xs mb-1" htmlFor="id">
               아이디
             </label>
             <input
               id="id"
               type="text"
+              name="id"
               placeholder="아이디"
               className="mb-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
@@ -33,9 +55,11 @@ function SigninCard() {
             <input
               id="password"
               type="password"
+              name="pw"
               placeholder="비밀번호"
               className="mb-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
+            {errorMsg && <div className="text-red-600 mb-3">{errorMsg}</div>}
             <Button
               type="submit"
               className="w-full py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition"
