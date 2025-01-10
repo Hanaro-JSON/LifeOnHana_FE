@@ -10,10 +10,10 @@ export async function authenticate(formData: FormData) {
   const id = formData.get("id");
   const pw = formData.get("pw");
   if (!id) {
-    return { error: "아이디를 입력해주세요." };
+    return { error: "id" };
   }
   if (!pw) {
-    return { error: "비밀번호를 입력해주세요." };
+    return { error: "pw" };
   }
   try {
     const result = await signIn("credentials", {

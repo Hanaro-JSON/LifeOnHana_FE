@@ -7,24 +7,36 @@ import logo from "@/assets/logo.png";
 import logoDetail from "@/assets/logoDetail.png";
 import logoText from "@/assets/logoText.png";
 import { authenticate } from "@/actions/myauth";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 function SigninCard() {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const idInputRef = useRef<HTMLInputElement | null>(null); // ID 입력 필드 참조
+  const passwordInputRef = useRef<HTMLInputElement | null>(null); // PW 입력 필드 참조
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setErrorMsg(null);
+
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const result = await authenticate(formData);
+
     if (result.error) {
       setErrorMsg(result.error);
+
+      // 특정 필드로 포커스 이동
+      if (result.error === "id" && idInputRef.current) {
+        idInputRef.current.focus();
+      } else if (result.error === "pw" && passwordInputRef.current) {
+        passwordInputRef.current.focus();
+      }
     } else if (result.redirectUrl) {
       router.replace(result.redirectUrl);
     }
   };
+
   return (
     <div className="bg-gray-100">
       <LoginHeader />
@@ -43,23 +55,32 @@ function SigninCard() {
               아이디
             </label>
             <input
+              ref={idInputRef} // ID 필드를 ref로 연결
               id="id"
               type="text"
               name="id"
               placeholder="아이디"
-              className="mb-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className={`bg-white mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                errorMsg === "id"
+                  ? "border-red-500 focus:ring-red-500 focus:bg-red-50"
+                  : "border-gray-300 focus:ring-purple-500 focus:bg-purple-50"
+              }`}
             />
             <label className="text-xs mb-1" htmlFor="password">
               비밀번호
             </label>
             <input
+              ref={passwordInputRef} // PW 필드를 ref로 연결
               id="password"
               type="password"
               name="pw"
               placeholder="비밀번호"
-              className="mb-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className={`bg-white mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                errorMsg === "pw"
+                  ? "border-red-500 focus:ring-red-500 focus:bg-red-50"
+                  : "border-gray-300 focus:ring-purple-500 focus:bg-purple-50"
+              }`}
             />
-            {errorMsg && <div className="text-red-600 mb-3">{errorMsg}</div>}
             <Button
               type="submit"
               className="w-full py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition"
