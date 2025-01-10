@@ -38,10 +38,10 @@ function SigninCard() {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 flex flex-col min-h-screen">
       <LoginHeader />
-      <div className="flex h-screen pb-44 justify-center items-center">
-        <div className="flex flex-col items-center justify-center w-full max-w-md px-4">
+      <div className="flex-grow flex justify-center items-center">
+        <div className="flex flex-col pb-44 items-center justify-center w-full max-w-md px-4">
           <div className="flex flex-col items-center mb-6">
             <Image src={logo} alt="Logo" className="w-20 mb-2" />
             <Image src={logoText} alt="LogoText" className="mb-2" />
