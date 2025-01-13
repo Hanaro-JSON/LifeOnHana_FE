@@ -5,6 +5,7 @@ type TBtnProps = {
   url?: string;
   variant?: "default" | "link" | "beforeChooseAccount";
 };
+
 const getBtnClasses = (variant: string) => {
   switch (variant) {
     case "beforeChooseAccount":
