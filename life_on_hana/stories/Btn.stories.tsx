@@ -31,8 +31,23 @@ export const BeforeChooseAccount: Story = {
 
 export const MoveToFullContent: Story = {
   args: {
-    variant: "link",
+    variant: "moveToArticle",
     text: "전문 보기",
     url: "/",
+  },
+};
+
+export const hanaWalletWithUrl: Story = {
+  args: {
+    variant: "hanaWallet",
+    text: "하나 월급통장 더 채우기",
+    url: "/",
+  },
+};
+
+export const hanaWalletWithoutUrl: Story = {
+  args: {
+    variant: "hanaWallet",
+    text: "하나은행 연금 플래너 이용하기",
   },
 };

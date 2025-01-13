@@ -8,13 +8,13 @@ type TBtnProps = {
 
 const getBtnClasses = (variant: string) => {
   switch (variant) {
-    // 하나지갑 페이지 안 버튼들
+    // '하나지갑' 버튼들
     case "hanaWallet":
       return "bg-hanalightpurple w-[330px] h-[47px] text-hanapurple text-[16px] font-SCDream8";
-    // 채우기 전
+    // '하나 월급통장' 출금계좌 선택 전
     case "beforeChooseAccount":
       return "bg-hanagray w-[290px] h-[44px] text-[15px] shadow-xl";
-    // 전문보기
+    // '휘릭' 전문보기
     case "moveToArticle":
       return "w-[307px] h-[47px] bg-hanapurple text-[20px] font-bold";
     default:
