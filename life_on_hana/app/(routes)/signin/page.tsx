@@ -1,6 +1,5 @@
 "use client";
 
-import { LoginHeader } from "@/components/LoginHeader";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
@@ -39,7 +38,6 @@ function SigninCard() {
 
   return (
     <div className="bg-gray-100 flex flex-col min-h-screen">
-      <LoginHeader />
       <div className="flex-grow flex justify-center items-center">
         <div className="flex flex-col pb-44 items-center justify-center w-full max-w-md px-4">
           <div className="flex flex-col items-center mb-6">
