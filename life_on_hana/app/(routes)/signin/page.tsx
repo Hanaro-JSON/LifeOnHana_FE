@@ -45,10 +45,7 @@ function SigninCard() {
             <Image src={logoText} alt="LogoText" className="mb-2" />
             <Image src={logoDetail} alt="LogoDetail" className="mb-2" />
           </div>
-          <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-64 flex flex-col pt-5"
-          >
+          <form onSubmit={handleSubmit} className="w-full max-w-64 flex flex-col pt-5">
             <label className="text-xs mb-1" htmlFor="id">
               아이디
             </label>
