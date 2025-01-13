@@ -107,15 +107,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -125,7 +116,19 @@
 }
 
 html {
-  font-size: 12px;
+  font-size: 12px; /* 기본 값 */
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px; /* 태블릿 이상 */
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px; /* 데스크탑 */
+  }
 }
 
 body {
