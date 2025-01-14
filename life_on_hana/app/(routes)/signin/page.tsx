@@ -8,7 +8,6 @@ import logoText from "@/assets/logoText.png";
 import { authenticate } from "@/actions/myauth";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import OpenDescriptionItem from "@/components/atoms/OpenDescriptionItem";
 
 function SigninCard() {
   const router = useRouter();
@@ -42,8 +41,6 @@ function SigninCard() {
       <div className="flex-grow flex justify-center items-center">
         <div className="flex flex-col pb-44 items-center justify-center w-full max-w-md px-4">
           <div className="flex flex-col items-center mb-6">
-            <OpenDescriptionItem />
-            {/* <DescriptionDetailItem idx={1} /> */}
             <Image src={logo} alt="Logo" className="w-20 mb-2" />
             <Image src={logoText} alt="LogoText" className="mb-2" />
             <Image src={logoDetail} alt="LogoDetail" className="mb-2" />
