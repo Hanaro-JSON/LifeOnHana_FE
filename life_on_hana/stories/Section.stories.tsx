@@ -7,7 +7,11 @@ const meta: Meta<typeof Section> = {
     component: Section,
     tags: ["autodocs"],
     argTypes: {
+<<<<<<< HEAD
     shadow: { type: "boolean" },
+=======
+    hasShadow: { type: "boolean" },
+>>>>>>> 2fcc33b ([feat] 🐣 Section 추가)
     },
 };
 
@@ -21,6 +25,10 @@ export const Default: Story = {
 
 export const NoShadow: Story = {
     args: {
+<<<<<<< HEAD
         shadow: false,
+=======
+        hasShadow: false,
+>>>>>>> 2fcc33b ([feat] 🐣 Section 추가)
     },
 }
