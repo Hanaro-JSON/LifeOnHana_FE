@@ -13,17 +13,17 @@ const getBtnClasses = (variant: string) => {
       return "bg-hanalightpurple w-[330px] h-[47px] text-hanapurple text-[16px] font-SCDream8";
     // '하나 월급통장' 출금계좌 선택 전
     case "beforeChooseAccount":
-      return "bg-hanagray w-[290px] h-[44px] text-[15px] shadow-xl";
+      return "bg-hanagray w-[290px] h-[44px] text-[15px] text-white shadow-xl";
     // '휘릭' 전문보기
     case "moveToArticle":
-      return "w-[307px] h-[47px] bg-hanapurple text-[20px] font-bold";
+      return "w-[307px] h-[47px] bg-hanapurple text-[20px] text-white font-bold";
     default:
-      return "bg-hanapurple w-[290px] h-[44px] text-[15px]";
+      return "bg-hanapurple w-[290px] h-[44px] text-[15px] text-white";
   }
 };
 
 export default function Btn({ text, url, variant = "default" }: TBtnProps) {
-  const btnClasses = `${getBtnClasses(variant)} rounded-xl text-white font-SCDream5`;
+  const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
   return url ? (
     <Link href={url}>
       <button className={btnClasses}>{text}</button>
