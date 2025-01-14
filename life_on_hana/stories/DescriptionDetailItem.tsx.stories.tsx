@@ -18,3 +18,9 @@ export const Default: Story = {
     idx: 1,
   },
 };
+
+export const LongDescription: Story = {
+  args: {
+    idx: 2,
+  },
+};
