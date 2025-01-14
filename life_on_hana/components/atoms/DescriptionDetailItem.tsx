@@ -31,7 +31,7 @@ export default function DescriptionDetailItem({ idx }: { idx: number }) {
             className="flex justify-between items-center relative max-w-[12.5rem] max-h-[6.25rem] bg-white border-2 border-hanapurple rounded-lg p-2"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-[90%] max-h-[80px] text-[.6875rem] text-start overflow-scroll">{descriptions(idx)}</div>
+            <div className="w-[90%] max-h-[5rem] text-[.6875rem] text-start overflow-scroll">{descriptions(idx)}</div>
             <button className="w-[5%]flex justify-center items-center text-xs" onClick={closeBalloon}>
               <Image src={exitBtn} alt="Close Button" className="w-3 h-3 cursor-pointer" />
             </button>
