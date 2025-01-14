@@ -5,7 +5,7 @@ import { mySignOut, getSession } from "@/actions/myauth";
 import { DataProvider } from "@/hooks/useData";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/lib/auth";
-
+import { Toaster } from "@/components/ui/toaster";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,12 +34,15 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <SessionProvider session={session}>
           <DataProvider getSession={getSession} signOut={signOut}>
             {children}
           </DataProvider>
         </SessionProvider>
+        <Toaster />
       </body>
     </html>
   );
