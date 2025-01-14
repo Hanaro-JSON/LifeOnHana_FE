@@ -10,15 +10,15 @@ const getBtnClasses = (variant: string) => {
   switch (variant) {
     // '하나지갑' 버튼들
     case "hanaWallet":
-      return "bg-hanalightpurple w-[330px] h-[47px] text-hanapurple text-[16px] font-SCDream8";
+      return "bg-hanalightpurple w-[20.625rem] h-[2.9375rem] text-hanapurple text-[1rem] font-SCDream8";
     // '하나 월급통장' 출금계좌 선택 전
     case "beforeChooseAccount":
-      return "bg-hanagray w-[290px] h-[44px] text-[15px] text-white shadow-xl";
+      return "bg-hanagray w-[18.125rem] h-[2.75rem] text-[.9375rem] text-white shadow-xl";
     // '휘릭' 전문보기
     case "moveToArticle":
-      return "w-[307px] h-[47px] bg-hanapurple text-[20px] text-white font-bold";
+      return "w-[19.1875rem] h-[2.9375rem] bg-hanapurple text-[1.25rem] text-white font-bold";
     default:
-      return "bg-hanapurple w-[290px] h-[44px] text-[15px] text-white";
+      return "bg-hanapurple w-[18.125rem] h-[2.75rem] text-[.9375rem] text-white";
   }
 };
 
