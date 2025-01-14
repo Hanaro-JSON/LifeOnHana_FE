@@ -15,7 +15,7 @@ export default function DescriptionDetailItem({ idx }: { idx: number }) {
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center" onClick={closeBalloon}>
           <div
-            className="flex justify-between items-center relative max-w-[250px] max-h-[6.25rem] bg-white border-2 border-hanapurple rounded-lg p-2"
+            className="flex justify-between items-center relative max-w-[15.625rem] max-h-[6.25rem] bg-white border-2 border-hanapurple rounded-lg p-2"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="w-[90%] max-h-[5rem] text-[.6875rem] text-start overflow-scroll">
