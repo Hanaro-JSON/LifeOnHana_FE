@@ -17,6 +17,12 @@ type Story = StoryObj<typeof MiniBtn>;
 export const Default: Story = {
   args: {
     variant: "default",
+    text: "금액 숨김",
+  },
+};
+
+export const WithoutVariant: Story = {
+  args: {
     text: "완료",
   },
 };
