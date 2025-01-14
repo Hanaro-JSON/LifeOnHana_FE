@@ -5,12 +5,16 @@ const meta: Meta<typeof DescriptionDetailItem> = {
   title: "atom component/DescriptionDetailItem",
   component: DescriptionDetailItem,
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    idx: { type: "number" },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof DescriptionDetailItem>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    idx: 1,
+  },
 };
