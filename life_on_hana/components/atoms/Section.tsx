@@ -8,11 +8,11 @@ export default function Section({ shadow = true }: TSectionProps) {
 =======
 import React from "react";
 
-type SectionProps = {
+type TSectionProps = {
     hasShadow?: boolean;
 };
 
-export default function Section({ hasShadow = true }: SectionProps) {
+export default function Section({ hasShadow = true }: TSectionProps) {
     const shadowClass = hasShadow ? "shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]" : "";
 >>>>>>> 2fcc33b ([feat] 🐣 Section 추가)
 
