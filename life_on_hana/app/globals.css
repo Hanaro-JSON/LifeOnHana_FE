@@ -103,11 +103,10 @@
     --hanagray: #b1bbc0;
     --hanadeepgray: #a6a6a6;
     --red: #f74c21;
-    --background: #f1f0f2;
   }
 }
 
-* {
+body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -133,6 +132,7 @@ html {
 
 body {
   font-family: "SCDream2";
+  --background: #f1f0f2;
 }
 
 a {
