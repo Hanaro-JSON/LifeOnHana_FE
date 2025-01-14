@@ -36,3 +36,27 @@ export const product: Story = {
     variant: "product",
   },
 };
+
+export const invest: Story = {
+  args: {
+    variant: "invest",
+  },
+};
+
+export const trip: Story = {
+  args: {
+    variant: "trip",
+  },
+};
+
+export const culture: Story = {
+  args: {
+    variant: "culture",
+  },
+};
+
+export const realEstate: Story = {
+  args: {
+    variant: "realEstate",
+  },
+};
