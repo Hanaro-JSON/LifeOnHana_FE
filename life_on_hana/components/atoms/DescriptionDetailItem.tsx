@@ -1,6 +1,5 @@
 import Image from "next/image";
 import exitBtn from "@/assets/exitBtn.svg";
-
 import { useState } from "react";
 
 export default function DescriptionDetailItem({ idx }: { idx: number }) {
