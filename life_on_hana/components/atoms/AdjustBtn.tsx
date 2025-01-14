@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-type Props = {
+type TAdjustBtnProps = {
   typeCeilTxt: string;
   typeButtomTxt: string;
   first: string;
   second: string;
   thired: string;
-  mX: string;
-  mY: string;
+  mX: number;
+  mY: number;
 };
 
-const AdjustBtn: React.FC<Props> = ({
+export default function AdjustBtn({
   typeCeilTxt = "말",
   typeButtomTxt = "속도",
   first = "0.5x",
   second = "1x",
   thired = "2x",
-  mX = "80",
-  mY = "90",
-}) => {
+  mX = 80,
+  mY = 90,
+}: TAdjustBtnProps) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleSelector = () => {
     setIsOpen(!isOpen);
@@ -50,7 +50,7 @@ const AdjustBtn: React.FC<Props> = ({
       {isOpen && (
         <div
           className="
-        h-16 -z-20 absolute -left-[155px] -top-0 transform bg-white rounded-2xl shadow-lg p-4 w-64"
+        h-16 -z-20 absolute -left-[13rem] -top-0 transform bg-white rounded-2xl shadow-lg p-4 w-64"
         >
           <div className="flex items-center justify-between">
             <input
@@ -70,6 +70,4 @@ const AdjustBtn: React.FC<Props> = ({
       )}
     </div>
   );
-};
-
-export default AdjustBtn;
+}
