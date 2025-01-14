@@ -116,18 +116,18 @@
 }
 
 html {
-  font-size: 12px; /* 기본 값 */
+  font-size: 0.75rem; /* 기본 값 */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   html {
-    font-size: 16px; /* 태블릿 이상 */
+    font-size: 1rem; /* 태블릿 이상 */
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 64rem) {
   html {
-    font-size: 18px; /* 데스크탑 */
+    font-size: 1.125rem; /* 데스크탑 */
   }
 }
 
@@ -137,4 +137,36 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(-90deg, #4d00b5 0%, #ffffff 100%);
+  border-radius: 0.3125rem;
+  height: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: #4d00b5;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background: #4d00b5;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
 }
