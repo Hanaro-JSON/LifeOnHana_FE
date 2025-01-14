@@ -1,11 +1,9 @@
-import React from "react";
-
 type TSectionProps = {
-    hasShadow?: boolean;
+    shadow?: boolean;
 };
 
-export default function Section({ hasShadow = true }: TSectionProps) {
-    const shadowClass = hasShadow ? "shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]" : "";
+export default function Section({ shadow = true }: TSectionProps) {
+    const shadowClass = shadow ? "shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]" : "";
 
     return (
     <div className="w-[22.6875rem] h-[8.4375rem] relative">

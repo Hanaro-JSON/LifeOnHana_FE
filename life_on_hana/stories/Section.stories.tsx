@@ -7,7 +7,7 @@ const meta: Meta<typeof Section> = {
     component: Section,
     tags: ["autodocs"],
     argTypes: {
-    hasShadow: { type: "boolean" },
+    shadow: { type: "boolean" },
     },
 };
 
@@ -21,6 +21,6 @@ export const Default: Story = {
 
 export const NoShadow: Story = {
     args: {
-        hasShadow: false,
+        shadow: false,
     },
 }
