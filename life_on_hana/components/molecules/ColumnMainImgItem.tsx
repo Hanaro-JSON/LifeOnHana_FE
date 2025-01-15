@@ -4,7 +4,7 @@ type TColumnMainImgItemProps = {
 };
 
 export default function ColumnMainImgItem({ variant, title }: TColumnMainImgItemProps) {
-  const getCategroy = (variant: string) => {
+  const getCategory = (variant: string) => {
     switch (variant) {
       case "REAL_ESTATE":
         return "부동산";
@@ -49,7 +49,7 @@ export default function ColumnMainImgItem({ variant, title }: TColumnMainImgItem
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
       >
         <div className="w-[70%]">
-          <div className="text-hanapurple font-SCDream8 text-[1.125rem]">{getCategroy(variant)}</div>
+          <div className="text-hanapurple font-SCDream8 text-[1.125rem]">{getCategory(variant)}</div>
           <div className="text-white font-SCDream8 text-[1.5625rem]">{title}</div>
         </div>
       </div>
