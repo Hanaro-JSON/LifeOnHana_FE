@@ -7,7 +7,6 @@ const meta: Meta<typeof ColumnRecommendItem> = {
   tags: ["autodocs"],
   argTypes: {
     variant: { type: "string" },
-    link: { type: "string" },
     name: { type: "string" },
   },
 };
@@ -18,7 +17,6 @@ type Story = StoryObj<typeof ColumnRecommendItem>;
 export const RealEstate: Story = {
   args: {
     variant: "REAL_ESTATE",
-    link: "/",
     name: "토지거래허가구역",
   },
 };
@@ -26,7 +24,6 @@ export const RealEstate: Story = {
 export const Investment: Story = {
   args: {
     variant: "INVESTMENT",
-    link: "/",
     name: "월배당 ETF",
   },
 };
@@ -34,7 +31,6 @@ export const Investment: Story = {
 export const InheritanceGift: Story = {
   args: {
     variant: "INHERITANCE_GIFT",
-    link: "/",
     name: "보험금청구권 신탁",
   },
 };
@@ -42,7 +38,6 @@ export const InheritanceGift: Story = {
 export const Travel: Story = {
   args: {
     variant: "TRAVEL",
-    link: "/",
     name: "보홀 5일 #비그랜드 #고래상어투어",
   },
 };
@@ -50,7 +45,6 @@ export const Travel: Story = {
 export const Culture: Story = {
   args: {
     variant: "CULTURE",
-    link: "/",
     name: "<바람아 분다, 가라> - 한강",
   },
 };
@@ -58,7 +52,6 @@ export const Culture: Story = {
 export const Hobby: Story = {
   args: {
     variant: "HOBBY",
-    link: "/",
     name: "‘동년배 친구’를 사귀고 싶다면, ‘오이’ & ‘시놀’",
   },
 };

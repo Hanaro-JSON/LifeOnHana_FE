@@ -1,12 +1,18 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 
 type TColumnRecommendItemProps = {
   variant: string;
-  link: string;
   name: string;
 };
 
-export default function ColumnRecommendItem({ variant, link, name }: TColumnRecommendItemProps) {
+export default function ColumnRecommendItem({ variant, name }: TColumnRecommendItemProps) {
+  const [isClicked, setIsClicked] = useState(false);
+  const clickEvent = () => {
+    setIsClicked(!isClicked);
+  };
+
   const getCategory = (variant: string) => {
     switch (variant) {
       case "REAL_ESTATE":
@@ -47,16 +53,17 @@ export default function ColumnRecommendItem({ variant, link, name }: TColumnReco
 
   return (
     <>
-      <Link href={link}>
-        <button
-          className="bg-cover bg-center w-[9.5625rem] h-[6.25rem] flex flex-col items-start justify-start p-2"
-          style={{ backgroundImage: `url(${getSrc(variant)})` }}
-          title={name}
-        >
-          <div className="text-hanapurple font-SCDream6 text-[.75rem] mb-1">{getCategory(variant)}</div>
-          <div className="line-clamp font-SCDream5 text-[.9375rem] flex justify-start text-left">{name}</div>
-        </button>
-      </Link>
+      <button
+        onClick={clickEvent}
+        className={`${
+          isClicked && "border-4 border-hanapurple "
+        } rounded-[10px] bg-cover bg-center w-[9.5625rem] h-[6.25rem] flex flex-col items-start justify-start p-2 shadow-xl`}
+        style={{ backgroundImage: `url(${getSrc(variant)})` }}
+        title={name}
+      >
+        <div className="text-hanapurple font-SCDream6 text-[.75rem] mb-1">{getCategory(variant)}</div>
+        <div className="line-clamp font-SCDream5 text-[.9375rem] flex justify-start text-left">{name}</div>
+      </button>
       <style jsx>{`
         .line-clamp {
           display: -webkit-box;
