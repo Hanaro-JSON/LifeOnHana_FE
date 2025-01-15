@@ -35,7 +35,7 @@ export const InheritanceGift: Story = {
   },
 };
 
-export const Trip: Story = {
+export const Travel: Story = {
   args: {
     variant: "TRAVEL",
     title: "새해 소망 여행 울산시 울주군",

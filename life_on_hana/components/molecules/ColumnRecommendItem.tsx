@@ -51,11 +51,21 @@ export default function ColumnRecommendItem({ variant, link, name }: TColumnReco
         <button
           className="bg-cover bg-center w-[9.5625rem] h-[6.25rem] flex flex-col items-start justify-start p-2"
           style={{ backgroundImage: `url(${getSrc(variant)})` }}
+          title={name}
         >
           <div className="text-hanapurple font-SCDream6 text-[.75rem] mb-1">{getCategory(variant)}</div>
-          <div className="font-SCDream5 text-[.9375rem] flex justify-start text-left">{name}</div>
+          <div className="line-clamp font-SCDream5 text-[.9375rem] flex justify-start text-left">{name}</div>
         </button>
       </Link>
+      <style jsx>{`
+        .line-clamp {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      `}</style>
     </>
   );
 }

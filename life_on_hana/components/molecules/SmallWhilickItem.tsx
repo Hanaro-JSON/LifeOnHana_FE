@@ -55,6 +55,7 @@ export default function SmallWhilickItem({ article_id, variant, title }: TSmallW
         <button
           className="bg-cover bg-center w-[10rem] h-[14.1875rem] flex flex-col items-center justify-center p-5 relative"
           style={{ backgroundImage: `url(${getSrc(variant)})` }}
+          title={title}
         >
           <Image src={smallWhilick_title} alt="큰따옴표" width={20} height={20} className="absolute top-10" />
           <div className="w-full h-1/2  flex justify-center items-center">

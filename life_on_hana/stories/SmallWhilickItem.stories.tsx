@@ -39,7 +39,7 @@ export const InheritanceGift: Story = {
   },
 };
 
-export const Trip: Story = {
+export const Travel: Story = {
   args: {
     article_id: 4,
     variant: "TRAVEL",

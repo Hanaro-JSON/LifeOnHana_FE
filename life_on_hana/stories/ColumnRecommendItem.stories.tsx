@@ -19,7 +19,7 @@ export const RealEstate: Story = {
   args: {
     variant: "REAL_ESTATE",
     link: "/",
-    name: "행복 knowhow 연금예금",
+    name: "토지거래허가구역",
   },
 };
 
@@ -27,7 +27,7 @@ export const Investment: Story = {
   args: {
     variant: "INVESTMENT",
     link: "/",
-    name: "고령 은퇴자를 위한 보험의 육하원칙 2부: 왜?(Why)",
+    name: "월배당 ETF",
   },
 };
 
@@ -35,15 +35,15 @@ export const InheritanceGift: Story = {
   args: {
     variant: "INHERITANCE_GIFT",
     link: "/",
-    name: "고령 은퇴자를 위한 보험의 육하원칙 2부: 왜?(Why)",
+    name: "보험금청구권 신탁",
   },
 };
 
-export const Trip: Story = {
+export const Travel: Story = {
   args: {
     variant: "TRAVEL",
     link: "/",
-    name: "고령 은퇴자를 위한 보험의 육하원칙 2부: 왜?(Why)",
+    name: "보홀 5일 #비그랜드 #고래상어투어",
   },
 };
 
@@ -51,7 +51,7 @@ export const Culture: Story = {
   args: {
     variant: "CULTURE",
     link: "/",
-    name: "고령 은퇴자를 위한 보험의 육하원칙 2부: 왜?(Why)",
+    name: "<바람아 분다, 가라> - 한강",
   },
 };
 
@@ -59,6 +59,6 @@ export const Hobby: Story = {
   args: {
     variant: "HOBBY",
     link: "/",
-    name: "고령 은퇴자를 위한 보험의 육하원칙 2부: 왜?(Why)",
+    name: "‘동년배 친구’를 사귀고 싶다면, ‘오이’ & ‘시놀’",
   },
 };
