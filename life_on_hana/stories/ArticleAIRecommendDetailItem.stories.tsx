@@ -1,5 +1,3 @@
-// src/stories/ArticleAIRecommendDetailItem.stories.tsx
-
 import { Meta, StoryObj } from "@storybook/react";
 import ArticleAIRecommendDetailItem from "@/components/molecules/ArticleAIRecommendDetailItem";
 
