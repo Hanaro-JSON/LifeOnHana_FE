@@ -33,7 +33,7 @@ export const Default: Story = {
   args: {
     bank: "Hana",
     accountName: "하나월급통장",
-    accountNumber: "111-111111-11111",
+    accountNumber: "11111111111111",
     balance: 1000000,
   },
 };
@@ -42,7 +42,7 @@ export const NH: Story = {
   args: {
     bank: "NH",
     accountName: "NH모임리통장",
-    accountNumber: "123-123123-123",
+    accountNumber: "123123123123",
     balance: 7000000,
   },
 };
@@ -51,7 +51,7 @@ export const Shinhan: Story = {
   args: {
     bank: "Shinhan",
     accountName: "신한적금통장",
-    accountNumber: "999-999999-999",
+    accountNumber: "999999999999",
     balance: 2500000,
   },
 };
@@ -60,7 +60,7 @@ export const Kakao: Story = {
   args: {
     bank: "Kakao",
     accountName: "카카오페이통장",
-    accountNumber: "456-456789-123",
+    accountNumber: "456456789123",
     balance: 300000,
   },
 };
