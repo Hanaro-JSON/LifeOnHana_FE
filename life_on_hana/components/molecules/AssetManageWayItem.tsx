@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 type TAssetManageWayItemProps =
   | "adjust"
@@ -57,38 +56,13 @@ const getLabel = (variant: TAssetManageWayItemProps) => {
   }
 };
 
-const getLink = (variant: TAssetManageWayItemProps) => {
-  switch (variant) {
-    case "adjust":
-      return "/";
-    case "rebalancing":
-      return "/";
-    case "managing":
-      return "/";
-    case "product":
-      return "/";
-    case "invest":
-      return "/";
-    case "trip":
-      return "/";
-    case "culture":
-      return "/";
-    case "realEstate":
-      return "/";
-    default:
-      return "/";
-  }
-};
-
 export default function AssetManageWayItem({ variant }: { variant: TAssetManageWayItemProps }) {
   return (
     <>
-      <Link href={getLink(variant)} className="flex flex-col items-center">
-        <div className="w-10 h-10 bg-hanalightpurple rounded-xl flex justify-center items-center mb-1">
-          <Image src={getSrc(variant)} alt={getLabel(variant)} width={30} height={30} />
-        </div>
-        <div className="font-SCDream5 text-[.625rem]">{getLabel(variant)}</div>
-      </Link>
+      <div className="w-10 h-10 bg-hanalightpurple rounded-xl flex justify-center items-center mb-1">
+        <Image src={getSrc(variant)} alt={getLabel(variant)} width={30} height={30} />
+      </div>
+      <div className="font-SCDream5 text-[.625rem]">{getLabel(variant)}</div>
     </>
   );
 }
