@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Btn from "@/components/atoms/Btn";
-import logo from "@/assets/logo.png";
-import logoText from "@/assets/logoText.png";
+import logo from "@/assets/logo.svg";
+import logoText from "@/assets/logoText.svg";
 import { authenticate } from "@/actions/myauth";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
