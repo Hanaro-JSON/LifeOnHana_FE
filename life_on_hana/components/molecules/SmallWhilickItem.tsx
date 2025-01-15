@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import smallWhilick_title from "@/assets/smallWhilick_title.svg";
 import Link from "next/link";
@@ -55,10 +57,21 @@ export default function SmallWhilickItem({ article_id, variant, title }: TSmallW
           style={{ backgroundImage: `url(${getSrc(variant)})` }}
         >
           <Image src={smallWhilick_title} alt="큰따옴표" width={20} height={20} className="absolute top-10" />
-          <div className="text-white font-SCDream6 text-[.8125rem] flex justify-center items-center">{title}</div>
+          <div className="w-full h-1/2  flex justify-center items-center">
+            <div className="line-clamp text-white font-SCDream6 text-[.8125rem]">{title}</div>
+          </div>
           <div className="text-white font-SCDream5 text-[15px] absolute bottom-5 left-5">{getCategory(variant)}</div>
         </button>
       </Link>
+      <style jsx>{`
+        .line-clamp {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      `}</style>
     </>
   );
 }
