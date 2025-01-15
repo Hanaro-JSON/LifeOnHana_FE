@@ -2,7 +2,7 @@ import Image from "next/image";
 import HeartNo from "../../assets/HeartNo.svg";
 import HeartYes from "../../assets/HeartYes.svg";
 
-type ArticleItemProps = {
+type TArticleItemProps = {
   title: string;
   category: string;
   published_at: string;
@@ -16,7 +16,7 @@ export default function ArticleItem({
   published_at,
   thumbnail_s3_key,
   is_liked,
-}: ArticleItemProps) {
+}: TArticleItemProps) {
   return (
     <div className="w-[21.4375rem] h-[4.375rem] relative">
       <div className="w-5 h-5 left-[19.625rem] top-[2.5rem] absolute" />
