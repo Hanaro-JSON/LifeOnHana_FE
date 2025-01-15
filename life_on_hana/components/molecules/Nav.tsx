@@ -37,7 +37,7 @@ export default function Nav() {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 w-full z-50 h-[5.5625rem] rounded-t-[1.875rem] flex justify-around items-center bg-hanapurple">
+      <div className="fixed bottom-0 left-0 right-0 w-screen z-50 h-[5.5625rem] rounded-t-[1.875rem] flex justify-around items-center bg-hanapurple">
         {navItem.map(({ route, label, icon }: TNavItemProps) => {
           return (
             <Link key={route} href={`/${route}`} className="flex flex-col justify-center items-center">
