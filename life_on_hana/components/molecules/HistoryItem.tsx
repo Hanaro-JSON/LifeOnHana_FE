@@ -12,7 +12,7 @@ import ETC from "@/assets/ETC.svg";
 import { extractTimeWithRegex } from "@/utils/convertTimeFormat";
 import { StaticImageData } from "next/image";
 
-type THistoryItemCategory =
+type THistoryItemCategoryProps =
   | "FOOD"
   | "SNACK"
   | "EDUCATION"
@@ -26,14 +26,14 @@ type THistoryItemCategory =
 
 type THistoryItemProps = {
   historyId: number;
-  category: THistoryItemCategory;
+  category: THistoryItemCategoryProps;
   amount: number;
   description: string;
   historyDatetime: string;
   isExpense: boolean;
 };
 
-const getSrc = (category: THistoryItemCategory): StaticImageData => {
+const getSrc = (category: THistoryItemCategoryProps): StaticImageData => {
   switch (category) {
     case "FOOD":
       return FOOD;
@@ -58,7 +58,7 @@ const getSrc = (category: THistoryItemCategory): StaticImageData => {
   }
 };
 
-const getLabel = (category: THistoryItemCategory): string => {
+const getLabel = (category: THistoryItemCategoryProps): string => {
   switch (category) {
     case "FOOD":
       return "식비";
