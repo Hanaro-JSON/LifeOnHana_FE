@@ -23,23 +23,22 @@ export const Default: Story = {
   args: {
     name: "3∙6∙9 정기예금",
     description: "3개월마다, 기쁜 날마다, 고금리의 즐거움을 드립니다. 3개월마다, 기쁜 날마다 언제든지 필요할 때 찾을 수 있고 찾을 땐 언제나 높은 금리의 즐거움까지 누릴 수 있는 정기 예금입니다.",
-    link: "https://www.naver.com/",
+    link: "https://www.kebhana.com/cont/mall/mall08/mall0801/mall080101/1419598_115126.jsp",
     savingsInfo: {
-      basicInterestRate: 3.5,
-      maxInterestRate: 4.5,
+      basicInterestRate: 2.8,
+      maxInterestRate: 2.8,
     },
   },
 };
 
 export const Long: Story = {
   args: {
-    name: "설명이 길어요",
-    description: `3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다3개월마다, 기쁜 날마다, 고금리의 즐거움을 드립니다. 3개월마다, 기쁜 날마다 언제든지 필요할 때 찾을 수 있고 찾을 땐 언제나 높은 금리의 즐거움까지 누릴 수 있는 정기 예금입니다.
-    이 상품은 또한 예금 기간에 따라 이자율이 달라지며, 고객의 예금액에 맞춰 맞춤형 이자율을 제공해 드립니다.`,
-    link: "https://www.naver.com/",
+    name: "달달 하나 적금",
+    description: `급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금급여이체를 하는 손님에게 달마다 달콤한 혜택이 쏟아지는 적금`,
+    link: "https://www.kebhana.com/cont/mall/mall08/mall0801/mall080102/1503152_115157.jsp",
     savingsInfo: {
-      basicInterestRate: 1.5,
-      maxInterestRate: 9.9,
+      basicInterestRate: 2.0,
+      maxInterestRate: 7.0,
     },
   },
 };
