@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ConnectBankItem from "@/components/molecules/ConnectBankItem";
 
-// Meta 정보 설정
 const meta: Meta<typeof ConnectBankItem> = {
   title: "molecule component/ConnectBankItem", 
   component: ConnectBankItem, 
