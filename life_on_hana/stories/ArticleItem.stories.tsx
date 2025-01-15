@@ -21,7 +21,7 @@ export const Default: Story = {
   args: {
     title: "고요함과 활기참 그 사이 라오스의 두 가지 매력",
     category: "여행",
-    published_at: "2024년 07월",
+    published_at: "2024-07-01",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202404240904500690.jpg",
     is_liked: false,
   },
@@ -31,7 +31,7 @@ export const Liked: Story = {
   args: {
     title: "중고거래, AI가 올려주는 당신의 매너온도",
     category: "투자",
-    published_at: "2024년 12월",
+    published_at: "2024-12-01",
     thumbnail_s3_key: "https://www.hana1qm.com/dataFile/bbs/202420210420420822.jpg",
     is_liked: true,
   },

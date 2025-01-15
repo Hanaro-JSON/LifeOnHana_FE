@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeartNo from "../../assets/HeartNo.svg";
 import HeartYes from "../../assets/HeartYes.svg";
+import { formatDate } from "@/utils/formatDate";
 
 type TArticleItemProps = {
   title: string;
@@ -45,7 +46,7 @@ export default function ArticleItem({
       <div className="w-[21.4375rem] h-px left-0 top-[4.3125rem] absolute bg-[#d9d9d9]" />
       
       <div className="left-[6.625rem] top-[3rem] absolute text-black text-[.625rem] font-SCDream3">
-        {category} / {published_at}
+        {category} / {formatDate(published_at)}
       </div>
     </div>
   );
