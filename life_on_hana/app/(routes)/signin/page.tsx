@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Btn from "@/components/atoms/Btn";
 import logo from "@/assets/logo.png";
-import logoDetail from "@/assets/logoDetail.png";
 import logoText from "@/assets/logoText.png";
 import { authenticate } from "@/actions/myauth";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import LoginLabelInput from "@/components/molecules/LoginLabelInput";
 
 function SigninCard() {
   const router = useRouter();
@@ -41,47 +41,35 @@ function SigninCard() {
       <div className="flex-grow flex justify-center items-center">
         <div className="flex flex-col pb-44 items-center justify-center w-full max-w-md px-4">
           <div className="flex flex-col items-center mb-6">
-            <Image src={logo} alt="Logo" className="w-20 mb-2" />
+            <Image src={logo} alt="Logo" className="w-32 mb-2" />
             <Image src={logoText} alt="LogoText" className="mb-2" />
-            <Image src={logoDetail} alt="LogoDetail" className="mb-2" />
+            <div className="font-SCDream5 text-[#A6A6A6] text-xs">
+              소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
+            </div>
           </div>
-          <form onSubmit={handleSubmit} className="w-full max-w-64 flex flex-col pt-5">
-            <label className="text-xs mb-1" htmlFor="id">
-              아이디
-            </label>
-            <input
-              ref={idInputRef} // ID 필드를 ref로 연결
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-72 flex flex-col pt-5"
+          >
+            <LoginLabelInput
+              ref={idInputRef}
+              label="아이디"
               id="id"
               type="text"
               name="id"
               placeholder="아이디"
-              className={`bg-white mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                errorMsg === "id"
-                  ? "border-red-500 focus:ring-red-500 focus:bg-red-50"
-                  : "border-gray-300 focus:ring-purple-500 focus:bg-purple-50"
-              }`}
+              errorMsg={errorMsg === "id" ? "id" : undefined}
             />
-            <label className="text-xs mb-1" htmlFor="password">
-              비밀번호
-            </label>
-            <input
-              ref={passwordInputRef} // PW 필드를 ref로 연결
+            <LoginLabelInput
+              ref={passwordInputRef}
+              label="비밀번호"
               id="password"
               type="password"
               name="pw"
               placeholder="비밀번호"
-              className={`bg-white mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                errorMsg === "pw"
-                  ? "border-red-500 focus:ring-red-500 focus:bg-red-50"
-                  : "border-gray-300 focus:ring-purple-500 focus:bg-purple-50"
-              }`}
+              errorMsg={errorMsg === "pw" ? "pw" : undefined}
             />
-            <Button
-              type="submit"
-              className="w-full py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition"
-            >
-              로그인
-            </Button>
+            <Btn text="로그인" type="submit" />
           </form>
         </div>
       </div>
