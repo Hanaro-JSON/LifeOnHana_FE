@@ -1,14 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import whilick from "@/assets/whilick.svg";
-import whilick_clicked from "@/assets/whilick_clicked.svg";
-import home from "@/assets/home.svg";
-import home_clicked from "@/assets/home_clicked.svg";
-import column from "@/assets/column.svg";
-import column_clicked from "@/assets/column_clicked.svg";
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
+
+type TNavItemProps = {
+  route: string;
+  label: string;
+  icon: { default: string; clicked: string };
+};
+
+const navItem: TNavItemProps[] = [
+  {
+    route: "whilick",
+    label: "휘릭",
+    icon: { default: "/assets/whilick.svg", clicked: "/assets/whilick_clicked.svg" },
+  },
+  {
+    route: "home",
+    label: "휘릭",
+    icon: { default: "/assets/home.svg", clicked: "/assets/home_clicked.svg" },
+  },
+  {
+    route: "column",
+    label: "칼럼",
+    icon: { default: "/assets/column.svg", clicked: "/assets/column_clicked.svg" },
+  },
+];
 
 export default function Nav() {
   const router = useSelectedLayoutSegments();
@@ -20,18 +38,14 @@ export default function Nav() {
   return (
     <>
       <div className="fixed bottom-0 left-0 right-0 w-full z-50 h-[5.5625rem] rounded-t-[1.875rem] flex justify-around items-center bg-hanapurple">
-        <Link href={"/whilick"} className="flex flex-col justify-center items-center">
-          <Image src={segment === "whilick" ? whilick_clicked : whilick} alt="휘릭" width={24} height={24} />
-          <span className={segment === "whilick" ? clickedLableClassNames : lableClassNames}>휘릭</span>
-        </Link>
-        <Link href={"/home"} className="flex flex-col justify-center items-center">
-          <Image src={segment === "home" ? home_clicked : home} alt="홈" width={24} height={24} />
-          <span className={segment === "home" ? clickedLableClassNames : lableClassNames}>홈</span>
-        </Link>
-        <Link href={"/column"} className="flex flex-col justify-center items-center">
-          <Image src={segment === "column" ? column_clicked : column} alt="칼럼" width={24} height={24} />
-          <span className={segment === "column" ? clickedLableClassNames : lableClassNames}>칼럼</span>
-        </Link>
+        {navItem.map(({ route, label, icon }: TNavItemProps) => {
+          return (
+            <Link key={route} href={`/${route}`} className="flex flex-col justify-center items-center">
+              <Image src={segment === route ? icon.clicked : icon.default} alt={label} width={24} height={24} />
+              <span className={segment === route ? clickedLableClassNames : lableClassNames}>{label}</span>
+            </Link>
+          );
+        })}
       </div>
     </>
   );
