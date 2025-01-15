@@ -128,7 +128,7 @@ export default function LikedAccountProductDetailItem({
             max={savingsInfo.maxInterestRate}   
             step="0.1"     
           />
-          <span className="">로</span>
+          <span className="">로 저축하기</span>
         </div>
       </div>
 
