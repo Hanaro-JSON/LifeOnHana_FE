@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 type TLoginLabelInputProps = {
   label: string;
   id: string;
-  type: "text" | "password"; // 표준 HTML 속성에 맞춤
+  type: "text" | "password";
   name: string;
   placeholder: string;
   errorMsg?: string;
