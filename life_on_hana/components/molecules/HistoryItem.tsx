@@ -10,27 +10,30 @@ import DEPOSIT from "@/assets/DEPOSIT.svg";
 import INTEREST from "@/assets/INTEREST.svg";
 import ETC from "@/assets/ETC.svg";
 import { extractTimeWithRegex } from "@/utils/convertTimeFormat";
+import { StaticImageData } from "next/image";
+
+type THistoryItemCategory =
+  | "FOOD"
+  | "SNACK"
+  | "EDUCATION"
+  | "HOBBY"
+  | "HEALTH"
+  | "FIXED_EXPENSE"
+  | "TRAVEL"
+  | "DEPOSIT"
+  | "INTEREST"
+  | "ETC";
 
 type THistoryItemProps = {
   historyId: number;
-  category:
-    | "FOOD"
-    | "SNACK"
-    | "EDUCATION"
-    | "HOBBY"
-    | "HEALTH"
-    | "FIXED_EXPENSE"
-    | "TRAVEL"
-    | "DEPOSIT"
-    | "INTEREST"
-    | "ETC";
+  category: THistoryItemCategory;
   amount: number;
   description: string;
   historyDatetime: string;
   isExpense: boolean;
 };
 
-const getSrc = ({ category }: THistoryItemProps) => {
+const getSrc = (category: THistoryItemCategory): StaticImageData => {
   switch (category) {
     case "FOOD":
       return FOOD;
@@ -52,12 +55,10 @@ const getSrc = ({ category }: THistoryItemProps) => {
       return INTEREST;
     case "ETC":
       return ETC;
-    default:
-      return "";
   }
 };
 
-const getLabel = ({ category }: THistoryItemProps) => {
+const getLabel = (category: THistoryItemCategory): string => {
   switch (category) {
     case "FOOD":
       return "식비";
@@ -79,41 +80,39 @@ const getLabel = ({ category }: THistoryItemProps) => {
       return "이자";
     case "ETC":
       return "카테고리 없음";
-    default:
-      return "";
   }
 };
 
 export default function HistoryItem({
-  variant,
-}: {
-  variant: THistoryItemProps;
-}) {
+  category,
+  amount,
+  description,
+  historyDatetime,
+  isExpense,
+}: THistoryItemProps) {
   return (
     <>
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row gap-3">
           <Image
-            src={getSrc(variant)}
-            alt={getLabel(variant)}
+            src={getSrc(category)}
+            alt={getLabel(category)}
             width={40}
             height={40}
           />
           <div className="flex flex-col py-2">
             <div className="font-SCDream3 text-[.8025rem]">
-              {getLabel(variant)}
+              {getLabel(category)}
             </div>
-            <div className="font-SCDream5 text-[.9rem]">
-              {variant.description}
-            </div>
+            <div className="font-SCDream5 text-[.9rem]">{description}</div>
             <div className="font-SCDream2 text-[.625rem]">
-              {extractTimeWithRegex(variant.historyDatetime)}
+              {extractTimeWithRegex(historyDatetime)}
             </div>
           </div>
         </div>
         <div className="font-SCDream5">
-          {variant.isExpense ? "+" : "-"}
-          {variant.amount.toLocaleString()} 원
+          {isExpense ? "+" : "-"}
+          {amount.toLocaleString()} 원
         </div>
       </div>
     </>
