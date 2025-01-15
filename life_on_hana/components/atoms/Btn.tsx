@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 type TBtnProps = {
+  type?: "button" | "submit" | "reset" | undefined;
   text: string;
   url?: string;
   variant?: "default" | "moveToArticle" | "beforeChooseAccount" | "hanaWallet";
@@ -22,13 +23,20 @@ const getBtnClasses = (variant: string) => {
   }
 };
 
-export default function Btn({ text, url, variant = "default" }: TBtnProps) {
+export default function Btn({
+  type,
+  text,
+  url,
+  variant = "default",
+}: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
   return url ? (
     <Link href={url}>
       <button className={btnClasses}>{text}</button>
     </Link>
   ) : (
-    <button className={btnClasses}>{text}</button>
+    <button className={btnClasses} type={type}>
+      {text}
+    </button>
   );
 }

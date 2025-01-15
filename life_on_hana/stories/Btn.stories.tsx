@@ -6,6 +6,12 @@ const meta: Meta<typeof Btn> = {
   component: Btn,
   tags: ["autodocs"],
   argTypes: {
+    type: {
+      control: {
+        type: "select",
+        options: ["button", "submit", "reset"],
+      },
+    },
     variant: { type: "string" },
     text: { type: "string" },
     url: { type: "string" },
@@ -49,5 +55,12 @@ export const hanaWalletWithoutUrl: Story = {
   args: {
     variant: "hanaWallet",
     text: "하나은행 연금 플래너 이용하기",
+  },
+};
+
+export const login: Story = {
+  args: {
+    type: "submit",
+    text: "로그인",
   },
 };
