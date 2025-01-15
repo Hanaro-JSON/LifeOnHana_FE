@@ -6,8 +6,8 @@ const meta: Meta<typeof ColumnRecommendItem> = {
   component: ColumnRecommendItem,
   tags: ["autodocs"],
   argTypes: {
-    variant: { type: "string" },
-    name: { type: "string" },
+    variant: { type: "string", description: "카테고리" },
+    name: { type: "string", description: "칼럼 내 '관련 있는 정보'명" },
   },
 };
 

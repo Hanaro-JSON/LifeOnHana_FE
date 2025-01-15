@@ -6,8 +6,8 @@ const meta: Meta<typeof SearchInput> = {
   component: SearchInput,
   tags: ["autodocs"],
   argTypes: {
-    placeholder: { type: "string" },
-    value: { type: "string" },
+    placeholder: { type: "string", description: "검색창 안내" },
+    value: { type: "string", description: "검색한 내용" },
   },
 };
 

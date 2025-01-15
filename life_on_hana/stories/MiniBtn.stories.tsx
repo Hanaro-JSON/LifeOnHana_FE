@@ -6,8 +6,8 @@ const meta: Meta<typeof MiniBtn> = {
   component: MiniBtn,
   tags: ["autodocs"],
   argTypes: {
-    text: { type: "string" },
-    variant: { type: "string" },
+    text: { type: "string", description: "라벨" },
+    variant: { type: "string", description: "종류" },
   },
 };
 
