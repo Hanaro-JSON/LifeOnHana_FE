@@ -18,7 +18,7 @@ const navItem: TNavItemProps[] = [
   },
   {
     route: "home",
-    label: "휘릭",
+    label: "홈",
     icon: { default: "/assets/home.svg", clicked: "/assets/home_clicked.svg" },
   },
   {
