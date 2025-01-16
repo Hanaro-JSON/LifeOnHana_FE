@@ -15,6 +15,11 @@ const meta: Meta<typeof LikedLoanProductDetailItem> = {
       control: "object",
       description: "대출 정보",
     },
+    closeBtn: {
+      control: "boolean",
+      description: "닫기 버튼",
+      defaultValue: true, 
+    },
   },
 };
 
@@ -55,6 +60,7 @@ export const Long: Story = {
       maxPeriod: 60,
       minCreditScore: 680,
     },
+    closeBtn: false,
   },
 };
 
