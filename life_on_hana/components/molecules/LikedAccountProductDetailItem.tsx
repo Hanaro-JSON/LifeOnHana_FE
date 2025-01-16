@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Btn from "../atoms/Btn";
+import X from "../../assets/X.svg";
+import Image from "next/image";
+
 
 type TLikedAccountProductDetailItemProps = {
   name: string;
@@ -9,6 +12,7 @@ type TLikedAccountProductDetailItemProps = {
     basicInterestRate: number;
     maxInterestRate: number;
   };
+  closeBtn?: boolean; // X 버튼 활성화 여부
 };
 
 export default function LikedAccountProductDetailItem({
@@ -16,11 +20,30 @@ export default function LikedAccountProductDetailItem({
   description,
   link,
   savingsInfo,
+  closeBtn = true, // 기본으로 X 활성화
 }: TLikedAccountProductDetailItemProps) {
   const [amount, setAmount] = useState<string>("");
   const [years, setYears] = useState<string>("");
   const [interestRate, setInterestRate] = useState<number>(savingsInfo.basicInterestRate);
   const [calculatedAmount, setCalculatedAmount] = useState<string>("0");
+
+  const [visible, setVisible] = useState(true);
+  
+    const handleClose = () => {
+      if (closeBtn) {
+        setVisible(false);
+      }
+    };
+  
+    const handleBackgroundClick = (e: React.MouseEvent) => {
+      if (closeBtn && (e.target as HTMLElement).id === "modal-background") {
+        handleClose();
+      }
+    };
+    
+    if (!visible) return null;
+  
+  const bg = closeBtn ? "fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50" : "";
 
   const handleInterestRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rate = parseFloat(e.target.value);
@@ -56,8 +79,25 @@ export default function LikedAccountProductDetailItem({
   };
 
   return (
-    <div className="w-[20rem] h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6">
-      <div className="text-[1.125rem] font-SCDream8 text-left self-start mb-2">
+    <div
+      id="modal-background"
+      onClick={handleBackgroundClick}
+      className={bg}
+    >
+    <div className="w-[20rem] h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
+        onClick={(e) => e.stopPropagation()}
+    >
+      {/* X 버튼 */}
+        <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
+          {closeBtn && (
+            <button onClick={handleClose} className="p-1">
+              <Image src={X} alt="Close" width={13} height={13} />
+            </button>
+          )}
+        </div>
+
+      {/* 제목 */}
+      <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start mb-2">
         {name}
       </div>
 
@@ -135,6 +175,7 @@ export default function LikedAccountProductDetailItem({
       <div className="mt-4 -ml-2">
         <Btn text={"상품정보 자세히보기"} url={link} />
       </div>
+    </div>
     </div>
   );
 }
