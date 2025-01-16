@@ -13,7 +13,19 @@ const meta: Meta<typeof LikedAccountProductDetailItem> = {
       control: "object",
       description: "이자 정보 (기본 금리, 최고 금리)",
     },
+    closeBtn: {
+      control: "boolean",
+      description: "닫기 버튼",
+      defaultValue: true, 
+    },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: "480px", padding: "20px", boxSizing: "border-box" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -40,5 +52,6 @@ export const Long: Story = {
       basicInterestRate: 2.0,
       maxInterestRate: 7.0,
     },
+    closeBtn: false,
   },
 };
