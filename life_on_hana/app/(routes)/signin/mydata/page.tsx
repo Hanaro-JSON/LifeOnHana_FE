@@ -2,13 +2,28 @@
 
 import MicroMiniBtn from "@/components/atoms/MicroMiniBtn";
 import ConnectBankItem from "@/components/molecules/ConnectBankItem";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function mydata() {
+export default function Mydata() {
+  const router = useRouter();
+  const [clickedNum, setClickedNum] = useState(0);
+
+  const handleToggle = (isChecked: boolean) => {
+    setClickedNum((prev) => (isChecked ? prev + 1 : prev - 1));
+  };
+
+  const moveToHomeEvent = () => {
+    if (clickedNum !== 0) {
+      router.replace("/home");
+    }
+    return;
+  };
+
   return (
     <>
       <div className="relative h-full ">
-        <div className="pt-[5rem] px-[1.5rem]">
+        <div className="pt-[5rem] px-[1.5rem] mb-[120px]">
           <div className="font-SCDream3 text-[23px] mb-2">
             <span className="font-Hana2heavy text-hanapurple">LIFE on HANA</span> 가입을 위해
             <br />
@@ -20,24 +35,25 @@ export default function mydata() {
           </div>
           <div className="flex items-center gap-3 font-SCDream5 text-[14px] mb-5">
             연결되는 데이터
-            <MicroMiniBtn num={5} />
+            <MicroMiniBtn num={clickedNum} />
           </div>
-          <div className="flex flex-col items-center">
-            <ConnectBankItem bankName="HANA" />
-            <ConnectBankItem bankName="NH" />
-            <ConnectBankItem bankName="SHINHAN" />
-            <ConnectBankItem bankName="WOORI" />
-            <ConnectBankItem bankName="TOSS" />
-            <ConnectBankItem bankName="NAVER" />
-            <ConnectBankItem bankName="KAKAO" />
+          <div className="flex flex-col items-center gap-2">
+            <ConnectBankItem bankName="HANA" onToggle={handleToggle} />
+            <ConnectBankItem bankName="NH" onToggle={handleToggle} />
+            <ConnectBankItem bankName="SHINHAN" onToggle={handleToggle} />
+            <ConnectBankItem bankName="WOORI" onToggle={handleToggle} />
+            <ConnectBankItem bankName="TOSS" onToggle={handleToggle} />
+            <ConnectBankItem bankName="NAVER" onToggle={handleToggle} />
+            <ConnectBankItem bankName="KAKAO" onToggle={handleToggle} />
           </div>
         </div>
 
-        <Link href="/home">
-          <button className="fixed w-full bottom-0 h-[100px] flex justify-center pt-5 font-SCDream3 text-[18px] bg-[#731BEC] text-white">
-            마이데이터 서비스 연결
-          </button>
-        </Link>
+        <button
+          onClick={moveToHomeEvent}
+          className="rounded-t-xl fixed w-full bottom-0 h-[80px] flex justify-center pt-5 font-SCDream3 text-[15px] bg-hanapurple text-white"
+        >
+          마이데이터 서비스 연결
+        </button>
       </div>
     </>
   );
