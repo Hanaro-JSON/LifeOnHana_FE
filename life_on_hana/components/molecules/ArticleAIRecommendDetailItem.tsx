@@ -37,17 +37,20 @@ export default function ArticleAIRecommendDetailItem({ name, description, link, 
     >
     <div className="w-[20rem] h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-center justify-between p-6"
     onClick={(e) => e.stopPropagation()}>
-      <div className="flex items-center justify-between w-full mb-2">
-      {/* 제목 */}
-      <div className="text-[.9375rem] font-SCDream8 text-left self-start">
-        {name}
-    </div>
-    {closeBtn && ( 
+      {/* X 버튼 */}
+        <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
+          {closeBtn && (
             <button onClick={handleClose} className="p-1">
-              <Image src={X} alt="Close" width={16} height={16} />
+              <Image src={X} alt="Close" width={13} height={13} />
             </button>
           )}
-          </div>
+        </div>
+
+      {/* 제목 */}
+      <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">
+        {name}
+      </div>
+
       {/* 내용 */}
       <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[20rem] flex-grow">
         <p className="text-left">{description}</p>
