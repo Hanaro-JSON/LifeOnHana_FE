@@ -6,9 +6,9 @@ const meta: Meta<typeof SmallWhilickItem> = {
   component: SmallWhilickItem,
   tags: ["autodocs"],
   argTypes: {
-    article_id: { type: "number" },
-    variant: { type: "string" },
-    title: { type: "string" },
+    article_id: { type: "number", description: "칼럼 idx" },
+    variant: { type: "string", description: "카테고리" },
+    title: { type: "string", description: "칼럼 제목" },
   },
 };
 
@@ -39,7 +39,7 @@ export const InheritanceGift: Story = {
   },
 };
 
-export const Trip: Story = {
+export const Travel: Story = {
   args: {
     article_id: 4,
     variant: "TRAVEL",

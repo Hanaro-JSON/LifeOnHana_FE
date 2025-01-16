@@ -6,8 +6,8 @@ const meta: Meta<typeof ColumnMainImgItem> = {
   component: ColumnMainImgItem,
   tags: ["autodocs"],
   argTypes: {
-    variant: { type: "string" },
-    title: { type: "string" },
+    variant: { type: "string", description: "카테고리" },
+    title: { type: "string", description: "칼럼 제목" },
   },
 };
 
@@ -35,7 +35,7 @@ export const InheritanceGift: Story = {
   },
 };
 
-export const Trip: Story = {
+export const Travel: Story = {
   args: {
     variant: "TRAVEL",
     title: "새해 소망 여행 울산시 울주군",

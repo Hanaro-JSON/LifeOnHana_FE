@@ -6,7 +6,7 @@ const meta: Meta<typeof AssetManageWayItem> = {
   component: AssetManageWayItem,
   tags: ["autodocs"],
   argTypes: {
-    variant: { type: "string" },
+    variant: { type: "string", description: "종류" },
   },
 };
 

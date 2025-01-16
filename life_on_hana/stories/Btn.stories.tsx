@@ -12,9 +12,9 @@ const meta: Meta<typeof Btn> = {
         options: ["button", "submit", "reset"],
       },
     },
-    variant: { type: "string" },
-    text: { type: "string" },
-    url: { type: "string" },
+    variant: { type: "string", description: "종류" },
+    text: { type: "string", description: "라벨" },
+    url: { type: "string", description: "이동할 링크" },
   },
 };
 

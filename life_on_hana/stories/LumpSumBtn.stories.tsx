@@ -6,7 +6,7 @@ const meta: Meta<typeof LumpSumBtn> = {
   component: LumpSumBtn,
   tags: ["autodocs"],
   argTypes: {
-    variant: { type: "string" },
+    variant: { type: "string", description: "종류" },
   },
 };
 
