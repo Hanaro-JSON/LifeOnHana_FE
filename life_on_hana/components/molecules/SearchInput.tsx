@@ -12,7 +12,7 @@ export default function SearchInput({ placeholder, value = "" }: TSearchInput) {
   };
 
   return (
-    <div className="relative flex items-center w-[22.6875rem] h-[2.125rem]">
+    <div className="relative flex items-center w-full h-[2.125rem]">
       <input
         type="text"
         value={inputValue}
