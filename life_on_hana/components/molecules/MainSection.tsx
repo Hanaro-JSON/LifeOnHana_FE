@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Section from "../atoms/Section";
 import Link from "next/link";
+import arrowRight from "../../assets/arrow-right.svg";
 
 type TMainSectionProps = {
   name: string;
@@ -13,15 +14,15 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
   const getLabel = (variant: TMainSection) => {
     switch (variant) {
       case "versionA":
-        return "하나은행을 통해";
+        return "/assets/mainSectionTitleA.svg";
       case "versionB":
-        return "노후에도 월급처럼 매일 찾아오는 안정, 하나은행과 함께";
+        return "/assets/mainSectionTitleA.svg";
       case "versionC":
-        return "급하게 목돈이 필요할 때 하나 월급통장을 이용해보세요";
+        return "/assets/mainSectionTitleA.svg";
       case "versionD":
-        return "하나은행과 함께 풍요로운 은퇴생활을 누려보세요";
+        return "/assets/mainSectionTitleA.svg";
       case "versionE":
-        return "월급처럼 들어오는 든든한 생활비, 하나은행과 함께하세요";
+        return "/assets/mainSectionTitleA.svg";
       default:
         return "";
     }
@@ -47,21 +48,26 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
   return (
     <>
       <Section height="13.9375rem">
-        <div className="w-full border border-green-500 flex flex-col">
-          <div className="border border-purple-500 flex justify-center font-SCDream5 text-[1.25rem]">
-            {getLabel("versionA")}
+        <div className="w-full flex flex-col">
+          <div className="flex justify-center text-center">
+            <Image src={getLabel("versionA")} alt="제목" className="w-[80%]" width={300} height={300} />
           </div>
-          <div className="border border-rose-500 w-full flex justify-between items-center">
+          <div className="w-full flex justify-between items-center">
             <div>
               <div className="font-SCDream3 text-[.75rem]">{name}님이</div>
-              <div className="font-SCDream3 text-[1.0625rem]">이번 달 받은 하나 월급</div>
+              <div className="font-SCDream3 text-[1.0625rem]">
+                이번 달 받은 <span className="text-hanagreen font-SCDream8">하나</span> 월급
+              </div>
               <div className="font-SCDream8 text-[1.4375rem]">{walletAmount}만원</div>
             </div>
-            <Image src={getSrc("versionA")} alt="mainSectionImg" width={90} height={90} />
+            <Image src={getSrc("versionA")} alt="mainSectionImg" width={100} height={100} />
           </div>
 
           <Link href={"/wallet"}>
-            <button className="font-SCDream3 text-[.75rem]">월급 설정하러 가기 : </button>
+            <button className="font-SCDream3 text-[.75rem] flex items-center ">
+              <span className="text-hanapurple">월급&nbsp;</span>설정하러 가기
+              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
+            </button>
           </Link>
         </div>
       </Section>
