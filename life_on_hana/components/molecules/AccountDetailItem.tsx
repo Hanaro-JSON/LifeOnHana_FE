@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
-import MydataCheckNo from "../../assets/MydataCheckNo.svg";
-import MydataCheckYes from "../../assets/MydataCheckYes.svg";
+import AccountCheckNo from "../../assets/MydataCheckNo.svg";
+import AccountCheckYes from "../../assets/MydataCheckYes.svg";
 import HanaBankLogo from "../../assets/HanaBankLogo.svg";
 import NonghyupBankLogo from "../../assets/NonghyupBankLogo.svg";
 import ShinhanBankLogo from "../../assets/ShinhanBankLogo.svg";
@@ -23,11 +23,11 @@ export default function AccountDetailItem({
   accountName,
   balance,
 }: TConnectBankItemProps) {
-  const [isMydataChecked, setIsMydataChecked] = useState<boolean>(false);
+  const [isAccountChecked, setIsAccountChecked] = useState<boolean>(false);
   const [withdrawalAmount, setWithdrawalAmount] = useState<string>("");
 
-  const toggleMydata = () => {
-    setIsMydataChecked(!isMydataChecked);
+  const toggleAccount = () => {
+    setIsAccountChecked(!isAccountChecked);
   };
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +71,7 @@ export default function AccountDetailItem({
           {balance.toLocaleString()} 원
         </div>
       </div>
-      {isMydataChecked && (
+      {isAccountChecked && (
         <div className="mt-4">
           <div className="text-[.875rem] text-black font-SCDream3">
             {"출금금액"}
@@ -92,11 +92,11 @@ export default function AccountDetailItem({
       )}
       <div className="absolute top-4 right-2 w-[.9375rem] h-[.9375rem]">
         <Image
-          src={isMydataChecked ? MydataCheckYes : MydataCheckNo}
-          alt={isMydataChecked ? "Mydata Checked" : "Mydata Not Checked"}
+          src={isAccountChecked ? AccountCheckYes : AccountCheckNo}
+          alt={isAccountChecked ? "Account Checked" : "Account Not Checked"}
           width={20}
           height={20}
-          onClick={toggleMydata}
+          onClick={toggleAccount}
           className="cursor-pointer"
         />
       </div>
