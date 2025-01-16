@@ -1,14 +1,5 @@
+import { type TAdjustBtnProps } from "@/types/componentTypes";
 import { useState } from "react";
-
-type TAdjustBtnProps = {
-  typeCeilTxt: string;
-  typeButtomTxt: string;
-  first: string;
-  second: string;
-  thired: string;
-  mX: number;
-  mY: number;
-};
 
 export default function AdjustBtn({
   typeCeilTxt = "말",

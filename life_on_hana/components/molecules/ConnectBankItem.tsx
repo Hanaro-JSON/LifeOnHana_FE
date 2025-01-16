@@ -9,16 +9,9 @@ import WooriBankLogo from "../../assets/WooriBankLogo.svg";
 import TossBankLogo from "../../assets/TossBankLogo.svg";
 import NaverBankLogo from "../../assets/NaverBankLogo.svg";
 import KakaoBankLogo from "../../assets/KakaoBankLogo.svg";
+import { TConnectBankItemProps } from "@/types/componentTypes";
 
-type TConnectBankItemProps = {
-  bankName: string;
-  initialIsMydataChecked?: boolean;
-};
-
-export default function ConnectBankItem({
-  bankName,
-  initialIsMydataChecked = false,
-}: TConnectBankItemProps) {
+export default function ConnectBankItem({ bankName, initialIsMydataChecked = false }: TConnectBankItemProps) {
   const [isMydataChecked, setIsMydataChecked] = useState<boolean>(initialIsMydataChecked);
 
   const toggleMydata = () => {
@@ -26,23 +19,23 @@ export default function ConnectBankItem({
   };
 
   const bankLogoMap: Record<string, string> = {
-    "HANA": HanaBankLogo,
-    "NH": NonghyupBankLogo,
-    "SHINHAN": ShinhanBankLogo,
-    "WOORI": WooriBankLogo,
-    "TOSS": TossBankLogo,
-    "NAVER": NaverBankLogo,
-    "KAKAO": KakaoBankLogo,
+    HANA: HanaBankLogo,
+    NH: NonghyupBankLogo,
+    SHINHAN: ShinhanBankLogo,
+    WOORI: WooriBankLogo,
+    TOSS: TossBankLogo,
+    NAVER: NaverBankLogo,
+    KAKAO: KakaoBankLogo,
   };
 
   const bankNameMap: Record<string, string> = {
-    "HANA": "하나은행",
-    "NH": "농협은행",
-    "SHINHAN": "신한은행",
-    "WOORI": "우리은행",
-    "TOSS": "토스뱅크",
-    "NAVER": "네이버뱅크",
-    "KAKAO": "카카오뱅크",
+    HANA: "하나은행",
+    NH: "농협은행",
+    SHINHAN: "신한은행",
+    WOORI: "우리은행",
+    TOSS: "토스뱅크",
+    NAVER: "네이버뱅크",
+    KAKAO: "카카오뱅크",
   };
 
   const bankLogo = bankLogoMap[bankName];
@@ -51,16 +44,8 @@ export default function ConnectBankItem({
   return (
     <div className="w-[24.5625rem] h-[3.75rem] flex items-center justify-between relative">
       <div className="flex items-center ml-5">
-        <Image
-          className="w-5 h-[.95rem]"
-          src={bankLogo}
-          alt={`${bankName} Logo`}
-          width={20}
-          height={15}
-        />
-        <div className="ml-2 text-black text-[.9375rem] font-SCDream3">
-          {displayBankName}
-        </div>
+        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bankName} Logo`} width={20} height={15} />
+        <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{displayBankName}</div>
       </div>
 
       <div className="w-[.9375rem] h-[.9375rem]">
@@ -69,7 +54,7 @@ export default function ConnectBankItem({
           alt={isMydataChecked ? "Mydata Checked" : "Mydata Not Checked"}
           width={20}
           height={20}
-          onClick={toggleMydata} 
+          onClick={toggleMydata}
           className="cursor-pointer"
         />
       </div>

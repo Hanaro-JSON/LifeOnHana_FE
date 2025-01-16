@@ -2,14 +2,10 @@ import { useState } from "react";
 import HeartNo from "../../assets/HeartNo.svg";
 import HeartYes from "../../assets/HeartYes.svg";
 import Image from "next/image";
-
-type TIsLikeProps = {
-  likeCount: number;
-  isLiked?: boolean;
-};
+import { type TIsLikeProps } from "@/types/componentTypes";
 
 export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: TIsLikeProps) {
-  const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked); 
+  const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
   const [count, setCount] = useState<number>(likeCount);
 
   const toggleLike = () => {
@@ -30,9 +26,7 @@ export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: T
             className="cursor-pointer"
           />
         </div>
-        <div className="mt-1 text-[.5rem] text-hanapurple font-SCDream3">
-          {count}
-        </div>
+        <div className="mt-1 text-[.5rem] text-hanapurple font-SCDream3">{count}</div>
       </div>
     </div>
   );

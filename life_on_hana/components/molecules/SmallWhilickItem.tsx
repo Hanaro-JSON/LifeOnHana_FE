@@ -3,12 +3,7 @@
 import Image from "next/image";
 import smallWhilick_title from "@/assets/smallWhilick_title.svg";
 import Link from "next/link";
-
-type TSmallWhilickItemProps = {
-  article_id: number;
-  variant: string;
-  title: string;
-};
+import { type TSmallWhilickItemProps } from "@/types/componentTypes";
 
 export default function SmallWhilickItem({ article_id, variant, title }: TSmallWhilickItemProps) {
   const getCategory = (variant: string) => {

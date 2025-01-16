@@ -1,7 +1,4 @@
-type TMiniBtnProps = {
-  text: string;
-  variant?: "default" | "cancel";
-};
+import { type TMiniBtnProps } from "@/types/componentTypes";
 
 const getMiniBtnClasses = (variant: string) => {
   switch (variant) {

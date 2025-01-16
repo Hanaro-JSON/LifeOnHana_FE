@@ -11,27 +11,7 @@ import INTEREST from "@/assets/INTEREST.svg";
 import ETC from "@/assets/ETC.svg";
 import { extractTimeWithRegex } from "@/utils/convertTimeFormat";
 import { StaticImageData } from "next/image";
-
-type THistoryItemCategoryProps =
-  | "FOOD"
-  | "SNACK"
-  | "EDUCATION"
-  | "HOBBY"
-  | "HEALTH"
-  | "FIXED_EXPENSE"
-  | "TRAVEL"
-  | "DEPOSIT"
-  | "INTEREST"
-  | "ETC";
-
-type THistoryItemProps = {
-  historyId: number;
-  category: THistoryItemCategoryProps;
-  amount: number;
-  description: string;
-  historyDatetime: string;
-  isExpense: boolean;
-};
+import { type THistoryItemCategoryProps, type THistoryItemProps } from "@/types/componentTypes";
 
 const getSrc = (category: THistoryItemCategoryProps): StaticImageData => {
   switch (category) {
@@ -83,31 +63,16 @@ const getLabel = (category: THistoryItemCategoryProps): string => {
   }
 };
 
-export default function HistoryItem({
-  category,
-  amount,
-  description,
-  historyDatetime,
-  isExpense,
-}: THistoryItemProps) {
+export default function HistoryItem({ category, amount, description, historyDatetime, isExpense }: THistoryItemProps) {
   return (
     <>
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row gap-3">
-          <Image
-            src={getSrc(category)}
-            alt={getLabel(category)}
-            width={40}
-            height={40}
-          />
+          <Image src={getSrc(category)} alt={getLabel(category)} width={40} height={40} />
           <div className="flex flex-col py-2">
-            <div className="font-SCDream3 text-[.8025rem]">
-              {getLabel(category)}
-            </div>
+            <div className="font-SCDream3 text-[.8025rem]">{getLabel(category)}</div>
             <div className="font-SCDream5 text-[.9rem]">{description}</div>
-            <div className="font-SCDream2 text-[.625rem]">
-              {extractTimeWithRegex(historyDatetime)}
-            </div>
+            <div className="font-SCDream2 text-[.625rem]">{extractTimeWithRegex(historyDatetime)}</div>
           </div>
         </div>
         <div className="font-SCDream5">

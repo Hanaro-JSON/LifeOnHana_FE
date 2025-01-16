@@ -47,10 +47,7 @@ function SigninCard() {
               소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
             </div>
           </div>
-          <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-72 flex flex-col pt-5"
-          >
+          <form onSubmit={handleSubmit} className="w-full max-w-72 flex flex-col pt-5">
             <LoginLabelInput
               ref={idInputRef}
               label="아이디"

@@ -1,11 +1,7 @@
 import Link from "next/link";
 import arrowRight from "../../assets/KeyboardArrowRight.svg";
 import Image from "next/image";
-
-type TShortCutBtnProps = {
-  url: string;
-  variant?: "default" | "column" | "spend" | "product";
-};
+import { type TShortCutBtnProps } from "@/types/componentTypes";
 
 const variantConfig = {
   column: {
@@ -36,7 +32,9 @@ export default function ShortCutBtn({ url, variant = "default" }: TShortCutBtnPr
   return (
     <div className={`${variantClass2} h-[.9375rem] inline-flex items-center justify-center`}>
       <Link href={url} className="flex items-center justify-center">
-        <div className={`${variantClass1} h-3 text-right text-black font-light font-SCDream3 flex items-center justify-center`}>
+        <div
+          className={`${variantClass1} h-3 text-right text-black font-light font-SCDream3 flex items-center justify-center`}
+        >
           <span>{text}</span>
         </div>
         <div className="w-[.9375rem] h-[.9375rem] relative flex items-center justify-center overflow-hidden">

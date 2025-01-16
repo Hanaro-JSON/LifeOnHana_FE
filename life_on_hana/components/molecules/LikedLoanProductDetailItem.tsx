@@ -2,24 +2,7 @@ import React, { useState } from "react";
 import Btn from "../atoms/Btn";
 import X from "../../assets/X.svg";
 import Image from "next/image";
-
-type TLikedLoanProductDetailItemProps = {
-  name: string;
-  description: string;
-  feature: string;
-  target: string;
-  link: string;
-  loanInfo: {
-    minAmount?: number;
-    maxAmount?: number;
-    basicInterestRate: number;
-    maxInterestRate: number;
-    minPeriod: number;
-    maxPeriod: number;
-    minCreditScore: number;
-  };
-  closeBtn?: boolean; // X 버튼 활성화 여부
-};
+import { type TLikedLoanProductDetailItemProps } from "@/types/componentTypes";
 
 export default function LikedLoanProductDetailItem({
   name,
@@ -53,20 +36,16 @@ export default function LikedLoanProductDetailItem({
   };
 
   if (!visible) return null;
-  
+
   const bg = closeBtn ? "fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50" : "";
 
   return (
-    <div
-      id="modal-background"
-      onClick={handleBackgroundClick}
-      className={bg}
-    >
+    <div id="modal-background" onClick={handleBackgroundClick} className={bg}>
       <div
         className="w-[20rem] min-h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
         onClick={(e) => e.stopPropagation()}
       >
-       {/* X 버튼 */}
+        {/* X 버튼 */}
         <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
           {closeBtn && (
             <button onClick={handleClose} className="p-1">
@@ -75,10 +54,8 @@ export default function LikedLoanProductDetailItem({
           )}
         </div>
 
-      {/* 제목 */}
-      <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">
-        {name}
-      </div>
+        {/* 제목 */}
+        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">{name}</div>
 
         <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[9rem] flex-grow">
           <p>{description}</p>
