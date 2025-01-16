@@ -9,7 +9,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import LoginLabelInput from "@/components/molecules/LoginLabelInput";
 
-function SigninCard() {
+export default function SigninPage() {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const idInputRef = useRef<HTMLInputElement | null>(null); // ID 입력 필드 참조
@@ -31,8 +31,10 @@ function SigninCard() {
       } else if (result.error === "pw" && passwordInputRef.current) {
         passwordInputRef.current.focus();
       }
-    } else if (result.redirectUrl) {
-      router.replace(result.redirectUrl);
+    }
+    // is_first 여부에 따라 "/signin/mydata" , "/home" 으로 분리할 것
+    else {
+      router.replace("/signin/mydata");
     }
   };
 
@@ -48,24 +50,27 @@ function SigninCard() {
             </div>
           </div>
           <form onSubmit={handleSubmit} className="w-full max-w-72 flex flex-col pt-5">
-            <LoginLabelInput
-              ref={idInputRef}
-              label="아이디"
-              id="id"
-              type="text"
-              name="id"
-              placeholder="아이디"
-              errorMsg={errorMsg === "id" ? "id" : undefined}
-            />
-            <LoginLabelInput
-              ref={passwordInputRef}
-              label="비밀번호"
-              id="password"
-              type="password"
-              name="pw"
-              placeholder="비밀번호"
-              errorMsg={errorMsg === "pw" ? "pw" : undefined}
-            />
+            <div className="mb-10 space-y-4">
+              <LoginLabelInput
+                ref={idInputRef}
+                label="아이디"
+                id="id"
+                type="text"
+                name="id"
+                placeholder="아이디"
+                errorMsg={errorMsg === "id" ? "id" : undefined}
+              />
+              <LoginLabelInput
+                ref={passwordInputRef}
+                label="비밀번호"
+                id="password"
+                type="password"
+                name="pw"
+                placeholder="비밀번호"
+                errorMsg={errorMsg === "pw" ? "pw" : undefined}
+              />
+            </div>
+
             <Btn text="로그인" type="submit" />
           </form>
         </div>
@@ -73,5 +78,3 @@ function SigninCard() {
     </div>
   );
 }
-
-export default SigninCard;

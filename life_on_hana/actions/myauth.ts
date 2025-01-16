@@ -24,7 +24,8 @@ export async function authenticate(formData: FormData) {
     if (!result || result.error) {
       return { error: "Invalid credentials!" };
     }
-    return { redirectUrl: "/" }; // 성공 시 리디렉션할 URL
+    return {};
+    // return { redirectUrl: "/" }; // 성공 시 리디렉션할 URL
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
