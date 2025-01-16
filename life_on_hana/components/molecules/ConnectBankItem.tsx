@@ -26,16 +26,27 @@ export default function ConnectBankItem({
   };
 
   const bankLogoMap: Record<string, string> = {
-    "하나은행": HanaBankLogo,
-    "농협은행": NonghyupBankLogo,
-    "신한은행": ShinhanBankLogo,
-    "우리은행": WooriBankLogo,
-    "토스": TossBankLogo,
-    "네이버": NaverBankLogo,
-    "카카오": KakaoBankLogo,
+    "HANA": HanaBankLogo,
+    "NH": NonghyupBankLogo,
+    "SHINHAN": ShinhanBankLogo,
+    "WOORI": WooriBankLogo,
+    "TOSS": TossBankLogo,
+    "NAVER": NaverBankLogo,
+    "KAKAO": KakaoBankLogo,
+  };
+
+  const bankNameMap: Record<string, string> = {
+    "HANA": "하나은행",
+    "NH": "농협은행",
+    "SHINHAN": "신한은행",
+    "WOORI": "우리은행",
+    "TOSS": "토스뱅크",
+    "NAVER": "네이버뱅크",
+    "KAKAO": "카카오뱅크",
   };
 
   const bankLogo = bankLogoMap[bankName];
+  const displayBankName = bankNameMap[bankName];
 
   return (
     <div className="w-[24.5625rem] h-[3.75rem] flex items-center justify-between relative">
@@ -48,7 +59,7 @@ export default function ConnectBankItem({
           height={15}
         />
         <div className="ml-2 text-black text-[.9375rem] font-SCDream3">
-          {bankName}
+          {displayBankName}
         </div>
       </div>
 

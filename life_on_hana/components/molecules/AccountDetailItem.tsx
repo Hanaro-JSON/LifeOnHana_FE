@@ -30,13 +30,13 @@ export default function AccountDetailItem({
   };
 
   const bankLogoMap: Record<string, string> = {
-    "Hana": HanaBankLogo,
+    "HANA": HanaBankLogo,
     "NH": NonghyupBankLogo,
-    "Shinhan": ShinhanBankLogo,
-    "Woori": WooriBankLogo,
-    "Toss": TossBankLogo,
-    "Naver": NaverBankLogo,
-    "Kakao": KakaoBankLogo,
+    "SHINHAN": ShinhanBankLogo,
+    "WOORI": WooriBankLogo,
+    "TOSS": TossBankLogo,
+    "NAVER": NaverBankLogo,
+    "KAKAO": KakaoBankLogo,
   };
 
   const bankLogo = bankLogoMap[bank];

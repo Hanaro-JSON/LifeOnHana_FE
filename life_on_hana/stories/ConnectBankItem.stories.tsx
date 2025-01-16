@@ -23,28 +23,28 @@ type Story = StoryObj<typeof ConnectBankItem>;
 
 export const Default: Story = {
   args: {
-    bankName: "하나은행",
+    bankName: "HANA",
     initialIsMydataChecked: false, 
   },
 };
 
 export const Checked: Story = {
   args: {
-    bankName: "하나은행",
+    bankName: "HANA",
     initialIsMydataChecked: true,
   },
 };
 
-export const ShinhanBank: Story = {
+export const SHINHAN: Story = {
   args: {
-    bankName: "신한은행",
+    bankName: "SHINHAN",
     initialIsMydataChecked: false, 
   },
 };
 
-export const KakaoBank: Story = {
+export const KAKAO: Story = {
   args: {
-    bankName: "카카오", 
+    bankName: "KAKAO", 
     initialIsMydataChecked: true,
   },
 };
