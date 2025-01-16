@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 type TSectionProps = {
   hasShadow?: boolean;
-  children?: ReactNode; // children을 받을 수 있도록 ReactNode 타입 추가
+  children?: ReactNode;
 };
 
 export default function Section({ hasShadow = true, children }: TSectionProps) {
