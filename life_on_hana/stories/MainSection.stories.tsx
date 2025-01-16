@@ -7,7 +7,7 @@ const meta: Meta<typeof MainSection> = {
   tags: ["autodocs"],
   argTypes: {
     name: { type: "string", description: "손님 이름" },
-    walletAmount: { type: "number", description: "하나 월급액" },
+    walletAmount: { type: "number", description: "손님의 하나 월급액" },
   },
 };
 
@@ -18,5 +18,12 @@ export const Default: Story = {
   args: {
     name: "강재준",
     walletAmount: 300,
+  },
+};
+
+export const Second: Story = {
+  args: {
+    name: "장다연",
+    walletAmount: 500,
   },
 };

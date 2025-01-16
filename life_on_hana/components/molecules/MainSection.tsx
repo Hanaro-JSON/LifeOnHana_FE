@@ -8,49 +8,24 @@ type TMainSectionProps = {
   walletAmount: number;
 };
 
+const variants = [
+  { label: "/assets/mainSectionTitleA.svg", src: "/assets/mainSectionImgA.svg" },
+  { label: "/assets/mainSectionTitleB.svg", src: "/assets/mainSectionImgB.svg" },
+  { label: "/assets/mainSectionTitleC.svg", src: "/assets/mainSectionImgC.svg" },
+  { label: "/assets/mainSectionTitleD.svg", src: "/assets/mainSectionImgD.svg" },
+  { label: "/assets/mainSectionTitleE.svg", src: "/assets/mainSectionImgE.svg" },
+];
+
 export default function MainSection({ name, walletAmount }: TMainSectionProps) {
-  type TMainSection = "versionA" | "versionB" | "versionC" | "versionD" | "versionE";
-
-  const getLabel = (variant: TMainSection) => {
-    switch (variant) {
-      case "versionA":
-        return "/assets/mainSectionTitleA.svg";
-      case "versionB":
-        return "/assets/mainSectionTitleA.svg";
-      case "versionC":
-        return "/assets/mainSectionTitleA.svg";
-      case "versionD":
-        return "/assets/mainSectionTitleA.svg";
-      case "versionE":
-        return "/assets/mainSectionTitleA.svg";
-      default:
-        return "";
-    }
-  };
-
-  const getSrc = (variant: TMainSection) => {
-    switch (variant) {
-      case "versionA":
-        return "/assets/mainSectionImgA.svg";
-      case "versionB":
-        return "/assets/mainSectionImgB.svg";
-      case "versionC":
-        return "/assets/mainSectionImgC.svg";
-      case "versionD":
-        return "/assets/mainSectionImgD.svg";
-      case "versionE":
-        return "/assets/mainSectionImgE.svg";
-      default:
-        return "";
-    }
-  };
+  const randomIndex = Math.floor(Math.random() * variants.length);
+  const randomItem = variants[randomIndex];
 
   return (
     <>
       <Section height="13.9375rem">
         <div className="w-full flex flex-col">
-          <div className="flex justify-center text-center">
-            <Image src={getLabel("versionA")} alt="제목" className="w-[80%]" width={300} height={300} />
+          <div className="flex justify-center text-center mb-2">
+            <Image src={randomItem.label} alt="제목" className="w-[80%]" width={300} height={300} />
           </div>
           <div className="w-full flex justify-between items-center">
             <div>
@@ -60,7 +35,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
               </div>
               <div className="font-SCDream8 text-[1.4375rem]">{walletAmount}만원</div>
             </div>
-            <Image src={getSrc("versionA")} alt="mainSectionImg" width={100} height={100} />
+            <Image src={randomItem.src} alt="mainSectionImg" width={100} height={100} />
           </div>
 
           <Link href={"/wallet"}>
