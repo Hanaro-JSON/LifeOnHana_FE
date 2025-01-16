@@ -1,7 +1,4 @@
-type TColumnMainImgItemProps = {
-  variant: string;
-  title: string;
-};
+import { type TColumnMainImgItemProps } from "@/types/componentTypes";
 
 export default function ColumnMainImgItem({ variant, title }: TColumnMainImgItemProps) {
   const getCategory = (variant: string) => {

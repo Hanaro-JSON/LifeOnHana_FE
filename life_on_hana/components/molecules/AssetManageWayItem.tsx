@@ -1,14 +1,5 @@
+import { type TAssetManageWayItemProps } from "@/types/componentTypes";
 import Image from "next/image";
-
-type TAssetManageWayItemProps =
-  | "adjust"
-  | "rebalancing"
-  | "managing"
-  | "product"
-  | "invest"
-  | "trip"
-  | "culture"
-  | "realEstate";
 
 const getSrc = (variant: TAssetManageWayItemProps) => {
   switch (variant) {

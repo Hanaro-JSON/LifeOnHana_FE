@@ -1,9 +1,4 @@
-import React, { ReactNode } from "react";
-
-type TSectionProps = {
-  hasShadow?: boolean;
-  children?: ReactNode; // children을 받을 수 있도록 ReactNode 타입 추가
-  height?: string;
+import { type TSectionProps } from "@/types/componentTypes";
 
 export default function Section({ hasShadow = true, children, height = "7.4375rem" }: TSectionProps) {
   const shadowClass = hasShadow ? "shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]" : "";

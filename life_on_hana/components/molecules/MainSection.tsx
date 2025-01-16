@@ -2,11 +2,7 @@ import Image from "next/image";
 import Section from "../atoms/Section";
 import Link from "next/link";
 import arrowRight from "../../assets/arrow-right.svg";
-
-type TMainSectionProps = {
-  name: string;
-  walletAmount: number;
-};
+import { type TMainSectionProps } from "@/types/componentTypes";
 
 const variants = [
   { label: "/assets/mainSectionTitleA.svg", src: "/assets/mainSectionImgA.svg" },

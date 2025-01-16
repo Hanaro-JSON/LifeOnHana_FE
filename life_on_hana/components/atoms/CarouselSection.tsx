@@ -2,14 +2,9 @@
 
 import arrowLeft from "@/assets/arrow-left.svg";
 import arrowRight from "@/assets/arrow-right.svg";
+import { type TCarouselSectionProps } from "@/types/componentTypes";
 import Image from "next/image";
-import React, { ReactNode, useState } from "react";
-
-type TCarouselSectionProps = {
-  variant?: "default" | "column" | "product";
-  items: ReactNode[];
-  onIndexChange?: (index: number) => void;
-};
+import React, { useState } from "react";
 
 const getCarouselSectionStyles = (variant: string) => {
   switch (variant) {
@@ -34,14 +29,9 @@ const getCarouselSectionStyles = (variant: string) => {
   }
 };
 
-export default function CarouselSection({
-  variant = "default",
-  items,
-  onIndexChange,
-}: TCarouselSectionProps) {
+export default function CarouselSection({ variant = "default", items, onIndexChange }: TCarouselSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { sectionClass, boxStyles, innerStyles } =
-    getCarouselSectionStyles(variant);
+  const { sectionClass, boxStyles, innerStyles } = getCarouselSectionStyles(variant);
 
   const handlePrev = () => {
     const newIndex = (currentIndex - 1 + items.length) % items.length;

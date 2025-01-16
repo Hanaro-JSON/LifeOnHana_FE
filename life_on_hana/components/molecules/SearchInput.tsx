@@ -2,11 +2,7 @@ import Image from "next/image";
 import searchBtn from "@/assets/searchBtn.svg";
 import removeAllBtn from "@/assets/removeAllBtn.svg";
 import { useState } from "react";
-
-type TSearchInput = {
-  placeholder: string;
-  value?: string;
-};
+import { type TSearchInput } from "@/types/componentTypes";
 
 export default function SearchInput({ placeholder, value = "" }: TSearchInput) {
   const [inputValue, setInputValue] = useState(value);

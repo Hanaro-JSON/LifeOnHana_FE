@@ -1,14 +1,9 @@
 "use client";
 
+import { type TNavItemProps } from "@/types/componentTypes";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
-
-type TNavItemProps = {
-  route: string;
-  label: string;
-  icon: { default: string; clicked: string };
-};
 
 const navItem: TNavItemProps[] = [
   {

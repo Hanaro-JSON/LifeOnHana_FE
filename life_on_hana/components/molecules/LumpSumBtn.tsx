@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
-type TLumpSumBtnProps = "hanaSalaryBank" | "otherAccounts" | "loanProducts";
+import { type TLumpSumBtnProps } from "@/types/componentTypes";
 
 const getLabel = (variant: TLumpSumBtnProps) => {
   switch (variant) {

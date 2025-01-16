@@ -1,11 +1,7 @@
 "use client";
 
+import { type TColumnRecommendItemProps } from "@/types/componentTypes";
 import { useState } from "react";
-
-type TColumnRecommendItemProps = {
-  variant: string;
-  name: string;
-};
 
 export default function ColumnRecommendItem({ variant, name }: TColumnRecommendItemProps) {
   const [isClicked, setIsClicked] = useState(false);

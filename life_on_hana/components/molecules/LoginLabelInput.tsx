@@ -1,13 +1,5 @@
+import { type TLoginLabelInputProps } from "@/types/componentTypes";
 import React, { forwardRef } from "react";
-
-type TLoginLabelInputProps = {
-  label: string;
-  id: string;
-  type: "text" | "password";
-  name: string;
-  placeholder: string;
-  errorMsg?: string;
-};
 
 const LoginLabelInput = forwardRef<HTMLInputElement, TLoginLabelInputProps>(
   ({ label, id, type, name, placeholder, errorMsg }, ref) => {
@@ -23,9 +15,7 @@ const LoginLabelInput = forwardRef<HTMLInputElement, TLoginLabelInputProps>(
           name={name}
           placeholder={placeholder}
           className={`bg-[#F4EBFB] px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-            errorMsg === name
-              ? "border-[#F74C21] focus:ring-[#F74C21]"
-              : "border-gray-300 focus:ring-[#4D00B5]"
+            errorMsg === name ? "border-[#F74C21] focus:ring-[#F74C21]" : "border-gray-300 focus:ring-[#4D00B5]"
           }`}
         />
       </div>
