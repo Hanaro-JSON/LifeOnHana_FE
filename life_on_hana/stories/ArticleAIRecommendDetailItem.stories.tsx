@@ -9,7 +9,19 @@ const meta: Meta<typeof ArticleAIRecommendDetailItem> = {
     name: { control: "text", description: "제목" },
     description: { control: "text", description: "내용" },
     link: { control: "text", description: "Link" },
+    closeBtn: {
+      control: "boolean",
+      description: "닫기 버튼",
+      defaultValue: true, 
+    },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: "480px", padding: "20px", boxSizing: "border-box" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -55,5 +67,6 @@ export const Long: Story = {
     이 패키지의 가격은 성인 1인 기준 379,000원이며, 호텔급 숙박과 SRT 왕복 열차편이 포함되어 있습니다. 
     귀하의 가족 여행 선호도를 반영한 선택입니다. 이 패키지의 가격은 성인 1인 기준 379,000원이며, 호텔급 숙박과 SRT 왕복 열차편이 포함되어 있습니다.`,
     link: "https://www.naver.com/",
+    closeBtn: false,
   },
 };
