@@ -46,22 +46,22 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
 
   return (
     <>
-      <Section>
+      <Section height="13.9375rem">
         <div className="w-full border border-green-500 flex flex-col">
-          <div className="border border-purple-500 flex justify-center font-SCDream5 text-[20px]">
+          <div className="border border-purple-500 flex justify-center font-SCDream5 text-[1.25rem]">
             {getLabel("versionA")}
           </div>
           <div className="border border-rose-500 w-full flex justify-between items-center">
             <div>
-              <div className="font-SCDream3 text-[12px]">{name}님이</div>
-              <div className="font-SCDream3 text-[17px]">이번 달 받은 하나 월급</div>
-              <div className="font-SCDream8 text-[23px]">{walletAmount}만원</div>
+              <div className="font-SCDream3 text-[.75rem]">{name}님이</div>
+              <div className="font-SCDream3 text-[1.0625rem]">이번 달 받은 하나 월급</div>
+              <div className="font-SCDream8 text-[1.4375rem]">{walletAmount}만원</div>
             </div>
             <Image src={getSrc("versionA")} alt="mainSectionImg" width={90} height={90} />
           </div>
 
           <Link href={"/wallet"}>
-            <button className="font-SCDream3 text-[12px]">월급 설정하러 가기 : </button>
+            <button className="font-SCDream3 text-[.75rem]">월급 설정하러 가기 : </button>
           </Link>
         </div>
       </Section>
