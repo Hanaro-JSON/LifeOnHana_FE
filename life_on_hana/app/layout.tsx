@@ -29,7 +29,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <DataProvider getSession={getSession} signOut={signOut}>
             {children}
-            {session && <Nav />}
+            {/* {session && <Nav />} */}
           </DataProvider>
         </SessionProvider>
         <Toaster />
