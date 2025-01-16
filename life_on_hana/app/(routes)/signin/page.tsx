@@ -9,7 +9,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import LoginLabelInput from "@/components/molecules/LoginLabelInput";
 
-function SigninPage() {
+export default function SigninPage() {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const idInputRef = useRef<HTMLInputElement | null>(null); // ID 입력 필드 참조
@@ -78,5 +78,3 @@ function SigninPage() {
     </div>
   );
 }
-
-export default SigninPage;
