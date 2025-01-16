@@ -31,7 +31,9 @@ function SigninPage() {
       } else if (result.error === "pw" && passwordInputRef.current) {
         passwordInputRef.current.focus();
       }
-    } else {
+    }
+    // is_first 여부에 따라 "/signin/mydata" , "/home" 으로 분리할 것
+    else {
       router.replace("/signin/mydata");
     }
   };
