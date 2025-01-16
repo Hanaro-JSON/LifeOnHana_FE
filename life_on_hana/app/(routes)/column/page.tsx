@@ -141,18 +141,27 @@ export default function Column() {
     setFilteredArticles(filtered);
   }, [searchValue, selectedCategory]);
 
-  //밑줄
+  // 밑줄
   useEffect(() => {
     const activeCategory = document.querySelector(`#${selectedCategory}`) as HTMLButtonElement;
     if (activeCategory && underlineRef.current) {
       underlineRef.current.style.left = `${activeCategory.offsetLeft}px`;
       underlineRef.current.style.width = `${activeCategory.offsetWidth}px`;
     }
+
+    // 선택된 카테고리가 가운데로 오게 스크롤
+    if (activeCategory) {
+      activeCategory.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-[#f1f0f2] py-4">
-      <div className="flex flex-col items-center mt-4">
+    <div className="bg-[#f1f0f2]">
+      <div className="flex flex-col items-center pt-4">
         <div className="w-full flex items-center gap-4 mb-4 px-[2rem]">
           <Image src={column} alt="column icon" width={20} height={20} />
           <div className="text-[1.5rem] font-Hana2bold">칼럼</div>
@@ -168,9 +177,9 @@ export default function Column() {
           />  
         </div>
 
-        <div className="w-full px-[2rem] rounded-2xl flex flex-col">
+        <div className="w-full rounded-3xl flex flex-col">
           {/* 카테고리 선택 영역 */}
-          <div className="w-full bg-white flex sticky pt-3 py-2 px-6 whitespace-nowrap overflow-x-auto border-b-2 rounded-t-xl">
+          <div className="w-full bg-white flex justify-between sticky py-4 px-6 whitespace-nowrap overflow-x-auto border-b-2 rounded-t-xl shadow-[0rem_.25rem_.25rem_0.09rem_rgba(0,0,0,0.05)]">
             {["전체보기", "부동산", "투자", "상속·증여", "여행", "문화", "취미"].map((category) => (
               <button
                 key={category}
@@ -185,7 +194,7 @@ export default function Column() {
                 {category}
               </button>
             ))}
-            
+
             {/* 밑줄 */}
             <div
               ref={underlineRef}
