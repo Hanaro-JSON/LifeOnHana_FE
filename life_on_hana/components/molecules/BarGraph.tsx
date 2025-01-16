@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/chart";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";
 
-type TBarGraphExpenseCategoriesProps = {
+export type TBarGraphExpenseCategoriesProps = {
   category:
     | "FOOD"
     | "SNACK"
@@ -27,7 +27,7 @@ type TBarGraphExpenseCategoriesProps = {
   percentage: number;
 };
 
-type TBarGraphProps = {
+export type TBarGraphProps = {
   type: "mydata" | "statistics";
   expenseCategories?: TBarGraphExpenseCategoriesProps[];
   depositAmount?: number;
