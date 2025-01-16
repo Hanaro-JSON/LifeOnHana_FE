@@ -21,13 +21,6 @@ const meta: Meta<typeof LikedLoanProductDetailItem> = {
       defaultValue: true, 
     },
   },
-  decorators: [
-    (Story) => (
-      <div style={{ minHeight: "480px", padding: "20px", boxSizing: "border-box" }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
