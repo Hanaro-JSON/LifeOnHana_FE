@@ -31,7 +31,7 @@ type Story = StoryObj<typeof AccountDetailItem>;
 
 export const Default: Story = {
   args: {
-    bank: "Hana",
+    bank: "HANA",
     accountName: "하나월급통장",
     accountNumber: "11111111111111",
     balance: 1000000,
@@ -41,24 +41,24 @@ export const Default: Story = {
 export const NH: Story = {
   args: {
     bank: "NH",
-    accountName: "NH모임리통장",
+    accountName: "NH모임통장",
     accountNumber: "123123123123",
     balance: 7000000,
   },
 };
 
-export const Shinhan: Story = {
+export const SHINHAN: Story = {
   args: {
-    bank: "Shinhan",
+    bank: "SHINHAN",
     accountName: "신한적금통장",
     accountNumber: "999999999999",
     balance: 2500000,
   },
 };
 
-export const Kakao: Story = {
+export const KAKAO: Story = {
   args: {
-    bank: "Kakao",
+    bank: "KAKAO",
     accountName: "카카오페이통장",
     accountNumber: "456456789123",
     balance: 300000,
