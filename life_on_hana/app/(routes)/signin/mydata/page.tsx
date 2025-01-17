@@ -4,6 +4,7 @@ import MicroMiniBtn from "@/components/atoms/MicroMiniBtn";
 import ConnectBankItem from "@/components/molecules/ConnectBankItem";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 export default function Mydata() {
   const router = useRouter();
@@ -50,7 +51,10 @@ export default function Mydata() {
 
         <button
           onClick={moveToHomeEvent}
-          className="rounded-t-xl fixed w-full bottom-0 h-[6.5rem] flex justify-center pt-5 font-SCDream3 text-[1rem] bg-hanapurple text-white"
+          className={twMerge(
+            "rounded-t-xl fixed w-full bottom-0 h-[6.5rem] flex justify-center pt-5 font-SCDream3 text-[1rem] text-white",
+            clickedNum === 0 ? "bg-hanadeepgray " : "bg-hanapurple"
+          )}
         >
           마이데이터 서비스 연결
         </button>
