@@ -20,6 +20,14 @@ export default function Whilick() {
       likeCount: 5,
       isLiked: true,
     },
+    {
+      title: "2025년 부동산 세제 전망과 절세 전략",
+      articleId: 2,
+      shorts:
+        "2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다.2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다. 2025년 부동산 세제는 2024년과 큰 틀에서 유사할 전망입니다. 취득세는 현행 유지, 보유세는 큰 이슈 없으며, 양도세는 비과세와 과세에서 미세 조정이 예상됩니다. 신규 제도로 6년 단기 임대등록제가 도입되고, 부동산임대업은 세법상 중소기업에서 제외되어 각종 세제 혜택이 축소될 것으로 보입니다.",
+      likeCount: 15,
+      isLiked: false,
+    },
   ];
 
   const [isSound, setIsSound] = useState(true);
@@ -76,8 +84,12 @@ export default function Whilick() {
           <AdjustBtn typeCeilTxt="글씨" typeBottomTxt="크기" first="작게" second="보통" third="크게" mX={80} mY={90} />
           <AdjustBtn typeCeilTxt="말" typeBottomTxt="속도" first="0.5x" second="1x" third="2x" mX={80} mY={90} />
         </div>
+
+        {/* 하단 스크롤 */}
+        {/* <div className="border border-rose-400">
+          <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8BAMAAADI0sRBAAAAJHpUWHRDcmVhdG9yAAAImXNMyU9KVXBMK0ktUnBNS0tNLikGAEF6Bs5qehXFAAAACXBIWXMAAAABAAAAAQBPJcTWAAAAG1BMVEVHcEz///////////////////////////////8W/R0OAAAACHRSTlMA8DARzppgSPGP1/EAAACxSURBVDjL7dMxDoMwDAXQCNQLZGLER6hEpR6BkYGBkSMwds0A4tilaQhx8g1DpU7xEkvOyxJ/pX6sRy0Mejt4ajy9rXZ8N5gPsz2KSmPcfRtCvGxn10He7BjyA0MeYMBDDDjDCS/bhd2OeLOO/DXGYxzxBDOeYsYBDnhRLeCHPCeEPcfYcwE7LmHHyUzSzm5c2Kydk6nllSdzgj/8DG9cq7/WRUJfYkKnnNCc0JzQy3oDyHRCJ1uyzAkAAAAASUVORK5CYII="></image>
+        </div> */}
       </div>
-      {/* </div> */}
     </>
   );
 }
