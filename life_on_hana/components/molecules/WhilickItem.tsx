@@ -1,16 +1,8 @@
-// import Image from "next/image";
+import { type TWhilickItemProps } from "@/types/componentTypes";
 import AdjustBtn from "../atoms/AdjustBtn";
 import Btn from "../atoms/Btn";
 import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
 import IsLike from "./IsLike";
-
-type TWhilickItemProps = {
-  title: string;
-  shorts: string;
-  articleId: number;
-  isLiked: boolean;
-  likeCount: number;
-};
 
 export default function WhilickItem({ title, shorts, articleId, isLiked, likeCount }: TWhilickItemProps) {
   return (

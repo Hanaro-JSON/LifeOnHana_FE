@@ -239,3 +239,11 @@ export type TGraphProps = {
   realEstateAmount?: number;
   realEstatePercentage?: number;
 };
+
+export type TWhilickItemProps = {
+  title: string;
+  shorts: string;
+  articleId: number;
+  isLiked: boolean;
+  likeCount: number;
+};
