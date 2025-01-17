@@ -27,8 +27,8 @@ export default function AdjustBtn({
       {/* 글씨 크기 버튼 */}
       <button
         onClick={toggleSelector}
-        className={`${
-          isOpen ? "bg-white text-purple-600 border shadow-purple-100" : "bg-purple-600 text-white"
+        className={` ${
+          isOpen ? "bg-white text-purple-600 border shadow-purple-100 " : "bg-purple-600 text-white"
         } rounded-full size-16 font-semibold shadow-md`}
       >
         {typeCeilTxt} <br />

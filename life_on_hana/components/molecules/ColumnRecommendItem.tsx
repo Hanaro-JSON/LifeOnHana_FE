@@ -3,10 +3,15 @@
 import { type TColumnRecommendItemProps } from "@/types/componentTypes";
 import { useState } from "react";
 
-export default function ColumnRecommendItem({ variant, name }: TColumnRecommendItemProps) {
+export default function ColumnRecommendItem({ variant, name, onClick, isSelected }: TColumnRecommendItemProps) {
   const [isClicked, setIsClicked] = useState(false);
   const clickEvent = () => {
     setIsClicked(!isClicked);
+
+    // 부모에서 넘겨받은 onClick 콜백이 있다면 호출
+    if (onClick) {
+      onClick();
+    }
   };
 
   const getCategory = (variant: string) => {
@@ -52,8 +57,8 @@ export default function ColumnRecommendItem({ variant, name }: TColumnRecommendI
       <button
         onClick={clickEvent}
         className={`${
-          isClicked && "border-4 border-hanapurple "
-        } rounded-[10px] bg-cover bg-center w-[9.5625rem] h-[6.25rem] flex flex-col items-start justify-start p-2 shadow-xl`}
+          isSelected  && "border-4 border-hanapurple "
+        } rounded-[10px] bg-cover bg-center w-[12rem] h-[8rem] flex flex-col items-start justify-start p-2 shadow-xl`}
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={name}
       >

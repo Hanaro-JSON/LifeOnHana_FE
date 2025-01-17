@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import CopyClipboardBtn from "../components/atoms/CopyClipboardBtn";
+import CopyClipboardBtn from "../components/atoms/CopyUrlButton";
 
 const meta: Meta<typeof CopyClipboardBtn> = {
   title: "atom component/CopyClipboardBtn",
