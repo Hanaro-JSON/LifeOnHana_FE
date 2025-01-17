@@ -9,13 +9,15 @@ import WooriBankLogo from "../../assets/WooriBankLogo.svg";
 import TossBankLogo from "../../assets/TossBankLogo.svg";
 import NaverBankLogo from "../../assets/NaverBankLogo.svg";
 import KakaoBankLogo from "../../assets/KakaoBankLogo.svg";
-import { TConnectBankItemProps } from "@/types/componentTypes";
+import { type TConnectBankItemProps } from "@/types/componentTypes";
 
-export default function ConnectBankItem({ bankName, initialIsMydataChecked = false }: TConnectBankItemProps) {
+export default function ConnectBankItem({ bankName, initialIsMydataChecked = false, onToggle }: TConnectBankItemProps) {
   const [isMydataChecked, setIsMydataChecked] = useState<boolean>(initialIsMydataChecked);
 
   const toggleMydata = () => {
-    setIsMydataChecked(!isMydataChecked);
+    const newCheckedState = !isMydataChecked;
+    setIsMydataChecked(newCheckedState);
+    onToggle(newCheckedState);
   };
 
   const bankLogoMap: Record<string, string> = {
@@ -42,8 +44,8 @@ export default function ConnectBankItem({ bankName, initialIsMydataChecked = fal
   const displayBankName = bankNameMap[bankName];
 
   return (
-    <div className="w-[24.5625rem] h-[3.75rem] flex items-center justify-between relative">
-      <div className="flex items-center ml-5">
+    <div className="w-full h-[3.75rem] flex items-center justify-between relative">
+      <div className="flex items-center">
         <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bankName} Logo`} width={20} height={15} />
         <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{displayBankName}</div>
       </div>
