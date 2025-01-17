@@ -10,50 +10,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";
-
-export type TBarGraphExpenseCategoriesProps = {
-  category:
-    | "FOOD"
-    | "SNACK"
-    | "EDUCATION"
-    | "HOBBY"
-    | "HEALTH"
-    | "FIXED_EXPENSE"
-    | "TRAVEL"
-    | "DEPOSIT"
-    | "INTEREST"
-    | "ETC";
-  amount: number;
-  percentage: number;
-};
-
-export type TBarGraphProps = {
-  type: "mydata" | "statistics";
-  expenseCategories?: TBarGraphExpenseCategoriesProps[];
-  depositAmount?: number;
-  depositPercentage?: number;
-  savingsAmount?: number;
-  savingsPercentage?: number;
-  loanAmount?: number;
-  loanPercentage?: number;
-  stockAmount?: number;
-  stockPercentage?: number;
-  realEstateAmount?: number;
-  realEstatePercentage?: number;
-};
-
-const bluePurpleColors: string[] = [
-  "#6A5ACD", // SlateBlue
-  "#7B68EE", // MediumSlateBlue
-  "#8470FF", // LightSlateBlue
-  "#5F9EA0", // CadetBlue
-  "#4682B4", // SteelBlue
-  "#4169E1", // RoyalBlue
-  "#1E90FF", // DodgerBlue
-  "#00BFFF", // DeepSkyBlue
-  "#ADD8E6", // LightBlue
-  "#B0E0E6", // PowderBlue
-];
+import { bluePurpleColors } from "@/utils/colors";
+import { TGraphProps } from "@/types/componentTypes";
 
 export function BarGraph({
   type,
@@ -63,7 +21,7 @@ export function BarGraph({
   loanPercentage,
   stockPercentage,
   realEstatePercentage,
-}: TBarGraphProps) {
+}: TGraphProps) {
   const chartData =
     type === "mydata" && expenseCategories
       ? [
