@@ -10,6 +10,9 @@ import Nav from "@/components/molecules/Nav";
 export const metadata: Metadata = {
   title: "LIFE on HANA",
   description: "소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자, 라이프 온 하나 (LIFE on HANA)",
+  icons: {
+    icon: "/assets/logo_purple.svg",
+  },
 };
 
 export default async function RootLayout({
