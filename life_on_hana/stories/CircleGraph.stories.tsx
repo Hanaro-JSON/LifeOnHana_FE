@@ -1,10 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CircleGraph } from "@/components/molecules/CircleGraph";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
 =======
 import { TGraphExpenseCategoriesProps } from "@/types/componentTypes";
 >>>>>>> 4544294 ([docs] 🐳 CircleGraph storybook 작성 완료)
+=======
+import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+>>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
 const meta: Meta<typeof CircleGraph> = {
   title: "Molecule Component/CircleGraph",
   component: CircleGraph,

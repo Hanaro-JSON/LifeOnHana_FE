@@ -2,7 +2,16 @@
 
 import { Pie, PieChart } from "recharts";
 
+<<<<<<< HEAD
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
+=======
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
+>>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
 import { type TGraphProps } from "@/types/componentTypes";
 import { bluePurpleColors } from "@/utils/colors";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";
