@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 
 export type TAdjustBtnProps = {
   typeCeilTxt: string;
-  typeButtomTxt: string;
+  typeBottomTxt: string;
   first: string;
   second: string;
-  thired: string;
+  third: string;
   mX: number;
   mY: number;
 };
@@ -156,10 +156,7 @@ export type TLoginLabelInputProps = {
   errorMsg?: string;
 };
 
-export type TLumpSumBtnProps =
-  | "hanaSalaryBank"
-  | "otherAccounts"
-  | "loanProducts";
+export type TLumpSumBtnProps = "hanaSalaryBank" | "otherAccounts" | "loanProducts";
 
 export type TMainSectionProps = {
   name: string;

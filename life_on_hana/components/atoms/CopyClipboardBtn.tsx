@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import CopyClipboardBtnImg from "@/assets/CopyClipboardBtnImg.svg";
 import { useToast } from "@/hooks/use-toast";
-export default function CopyUrlButton() {
+
+export default function CopyClipboardBtn() {
   const [currentUrl, setCurrentUrl] = useState("");
   const { toast } = useToast();
 
@@ -11,6 +12,7 @@ export default function CopyUrlButton() {
       setCurrentUrl(window.location.href);
     }
   }, []);
+
   const handleCopy = () => {
     if (currentUrl) {
       navigator.clipboard
@@ -38,7 +40,8 @@ export default function CopyUrlButton() {
       <Image
         src={CopyClipboardBtnImg}
         alt="주소 복사 버튼"
-        className="w-20 mb-2 cursor-pointer"
+        width={30}
+        className="mb-2 cursor-pointer"
         onClick={handleCopy}
       />
     </div>

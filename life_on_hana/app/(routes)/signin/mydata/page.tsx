@@ -23,7 +23,7 @@ export default function Mydata() {
 
   return (
     <>
-      <div className="relative h-full ">
+      <div className="relative h-full">
         <div className="pt-[5rem] px-[1.5rem] mb-[7.5rem]">
           <div className="font-SCDream3 text-[1.6rem] mb-2">
             <span className="font-Hana2heavy text-hanapurple">LIFE on HANA</span> 가입을 위해
