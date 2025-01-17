@@ -31,7 +31,7 @@ export default function ArticleAIRecommendDetailItem({
   return (
     <div id="modal-background" onClick={handleBackgroundClick} className={bg}>
       <div
-        className="w-[20rem] h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-center justify-between p-6"
+        className="w-full h-[30.9375rem] bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-center justify-between p-6"
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
@@ -47,7 +47,7 @@ export default function ArticleAIRecommendDetailItem({
         <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">{name}</div>
 
         {/* 내용 */}
-        <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[20rem] flex-grow">
+        <div className="w-full text-[.8125rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow">
           <p className="text-left">{description}</p>
         </div>
 

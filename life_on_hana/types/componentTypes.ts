@@ -56,6 +56,7 @@ export type TArticleAIRecommendDetailItemProps = {
   description: string;
   link: string;
   closeBtn?: boolean;
+  product_id?: number; //추가
 };
 
 export type TArticleItemProps = {
@@ -84,6 +85,8 @@ export type TColumnMainImgItemProps = {
 export type TColumnRecommendItemProps = {
   variant: string;
   name: string;
+  onClick?: () => void; // 추가
+  isSelected?: boolean; //추가
 };
 
 export type TConnectBankItemProps = {
