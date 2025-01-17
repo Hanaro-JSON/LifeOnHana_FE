@@ -156,7 +156,10 @@ export type TLoginLabelInputProps = {
   errorMsg?: string;
 };
 
-export type TLumpSumBtnProps = "hanaSalaryBank" | "otherAccounts" | "loanProducts";
+export type TLumpSumBtnProps =
+  | "hanaSalaryBank"
+  | "otherAccounts"
+  | "loanProducts";
 
 export type TMainSectionProps = {
   name: string;
@@ -207,4 +210,35 @@ export type TSmallWhilickItemProps = {
   article_id: number;
   variant: string;
   title: string;
+};
+
+export type TGraphExpenseCategoriesProps = {
+  category:
+    | "FOOD"
+    | "SNACK"
+    | "EDUCATION"
+    | "HOBBY"
+    | "HEALTH"
+    | "FIXED_EXPENSE"
+    | "TRAVEL"
+    | "DEPOSIT"
+    | "INTEREST"
+    | "ETC";
+  amount: number;
+  percentage: number;
+};
+
+export type TGraphProps = {
+  type: "mydata" | "statistics";
+  expenseCategories?: TGraphExpenseCategoriesProps[];
+  depositAmount?: number;
+  depositPercentage?: number;
+  savingsAmount?: number;
+  savingsPercentage?: number;
+  loanAmount?: number;
+  loanPercentage?: number;
+  stockAmount?: number;
+  stockPercentage?: number;
+  realEstateAmount?: number;
+  realEstatePercentage?: number;
 };
