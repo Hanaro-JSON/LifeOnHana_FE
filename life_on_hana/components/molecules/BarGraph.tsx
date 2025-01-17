@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/chart";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";
 import { bluePurpleColors } from "@/utils/colors";
-import { TGraphProps } from "@/types/componentTypes";
+import { type TGraphProps } from "@/types/componentTypes";
 
 export function BarGraph({
   type,

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CircleGraph } from "@/components/molecules/CircleGraph";
-import { TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
 const meta: Meta<typeof CircleGraph> = {
   title: "Molecule Component/CircleGraph",
   component: CircleGraph,
