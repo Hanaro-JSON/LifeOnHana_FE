@@ -2,12 +2,7 @@
 
 import { Pie, PieChart } from "recharts";
 
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-} from "@/components/ui/chart";
+import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import { type TGraphProps } from "@/types/componentTypes";
 import { bluePurpleColors } from "@/utils/colors";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";
@@ -100,10 +95,7 @@ export function CircleGraph({
 
   return (
     <div>
-      <ChartContainer
-        config={chartConfig}
-        className="mx-auto aspect-square max-h-[300px]"
-      >
+      <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[300px]">
         <PieChart>
           <Pie data={chartData} dataKey="value" />
           <ChartLegend
