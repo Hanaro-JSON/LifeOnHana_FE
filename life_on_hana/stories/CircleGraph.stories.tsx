@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { BarGraph } from "@/components/molecules/BarGraph";
+import { CircleGraph } from "@/components/molecules/CircleGraph";
 import { TGraphExpenseCategoriesProps } from "@/types/componentTypes";
-const meta: Meta<typeof BarGraph> = {
-  title: "Molecule Component/BarGraph",
-  component: BarGraph,
+const meta: Meta<typeof CircleGraph> = {
+  title: "Molecule Component/CircleGraph",
+  component: CircleGraph,
   tags: ["autodocs"],
   argTypes: {
     type: {
@@ -38,7 +38,7 @@ const meta: Meta<typeof BarGraph> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof BarGraph>;
+type Story = StoryObj<typeof CircleGraph>;
 
 const myDataCategories: TGraphExpenseCategoriesProps[] = [
   { category: "FOOD", amount: 500000, percentage: 33 },
