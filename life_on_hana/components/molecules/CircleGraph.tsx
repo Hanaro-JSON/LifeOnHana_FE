@@ -8,7 +8,7 @@ import {
   ChartLegend,
   ChartLegendContent,
 } from "@/components/ui/chart";
-import { TGraphProps } from "@/types/componentTypes";
+import { type TGraphProps } from "@/types/componentTypes";
 import { bluePurpleColors } from "@/utils/colors";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";
 
