@@ -15,6 +15,9 @@ import {
   TRecommendCarouselColumnProps,
 } from "@/types/componentTypes";
 import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
+import { Carousel } from "nuka-carousel";
+import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
+import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: "FOOD", amount: 500000, percentage: 10 },
@@ -39,6 +42,37 @@ const mockArticles: TArticleItemProps[] = [
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     published_at: "2024-12-01",
     is_liked: false,
+  },
+];
+
+const carouselItems: TRecommendCarouselItemProps[] = [
+  {
+    productId: "1",
+    name: "상품 1",
+    description: "설명 1",
+    maxAmount: "1000만원",
+    productType: "LOAN",
+  },
+  {
+    productId: "2",
+    name: "상품 2",
+    description: "설명 2",
+    maxInterest_rate: 3.5,
+    productType: "SAVINGS",
+  },
+  {
+    productId: "2",
+    name: "상품 2",
+    description: "설명 2",
+    maxInterest_rate: 3.5,
+    productType: "LIFE",
+  },
+  {
+    productId: "2",
+    name: "상품 2",
+    description: "설명 2",
+    maxInterest_rate: 3.5,
+    productType: "SAVINGS",
   },
 ];
 
@@ -113,6 +147,7 @@ export default function Home() {
         );
     }
   }
+
   return (
     <div className="p-6 space-y-4">
       {/* 헤더 */}
@@ -150,7 +185,7 @@ export default function Home() {
           </div>
         </div>
       </Section>
-      {/* 좋아요한 컬럼 카드드 */}
+      {/* 좋아요한 컬럼 카드 */}
       <div className="flex flex-row justify-between items-end">
         <div className="font-SCDream4 tracking-wide">
           <div>{name}님은</div>
@@ -165,7 +200,23 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <RecommendCarouselColumn items={RecommendCarouselColumnItems} />
+      {/* <RecommendCarouselColumn items={RecommendCarouselColumnItems} /> */}
+      <FullImgCarousel items={RecommendCarouselColumnItems} />
+      {/* 추천 상품 카드 */}
+      <div className="flex flex-row justify-between items-end">
+        <div className="font-SCDream4 tracking-wide">
+          {name}님을 위한 추천 상품
+        </div>
+        <div>
+          <Link href={"/wallet"}>
+            <button className="font-SCDream2 text-[.75rem] flex items-center ">
+              <span className="text-hanapurple">추천</span> 상품 보러가기
+              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
+            </button>
+          </Link>
+        </div>
+      </div>
+      <RecommendCarouselItem items={carouselItems} />;
     </div>
   );
 }

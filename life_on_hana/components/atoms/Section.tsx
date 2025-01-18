@@ -12,7 +12,7 @@ export default function Section({
   return (
     <div className="w-full relative" style={{ height }}>
       <div
-        className={`w-full left-0 top-0 absolute bg-white rounded-[.9375rem] p-6 flex items-center ${shadowClass}`}
+        className={`w-full left-0 top-0 absolute bg-white rounded-[.9375rem] p-6 flex items-center justify-center ${shadowClass}`}
         style={{ height }}
       >
         {children}
