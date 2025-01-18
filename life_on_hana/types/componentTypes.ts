@@ -7,6 +7,8 @@ export type TRecommendCarouselColumnProps = {
 };
 
 export type TAdjustBtnProps = {
+  id: string;
+  isOpen: boolean;
   typeCeilTxt: string;
   typeBottomTxt: string;
   first: string;
@@ -14,6 +16,7 @@ export type TAdjustBtnProps = {
   third: string;
   mX: number;
   mY: number;
+  onToggle: (id: string) => void;
 };
 
 export type TBtnProps = {
