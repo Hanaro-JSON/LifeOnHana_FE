@@ -39,7 +39,7 @@ export default function SigninPage() {
   };
 
   return (
-    <div className="bg-gray-100 flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <div className="flex-grow flex justify-center items-center">
         <div className="flex flex-col pb-44 items-center justify-center w-full max-w-md px-4">
           <div className="flex flex-col items-center mb-6">
@@ -49,7 +49,10 @@ export default function SigninPage() {
               소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="w-full max-w-72 flex flex-col pt-5">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-72 flex flex-col pt-5"
+          >
             <div className="mb-10 space-y-4">
               <LoginLabelInput
                 ref={idInputRef}

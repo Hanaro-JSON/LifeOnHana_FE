@@ -12,105 +12,105 @@ const mockArticles = [
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
     category: "취미",
     published_at: "2024-12-08",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true
+    is_liked: true,
   },
   {
     title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
     category: "투자",
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "새해 소망 여행 몰아서 훌주근",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
     category: "취미",
     published_at: "2024-12-08",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true
+    is_liked: true,
   },
   {
     title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
     category: "투자",
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "새해 소망 여행 몰아서 훌주근",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
     category: "취미",
     published_at: "2024-12-08",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true
+    is_liked: true,
   },
   {
     title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
     category: "투자",
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "새해 소망 여행 몰아서 훌주근",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
     category: "취미",
     published_at: "2024-12-08",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true
+    is_liked: true,
   },
   {
     title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
     category: "투자",
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "새해 소망 여행 몰아서 훌주근",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
     category: "취미",
     published_at: "2024-12-08",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true
+    is_liked: true,
   },
   {
     title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
     category: "투자",
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false
+    is_liked: false,
   },
   // Add more articles as needed...
 ];
@@ -143,7 +143,9 @@ export default function Column() {
 
   // 밑줄
   useEffect(() => {
-    const activeCategory = document.querySelector(`#${selectedCategory}`) as HTMLButtonElement;
+    const activeCategory = document.querySelector(
+      `#${selectedCategory}`
+    ) as HTMLButtonElement;
     if (activeCategory && underlineRef.current) {
       underlineRef.current.style.left = `${activeCategory.offsetLeft}px`;
       underlineRef.current.style.width = `${activeCategory.offsetWidth}px`;
@@ -160,7 +162,7 @@ export default function Column() {
   }, [selectedCategory]);
 
   return (
-    <div className="bg-[#f1f0f2]">
+    <div>
       <div className="flex flex-col items-center pt-4">
         <div className="w-full flex items-center gap-4 mb-4 px-[2rem]">
           <Image src={column} alt="column icon" width={20} height={20} />
@@ -171,16 +173,21 @@ export default function Column() {
       <div className="flex flex-col items-center">
         {/* 검색 영역 */}
         <div className="w-full mb-4 px-[2rem]">
-          <SearchInput
-            placeholder="칼럼 검색"
-            value={searchValue}
-          />  
+          <SearchInput placeholder="칼럼 검색" value={searchValue} />
         </div>
 
         <div className="w-full rounded-3xl flex flex-col">
           {/* 카테고리 선택 영역 */}
           <div className="w-full bg-white flex justify-between sticky py-4 px-6 whitespace-nowrap overflow-x-auto border-b-2 rounded-t-xl shadow-[0rem_.25rem_.25rem_0.09rem_rgba(0,0,0,0.05)]">
-            {["전체보기", "부동산", "투자", "상속·증여", "여행", "문화", "취미"].map((category) => (
+            {[
+              "전체보기",
+              "부동산",
+              "투자",
+              "상속·증여",
+              "여행",
+              "문화",
+              "취미",
+            ].map((category) => (
               <button
                 key={category}
                 id={category}
@@ -200,9 +207,9 @@ export default function Column() {
               ref={underlineRef}
               className="absolute bottom-0 h-1 bg-black transition-all duration-300 ease-in-out"
               style={{
-                position: 'absolute',
+                position: "absolute",
                 left: 0,
-                width: '0px',
+                width: "0px",
               }}
             ></div>
           </div>
@@ -222,7 +229,9 @@ export default function Column() {
                 ))}
               </div>
             ) : (
-              <div className="text-center text-gray-500 py-8">검색 결과가 없습니다.</div>
+              <div className="text-center text-gray-500 py-8">
+                검색 결과가 없습니다.
+              </div>
             )}
           </div>
         </div>
@@ -234,7 +243,7 @@ export default function Column() {
           display: none;
         }
         .overflow-x-auto {
-          -ms-overflow-style: none;  /* Internet Explorer 10+ */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
         }
       `}</style>
     </div>
