@@ -170,3 +170,11 @@ a {
   cursor: pointer;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
 }
+
+.dynamic-fill.white {
+  color: white;
+}
+
+.dynamic-fill.black {
+  color: black;
+}

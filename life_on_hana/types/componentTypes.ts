@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
 
+export type TRecommendCarouselColumnProps = {
+  article_id: number;
+  title: string;
+  thumbnail_s3_key: string;
+};
+
 export type TAdjustBtnProps = {
   typeCeilTxt: string;
   typeButtomTxt: string;
@@ -14,7 +20,12 @@ export type TBtnProps = {
   type?: "button" | "submit" | "reset" | undefined;
   text: string;
   url?: string;
-  variant?: "default" | "moveToArticle" | "beforeChooseAccount" | "hanaWallet";
+  variant?:
+    | "default"
+    | "moveToArticle"
+    | "beforeChooseAccount"
+    | "hanaWallet"
+    | "needLumpSum";
 };
 
 export type TCarouselSectionProps = {
@@ -60,6 +71,7 @@ export type TArticleAIRecommendDetailItemProps = {
 };
 
 export type TArticleItemProps = {
+  article_id?: number;
   title: string;
   category: string;
   published_at: string;
