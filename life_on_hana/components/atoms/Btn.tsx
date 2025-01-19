@@ -18,7 +18,7 @@ const getBtnClasses = (variant: string) => {
     case "needLumpSum":
       return "bg-hanapurple w-full h-[3.2rem] text-[1rem] text-white";
     default:
-      return "bg-hanapurple w-[18.125rem] h-[2.75rem] text-[.9375rem] text-white";
+      return "bg-hanapurple w-full h-[2.75rem] text-[.9375rem] text-white";
   }
 };
 
@@ -27,28 +27,30 @@ export default function Btn({
   text,
   url,
   variant = "default",
+  onClick,
 }: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
-  return url ? (
-    <Link href={url}>
-      <button className={btnClasses}>{text}</button>
+  return variant === "needLumpSum" ? (
+    <Link href={"/home/lumpsum"} className="flex">
+      <button
+        className={`flex items-center justify-center ${btnClasses} rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]`}
+        type={type}
+        onClick={onClick}
+      >
+        <span className="absolute left-1/2 -translate-x-1/2">{text}</span>
+        <div className="ml-auto pr-5">
+          <Image src={arrowRight} alt="Right Arrow" />
+        </div>
+      </button>
     </Link>
-  ) : variant === "needLumpSum" ? (
-    <button
-      className={`relative flex items-center justify-center ${btnClasses} rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]`}
-      type={type}
-    >
-      <span className="absolute left-1/2 -translate-x-1/2">{text}</span>
-      <div className="ml-auto pr-5">
-        <Image
-          src={arrowRight}
-          alt="Right Arrow"
-          className="dynamic-fill white" // 이 방식으로 CSS 색상 적용
-        />
-      </div>
-    </button>
+  ) : url ? (
+    <Link href={url}>
+      <button className={btnClasses} onClick={onClick}>
+        {text}
+      </button>
+    </Link>
   ) : (
-    <button className={btnClasses} type={type}>
+    <button className={btnClasses} type={type} onClick={onClick}>
       {text}
     </button>
   );

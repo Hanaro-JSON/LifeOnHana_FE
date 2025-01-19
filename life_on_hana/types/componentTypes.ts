@@ -26,6 +26,7 @@ export type TBtnProps = {
     | "beforeChooseAccount"
     | "hanaWallet"
     | "needLumpSum";
+  onClick?: () => void;
 };
 
 export type TCarouselSectionProps = {
@@ -48,6 +49,8 @@ export type TSectionProps = {
   hasShadow?: boolean;
   children?: ReactNode;
   height?: string;
+  bgColor?: string;
+  shadowColor?: string;
 };
 
 export type TShortsAutoToggleProps = {

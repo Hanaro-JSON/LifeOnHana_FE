@@ -3,14 +3,11 @@
 import Btn from "@/components/atoms/Btn";
 import { LogoHeader } from "@/components/molecules/LogoHeader";
 import MainSection from "@/components/molecules/MainSection";
-import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import arrowRight from "@/assets/arrow-right.svg";
-import Link from "next/link";
 import Section from "@/components/atoms/Section";
 import { BarGraph } from "@/components/molecules/BarGraph";
 import {
-  TRecommendCarouselItemProps,
+  type TRecommendCarouselItemProps,
   type TArticleItemProps,
   type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
@@ -19,7 +16,6 @@ import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouse
 import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 import ShortCutBtn from "@/components/molecules/ShortCutBtn";
-import { getNameFromServer } from "@/hooks/useData";
 import { DataContext } from "@/hooks/useData";
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: "FOOD", amount: 500000, percentage: 10 },
@@ -81,8 +77,9 @@ const carouselItems: TRecommendCarouselItemProps[] = [
 export default function Home() {
   const { data, setName } = useContext(DataContext);
   useEffect(() => {
+    console.log("이름 세팅");
     setName("장다연");
-  }, []);
+  });
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState("INVESTMENT");
   //내역 통계 조회

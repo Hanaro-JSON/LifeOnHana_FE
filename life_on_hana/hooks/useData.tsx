@@ -43,10 +43,6 @@ export const DataProvider = ({
     DefaultData = data;
   };
   const setName = (name: string) => {
-    if (!data.email) {
-      console.error("이메일이 설정되지 않아 이름 저장할 수 없어요");
-      return;
-    }
     const updateData = { ...data, name };
     setDataWithStorage(updateData);
   };

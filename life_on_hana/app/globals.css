@@ -178,3 +178,19 @@ a {
 .dynamic-fill.black {
   color: black;
 }
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  background-color: var(--hanapurple);
+  border: 1px solid var(--hanapurple);
+  /* box-shadow: 0 0 0 1.6px var(--hanapurple); */
+}
