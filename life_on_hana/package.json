@@ -19,6 +19,7 @@
     "@radix-ui/react-toast": "^1.2.4",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "^5.64.1",
+    "@tanstack/react-query-devtools": "4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.1",
