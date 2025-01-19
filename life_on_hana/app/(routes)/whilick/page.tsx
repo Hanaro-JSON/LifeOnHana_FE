@@ -59,7 +59,7 @@ export default function Whilick() {
     <>
       <div className="relative min-h-screen flex flex-col items-center justify-center">
         {/* 최상단 */}
-        <div className="z-50 px-[1.5rem] w-full absolute top-6 flex justify-between items-center">
+        <div className="fixed z-50 px-[1.5rem] w-full top-6 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Image src={whilick_purple} alt="whilick_icon" style={{ width: 20, height: "auto" }} />
             <div className="text-[1.5rem] font-Hana2bold">휘릭</div>
@@ -78,14 +78,19 @@ export default function Whilick() {
           </button>
         </div>
 
-        {/* 내용에 관한 컴포넌트 */}
-        <WhilickItem
-          title={mockWhilick[0].title}
-          shorts={mockWhilick[0].shorts}
-          articleId={mockWhilick[0].articleId}
-          isLiked={mockWhilick[0].isLiked}
-          likeCount={mockWhilick[0].likeCount}
-        />
+        {/* 상하 스크롤 영역 */}
+        <div className="snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full">
+          {mockWhilick.map((item) => (
+            <WhilickItem
+              key={item.articleId}
+              title={item.title}
+              shorts={item.shorts}
+              articleId={item.articleId}
+              isLiked={item.isLiked}
+              likeCount={item.likeCount}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
