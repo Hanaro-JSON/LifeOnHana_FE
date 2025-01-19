@@ -10,28 +10,33 @@ const getCarouselSectionStyles = (variant: string) => {
   switch (variant) {
     case "column":
       return {
-        sectionClass: "h-[8rem] mx-5",
+        sectionClass: "h-[8rem]",
         boxStyles: "bg-white w-full h-[8rem]",
-        innerStyles: "w-[20rem] top-[4rem] left-[.9375rem]",
+        innerStyles: "w-full top-[4rem] left-[.9375rem]",
       };
     case "product":
       return {
-        sectionClass: "h-[5rem] mx-5",
-        boxStyles: "bg-hanalightpurple h-[5rem]",
+        sectionClass: "h-[5rem]",
+        boxStyles: "bg-white h-[5rem]",
         innerStyles: "w-full mx-10",
       };
     default:
       return {
-        sectionClass: "h-[8rem] mx-5",
+        sectionClass: "h-[8rem]",
         boxStyles: "bg-white w-full h-[8rem]",
-        innerStyles: "w-[20rem] top-[4rem] left-[.9375rem]",
+        innerStyles: "w-full top-[4rem] left-[.9375rem]",
       };
   }
 };
 
-export default function CarouselSection({ variant = "default", items, onIndexChange }: TCarouselSectionProps) {
+export default function CarouselSection({
+  variant = "default",
+  items,
+  onIndexChange,
+}: TCarouselSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { sectionClass, boxStyles, innerStyles } = getCarouselSectionStyles(variant);
+  const { sectionClass, boxStyles, innerStyles } =
+    getCarouselSectionStyles(variant);
 
   const handlePrev = () => {
     const newIndex = (currentIndex - 1 + items.length) % items.length;

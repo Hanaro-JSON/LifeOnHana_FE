@@ -4,21 +4,28 @@ import { useRouter } from "next/navigation";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 type LocalData = {
   email: string;
+  name: string | undefined | null;
 };
-const DefaultData: LocalData = {
+let DefaultData: LocalData = {
   email: "",
+  name: "",
 };
 const contextInitValue = {
   data: DefaultData,
   getSession: async () => {
-    const sess: Session | null = { user: { email: "" }, expires: "" };
+    const sess: Session | null = { user: { email: "", name: "" }, expires: "" };
     return Promise.resolve(sess);
   },
+  setName: async (name: string) => {
+    DefaultData = { ...DefaultData, name };
+    return name;
+  },
 };
-type ContextProps = Omit<typeof contextInitValue, "getSession"> & {
+type ContextProps = Omit<typeof contextInitValue, "getSession" | "setName"> & {
   getSession: () => Promise<Session | null>;
+  setName: (name: string) => void;
 };
-const DataContext = createContext<ContextProps>(contextInitValue);
+export const DataContext = createContext<ContextProps>(contextInitValue);
 export const DataProvider = ({
   children,
   getSession,
@@ -33,13 +40,18 @@ export const DataProvider = ({
     if (!email) return;
     localStorage.setItem(email, JSON.stringify(newer));
     setData(newer);
+    DefaultData = data;
+  };
+  const setName = (name: string) => {
+    const updateData = { ...data, name };
+    setDataWithStorage(updateData);
   };
   const router = useRouter();
   useEffect(() => {
     (async function () {
       const session = await getSession();
       if (!session?.user?.email) return;
-      const { email } = session.user;
+      const { email, name } = session.user;
       const localData = JSON.parse(
         localStorage.getItem(email) || "null"
       ) as LocalData;
@@ -47,6 +59,7 @@ export const DataProvider = ({
       if (!localData) {
         setDataWithStorage({
           email,
+          name,
         });
       } else {
         if (email && localData.email !== email) {
@@ -60,7 +73,7 @@ export const DataProvider = ({
     })();
   }, [getSession, signOut, router]);
   return (
-    <DataContext.Provider value={{ data, getSession }}>
+    <DataContext.Provider value={{ data, getSession, setName }}>
       {children}
     </DataContext.Provider>
   );

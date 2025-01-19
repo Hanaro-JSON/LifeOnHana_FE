@@ -1,5 +1,7 @@
 import { type TBtnProps } from "@/types/componentTypes";
 import Link from "next/link";
+import arrowRight from "@/assets/arrow-right-white.svg";
+import Image from "next/image";
 
 const getBtnClasses = (variant: string) => {
   switch (variant) {
@@ -12,19 +14,43 @@ const getBtnClasses = (variant: string) => {
     // '휘릭' 전문보기
     case "moveToArticle":
       return "w-[19.1875rem] h-[2.9375rem] bg-hanapurple text-[1.25rem] text-white font-bold";
+    // "급하게 목돈이 필요하세요?"
+    case "needLumpSum":
+      return "bg-hanapurple w-full h-[3.2rem] text-[1rem] text-white";
     default:
-      return "bg-hanapurple w-[18.125rem] h-[2.75rem] text-[.9375rem] text-white";
+      return "bg-hanapurple w-full h-[2.75rem] text-[.9375rem] text-white";
   }
 };
 
-export default function Btn({ type, text, url, variant = "default" }: TBtnProps) {
+export default function Btn({
+  type,
+  text,
+  url,
+  variant = "default",
+  onClick,
+}: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
-  return url ? (
+  return variant === "needLumpSum" ? (
+    <Link href={"/home/lumpsum"} className="flex">
+      <button
+        className={`flex items-center justify-center ${btnClasses} rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]`}
+        type={type}
+        onClick={onClick}
+      >
+        <span className="absolute left-1/2 -translate-x-1/2">{text}</span>
+        <div className="ml-auto pr-5">
+          <Image src={arrowRight} alt="Right Arrow" />
+        </div>
+      </button>
+    </Link>
+  ) : url ? (
     <Link href={url}>
-      <button className={btnClasses}>{text}</button>
+      <button className={btnClasses} onClick={onClick}>
+        {text}
+      </button>
     </Link>
   ) : (
-    <button className={btnClasses} type={type}>
+    <button className={btnClasses} type={type} onClick={onClick}>
       {text}
     </button>
   );

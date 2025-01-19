@@ -115,8 +115,8 @@ export function BarGraph({
         } satisfies ChartConfig);
 
   return (
-    <div className="w-full h-20">
-      <ChartContainer config={chartConfig} className="h-[50px] w-full px-2">
+    <div className="flex justify-center w-full h-24 items-center">
+      <ChartContainer config={chartConfig} className="h-24 w-full px-2">
         <BarChart
           accessibilityLayer
           data={chartData}
@@ -124,7 +124,6 @@ export function BarGraph({
           margin={{
             left: -60,
           }}
-          barSize={20}
         >
           <XAxis type="number" hide domain={[0, 100]} />
           <YAxis
