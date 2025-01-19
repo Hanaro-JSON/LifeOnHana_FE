@@ -10,33 +10,37 @@ export default function LikedAccountProductDetailItem({
   link,
   savingsInfo,
   closeBtn = true,
+  onClose,
 }: TLikedAccountProductDetailItemProps) {
+
   const [amount, setAmount] = useState<string>("");
   const [years, setYears] = useState<string>("");
-  const [interestRate, setInterestRate] = useState<number>(savingsInfo.basicInterestRate);
+  const [interestRate, setInterestRate] = useState<number>(
+    savingsInfo.basicInterestRate
+  );
   const [calculatedAmount, setCalculatedAmount] = useState<string>("0");
 
-  const [visible, setVisible] = useState(true);
 
-  const handleClose = () => {
-    if (closeBtn) {
-      setVisible(false);
-    }
-  };
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === "modal-background") {
-      handleClose();
+      onClose?.();
     }
   };
 
-  if (!visible) return null;
+  const handleCloseClick = () => {
+    if (closeBtn) {
+      onClose?.();
+    }
+  };
 
-  const bg = closeBtn ? "fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50" : "";
 
   const handleInterestRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rate = parseFloat(e.target.value);
-    if (rate >= savingsInfo.basicInterestRate && rate <= savingsInfo.maxInterestRate) {
+    if (
+      rate >= savingsInfo.basicInterestRate &&
+      rate <= savingsInfo.maxInterestRate
+    ) {
       setInterestRate(rate);
       calculateAmount(amount, years, rate);
     }
@@ -54,16 +58,28 @@ export default function LikedAccountProductDetailItem({
     calculateAmount(amount, yearsToNumber, interestRate);
   };
 
-  const calculateAmount = (amount: string, years: string, interestRate: number) => {
+  const calculateAmount = (
+    amount: string,
+    years: string,
+    interestRate: number
+  ) => {
     const amountToNumber = parseFloat(amount);
     const yearsToNumber = parseInt(years);
     if (amountToNumber && yearsToNumber && !isNaN(interestRate)) {
-      const expectedAmount = (amountToNumber * yearsToNumber * (interestRate / 100) + amountToNumber).toFixed(0);
+      const expectedAmount = (
+        amountToNumber * yearsToNumber * (interestRate / 100) +
+        amountToNumber
+      ).toFixed(0);
       setCalculatedAmount(expectedAmount);
     } else {
       setCalculatedAmount("0");
     }
   };
+
+
+  const bg = closeBtn
+    ? "fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50"
+    : "";
 
   return (
     <div id="modal-background" onClick={handleBackgroundClick} className={bg}>
@@ -74,32 +90,43 @@ export default function LikedAccountProductDetailItem({
         {/* X 버튼 */}
         <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
           {closeBtn && (
-            <button onClick={handleClose} className="p-1">
+            <button onClick={handleCloseClick} className="p-1">
               <Image src={X} alt="Close" width={13} height={13} />
             </button>
           )}
         </div>
 
         {/* 제목 */}
-        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start mb-2">{name}</div>
+        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start mb-2">
+          {name}
+        </div>
 
+        {/* 내용 */}
         <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[6rem] flex-grow mb-2">
           <p className="text-left">{description}</p>
         </div>
 
-        <div className="text-[.9375rem] font-SCDream8 text-left self-start mb-2">나의 예상 혜택</div>
+        <div className="text-[.9375rem] font-SCDream8 text-left self-start mb-2">
+          나의 예상 혜택
+        </div>
 
         <div className="w-[18rem] h-[6rem] relative mb-3 -ml-2">
           <div className="w-[18rem] h-[6rem] left-0 top-0 absolute bg-[#f4ebfb] rounded-[18px]">
             <div className="p-4 mt-2">
               <div className="flex justify-between">
-                <div className="text-black text-[.8125rem] font-SCDream3">만기금액(세전)</div>
+                <div className="text-black text-[.8125rem] font-SCDream3">
+                  만기금액(세전)
+                </div>
                 <div className="text-right text-black text-[.8125rem] font-SCDream5">
-                  {calculatedAmount ? `${parseInt(calculatedAmount).toLocaleString()}원` : "금액을 입력해주세요"}
+                  {calculatedAmount
+                    ? `${parseInt(calculatedAmount).toLocaleString()}원`
+                    : "금액을 입력해주세요"}
                 </div>
               </div>
               <div className="flex justify-between mt-2">
-                <div className="text-black text-[.8125rem] font-SCDream3">적용금리</div>
+                <div className="text-black text-[.8125rem] font-SCDream3">
+                  적용금리
+                </div>
                 <div className="text-right text-black text-[.8125rem] font-SCDream5">
                   {calculatedAmount === "0"
                     ? `${savingsInfo.basicInterestRate}% ~ ${savingsInfo.maxInterestRate}%`
@@ -110,14 +137,15 @@ export default function LikedAccountProductDetailItem({
           </div>
         </div>
 
+        {/* 적금 계산 입력 폼 */}
         <div className="flex flex-col text-[.8125rem]">
           <div className="flex items-center">
             <input
               type="text"
               value={amount}
-              onChange={(e) => handleAmountChange(e)}
+              onChange={handleAmountChange}
               className="min-w-[4rem] w-[auto] max-w-[14rem] p-2 border-b-2 border-hanalightpurple focus:outline-none focus:border-hanapurple text-hanapurple font-SCDream8"
-              style={{ width: `${amount.length + 2}ch` }} // 숫자가 늘어나면 자동으로 input의 width 길어짐
+              style={{ width: `${amount.length + 2}ch` }}
               placeholder="금액"
               maxLength={12}
             />
@@ -146,10 +174,11 @@ export default function LikedAccountProductDetailItem({
               max={savingsInfo.maxInterestRate}
               step="0.1"
             />
-            <span className="">로 저축하기</span>
+            <span>로 저축하기</span>
           </div>
         </div>
 
+        {/* 버튼 */}
         <div className="mt-4 -ml-2">
           <Btn text={"상품정보 자세히보기"} url={link} />
         </div>
