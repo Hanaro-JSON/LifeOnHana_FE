@@ -122,6 +122,7 @@ export type TIsLikeProps = {
 };
 
 export type TLikedAccountProductDetailItemProps = {
+  productId: string;
   name: string;
   description: string;
   link: string;
@@ -130,9 +131,20 @@ export type TLikedAccountProductDetailItemProps = {
     maxInterestRate: number;
   };
   closeBtn?: boolean;
+  onClose?: () => void;
+};
+
+export type TLikedLifeProductDetailItemProps = {
+  productId: string;
+  name: string;
+  description: string;
+  link: string;
+  closeBtn?: boolean;
+  onClose?: () => void;
 };
 
 export type TLikedLoanProductDetailItemProps = {
+  productId: string;
   name: string;
   description: string;
   feature: string;
@@ -148,6 +160,7 @@ export type TLikedLoanProductDetailItemProps = {
     minCreditScore: number;
   };
   closeBtn?: boolean;
+  onClose?: () => void;
 };
 
 export type TLoginLabelInputProps = {
@@ -188,6 +201,8 @@ export type TRecommendCarouselItemProps = {
 };
 
 export type TRecommendItemProps = {
+  maxAmountFormatted?: string;
+  minAmountFormatted?: string;
   productId: string;
   name: string;
   description: string;
@@ -197,6 +212,7 @@ export type TRecommendItemProps = {
   maxInterest_rate?: number;
   maxPeriod?: string;
   productType: "LOAN" | "SAVINGS" | "LIFE";
+  onClick: () => void;
 };
 
 export type TSearchInput = {
