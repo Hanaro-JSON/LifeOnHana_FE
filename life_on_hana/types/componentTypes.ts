@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 
-export type TVerticalBarGraphProps = {
-  month: string;
-  totalExpense: number;
+export type TMicroMiniBtnProps = {
+  num?: number;
+  text?: string;
+  onClick?: () => void;
 };
 
 export type TRecommendCarouselColumnProps = {
