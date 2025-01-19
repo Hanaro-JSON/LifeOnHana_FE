@@ -177,7 +177,7 @@ export type TLumpSumBtnProps =
   | "loanProducts";
 
 export type TMainSectionProps = {
-  name: string;
+  name: string | null | undefined;
   walletAmount: number;
 };
 
