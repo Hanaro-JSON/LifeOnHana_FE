@@ -79,7 +79,7 @@ export default function Home() {
   useEffect(() => {
     console.log("이름 세팅");
     setName("장다연");
-  });
+  }, []);
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState("INVESTMENT");
   //내역 통계 조회
@@ -168,7 +168,7 @@ export default function Home() {
             </span>
             &nbsp;입니다.
           </div>
-          <BarGraph type="mydata" expenseCategories={expenseCategories} />
+          <BarGraph type={"mydata"} expenseCategories={expenseCategories} />
           <div className="font-SCDream2 text-xs">
             이번 달 받은 이자는 총 &nbsp;
             <span className="font-SCDream4 underline-offset-1 underline text-sm text-hanapurple">

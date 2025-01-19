@@ -102,7 +102,7 @@ export function CircleGraph({
     <div>
       <ChartContainer
         config={chartConfig}
-        className="mx-auto aspect-square max-h-[300px]"
+        className="mx-auto aspect-square max-h-[200px] min-w-full"
       >
         <PieChart>
           <Pie data={chartData} dataKey="value" />
