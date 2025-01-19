@@ -10,9 +10,9 @@ import Link from "next/link";
 import Section from "@/components/atoms/Section";
 import { BarGraph } from "@/components/molecules/BarGraph";
 import {
-  TArticleItemProps,
-  TGraphExpenseCategoriesProps,
-  TRecommendCarouselColumnProps,
+  type TArticleItemProps,
+  type TGraphExpenseCategoriesProps,
+  type TRecommendCarouselColumnProps,
 } from "@/types/componentTypes";
 import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
 import { Carousel } from "nuka-carousel";
