@@ -10,7 +10,7 @@ import soundOff from "@/assets/sound-off.svg";
 
 export default function WhilickItem({
   title,
-  shorts,
+  text,
   articleId,
   isLiked,
   likeCount,
@@ -86,14 +86,20 @@ export default function WhilickItem({
 
           {/* 칼럼 요약내용 */}
           <div
-            className="px-[1.5rem] flex text-center justify-center w-full font-SCDream8 text-[1.8rem] text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden"
+            className="gap-5 px-[1.5rem] flex flex-col text-center items-center  w-full font-SCDream8 text-[1.8rem] text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden"
             style={{
               maxHeight: "calc(100vh - 35rem)",
               scrollbarWidth: "none",
               msOverflowStyle: "none",
             }}
           >
-            {shorts}
+            {text.map((elem) => {
+              return (
+                <div key={elem.paragraphId} className="">
+                  {elem.content}
+                </div>
+              );
+            })}
           </div>
         </div>
 

@@ -281,9 +281,23 @@ export type TGraphProps = {
   realEstatePercentage?: number;
 };
 
+export type TMockWhilickProps = {
+  title: string;
+  articleId: number;
+  text: { paragraphId: number; content: string; startTime: number; endTime: number }[];
+  likeCount: number;
+  isLiked: boolean;
+  ttsUrl: string;
+};
+
 export type TWhilickItemProps = {
   title: string;
-  shorts: string;
+  text: {
+    paragraphId: number;
+    content: string;
+    startTime: number;
+    endTime: number;
+  }[];
   articleId: number;
   isLiked: boolean;
   likeCount: number;

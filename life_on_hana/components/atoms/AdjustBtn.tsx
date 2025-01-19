@@ -58,10 +58,7 @@ export default function AdjustBtn({
 
       {/* 선택 바 */}
       {isOpen && (
-        <div
-          className="
-        h-16 -z-20 absolute -left-[13rem] -top-0 transform bg-white rounded-2xl shadow-lg p-4 w-64"
-        >
+        <div className="h-16 -z-20 absolute -left-[13rem] -top-0 transform bg-white rounded-2xl shadow-lg p-4 w-64">
           <div className="flex items-center justify-between">
             <input
               type="range"
