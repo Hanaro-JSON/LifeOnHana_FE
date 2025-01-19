@@ -18,6 +18,7 @@ import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouse
 import { Carousel } from "nuka-carousel";
 import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
+import ShortCutBtn from "@/components/molecules/ShortCutBtn";
 
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: "FOOD", amount: 500000, percentage: 10 },
@@ -175,13 +176,7 @@ export default function Home() {
             &nbsp;입니다.
           </div>
           <div className="border-t-2 flex justify-center items-center h-[2rem]">
-            <Link href={"/wallet"}>
-              <button className="font-SCDream2 text-[.75rem] flex items-center ">
-                <span className="text-hanapurple">입출금 내역</span>
-                &nbsp;보러가기
-                <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
-              </button>
-            </Link>
+            <ShortCutBtn url={"/"} variant="spend" />
           </div>
         </div>
       </Section>
@@ -192,12 +187,7 @@ export default function Home() {
           {categoryToNickname(category)}
         </div>
         <div>
-          <Link href={"/wallet"}>
-            <button className="font-SCDream2 text-[.75rem] flex items-center ">
-              <span className="text-hanapurple">좋아요</span>한 칼럼 보러가기
-              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
-            </button>
-          </Link>
+          <ShortCutBtn url={"/"} variant="column" />
         </div>
       </div>
       {/* <RecommendCarouselColumn items={RecommendCarouselColumnItems} /> */}
@@ -208,12 +198,7 @@ export default function Home() {
           {name}님을 위한 추천 상품
         </div>
         <div>
-          <Link href={"/wallet"}>
-            <button className="font-SCDream2 text-[.75rem] flex items-center ">
-              <span className="text-hanapurple">추천</span> 상품 보러가기
-              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
-            </button>
-          </Link>
+          <ShortCutBtn url={"/"} variant="product" />
         </div>
       </div>
       <RecommendCarouselItem items={carouselItems} />;
