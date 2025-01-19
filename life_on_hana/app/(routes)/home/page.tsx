@@ -92,7 +92,7 @@ export default function Home() {
   const [expenseCategories, setExpenseCategories] = useState(
     mockExpenseCategories
   );
-  //컬럼 목록 조회
+  //칼럼 목록 조회
   const [articles, setArticles] = useState(mockArticles);
   const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
     useState<TRecommendCarouselColumnProps[]>([]);
@@ -185,7 +185,7 @@ export default function Home() {
           </div>
         </div>
       </Section>
-      {/* 좋아요한 컬럼 카드 */}
+      {/* 좋아요한 칼럼 카드 */}
       <div className="flex flex-row justify-between items-end">
         <div className="font-SCDream4 tracking-wide">
           <div>{data.name}님은</div>
