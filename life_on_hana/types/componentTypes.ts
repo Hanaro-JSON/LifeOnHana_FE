@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 
+export type TMicroMiniBtnProps = {
+  num?: number;
+  text?: string;
+  onClick?: () => void;
+};
+
 export type TRecommendCarouselColumnProps = {
   article_id: number;
   title: string;

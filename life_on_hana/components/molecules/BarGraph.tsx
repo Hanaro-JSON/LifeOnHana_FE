@@ -137,7 +137,9 @@ export function BarGraph({
             cursor={false}
             content={<ChartTooltipContent hideLabel />}
           />
-          <ChartLegend content={<ChartLegendContent />} />
+          <ChartLegend
+            content={<ChartLegendContent className='pl-[60px] ' />}
+          />
 
           {Object.entries(chartData[0]).map(([category, percentage], index) => {
             // Check if percentage is 0, if so, return null to skip rendering

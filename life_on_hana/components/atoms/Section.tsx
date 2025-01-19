@@ -3,7 +3,7 @@ import { type TSectionProps } from '@/types/componentTypes';
 export default function Section({
   hasShadow = true,
   children,
-  height = '7.4375rem',
+  height = '',
   bgColor = 'white',
   shadowColor = '',
 }: TSectionProps) {
@@ -14,7 +14,7 @@ export default function Section({
     : '';
 
   return (
-    <div className='w-full relative' style={{ height }}>
+    <div className='w-full relative h-fit' style={{ height }}>
       <div
         className={`w-full left-0 top-0 bg-${bgColor} rounded-[.9375rem] p-6 flex items-center justify-center ${shadowClass}`}
         style={{ height }}

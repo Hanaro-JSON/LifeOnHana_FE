@@ -72,7 +72,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
             </div>
           </div>
           <div className='mt-3'>
-            <Link href={'/wallet'}>
+            <Link href={'/home/wallet'}>
               <button className='font-SCDream3 text-[.75rem] flex items-center '>
                 <span className='text-hanapurple'>월급&nbsp;</span>설정하러 가기
                 <Image src={arrowRight} alt='Right Arrow' className='ml-2' />
