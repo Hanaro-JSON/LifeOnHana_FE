@@ -287,4 +287,7 @@ export type TWhilickItemProps = {
   articleId: number;
   isLiked: boolean;
   likeCount: number;
+  ttsUrl: string;
+  currentAudio: HTMLAudioElement | null;
+  setCurrentAudio: (audio: HTMLAudioElement | null) => void;
 };

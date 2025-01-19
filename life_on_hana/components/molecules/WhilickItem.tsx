@@ -3,20 +3,84 @@ import AdjustBtn from "../atoms/AdjustBtn";
 import Btn from "../atoms/Btn";
 import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
 import IsLike from "./IsLike";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import soundOn from "@/assets/sound-on.svg";
+import soundOff from "@/assets/sound-off.svg";
 
-export default function WhilickItem({ title, shorts, articleId, isLiked, likeCount }: TWhilickItemProps) {
+export default function WhilickItem({
+  title,
+  shorts,
+  articleId,
+  isLiked,
+  likeCount,
+  ttsUrl,
+  currentAudio,
+  setCurrentAudio,
+}: TWhilickItemProps) {
+  // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
 
-  // 동일 버튼 클릭 시 닫힘
   const handleAdjustBtnToggle = (id: string) => {
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
+  };
+
+  // audio
+  const [isPlaying, setIsPlaying] = useState(false);
+  const soundContainer = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audioElement = soundContainer.current;
+    console.log("audioElement: ", audioElement);
+    if (audioElement) {
+      const handleCanPlay = () => {
+        // 새로운 오디오가 로드되면 이전 오디오를 멈춤
+        if (currentAudio && currentAudio !== audioElement) {
+          currentAudio.pause();
+        }
+
+        audioElement.volume = 1;
+        audioElement.play().catch((err) => console.error("오디오 재생 실패:", err));
+        setCurrentAudio(audioElement);
+      };
+
+      audioElement.addEventListener("canplaythrough", handleCanPlay);
+      return () => {
+        audioElement.removeEventListener("canplaythrough", handleCanPlay);
+        if (audioElement === currentAudio) {
+          audioElement.pause(); // 언마운트 시 오디오 정지
+          setCurrentAudio(null); // 상태 초기화
+        }
+      };
+    }
+  }, [isPlaying, ttsUrl, currentAudio, setCurrentAudio]);
+
+  const soundToggleEvent = () => {
+    if (soundContainer.current) {
+      if (isPlaying) soundContainer.current.pause();
+      else soundContainer.current.play().catch(console.error);
+    }
+    setIsPlaying((prev) => !prev);
   };
 
   return (
     <>
       <div className="snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center">
-        <div className="absolute top-24 flex flex-col space-y-6">
+        {/* sound on/off */}
+        <div className="z-50 absolute top-6 flex flex-col space-y-6 items-center">
+          <div className="z-50 w-full h-10 flex justify-end items-center px-[1.5rem]">
+            <audio ref={soundContainer}>
+              <source src={ttsUrl} type="audio/mp3" />
+            </audio>
+            <button onClick={soundToggleEvent}>
+              <Image
+                src={isPlaying ? soundOn : soundOff}
+                alt={isPlaying ? "소리켬" : "소리끔"}
+                style={{ width: 20, height: "auto" }}
+              />
+            </button>
+          </div>
+
           {/* 칼럼 제목 */}
           <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{title}</div>
 

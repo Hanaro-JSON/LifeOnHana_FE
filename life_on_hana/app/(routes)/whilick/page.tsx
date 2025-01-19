@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import whilick_purple from "@/assets/whilick_purple.svg";
-import soundOn from "@/assets/sound-on.svg";
-import soundOff from "@/assets/sound-off.svg";
 import WhilickItem from "@/components/molecules/WhilickItem";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function Whilick() {
+  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
+
   const mockWhilick = [
     {
       title: "알아 두면 쓸데 많은 1900년대 비엔나 미술 속으로",
@@ -27,55 +27,26 @@ export default function Whilick() {
       isLiked: false,
       ttsUrl: "/assets/audio/audio2.mp3",
     },
+    {
+      title: "‘흑백요리사’ 속 셰프의 레스토랑 가이드",
+      articleId: 3,
+      shorts:
+        "넷플릭스 요리 경연 프로그램 ‘흑백요리사’ 열풍이 불면서 출연한 셰프들의 레스토랑들도 덩달아 인기를 얻고 있다. 지금 가장 핫한 곳은 어느 곳이고, 예약 없이 갈 수 있는 레스토랑은 과연 어디일까?",
+      likeCount: 10,
+      isLiked: true,
+      ttsUrl: "/assets/audio/audio3.mp3",
+    },
   ];
-
-  const [isSound, setIsSound] = useState(true);
-  const soundContainer = useRef<HTMLAudioElement>(null);
-
-  useEffect(() => {
-    const audioElement = soundContainer.current;
-    if (audioElement) {
-      const handleCanPlay = () => {
-        audioElement.volume = 1;
-        audioElement.play().catch((err) => console.error("오디오 재생 실패:", err));
-      };
-
-      audioElement.addEventListener("canplaythrough", handleCanPlay);
-      return () => {
-        audioElement.removeEventListener("canplaythrough", handleCanPlay);
-      };
-    }
-  }, []);
-
-  const soundToggleEvent = () => {
-    if (soundContainer.current) {
-      if (isSound) soundContainer.current.pause();
-      else soundContainer.current.play().catch(console.error);
-    }
-    setIsSound((prev) => !prev);
-  };
 
   return (
     <>
       <div className="relative min-h-screen flex flex-col items-center justify-center">
         {/* 최상단 */}
-        <div className="fixed z-50 px-[1.5rem] w-full top-6 flex justify-between items-center">
+        <div className="fixed z-50 px-[1.5rem] w-full top-6 h-10 flex justify-start items-center">
           <div className="flex items-center gap-4">
             <Image src={whilick_purple} alt="whilick_icon" style={{ width: 20, height: "auto" }} />
             <div className="text-[1.5rem] font-Hana2bold">휘릭</div>
           </div>
-
-          {/* sound on/off */}
-          <audio ref={soundContainer}>
-            <source src={mockWhilick[0].ttsUrl} type="audio/mp3" />
-          </audio>
-          <button onClick={soundToggleEvent}>
-            <Image
-              src={isSound ? soundOn : soundOff}
-              alt={isSound ? "소리켬" : "소리끔"}
-              style={{ width: 20, height: "auto" }}
-            />
-          </button>
         </div>
 
         {/* 상하 스크롤 영역 */}
@@ -88,6 +59,9 @@ export default function Whilick() {
               articleId={item.articleId}
               isLiked={item.isLiked}
               likeCount={item.likeCount}
+              ttsUrl={item.ttsUrl}
+              currentAudio={currentAudio}
+              setCurrentAudio={setCurrentAudio}
             />
           ))}
         </div>
