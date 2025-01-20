@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { type TWhilickItemProps } from "@/types/componentTypes";
 import AdjustBtn from "@/components/atoms/AdjustBtn";
 import Btn from "@/components/atoms/Btn";
@@ -7,6 +8,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import soundOn from "@/assets/sound-on.svg";
 import soundOff from "@/assets/sound-off.svg";
+=======
+// import Image from "next/image";
+import AdjustBtn from "../atoms/AdjustBtn";
+import Btn from "../atoms/Btn";
+import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
+import IsLike from "./IsLike";
+>>>>>>> ad3be8a ([feat] 🐿️ WhilickItem 컴포넌트 내 arrow down 버튼 애니메이션 추가)
 
 export default function WhilickItem({
   idx,

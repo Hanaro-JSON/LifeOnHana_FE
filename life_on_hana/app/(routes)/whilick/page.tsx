@@ -173,7 +173,11 @@ export default function Whilick() {
     <>
       <div className="px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] min-h-screen flex flex-col items-center justify-center">
         {/* 최상단 */}
+<<<<<<< HEAD
         <div className="px-[1.5rem] w-full absolute top-[1.5rem] flex justify-between items-center">
+=======
+        <div className="z-50 px-[1.5rem] w-full absolute top-6 flex justify-between items-center">
+>>>>>>> ad3be8a ([feat] 🐿️ WhilickItem 컴포넌트 내 arrow down 버튼 애니메이션 추가)
           <div className="flex items-center gap-4">
             <Image src={whilick_purple} alt="whilick_icon" width={20} height={20} />
             <div className="text-[1.5rem] font-Hana2bold">휘릭</div>
