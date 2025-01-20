@@ -4,8 +4,9 @@ import HeartYes from "../../assets/HeartYes.svg";
 import { formatDate } from "@/utils/formatDate";
 import { type TArticleItemProps } from "@/types/componentTypes";
 import { useState } from "react";
+import Link from "next/link";
 
-export default function ArticleItem({ title, category, published_at, thumbnail_s3_key, is_liked }: TArticleItemProps) {
+export default function ArticleItem({ article_id, title, category, published_at, thumbnail_s3_key, is_liked }: TArticleItemProps) {
   const [liked, setLiked] = useState(is_liked);
 
   const handleLikeToggle = () => {
@@ -14,39 +15,36 @@ export default function ArticleItem({ title, category, published_at, thumbnail_s
 
   return (
     <div className="w-full h-full relative">
+      <Link href={`/column/${article_id}`}>
       
-      <div className="flex gap-4">
+      <div className="flex gap-3">
 <Image
-  className="w-[28%] h-[5.2rem] left-[.1rem] top-0 rounded-[.625rem] object-cover"
-  src={thumbnail_s3_key}
+  className="w-40 h-[4.5rem] rounded-[.625rem]"
+  src={thumbnail_s3_key}      
   alt="Image"
-  width={60}
-  height={50}
+  width={90}
+  height={45}
 />
-<div className="flex flex-col justify-between w-[70%]">
-  <div className="font-SCDream5 text-[1.05rem]">
+<div className="flex flex-col justify-between w-full">
+  <div className="font-SCDream5">
     {title}
   </div>
-  <div className="text-[0.9rem] font-SCDream3">
+  <div className="text-xs font-SCDream3">
     {category} / {formatDate(published_at)}
   </div>
 </div>
-
       </div>
-      
-      
-      <div className="absolute right-[1rem] bottom-1" onClick={handleLikeToggle}>
+        </Link>
+      <div className="absolute right-[1rem] bottom-2" onClick={handleLikeToggle}>
         <Image
           src={liked ? HeartYes : HeartNo}
           alt={liked ? "Liked" : "Not Liked"}
-          width={22} 
-          height={22}
+          width={20} 
+          height={20}
         />
       </div>
       
-      <div className="w-full h-px left-0 bottom-0 mt-1 bg-[#d9d9d9]" />
-      
-      
-    </div>
+      <hr className="w-full mt-3 bg-gray-500" />
+      </div>
   );
 }
