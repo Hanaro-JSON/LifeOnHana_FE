@@ -1,7 +1,12 @@
 "use client";
 
 import { Pie, PieChart } from "recharts";
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+} from "@/components/ui/chart";
 import { type TGraphProps } from "@/types/componentTypes";
 import { bluePurpleColors } from "@/utils/colors";
 import { getHistoryToKorean } from "@/utils/convertEnumtoString";

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+<<<<<<< HEAD
 import MydataCheckNo from "@/assets/MydataCheckNo.svg";
 import MydataCheckYes from "@/assets/MydataCheckYes.svg";
 import HanaBankLogo from "@/assets/HanaBankLogo.svg";
@@ -13,6 +14,26 @@ import { type TConnectBankItemProps } from "@/types/componentTypes";
 
 export default function ConnectBankItem({ bankName, initialIsMydataChecked = false, onToggle }: TConnectBankItemProps) {
   const [isMydataChecked, setIsMydataChecked] = useState<boolean>(initialIsMydataChecked);
+=======
+import MydataCheckNo from "../../assets/MydataCheckNo.svg";
+import MydataCheckYes from "../../assets/MydataCheckYes.svg";
+import HanaBankLogo from "../../assets/HanaBankLogo.svg";
+import NonghyupBankLogo from "../../assets/NonghyupBankLogo.svg";
+import ShinhanBankLogo from "../../assets/ShinhanBankLogo.svg";
+import WooriBankLogo from "../../assets/WooriBankLogo.svg";
+import TossBankLogo from "../../assets/TossBankLogo.svg";
+import NaverBankLogo from "../../assets/NaverBankLogo.svg";
+import KakaoBankLogo from "../../assets/KakaoBankLogo.svg";
+import { type TConnectBankItemProps } from "@/types/componentTypes";
+
+export default function ConnectBankItem({
+  bankName,
+  initialIsMydataChecked = false,
+}: TConnectBankItemProps) {
+  const [isMydataChecked, setIsMydataChecked] = useState<boolean>(
+    initialIsMydataChecked
+  );
+>>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
 
   const toggleMydata = () => {
     const newCheckedState = !isMydataChecked;
@@ -44,6 +65,7 @@ export default function ConnectBankItem({ bankName, initialIsMydataChecked = fal
   const displayBankName = bankNameMap[bankName];
 
   return (
+<<<<<<< HEAD
     <div className="w-full h-[3.75rem] flex items-center justify-between relative">
       <div className="flex items-center">
 <<<<<<< HEAD
@@ -52,6 +74,20 @@ export default function ConnectBankItem({ bankName, initialIsMydataChecked = fal
         <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bankName} Logo`} width={20} height={15} />
 >>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
         <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{displayBankName}</div>
+=======
+    <div className="w-[24.5625rem] h-[3.75rem] flex items-center justify-between relative">
+      <div className="flex items-center ml-5">
+        <Image
+          className="w-5 h-[.95rem]"
+          src={bankLogo}
+          alt={`${bankName} Logo`}
+          width={20}
+          height={15}
+        />
+        <div className="ml-2 text-black text-[.9375rem] font-SCDream3">
+          {displayBankName}
+        </div>
+>>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
       </div>
 
       <div className="w-[.9375rem] h-[.9375rem]">
