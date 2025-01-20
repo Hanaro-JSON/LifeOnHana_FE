@@ -40,6 +40,9 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
   return (
     <>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
       <Section height="16rem">
         <div className="px-5">
           <div className="w-full flex flex-col items-center">
@@ -70,6 +73,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
                 width={100}
                 height={100}
               />
+<<<<<<< HEAD
             </div>
 =======
       <Section height="13.9375rem">
@@ -96,6 +100,10 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
 >>>>>>> e1a68cb ([fix] 🐿️ Image 로그 과정 중 발생하는 경고 해결)
           </div>
 <<<<<<< HEAD
+=======
+            </div>
+          </div>
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
           <div className="mt-3">
             <Link href={"/wallet"}>
               <button className="font-SCDream3 text-[.75rem] flex items-center ">
@@ -104,6 +112,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
               </button>
             </Link>
           </div>
+<<<<<<< HEAD
 =======
 
           <Link href={"/wallet"}>
@@ -113,6 +122,8 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
             </button>
           </Link>
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
         </div>
       </Section>
     </>

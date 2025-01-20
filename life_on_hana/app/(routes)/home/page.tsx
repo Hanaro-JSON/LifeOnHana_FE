@@ -3,6 +3,7 @@
 import Btn from "@/components/atoms/Btn";
 import { LogoHeader } from "@/components/molecules/LogoHeader";
 import MainSection from "@/components/molecules/MainSection";
+<<<<<<< HEAD
 import { useContext, useEffect, useState } from "react";
 import Section from "@/components/atoms/Section";
 import { BarGraph } from "@/components/molecules/BarGraph";
@@ -17,6 +18,21 @@ import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 import ShortCutBtn from "@/components/molecules/ShortCutBtn";
 import { DataContext } from "@/hooks/useData";
+=======
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import arrowRight from "@/assets/arrow-right.svg";
+import Link from "next/link";
+import Section from "@/components/atoms/Section";
+import { BarGraph } from "@/components/molecules/BarGraph";
+import {
+  TArticleItemProps,
+  TGraphExpenseCategoriesProps,
+  TRecommendCarouselColumnProps,
+} from "@/types/componentTypes";
+import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
+
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: "FOOD", amount: 500000, percentage: 10 },
   { category: "SNACK", amount: 200000, percentage: 10 },
@@ -42,6 +58,7 @@ const mockArticles: TArticleItemProps[] = [
     is_liked: false,
   },
 ];
+<<<<<<< HEAD
 
 const carouselItems: TRecommendCarouselItemProps[] = [
   {
@@ -80,6 +97,11 @@ export default function Home() {
     console.log("이름 세팅");
     setName("장다연");
   });
+=======
+
+export default function Home() {
+  const [name, setName] = useState("장다연");
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState("INVESTMENT");
   //내역 통계 조회
@@ -88,7 +110,11 @@ export default function Home() {
   const [expenseCategories, setExpenseCategories] = useState(
     mockExpenseCategories
   );
+<<<<<<< HEAD
   //칼럼 목록 조회
+=======
+  //컬럼 목록 조회
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
   const [articles, setArticles] = useState(mockArticles);
   const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
     useState<TRecommendCarouselColumnProps[]>([]);
@@ -149,13 +175,20 @@ export default function Home() {
         );
     }
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
   return (
     <div className="p-6 space-y-4">
       {/* 헤더 */}
       <LogoHeader isMain={true} />
       {/* 하나월급 카드 */}
+<<<<<<< HEAD
       <MainSection name={data.name} walletAmount={walletAmount} />
+=======
+      <MainSection name={name} walletAmount={walletAmount} />
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
       {/* 목돈 버튼 */}
       <Btn text={"급하게 목돈이 필요하세요?"} variant="needLumpSum" />
       {/* 이번 달 지출 카드 */}
@@ -177,6 +210,7 @@ export default function Home() {
             &nbsp;입니다.
           </div>
           <div className="border-t-2 flex justify-center items-center h-[2rem]">
+<<<<<<< HEAD
             <ShortCutBtn url={"/"} variant="spend" />
           </div>
         </div>
@@ -203,6 +237,34 @@ export default function Home() {
         </div>
       </div>
       <RecommendCarouselItem items={carouselItems} />;
+=======
+            <Link href={"/wallet"}>
+              <button className="font-SCDream2 text-[.75rem] flex items-center ">
+                <span className="text-hanapurple">입출금 내역</span>
+                &nbsp;보러가기
+                <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
+              </button>
+            </Link>
+          </div>
+        </div>
+      </Section>
+      {/* 좋아요한 컬럼 카드드 */}
+      <div className="flex flex-row justify-between items-end">
+        <div className="font-SCDream4 tracking-wide">
+          <div>{name}님은</div>
+          {categoryToNickname(category)}
+        </div>
+        <div>
+          <Link href={"/wallet"}>
+            <button className="font-SCDream2 text-[.75rem] flex items-center ">
+              <span className="text-hanapurple">좋아요</span>한 칼럼 보러가기
+              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
+            </button>
+          </Link>
+        </div>
+      </div>
+      <RecommendCarouselColumn items={RecommendCarouselColumnItems} />
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
     </div>
   );
 }

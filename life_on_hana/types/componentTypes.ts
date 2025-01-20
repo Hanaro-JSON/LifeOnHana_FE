@@ -29,7 +29,10 @@ export type TBtnProps = {
     | "beforeChooseAccount"
     | "hanaWallet"
     | "needLumpSum";
+<<<<<<< HEAD
   onClick?: () => void;
+=======
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 };
 
 export type TCarouselSectionProps = {

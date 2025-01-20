@@ -22,13 +22,19 @@ const getBtnClasses = (variant: string) => {
   }
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 export default function Btn({
   type,
   text,
   url,
   variant = "default",
+<<<<<<< HEAD
   onClick,
+=======
+>>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 }: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
   return variant === "needLumpSum" ? (
@@ -50,6 +56,20 @@ export default function Btn({
         {text}
       </button>
     </Link>
+  ) : variant === "needLumpSum" ? (
+    <button
+      className={`relative flex items-center justify-center ${btnClasses}`}
+      type={type}
+    >
+      <span className="absolute left-1/2 -translate-x-1/2">{text}</span>
+      <div className="ml-auto pr-5">
+        <Image
+          src={arrowRight}
+          alt="Right Arrow"
+          className="dynamic-fill white" // 이 방식으로 CSS 색상 적용
+        />
+      </div>
+    </button>
   ) : (
     <button className={btnClasses} type={type} onClick={onClick}>
       {text}
