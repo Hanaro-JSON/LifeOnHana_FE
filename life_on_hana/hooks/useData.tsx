@@ -43,6 +43,13 @@ export const DataProvider = ({
     DefaultData = data;
   };
   const setName = (name: string) => {
+<<<<<<< HEAD
+=======
+    if (!data.email) {
+      console.error("이메일이 설정되지 않아 이름 저장할 수 없어요");
+      return;
+    }
+>>>>>>> 182e05b ([feat] 🐳 name 전역상태관리 추가)
     const updateData = { ...data, name };
     setDataWithStorage(updateData);
   };

@@ -20,12 +20,13 @@ import ShortCutBtn from "@/components/molecules/ShortCutBtn";
 import { DataContext } from "@/hooks/useData";
 =======
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import arrowRight from "@/assets/arrow-right.svg";
 import Link from "next/link";
 import Section from "@/components/atoms/Section";
 import { BarGraph } from "@/components/molecules/BarGraph";
 import {
+  TRecommendCarouselItemProps,
   type TArticleItemProps,
   type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
@@ -35,8 +36,13 @@ import { Carousel } from "nuka-carousel";
 import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 import ShortCutBtn from "@/components/molecules/ShortCutBtn";
+<<<<<<< HEAD
 
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+import { getNameFromServer } from "@/hooks/useData";
+import { DataContext } from "@/hooks/useData";
+>>>>>>> 182e05b ([feat] 🐳 name 전역상태관리 추가)
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: "FOOD", amount: 500000, percentage: 10 },
   { category: "SNACK", amount: 200000, percentage: 10 },
@@ -135,8 +141,15 @@ const carouselItems: TRecommendCarouselItemProps[] = [
 ];
 
 export default function Home() {
+<<<<<<< HEAD
   const [name, setName] = useState("장다연");
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+  const { data, setName } = useContext(DataContext);
+  useEffect(() => {
+    setName("장다연");
+  }, []);
+>>>>>>> 182e05b ([feat] 🐳 name 전역상태관리 추가)
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState("INVESTMENT");
   //내역 통계 조회
@@ -224,10 +237,14 @@ export default function Home() {
       <LogoHeader isMain={true} />
       {/* 하나월급 카드 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
       <MainSection name={data.name} walletAmount={walletAmount} />
 =======
       <MainSection name={name} walletAmount={walletAmount} />
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+      <MainSection name={data.name} walletAmount={walletAmount} />
+>>>>>>> 182e05b ([feat] 🐳 name 전역상태관리 추가)
       {/* 목돈 버튼 */}
       <Btn text={"급하게 목돈이 필요하세요?"} variant="needLumpSum" />
       {/* 이번 달 지출 카드 */}
@@ -294,7 +311,7 @@ export default function Home() {
       {/* 좋아요한 컬럼 카드 */}
       <div className="flex flex-row justify-between items-end">
         <div className="font-SCDream4 tracking-wide">
-          <div>{name}님은</div>
+          <div>{data.name}님은</div>
           {categoryToNickname(category)}
         </div>
         <div>
@@ -310,7 +327,7 @@ export default function Home() {
       {/* 추천 상품 카드 */}
       <div className="flex flex-row justify-between items-end">
         <div className="font-SCDream4 tracking-wide">
-          {name}님을 위한 추천 상품
+          {data.name}님을 위한 추천 상품
         </div>
         <div>
           <ShortCutBtn url={"/"} variant="product" />
