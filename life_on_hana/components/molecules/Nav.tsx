@@ -42,6 +42,7 @@ export default function Nav() {
                 width={24}
                 height={24}
                 style={{ width: "auto", height: "auto" }}
+                priority
               />
               <span className={segment === route ? clickedLableClassNames : lableClassNames}>{label}</span>
             </Link>

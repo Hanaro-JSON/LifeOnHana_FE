@@ -303,5 +303,6 @@ export type TWhilickItemProps = {
   likeCount: number;
   ttsUrl: string;
   currentAudio: HTMLAudioElement | null;
-  setCurrentAudio: (audio: HTMLAudioElement | null) => void;
+  setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | null>>;
+  onContentChange: () => void;
 };
