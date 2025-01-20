@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import { RecommendItem } from "@/components/molecules/RecommendItem";
 import {
-  TRecommendItemProps,
-  TLikedLoanProductDetailItemProps,
-  TLikedAccountProductDetailItemProps,
-  TLikedLifeProductDetailItemProps,
+  type TRecommendItemProps,
+  type TLikedLoanProductDetailItemProps,
+  type TLikedAccountProductDetailItemProps,
+  type TLikedLifeProductDetailItemProps,
 } from "@/types/componentTypes";
 
 import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductDetailItem";
