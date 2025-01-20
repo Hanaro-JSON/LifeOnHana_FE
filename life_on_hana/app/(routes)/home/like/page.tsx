@@ -4,16 +4,22 @@ import { useState, useEffect } from "react";
 import { RecommendItem } from "@/components/molecules/RecommendItem";
 import {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2ac0c0c ([style] 🐣 type 추가)
   type TRecommendItemProps,
   type TLikedLoanProductDetailItemProps,
   type TLikedAccountProductDetailItemProps,
   type TLikedLifeProductDetailItemProps,
+<<<<<<< HEAD
 =======
   TRecommendItemProps,
   TLikedLoanProductDetailItemProps,
   TLikedAccountProductDetailItemProps,
   TLikedLifeProductDetailItemProps,
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+>>>>>>> 2ac0c0c ([style] 🐣 type 추가)
 } from "@/types/componentTypes";
 
 import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductDetailItem";
