@@ -11,6 +11,7 @@ import { BarGraph } from "@/components/molecules/BarGraph";
 import { CircleGraph } from "@/components/molecules/CircleGraph";
 import Image from "next/image";
 import snake from "@/assets/snake.svg";
+import { LineGraph } from "@/components/molecules/LineGraph";
 
 const mockMyData: TGetUsersMydata = {
   pensionStart: "2035",
@@ -41,6 +42,7 @@ const mockWalletData: TGetWallet = {
   startDate: "2024-01",
   endDate: "2024-12",
 };
+
 export default function Wallet() {
   const { data } = useContext(DataContext);
   //api/users/mydata
@@ -86,13 +88,17 @@ export default function Wallet() {
 
   const getConvertedStartDate = () => {
     const tempStartD = wallet.startDate.split("-");
-    return tempStartD[0] + "년 " + tempStartD[1] + "일 ";
+    return tempStartD[0] + "년 " + tempStartD[1] + "월";
+  };
+  const getConvertedEndDate = () => {
+    const tempEndD = wallet.endDate.split("-");
+    return tempEndD[0] + "년 " + tempEndD[1] + "월";
   };
   const getSalary = () => {
     const tempStartD = wallet.startDate.split("-");
-    const convertStartD = tempStartD[0] + "년 " + tempStartD[1] + "일 ";
+    const convertStartD = tempStartD[0] + "년 " + tempStartD[1] + "월";
     const tempEndD = wallet.endDate.split("-");
-    const convertEndD = tempEndD[0] + "년 " + tempEndD[1] + "일 ";
+    const convertEndD = tempEndD[0] + "년 " + tempEndD[1] + "월";
     const months =
       Number(tempEndD[0]) * 12 +
       Number(tempEndD[1]) -
@@ -277,6 +283,25 @@ export default function Wallet() {
               </div>
             )}
           </div>
+        </div>
+      </Section>
+      <Section>
+        <div className="w-full space-y-2">
+          <div className="pb-4 w-full items-center">
+            <div className="font-SCDream8 text-xl">나의 예상 자산 흐름</div>
+          </div>
+          <div className="font-SCDream2 text-sm">
+            <span className="font-bold">{getConvertedEndDate()}</span>까지의{" "}
+            {data.name}님의 자산 변동을 그래프로 보여드릴게요.
+          </div>
+          <LineGraph
+            totalAsset={mydata.totalAsset}
+            walletAmount={wallet.walletAmount}
+            startDate={wallet.startDate}
+            endDate={wallet.endDate}
+            pensionStart={mydata.pensionStart}
+            balance={mydata.salaryAccount.balance}
+          />
         </div>
       </Section>
     </div>
