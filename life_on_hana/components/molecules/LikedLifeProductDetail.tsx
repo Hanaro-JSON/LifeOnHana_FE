@@ -31,10 +31,14 @@ export default function LikedLifeProductDetailItem({
     <div id="modal-background" onClick={handleBackgroundClick} className={bg}>
       <div
 <<<<<<< HEAD
+<<<<<<< HEAD
         className="w-[90%] min-h-[60%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
 =======
         className="w-[20rem] min-h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        className="w-[90%] min-h-[60%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
@@ -42,42 +46,60 @@ export default function LikedLifeProductDetailItem({
           {closeBtn && (
             <button onClick={handleCloseClick} className="p-1">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Image src={X} alt="Close" width={15} height={15} />
 =======
               <Image src={X} alt="Close" width={13} height={13} />
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+              <Image src={X} alt="Close" width={15} height={15} />
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
             </button>
           )}
         </div>
 
         {/* 제목 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-3">
 =======
         <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-3">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           {name}
         </div>
 
         {/* 내용 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[19rem] flex-grow">
 =======
         <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[19rem] flex-grow">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[19rem] flex-grow">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           <p>{description}</p>
         </div>
 
         {/* 버튼 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
         <div className="mt-4 w-full flex justify-center">
           <div className="w-full">
             <Btn text={"상품정보 자세히보기"} url={link} />
           </div>
+<<<<<<< HEAD
 =======
         <div className="mt-4 -ml-2">
           <Btn text={"상품정보 자세히보기"} url={link} />
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
         </div>
       </div>
     </div>

@@ -68,36 +68,52 @@ export default function LikedLoanProductDetailItem({
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
 =======
             <button onClick={handleCloseClick} className="p-1">
+<<<<<<< HEAD
               <Image src={X} alt="Close" width={13} height={13} />
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+              <Image src={X} alt="Close" width={15} height={15} />
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
             </button>
           )}
         </div>
 
         {/* 제목 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2">
 =======
         <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           {name}
         </div>
 
         {/* 내용 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[7rem] flex-grow">
 =======
         <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[9rem] flex-grow">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[7rem] flex-grow">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           <p>{description}</p>
         </div>
 
         {/* 상세정보: 특징/대상/한도/기간 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="space-y-4 mt-8">
 =======
         <div className="space-y-4 -mt-2">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        <div className="space-y-4 mt-8">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           {[
             { label: "특징", content: feature },
             { label: "대상", content: target },
@@ -114,10 +130,14 @@ export default function LikedLoanProductDetailItem({
                 </div>
               </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <div className="text-[1rem] font-SCDream3 flex-grow">
 =======
               <div className="text-[.6875rem] font-SCDream3 flex-grow">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+              <div className="text-[1rem] font-SCDream3 flex-grow">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
                 {content}
               </div>
             </div>
@@ -126,11 +146,16 @@ export default function LikedLoanProductDetailItem({
 
         {/* 버튼 */}
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div className="mt-4 w-full flex justify-center">
           <div className="w-full">
 =======
         <div className="mt-4 -ml-2">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+        <div className="mt-4 w-full flex justify-center">
+          <div className="w-full">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           <Btn text={"상품정보 자세히보기"} url={link} />
           </div>
         </div>

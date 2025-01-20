@@ -14,6 +14,7 @@ export function RecommendItem({
       case "LOAN":
         return (
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div className="flex flex-col items-end mt-2 gap-0.5">
             <div className="font-SCDream8 text-[1.1rem]">최대</div>
             <div className="font-SCDream8 text-[1rem] text-hanapurple">
@@ -22,12 +23,18 @@ export function RecommendItem({
             <div className="font-SCDream8 text-sm">최대</div>
             <div className="font-SCDream8 text-sm text-[#4D00B5]">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+          <div className="flex flex-col items-end mt-2 gap-0.5">
+            <div className="font-SCDream8 text-[1.1rem]">최대</div>
+            <div className="font-SCDream8 text-[1rem] text-hanapurple">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
               {maxAmountFormatted}
             </div>
           </div>
         );
       case "SAVINGS":
         return (
+<<<<<<< HEAD
 <<<<<<< HEAD
           <div className="flex flex-col items-end mt-2 gap-0.5">
             <div className="font-SCDream3 text-[.9rem]">연(세전,1년)</div>
@@ -37,6 +44,11 @@ export function RecommendItem({
             <div className="font-SCDream3 text-[.75rem]">연(세전,1년)</div>
             <div className="font-SCDream8 text-[1rem] text-[#4D00B5]">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+          <div className="flex flex-col items-end mt-2 gap-0.5">
+            <div className="font-SCDream3 text-[.9rem]">연(세전,1년)</div>
+            <div className="font-SCDream8 text-[1rem] text-hanapurple">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
               최고 ~{maxInterest_rate}%
             </div>
           </div>

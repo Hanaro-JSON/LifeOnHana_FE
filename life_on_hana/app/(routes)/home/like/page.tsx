@@ -26,9 +26,13 @@ import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductD
 import LikedAccountProductDetailItem from "@/components/molecules/LikedAccountProductDetailItem";
 import LikedLifeProductDetailItem from "@/components/molecules/LikedLifeProductDetail";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { NavHeader } from "@/components/molecules/NavHeader";
 =======
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+import { NavHeader } from "@/components/molecules/NavHeader";
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
 
 const mockData = {
   code: 200,
@@ -292,6 +296,7 @@ export default function Like() {
   return (
     <div className="flex flex-col h-screen">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div className="pt-6 px-6">
         <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
       </div>
@@ -304,6 +309,15 @@ export default function Like() {
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
         <div className="flex flex-col gap-28 pb-[10vh]">
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+      <div className="sticky top-0 z-10">
+        <div className="pt-6 px-6">
+        <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
+      </div>
+      </div>
+      <div className="flex-1 overflow-y-auto px-5 mb-32" >
+        <div className="flex flex-col gap-4 pb-[10vh]">
+>>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           {products.map((product) => (
             <RecommendItem key={product.productId} {...product} />
           ))}
