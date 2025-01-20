@@ -1,25 +1,5 @@
-<<<<<<< HEAD
 import { type TAdjustBtnProps } from "@/types/componentTypes";
 import { useEffect, useRef } from "react";
-=======
-// import { type TAdjustBtnProps } from "@/types/componentTypes";
-// import { useState } from "react";
-
-import { useEffect, useRef } from "react";
-
-type TAdjustBtnProps = {
-  id: string;
-  isOpen: boolean;
-  typeCeilTxt: string;
-  typeBottomTxt: string;
-  first: string;
-  second: string;
-  third: string;
-  mX: number;
-  mY: number;
-  onToggle: (id: string) => void; // 상위 컴포넌트에 열림 상태 전달
-};
->>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
 
 export default function AdjustBtn({
   id,
