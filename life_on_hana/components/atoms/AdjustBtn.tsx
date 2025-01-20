@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { type TAdjustBtnProps } from "@/types/componentTypes";
 import { useEffect, useRef } from "react";
 =======
@@ -21,6 +22,11 @@ type TAdjustBtnProps = {
 };
 >>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
 
+=======
+import { type TAdjustBtnProps } from "@/types/componentTypes";
+import { useEffect, useRef } from "react";
+
+>>>>>>> 898f82f ([refactor] 🐿️ TAdjustBtnProps 타입 정리)
 export default function AdjustBtn({
   id,
   isOpen,
