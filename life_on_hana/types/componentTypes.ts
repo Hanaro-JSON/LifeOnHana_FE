@@ -63,6 +63,9 @@ export type TAccountDetailItemProps = {
   accountNumber: string;
   accountName: string;
   balance: number;
+  isAccountChecked?: boolean;
+  onSelect?: (checked: boolean) => void;
+  onAmountChange?: (isExceeding: boolean) => void
 };
 
 export type TArticleAIRecommendDetailItemProps = {
