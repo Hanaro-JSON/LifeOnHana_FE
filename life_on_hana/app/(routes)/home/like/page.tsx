@@ -66,7 +66,7 @@ const mockData = {
       category: "대출",
     },
     {
-      productId: "101",
+      productId: "166",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -79,7 +79,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "155",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -92,7 +92,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "144",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -105,7 +105,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "133",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -118,7 +118,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "122",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -255,10 +255,8 @@ export default function Like() {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="sticky top-0 z-10">
-        <div className="pt-6 px-6">
+      <div className="pt-6 px-6">
         <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
-      </div>
       </div>
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
         <div className="flex flex-col gap-4 pb-[10vh]">
