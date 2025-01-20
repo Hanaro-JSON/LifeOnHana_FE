@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 const mockArticles = [
   {
+<<<<<<< HEAD
     article_id: 1,
     title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
@@ -180,69 +181,97 @@ export default function Column() {
   },
   {
     title: "새해 소망 여행 몰아서 훌주근",
+=======
+    title: "제주도로 여행을 떠나볼까요???",
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
   },
   {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202505070905150744.jpg",
     is_liked: true,
   },
   {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202433061033560949.jpg",
     is_liked: false,
   },
   {
-    title: "새해 소망 여행 몰아서 훌주근",
+    title: "취미를 찾아볼까요?",
+    category: "취미",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202421251121570801.jpg",
+    is_liked: false,
+  },
+  {
+    title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
   },
   {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202505070905150744.jpg",
     is_liked: true,
   },
   {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202433061033560949.jpg",
     is_liked: false,
   },
   {
-    title: "새해 소망 여행 몰아서 훌주근",
+    title: "취미를 찾아볼까요?",
+    category: "취미",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202421251121570801.jpg",
+    is_liked: false,
+  },
+  {
+    title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
   },
   {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202505070905150744.jpg",
     is_liked: true,
   },
   {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202433061033560949.jpg",
     is_liked: false,
+<<<<<<< HEAD
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
   },
   // Add more articles as needed...
+=======
+  },
+  {
+    title: "취미를 찾아볼까요?",
+    category: "취미",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202421251121570801.jpg",
+    is_liked: false,
+  },
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
 ];
 
 export default function Column() {
@@ -261,12 +290,17 @@ export default function Column() {
 
     if (searchValue) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       filtered = filtered.filter((article) =>
         article.title.includes(searchValue)
 =======
       filtered = filtered.filter(
         (article) => article.title.includes(searchValue) || article.category.includes(searchValue)
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+      filtered = filtered.filter((article) =>
+        article.title.includes(searchValue)
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
       );
     }
 
@@ -304,6 +338,7 @@ export default function Column() {
         <div className="w-full flex items-center gap-3 mb-4 px-[1rem]">
           <Image src={column} alt="column icon" width={25} height={22} />
           <div className="text-[1.8rem] font-Hana2bold">칼럼</div>
+<<<<<<< HEAD
 =======
     <div className="bg-[#f1f0f2]">
 =======
@@ -314,18 +349,24 @@ export default function Column() {
           <Image src={column} alt="column icon" width={20} height={20} priority />
           <div className="text-[1.5rem] font-Hana2bold">칼럼</div>
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
         </div>
       </div>
 
       <div className="flex flex-col items-center">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
         <div className="w-full mb-4 px-[1rem]">
           <SearchInput
             placeholder="칼럼 검색"
             value={searchValue}
             onChange={setSearchValue}
           />
+<<<<<<< HEAD
 =======
         {/* 검색 영역 */}
         <div className="w-full mb-4 px-[2rem]">
@@ -336,6 +377,8 @@ export default function Column() {
         <div className="w-full mb-4 px-[2rem]">
           <SearchInput placeholder="칼럼 검색" value={searchValue} />
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
+=======
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
         </div>
 
         <div className="w-[95%] rounded-3xl flex flex-col">
@@ -358,10 +401,13 @@ export default function Column() {
                     ? "font-bold"
                     : "opacity-45"
                 } mr-6 last:mr-0 text-[1.2rem] font-SCDream5 relative`}
+<<<<<<< HEAD
 =======
                   selectedCategory === category ? "font-bold text-black" : "opacity-45"
                 } mr-6 last:mr-0 text-[1.125rem] font-SCDream5 relative`}
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}

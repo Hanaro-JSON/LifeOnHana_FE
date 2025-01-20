@@ -14,6 +14,9 @@ export default function ArticleItem({ title, category, published_at, thumbnail_s
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
     <div className="w-full h-full relative">
       
       <div className="flex gap-4">
@@ -48,6 +51,7 @@ export default function ArticleItem({ title, category, published_at, thumbnail_s
       <div className="w-full h-px left-0 bottom-0 mt-1 bg-[#d9d9d9]" />
       
       
+<<<<<<< HEAD
 =======
     <div className="w-full h-[5rem] relative">
       <div>
@@ -72,6 +76,8 @@ export default function ArticleItem({ title, category, published_at, thumbnail_s
 
       <div className="w-full h-px left-0 top-[4.3125rem] absolute bg-[#d9d9d9]" />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+>>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
     </div>
   );
 }
