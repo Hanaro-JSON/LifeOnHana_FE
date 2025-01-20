@@ -7,7 +7,10 @@ import WhilickItem from "@/components/molecules/WhilickItem";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { type TMockWhilickProps } from "@/types/componentTypes";
 import WhilickItemLoading from "@/components/molecules/WhilickItemLoading";
+<<<<<<< HEAD
 import useDebounce from "@/hooks/useDebounce";
+=======
+>>>>>>> 9d62b6a ([feat] 🐿️ WhilickItem에 대한 skeleton UI 적용)
 
 export default function Whilick() {
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
@@ -254,7 +257,11 @@ export default function Whilick() {
               likeCount={item.likeCount}
             />
           ))}
+<<<<<<< HEAD
 >>>>>>> 112cae7 ([feat] 🐿️ WhilickPage 내 WhilickItem 컴포넌트 상하 스크롤 및 자동 스냅 기능 추가)
+=======
+          <WhilickItemLoading />
+>>>>>>> 9d62b6a ([feat] 🐿️ WhilickItem에 대한 skeleton UI 적용)
         </div>
       </div>
       {/* </div> */}

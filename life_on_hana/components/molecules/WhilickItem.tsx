@@ -22,7 +22,11 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import soundOn from "@/assets/sound-on.svg";
 import soundOff from "@/assets/sound-off.svg";
+<<<<<<< HEAD
 >>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
+=======
+import WhilickItemLoading from "./WhilickItemLoading";
+>>>>>>> 9d62b6a ([feat] 🐿️ WhilickItem에 대한 skeleton UI 적용)
 
 export default function WhilickItem({
   idx,
@@ -96,7 +100,14 @@ export default function WhilickItem({ title, shorts, articleId, isLiked, likeCou
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
   };
 
+<<<<<<< HEAD
 >>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
+=======
+  if (!articleId) {
+    return <WhilickItemLoading />;
+  }
+
+>>>>>>> 9d62b6a ([feat] 🐿️ WhilickItem에 대한 skeleton UI 적용)
   return (
     <>
       <div className="snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center">
