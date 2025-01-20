@@ -54,6 +54,11 @@ export default function WhilickItem({
       audio.pause();
     }
 
+    // 스크롤 중 오디오 멈춤
+    if (Math.floor(top % window.innerHeight) != 0) {
+      audio.pause();
+    }
+
     return () => {
       audio.pause();
     };
