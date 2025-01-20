@@ -37,7 +37,7 @@ export default function Whilick() {
     <>
       <div className="relative min-h-screen flex flex-col items-center justify-center">
         {/* 최상단 */}
-        <div className="z-50 px-[1.5rem] w-full absolute top-[1.5rem] flex justify-between items-center">
+        <div className="z-50 px-[1.5rem] w-full absolute top-6 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <Image src={whilick_purple} alt="whilick_icon" width={20} height={20} />
             <div className="text-[1.5rem] font-Hana2bold">휘릭</div>

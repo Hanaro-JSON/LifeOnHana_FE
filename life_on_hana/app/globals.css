@@ -171,6 +171,7 @@ a {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
 }
 
+<<<<<<< HEAD
 .dynamic-fill.white {
   color: white;
 }
@@ -193,4 +194,86 @@ input[type="radio"]:checked {
   background-color: var(--hanapurple);
   border: 1px solid var(--hanapurple);
   /* box-shadow: 0 0 0 1.6px var(--hanapurple); */
+=======
+@-webkit-keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: rgb(255, 255, 255);
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: transparent;
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+@keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: rgb(255, 255, 255);
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: transparent;
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+.whilick-down-1 {
+  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+}
+
+@-webkit-keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: transparent;
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: rgb(255, 255, 255);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+@keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: transparent;
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: rgb(255, 255, 255);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+.whilick-down-2 {
+  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+>>>>>>> 3d91703 ([feat] 🐿️ WhilickItem 컴포넌트 내 arrow down 버튼 애니메이션 추가)
 }
