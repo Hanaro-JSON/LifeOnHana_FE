@@ -1,7 +1,39 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CircleGraph } from "@/components/molecules/CircleGraph";
+<<<<<<< HEAD
 import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 54e4946 ([docs] 🐳 CircleGraph storybook 작성 완료)
+=======
+>>>>>>> 6826453 ([chore] 🐳 import에 type 명시)
+<<<<<<< HEAD
+import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+=======
+import { TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+>>>>>>> 4544294 ([docs] 🐳 CircleGraph storybook 작성 완료)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+>>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
+=======
+>>>>>>> 54e4946 ([docs] 🐳 CircleGraph storybook 작성 완료)
+=======
+=======
+import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+>>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
+>>>>>>> 6826453 ([chore] 🐳 import에 type 명시)
+=======
+import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+
+>>>>>>> fa278df ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
+>>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
 const meta: Meta<typeof CircleGraph> = {
   title: "Molecule Component/CircleGraph",
   component: CircleGraph,

@@ -1,4 +1,5 @@
 import { type TWhilickItemProps } from "@/types/componentTypes";
+<<<<<<< HEAD
 import AdjustBtn from "@/components/atoms/AdjustBtn";
 import Btn from "@/components/atoms/Btn";
 import CopyClipboardBtn from "@/components/atoms/CopyClipboardBtn";
@@ -69,6 +70,22 @@ export default function WhilickItem({
     };
   }, [top, idx, globalAudioState]);
 
+=======
+import AdjustBtn from "../atoms/AdjustBtn";
+import Btn from "../atoms/Btn";
+import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
+import IsLike from "./IsLike";
+import { useState } from "react";
+
+export default function WhilickItem({ title, shorts, articleId, isLiked, likeCount }: TWhilickItemProps) {
+  const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
+
+  // 동일 버튼 클릭 시 닫힘
+  const handleAdjustBtnToggle = (id: string) => {
+    setOpenedAdjustBtn((prev) => (prev === id ? null : id));
+  };
+
+>>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
   return (
     <>
       <div className="snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center">
