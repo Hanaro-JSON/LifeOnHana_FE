@@ -32,7 +32,7 @@ const meta: Meta<typeof LikedLifeProductDetail> = {
     (Story) => (
       <div
         style={{
-          minHeight: "480px",
+          minHeight: "1200px",
           padding: "20px",
         }}
       >

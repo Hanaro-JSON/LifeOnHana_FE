@@ -23,7 +23,7 @@ const meta: Meta<typeof LikedLoanProductDetailItem> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "480px", padding: "20px", boxSizing: "border-box" }}>
+      <div style={{ minHeight: "1200px", padding: "20px", boxSizing: "border-box" }}>
         <Story />
       </div>
     ),
