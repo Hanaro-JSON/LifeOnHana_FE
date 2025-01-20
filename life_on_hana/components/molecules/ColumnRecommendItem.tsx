@@ -57,8 +57,13 @@ export default function ColumnRecommendItem({ variant, name, onClick, isSelected
       <button
         onClick={clickEvent}
         className={`${
+<<<<<<< HEAD
           isSelected  && "border-2 border-hanapurple "
         } rounded-[10px] bg-cover bg-center w-full min-h-32 flex flex-col items-start justify-start p-2 shadow-xl`}
+=======
+          isSelected  && "border-4 border-hanapurple "
+        } rounded-[10px] bg-cover bg-center w-[12rem] h-[8rem] flex flex-col items-start justify-start p-2 shadow-xl`}
+>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={name}
       >

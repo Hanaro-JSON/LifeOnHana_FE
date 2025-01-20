@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:life_on_hana/components/atoms/CopyUrlButton.tsx
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -56,6 +57,9 @@ export default function CopyUrlButton() {
   );
 }
 =======
+=======
+<<<<<<<< HEAD:life_on_hana/components/atoms/CopyClipboardBtn.tsx
+>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import CopyClipboardBtnImg from "@/assets/CopyClipboardBtnImg.svg";
@@ -101,8 +105,65 @@ export default function CopyClipboardBtn() {
         width={30}
         className="mb-2 cursor-pointer"
         onClick={handleCopy}
+<<<<<<< HEAD
+=======
+        priority
+>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
       />
     </div>
   );
 }
+<<<<<<< HEAD
 >>>>>>> a04ec47 ([feat] 🐿️ Whilick 페이지 생성):life_on_hana/components/atoms/CopyClipboardBtn.tsx
+=======
+========
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import CopyClipboardBtnImg from "@/assets/CopyClipboardBtnImg.svg";
+import { useToast } from "@/hooks/use-toast";
+export default function CopyUrlButton() {
+  const [currentUrl, setCurrentUrl] = useState("");
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+  const handleCopy = () => {
+    if (currentUrl) {
+      navigator.clipboard
+        .writeText(currentUrl)
+        .then(() => {
+          toast({
+            title: "클립보드에 복사했습니다.",
+          });
+        })
+        .catch((err) => {
+          console.error("주소 복사 실패:", err);
+          toast({
+            title: "클립보드에 복사를 실패했습니다.",
+          });
+        });
+    } else {
+      toast({
+        title: "클립보드에 복사를 실패했습니다.",
+      });
+    }
+  };
+
+  return (
+    <div>
+      <Image
+        src={CopyClipboardBtnImg}
+        alt="주소 복사 버튼"
+        width={20}
+        height={20}
+        className="mb-2 cursor-pointer"
+        onClick={handleCopy}
+      />
+    </div>
+  );
+}
+>>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가):life_on_hana/components/atoms/CopyUrlButton.tsx
+>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)

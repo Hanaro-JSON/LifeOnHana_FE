@@ -46,10 +46,13 @@ export default function AdjustBtn({
         onClick={toggleSelector}
         className={` ${
           isOpen ? "bg-white text-purple-600 border shadow-purple-100 " : "bg-purple-600 text-white"
+<<<<<<< HEAD
 =======
         className={`${
           isOpen ? "bg-white text-purple-600 border shadow-purple-100" : "bg-purple-600 text-white"
 >>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
+=======
+>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
         } rounded-full size-16 font-semibold shadow-md`}
       >
         {typeCeilTxt} <br />
