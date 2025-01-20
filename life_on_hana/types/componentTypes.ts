@@ -291,6 +291,7 @@ export type TMockWhilickProps = {
 };
 
 export type TWhilickItemProps = {
+  idx: number;
   title: string;
   text: {
     paragraphId: number;
@@ -304,5 +305,5 @@ export type TWhilickItemProps = {
   ttsUrl: string;
   currentAudio: HTMLAudioElement | null;
   setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | null>>;
-  onContentChange: () => void;
+  onContentChange?: () => void;
 };

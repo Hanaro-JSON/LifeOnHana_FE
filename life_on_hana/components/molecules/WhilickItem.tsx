@@ -3,21 +3,21 @@ import AdjustBtn from "@/components/atoms/AdjustBtn";
 import Btn from "@/components/atoms/Btn";
 import CopyClipboardBtn from "@/components/atoms/CopyClipboardBtn";
 import IsLike from "@/components/molecules/IsLike";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import soundOn from "@/assets/sound-on.svg";
 import soundOff from "@/assets/sound-off.svg";
 
 export default function WhilickItem({
+  idx,
   title,
   text,
   articleId,
   isLiked,
   likeCount,
   ttsUrl,
-  currentAudio,
-  setCurrentAudio,
-}: TWhilickItemProps) {
+  top,
+}: TWhilickItemProps & { idx: number; top: number }) {
   // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
 
@@ -26,42 +26,38 @@ export default function WhilickItem({
   };
 
   // audio
-  const [isPlaying, setIsPlaying] = useState(false);
-  const soundContainer = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleAudio = useCallback(() => {
+    const audio = audioRef.current!;
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.volume = 1;
+      audio.play().catch(console.error);
+    }
+    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
 
   useEffect(() => {
-    const audioElement = soundContainer.current;
-    console.log("audioElement: ", audioElement);
-    if (audioElement) {
-      const handleCanPlay = () => {
-        // 새로운 오디오가 로드되면 이전 오디오를 멈춤
-        if (currentAudio && currentAudio !== audioElement) {
-          currentAudio.pause();
-        }
+    const audio = audioRef.current;
+    if (!audio) return;
 
-        audioElement.volume = 1;
-        audioElement.play().catch((err) => console.error("오디오 재생 실패:", err));
-        setCurrentAudio(audioElement);
-      };
+    const isVisible = Math.floor(top / window.innerHeight) === idx;
 
-      audioElement.addEventListener("canplaythrough", handleCanPlay);
-      return () => {
-        audioElement.removeEventListener("canplaythrough", handleCanPlay);
-        if (audioElement === currentAudio) {
-          audioElement.pause(); // 언마운트 시 오디오 정지
-          setCurrentAudio(null); // 상태 초기화
-        }
-      };
+    if (isVisible) {
+      audio.play().catch(console.error);
+      setIsPlaying(true);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
     }
-  }, [currentAudio, setCurrentAudio]);
 
-  const soundToggleEvent = () => {
-    if (soundContainer.current) {
-      if (isPlaying) soundContainer.current.pause();
-      else soundContainer.current.play().catch(console.error);
-    }
-    setIsPlaying((prev) => !prev);
-  };
+    return () => {
+      audio.pause();
+    };
+  }, [top, idx]);
 
   return (
     <>
@@ -69,10 +65,10 @@ export default function WhilickItem({
         {/* sound on/off */}
         <div className="z-50 absolute top-6 w-full flex flex-col space-y-6 items-center">
           <div className="w-full h-10 flex justify-end items-center px-[1.5rem]">
-            <audio ref={soundContainer}>
+            <audio ref={audioRef}>
               <source src={ttsUrl} type="audio/mp3" />
             </audio>
-            <button onClick={soundToggleEvent}>
+            <button onClick={toggleAudio}>
               <Image
                 src={isPlaying ? soundOn : soundOff}
                 alt={isPlaying ? "소리켬" : "소리끔"}
@@ -84,6 +80,7 @@ export default function WhilickItem({
 
           {/* 칼럼 제목 */}
           <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{title}</div>
+          <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{articleId}</div>
 
           {/* 칼럼 요약내용 */}
           <div
