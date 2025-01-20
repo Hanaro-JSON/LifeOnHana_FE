@@ -10,7 +10,7 @@ const getBtnClasses = (variant: string) => {
       return "bg-hanalightpurple w-[20.625rem] h-[2.9375rem] text-hanapurple text-[1rem] font-SCDream8";
     // '하나 월급통장' 출금계좌 선택 전
     case "beforeChooseAccount":
-      return "bg-hanagray w-[18.125rem] h-[2.75rem] text-[.9375rem] text-white shadow-xl";
+      return "bg-hanagray w-full h-[2.75rem] text-[.9375rem] text-white shadow-xl";
     // '휘릭' 전문보기
     case "moveToArticle":
       return "w-[19.1875rem] h-[2.9375rem] bg-hanapurple text-[1.25rem] text-white font-bold";
@@ -21,6 +21,7 @@ const getBtnClasses = (variant: string) => {
       return "bg-hanapurple w-full h-[2.75rem] text-[.9375rem] text-white";
   }
 };
+
 
 export default function Btn({
   type,
