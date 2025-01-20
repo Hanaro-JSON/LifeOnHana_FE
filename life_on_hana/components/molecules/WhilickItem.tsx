@@ -3,8 +3,16 @@ import AdjustBtn from "../atoms/AdjustBtn";
 import Btn from "../atoms/Btn";
 import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
 import IsLike from "./IsLike";
+import { useState } from "react";
 
 export default function WhilickItem({ title, shorts, articleId, isLiked, likeCount }: TWhilickItemProps) {
+  const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
+
+  // 동일 버튼 클릭 시 닫힘
+  const handleAdjustBtnToggle = (id: string) => {
+    setOpenedAdjustBtn((prev) => (prev === id ? null : id));
+  };
+
   return (
     <>
       <div className="px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] min-h-screen flex flex-col items-center justify-center w-full">
@@ -54,8 +62,30 @@ export default function WhilickItem({ title, shorts, articleId, isLiked, likeCou
 
         {/* 글씨크기조절, TTS속도조절 */}
         <div className="absolute right-12 bottom-60 z-50 flex flex-col items-center gap-4">
-          <AdjustBtn typeCeilTxt="글씨" typeBottomTxt="크기" first="작게" second="보통" third="크게" mX={80} mY={90} />
-          <AdjustBtn typeCeilTxt="말" typeBottomTxt="속도" first="0.5x" second="1x" third="2x" mX={80} mY={90} />
+          <AdjustBtn
+            id="font-size"
+            isOpen={openedAdjustBtn === "font-size"}
+            typeCeilTxt="글씨"
+            typeBottomTxt="크기"
+            first="작게"
+            second="보통"
+            third="크게"
+            mX={80}
+            mY={90}
+            onToggle={handleAdjustBtnToggle}
+          />
+          <AdjustBtn
+            id="tts-speed"
+            isOpen={openedAdjustBtn === "tts-speed"}
+            typeCeilTxt="말"
+            typeBottomTxt="속도"
+            first="0.5x"
+            second="1x"
+            third="2x"
+            mX={80}
+            mY={90}
+            onToggle={handleAdjustBtnToggle}
+          />
         </div>
       </div>
     </>
