@@ -12,6 +12,7 @@ import {
 import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductDetailItem";
 import LikedAccountProductDetailItem from "@/components/molecules/LikedAccountProductDetailItem";
 import LikedLifeProductDetailItem from "@/components/molecules/LikedLifeProductDetail";
+import { NavHeader } from "@/components/molecules/NavHeader";
 
 const mockData = {
   code: 200,
@@ -254,11 +255,13 @@ export default function Like() {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="font-Hana2heavy text-[1.25rem] my-6 text-center sticky top-0 z-10">
-        관심있을 만한 상품 (컴포넌트로 분리한거 가져오기)
+      <div className="sticky top-0 z-10">
+        <div className="pt-6 px-6">
+        <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
+      </div>
       </div>
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
-        <div className="flex flex-col gap-28 pb-[10vh]">
+        <div className="flex flex-col gap-4 pb-[10vh]">
           {products.map((product) => (
             <RecommendItem key={product.productId} {...product} />
           ))}
