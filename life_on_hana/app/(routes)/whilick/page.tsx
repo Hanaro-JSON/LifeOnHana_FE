@@ -5,6 +5,7 @@ import whilick_purple from "@/assets/whilick_purple.svg";
 import WhilickItem from "@/components/molecules/WhilickItem";
 import { useState } from "react";
 import { type TMockWhilickProps } from "@/types/componentTypes";
+import WhilickItemLoading from "@/components/molecules/WhilickItemLoading";
 
 export default function Whilick() {
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
@@ -109,6 +110,7 @@ export default function Whilick() {
               setCurrentAudio={setCurrentAudio}
             />
           ))}
+          <WhilickItemLoading />
         </div>
       </div>
     </>

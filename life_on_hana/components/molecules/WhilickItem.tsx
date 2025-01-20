@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import soundOn from "@/assets/sound-on.svg";
 import soundOff from "@/assets/sound-off.svg";
+import WhilickItemLoading from "./WhilickItemLoading";
 
 export default function WhilickItem({
   title,
@@ -62,6 +63,10 @@ export default function WhilickItem({
     }
     setIsPlaying((prev) => !prev);
   };
+
+  if (!articleId) {
+    return <WhilickItemLoading />;
+  }
 
   return (
     <>
