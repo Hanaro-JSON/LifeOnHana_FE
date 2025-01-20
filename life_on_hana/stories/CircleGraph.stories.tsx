@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { CircleGraph } from "@/components/molecules/CircleGraph";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
 
 =======
@@ -34,6 +35,9 @@ import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
 
 >>>>>>> fa278df ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
 >>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
+=======
+import { TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+>>>>>>> 4544294 ([docs] 🐳 CircleGraph storybook 작성 완료)
 const meta: Meta<typeof CircleGraph> = {
   title: "Molecule Component/CircleGraph",
   component: CircleGraph,
