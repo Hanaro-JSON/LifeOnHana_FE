@@ -6,7 +6,10 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/lib/auth";
 import { Toaster } from "@/components/ui/toaster";
 import Nav from "@/components/molecules/Nav";
+<<<<<<< HEAD
 import QueryWrapper from "@/utils/QueryWrapper";
+=======
+>>>>>>> 277776c ([feat] 🐣 homeWalletDeposit 추가)
 
 export const metadata: Metadata = {
   title: "LIFE on HANA",
@@ -32,10 +35,15 @@ export default async function RootLayout({
       <body>
         <SessionProvider session={session}>
           <DataProvider getSession={getSession} signOut={signOut}>
+<<<<<<< HEAD
             <QueryWrapper>
               {children}
               {session && <Nav />}
             </QueryWrapper>
+=======
+            {children}
+            {session && <Nav />}
+>>>>>>> 277776c ([feat] 🐣 homeWalletDeposit 추가)
           </DataProvider>
         </SessionProvider>
         <Toaster />

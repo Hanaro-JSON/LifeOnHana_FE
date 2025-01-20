@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import AccountDetailItem from "@/components/molecules/AccountDetailItem";
 import Btn from "@/components/atoms/Btn";
+<<<<<<< HEAD
 import { type TAccountDetailItemProps } from "@/types/componentTypes";
+=======
+import { TAccountDetailItemProps } from "@/types/componentTypes";
+>>>>>>> 277776c ([feat] 🐣 homeWalletDeposit 추가)
 import HanaBankLogo from "@/assets/HanaBankLogo.svg";
 import { useRouter } from "next/navigation";
 import { NavHeader } from "@/components/molecules/NavHeader";

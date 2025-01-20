@@ -23,9 +23,13 @@ const getBtnClasses = (variant: string) => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+
+>>>>>>> 277776c ([feat] 🐣 homeWalletDeposit 추가)
 export default function Btn({
   type,
   text,
