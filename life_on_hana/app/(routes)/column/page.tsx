@@ -15,6 +15,7 @@ const mockArticles = [
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
+<<<<<<< HEAD
   },
   {
     article_id: 2,
@@ -137,6 +138,8 @@ export default function Column() {
 =======
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
+=======
+>>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
@@ -172,6 +175,72 @@ export default function Column() {
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
+<<<<<<< HEAD
+=======
+  },
+  {
+    title: "새해 소망 여행 몰아서 훌주근",
+    category: "여행",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: false,
+  },
+  {
+    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    category: "취미",
+    published_at: "2024-12-08",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: true,
+  },
+  {
+    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    category: "투자",
+    published_at: "2024-11-15",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: false,
+  },
+  {
+    title: "새해 소망 여행 몰아서 훌주근",
+    category: "여행",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: false,
+  },
+  {
+    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    category: "취미",
+    published_at: "2024-12-08",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: true,
+  },
+  {
+    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    category: "투자",
+    published_at: "2024-11-15",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: false,
+  },
+  {
+    title: "새해 소망 여행 몰아서 훌주근",
+    category: "여행",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: false,
+  },
+  {
+    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    category: "취미",
+    published_at: "2024-12-08",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: true,
+  },
+  {
+    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    category: "투자",
+    published_at: "2024-11-15",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    is_liked: false,
+>>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
   },
   // Add more articles as needed...
 ];
@@ -229,6 +298,7 @@ export default function Column() {
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div>
       <div className="flex flex-col items-center pt-5">
         <div className="w-full flex items-center gap-3 mb-4 px-[1rem]">
@@ -236,6 +306,9 @@ export default function Column() {
           <div className="text-[1.8rem] font-Hana2bold">칼럼</div>
 =======
     <div className="bg-[#f1f0f2]">
+=======
+    <div>
+>>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
       <div className="flex flex-col items-center pt-4">
         <div className="w-full flex items-center gap-4 mb-4 px-[2rem]">
           <Image src={column} alt="column icon" width={20} height={20} priority />
@@ -245,6 +318,7 @@ export default function Column() {
       </div>
 
       <div className="flex flex-col items-center">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <div className="w-full mb-4 px-[1rem]">
           <SearchInput
@@ -257,6 +331,11 @@ export default function Column() {
         <div className="w-full mb-4 px-[2rem]">
           <SearchInput placeholder="칼럼 검색" value={searchValue} />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+        {/* 검색 영역 */}
+        <div className="w-full mb-4 px-[2rem]">
+          <SearchInput placeholder="칼럼 검색" value={searchValue} />
+>>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
         </div>
 
         <div className="w-[95%] rounded-3xl flex flex-col">

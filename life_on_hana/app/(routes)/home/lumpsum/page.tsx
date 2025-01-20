@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 
 import Btn from "@/components/atoms/Btn";
@@ -205,6 +206,14 @@ export default function Lumpsum() {
       ) : (
         <></>
       )}
+=======
+import { NavHeader } from "@/components/molecules/NavHeader";
+
+export default function lumpsum() {
+  return (
+    <div className="p-6">
+      <NavHeader location={"목돈 가져오기"} beforePageUrl={"/home"} />
+>>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
     </div>
   );
 }
