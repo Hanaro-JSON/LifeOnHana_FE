@@ -19,14 +19,7 @@
     "@radix-ui/react-toast": "^1.2.4",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query": "^5.64.1",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "@tanstack/react-query-devtools": "4",
-=======
->>>>>>> 990bbc5 ([chore] 🐿️ install React Query)
-=======
-    "@tanstack/react-query-devtools": "4",
->>>>>>> 112cae7 ([feat] 🐿️ WhilickPage 내 WhilickItem 컴포넌트 상하 스크롤 및 자동 스냅 기능 추가)
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.1",
