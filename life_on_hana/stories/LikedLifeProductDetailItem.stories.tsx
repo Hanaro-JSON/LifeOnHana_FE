@@ -33,10 +33,14 @@ const meta: Meta<typeof LikedLifeProductDetail> = {
       <div
         style={{
 <<<<<<< HEAD
+<<<<<<< HEAD
           minHeight: "1200px",
 =======
           minHeight: "480px",
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+          minHeight: "1200px",
+>>>>>>> 6dec1ec ([style] 🐣 storybook의 Docs height 수정)
           padding: "20px",
         }}
       >
