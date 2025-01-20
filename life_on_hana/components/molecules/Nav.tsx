@@ -9,7 +9,7 @@ const navItem: TNavItemProps[] = [
   {
     route: "whilick",
     label: "휘릭",
-    icon: { default: "/assets/whilick.svg", clicked: "/assets/whilick_clicked.svg" },
+    icon: { default: "/assets/whilick_gray.svg", clicked: "/assets/whilick_white.svg" },
   },
   {
     route: "home",

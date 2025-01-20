@@ -14,20 +14,20 @@ export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: T
   };
 
   return (
-    <div className="w-[3rem]">
+    <>
       <div className="flex flex-col items-center">
         <div className="relative flex justify-center items-center">
           <Image
             src={isLiked ? HeartYes : HeartNo}
             alt={isLiked ? "Liked" : "Not Liked"}
-            width={24}
-            height={24}
+            width={30}
+            height={30}
             onClick={toggleLike}
             className="cursor-pointer"
           />
         </div>
-        <div className="mt-1 text-[.7rem] text-hanapurple font-SCDream3">{count}</div>
+        <div className="mt-1 text-[1rem] text-hanapurple font-SCDream3">{count}</div>
       </div>
-    </div>
+    </>
   );
 }

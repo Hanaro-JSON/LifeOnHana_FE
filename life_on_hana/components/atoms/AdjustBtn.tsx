@@ -3,10 +3,10 @@ import { useState } from "react";
 
 export default function AdjustBtn({
   typeCeilTxt = "말",
-  typeButtomTxt = "속도",
+  typeBottomTxt = "속도",
   first = "0.5x",
   second = "1x",
-  thired = "2x",
+  third = "2x",
   mX = 80,
   mY = 90,
 }: TAdjustBtnProps) {
@@ -32,7 +32,7 @@ export default function AdjustBtn({
         } rounded-full size-16 font-semibold shadow-md`}
       >
         {typeCeilTxt} <br />
-        {typeButtomTxt}
+        {typeBottomTxt}
       </button>
 
       {/* 선택 바 */}
@@ -53,7 +53,7 @@ export default function AdjustBtn({
           <div className="w-[80%] flex justify-between text-center bg-white text-sm mt-2 font-bold">
             <p className="bg-white">{first}</p>
             <p className="bg-white">{second}</p>
-            <p className="bg-white">{thired}</p>
+            <p className="bg-white">{third}</p>
           </div>
         </div>
       )}
