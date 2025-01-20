@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import AccountCheckNo from "../../assets/MydataCheckNo.svg";
-import AccountCheckYes from "../../assets/MydataCheckYes.svg";
-import HanaBankLogo from "../../assets/HanaBankLogo.svg";
-import NonghyupBankLogo from "../../assets/NonghyupBankLogo.svg";
-import ShinhanBankLogo from "../../assets/ShinhanBankLogo.svg";
-import WooriBankLogo from "../../assets/WooriBankLogo.svg";
-import TossBankLogo from "../../assets/TossBankLogo.svg";
-import NaverBankLogo from "../../assets/NaverBankLogo.svg";
-import KakaoBankLogo from "../../assets/KakaoBankLogo.svg";
+import AccountCheckNo from "@/assets/MydataCheckNo.svg";
+import AccountCheckYes from "@/assets/MydataCheckYes.svg";
+import HanaBankLogo from "@/assets/HanaBankLogo.svg";
+import NonghyupBankLogo from "@/assets/NonghyupBankLogo.svg";
+import ShinhanBankLogo from "@/assets/ShinhanBankLogo.svg";
+import WooriBankLogo from "@/assets/WooriBankLogo.svg";
+import TossBankLogo from "@/assets/TossBankLogo.svg";
+import NaverBankLogo from "@/assets/NaverBankLogo.svg";
+import KakaoBankLogo from "@/assets/KakaoBankLogo.svg";
 import { type TAccountDetailItemProps } from "@/types/componentTypes";
 
 export default function AccountDetailItem({
@@ -73,6 +73,7 @@ export default function AccountDetailItem({
   const bankLogo = bankLogoMap[bank] || HanaBankLogo;
 
   return (
+<<<<<<< HEAD
     <div className="w-[24.5625rem] flex flex-col justify-between relative p-1 border-b">
       <div className="flex items-center mb-1 mt-1">
         <Image
@@ -86,6 +87,12 @@ export default function AccountDetailItem({
           <div className="text-[1.1rem] font-SCDream3">{accountName}</div>
           <div className="text-[1rem] font-SCDream3">{accountNumber}</div>
         </div>
+=======
+    <div className="w-[24.5625rem] flex flex-col justify-between relative p-2 border-b">
+      <div className="flex items-center mb-2">
+        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bank} Logo`} width={20} height={15} priority />
+        <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{accountName}</div>
+>>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
       </div>
       <div className="flex justify-between mb-3 text-[.8rem] mt-1">
         <div className="font-SCDream3 ml-9">출금 가능</div>
@@ -121,6 +128,7 @@ export default function AccountDetailItem({
           height={20}
           onClick={toggleAccount}
           className="cursor-pointer"
+          priority
         />
       </div>
     </div>

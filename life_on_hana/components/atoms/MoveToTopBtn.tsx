@@ -30,7 +30,12 @@ export default function MoveToTopBtn() {
         onClick={handleScroll}
         src={moveToTopBtn}
         alt="Logo"
+<<<<<<< HEAD
         className="fixed bottom-[14%] right-[5%] w-[3.125rem] mb-5 cursor-pointer"
+=======
+        className="fixed bottom-[10%] right-[5%] w-[3.125rem] mb-5 cursor-pointer"
+        priority
+>>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
       />
     </>
   );

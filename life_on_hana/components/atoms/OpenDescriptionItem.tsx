@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import openDescriptionItem from "@/assets/openDescriptionItem.svg";
+<<<<<<< HEAD
 import DescriptionDetailItem from "./DescriptionDetailItem";
+=======
+import { useState } from "react";
+import DescriptionDetailItem from "@/components/atoms/DescriptionDetailItem";
+>>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
 
 export default function OpenDescriptionItem({ description }: { description: string }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -33,6 +38,7 @@ export default function OpenDescriptionItem({ description }: { description: stri
 
   return (
     <div className="relative inline-block">
+<<<<<<< HEAD
       {/* 아이콘 */}
       <div className="flex">
         <Image
@@ -54,6 +60,18 @@ export default function OpenDescriptionItem({ description }: { description: stri
           }}
         >
           <DescriptionDetailItem description={description} closePopup={closePopup} />
+=======
+      <Image
+        onClick={openDescriptionEvent}
+        src={openDescriptionItem}
+        alt="용어설명클릭"
+        className="w-5 cursor-pointer"
+        priority
+      />
+      {isOpen && (
+        <div className="absolute z-10 right-5 top-full">
+          <DescriptionDetailItem idx={2} />
+>>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
         </div>
       )}
     </div>

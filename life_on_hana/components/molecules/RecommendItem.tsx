@@ -1,5 +1,5 @@
 import { type TRecommendItemProps } from "@/types/componentTypes";
-import Section from "../atoms/Section";
+import Section from "@/components/atoms/Section";
 
 export function RecommendItem({
   name,

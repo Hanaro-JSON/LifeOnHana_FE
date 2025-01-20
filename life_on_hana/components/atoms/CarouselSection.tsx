@@ -56,7 +56,7 @@ export default function CarouselSection({
         className={`flex flex-row justify-between items-center rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] ${boxStyles}`}
       >
         <div className="cursor-pointer pl-5" onClick={handlePrev}>
-          <Image src={arrowLeft} alt="Left Arrow" />
+          <Image src={arrowLeft} alt="Left Arrow" priority />
         </div>
         <div className={`${innerStyles} h-full overflow-hidden`}>
           <div
@@ -71,7 +71,7 @@ export default function CarouselSection({
           </div>
         </div>
         <div className="cursor-pointer pr-5" onClick={handleNext}>
-          <Image src={arrowRight} alt="Right Arrow" />
+          <Image src={arrowRight} alt="Right Arrow" priority />
         </div>
       </div>
     </div>

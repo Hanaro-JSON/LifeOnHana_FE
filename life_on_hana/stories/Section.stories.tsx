@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import Section from "../components/atoms/Section";
+import Section from "@/components/atoms/Section";
 
 const meta: Meta<typeof Section> = {
   title: "atom component/Section",

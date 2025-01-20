@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import ColumnMainImgItem from "../components/molecules/ColumnMainImgItem";
+import ColumnMainImgItem from "@/components/molecules/ColumnMainImgItem";
 
 const meta: Meta<typeof ColumnMainImgItem> = {
   title: "molecule component/ColumnMainImgItem",

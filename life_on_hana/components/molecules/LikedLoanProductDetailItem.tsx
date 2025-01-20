@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React from "react";
 import Btn from "../atoms/Btn";
 import X from "../../assets/X.svg";
+=======
+import React, { useState } from "react";
+import Btn from "@/components/atoms/Btn";
+import X from "@/assets/X.svg";
+>>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
 import Image from "next/image";
 import { type TLikedLoanProductDetailItemProps } from "@/types/componentTypes";
 
@@ -49,8 +55,13 @@ export default function LikedLoanProductDetailItem({
         {/* X 버튼 */}
         <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
           {closeBtn && (
+<<<<<<< HEAD
             <button onClick={handleCloseClick} className="p-1">
               <Image src={X} alt="Close" width={15} height={15} />
+=======
+            <button onClick={handleClose} className="p-1">
+              <Image src={X} alt="Close" width={13} height={13} priority />
+>>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
             </button>
           )}
         </div>

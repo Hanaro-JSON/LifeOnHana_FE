@@ -1,5 +1,5 @@
 import React from "react";
-import CarouselSection from "../atoms/CarouselSection";
+import CarouselSection from "@/components/atoms/CarouselSection";
 import { type TRecommendCarouselItemProps } from "@/types/componentTypes";
 
 export function RecommendCarouselItem({

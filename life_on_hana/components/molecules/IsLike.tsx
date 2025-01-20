@@ -1,6 +1,6 @@
 import { useState } from "react";
-import HeartNo from "../../assets/HeartNo.svg";
-import HeartYes from "../../assets/HeartYes.svg";
+import HeartNo from "@/assets/HeartNo.svg";
+import HeartYes from "@/assets/HeartYes.svg";
 import Image from "next/image";
 import { type TIsLikeProps } from "@/types/componentTypes";
 
@@ -24,6 +24,7 @@ export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: T
             height={30}
             onClick={toggleLike}
             className="cursor-pointer"
+            priority
           />
         </div>
         <div className="mt-1 text-[1rem] text-hanapurple font-SCDream3">{count}</div>
