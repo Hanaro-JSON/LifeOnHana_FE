@@ -4,26 +4,9 @@ import Image from "next/image";
 import smallWhilick_title from "@/assets/smallWhilick_title.svg";
 import Link from "next/link";
 import { type TSmallWhilickItemProps } from "@/types/componentTypes";
-
+import { getCategory } from "@/utils/convertEnumtoString";
 export default function SmallWhilickItem({ article_id, variant, title }: TSmallWhilickItemProps) {
-  const getCategory = (variant: string) => {
-    switch (variant) {
-      case "REAL_ESTATE":
-        return "부동산";
-      case "INVESTMENT":
-        return "투자";
-      case "INHERITANCE_GIFT":
-        return "상속∙증여";
-      case "TRAVEL":
-        return "여행";
-      case "CULTURE":
-        return "문화";
-      case "HOBBY":
-        return "취미";
-      default:
-        return "";
-    }
-  };
+  
 
   const getSrc = (variant: string) => {
     switch (variant) {
