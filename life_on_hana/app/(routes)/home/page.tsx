@@ -34,6 +34,7 @@ import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouse
 import { Carousel } from "nuka-carousel";
 import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
+import ShortCutBtn from "@/components/molecules/ShortCutBtn";
 
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
@@ -249,6 +250,7 @@ export default function Home() {
           </div>
           <div className="border-t-2 flex justify-center items-center h-[2rem]">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <ShortCutBtn url={"/"} variant="spend" />
           </div>
         </div>
@@ -283,6 +285,9 @@ export default function Home() {
                 <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
               </button>
             </Link>
+=======
+            <ShortCutBtn url={"/"} variant="spend" />
+>>>>>>> 49f460c ([fix] 🐳 ShortCutBtn 사용하도록 수정)
           </div>
         </div>
       </Section>
@@ -293,12 +298,7 @@ export default function Home() {
           {categoryToNickname(category)}
         </div>
         <div>
-          <Link href={"/wallet"}>
-            <button className="font-SCDream2 text-[.75rem] flex items-center ">
-              <span className="text-hanapurple">좋아요</span>한 칼럼 보러가기
-              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
-            </button>
-          </Link>
+          <ShortCutBtn url={"/"} variant="column" />
         </div>
       </div>
 <<<<<<< HEAD
@@ -313,12 +313,7 @@ export default function Home() {
           {name}님을 위한 추천 상품
         </div>
         <div>
-          <Link href={"/wallet"}>
-            <button className="font-SCDream2 text-[.75rem] flex items-center ">
-              <span className="text-hanapurple">추천</span> 상품 보러가기
-              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
-            </button>
-          </Link>
+          <ShortCutBtn url={"/"} variant="product" />
         </div>
       </div>
       <RecommendCarouselItem items={carouselItems} />;
