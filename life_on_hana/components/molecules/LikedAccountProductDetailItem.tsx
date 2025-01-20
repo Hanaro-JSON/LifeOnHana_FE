@@ -84,50 +84,50 @@ export default function LikedAccountProductDetailItem({
   return (
     <div id="modal-background" onClick={handleBackgroundClick} className={bg}>
       <div
-        className="w-[20rem] h-[30.9375rem] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
+        className="w-[90%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6"
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
         <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
           {closeBtn && (
             <button onClick={handleCloseClick} className="p-1">
-              <Image src={X} alt="Close" width={13} height={13} />
+              <Image src={X} alt="Close" width={15} height={15} />
             </button>
           )}
         </div>
 
         {/* 제목 */}
-        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start mb-2">
+        <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2">
           {name}
         </div>
 
         {/* 내용 */}
-        <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[6rem] flex-grow mb-2">
+        <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[6rem] flex-grow mb-2">
           <p className="text-left">{description}</p>
         </div>
 
-        <div className="text-[.9375rem] font-SCDream8 text-left self-start mb-2">
+        <div className="text-[1.3rem] font-SCDream8 text-left self-start mb-2">
           나의 예상 혜택
         </div>
 
-        <div className="w-[18rem] h-[6rem] relative mb-3 -ml-2">
-          <div className="w-[18rem] h-[6rem] left-0 top-0 absolute bg-[#f4ebfb] rounded-[18px]">
-            <div className="p-4 mt-2">
+        <div className="w-full h-[20%] relative mb-3">
+          <div className="w-full h-[100%] left-0 top-0  bg-[#f4ebfb] rounded-[18px]">
+            <div className="p-4 m-2">
               <div className="flex justify-between">
-                <div className="text-black text-[.8125rem] font-SCDream3">
+                <div className="text-black text-[1rem] font-SCDream3">
                   만기금액(세전)
                 </div>
-                <div className="text-right text-black text-[.8125rem] font-SCDream5">
+                <div className="text-right text-black text-[1rem] font-SCDream5">
                   {calculatedAmount
                     ? `${parseInt(calculatedAmount).toLocaleString()}원`
                     : "금액을 입력해주세요"}
                 </div>
               </div>
               <div className="flex justify-between mt-2">
-                <div className="text-black text-[.8125rem] font-SCDream3">
+                <div className="text-black text-[1rem] font-SCDream3">
                   적용금리
                 </div>
-                <div className="text-right text-black text-[.8125rem] font-SCDream5">
+                <div className="text-right text-black text-[1rem] font-SCDream5">
                   {calculatedAmount === "0"
                     ? `${savingsInfo.basicInterestRate}% ~ ${savingsInfo.maxInterestRate}%`
                     : `연 ${interestRate}%`}
@@ -138,7 +138,7 @@ export default function LikedAccountProductDetailItem({
         </div>
 
         {/* 적금 계산 입력 폼 */}
-        <div className="flex flex-col text-[.8125rem]">
+        <div className="flex flex-col text-[1rem]">
           <div className="flex items-center">
             <input
               type="text"
@@ -179,8 +179,10 @@ export default function LikedAccountProductDetailItem({
         </div>
 
         {/* 버튼 */}
-        <div className="mt-4 -ml-2">
-          <Btn text={"상품정보 자세히보기"} url={link} />
+        <div className="mt-4 w-full flex justify-center">
+          <div className="w-full">
+            <Btn text={"상품정보 자세히보기"} url={link} />
+          </div>
         </div>
       </div>
     </div>

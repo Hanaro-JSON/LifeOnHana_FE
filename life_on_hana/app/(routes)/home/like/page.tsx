@@ -12,6 +12,7 @@ import {
 import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductDetailItem";
 import LikedAccountProductDetailItem from "@/components/molecules/LikedAccountProductDetailItem";
 import LikedLifeProductDetailItem from "@/components/molecules/LikedLifeProductDetail";
+import { NavHeader } from "@/components/molecules/NavHeader";
 
 const mockData = {
   code: 200,
@@ -65,7 +66,7 @@ const mockData = {
       category: "대출",
     },
     {
-      productId: "101",
+      productId: "166",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -78,7 +79,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "155",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -91,7 +92,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "144",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -104,7 +105,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "133",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -117,7 +118,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-      productId: "101",
+      productId: "122",
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -254,11 +255,11 @@ export default function Like() {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="font-Hana2heavy text-[1.25rem] my-6 text-center sticky top-0 z-10">
-        관심있을 만한 상품 (컴포넌트로 분리한거 가져오기)
+      <div className="pt-6 px-6">
+        <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
       </div>
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
-        <div className="flex flex-col gap-28 pb-[10vh]">
+        <div className="flex flex-col gap-4 pb-[10vh]">
           {products.map((product) => (
             <RecommendItem key={product.productId} {...product} />
           ))}

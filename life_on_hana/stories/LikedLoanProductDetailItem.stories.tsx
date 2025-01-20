@@ -23,7 +23,7 @@ const meta: Meta<typeof LikedLoanProductDetailItem> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ minHeight: "480px", padding: "20px", boxSizing: "border-box" }}>
+      <div style={{ minHeight: "1200px", padding: "20px", boxSizing: "border-box" }}>
         <Story />
       </div>
     ),
@@ -55,7 +55,7 @@ export const Default: Story = {
 export const Long: Story = {
   args: {
     name: "직장인 신용대출",
-    description: "직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출",
+    description: "직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출 직장인을 위한 맞춤 신용대출",
     feature: "최저금리 보장",
     target: "재직 6개월 이상 직장인",
     link: "https://example.com/product/2",
