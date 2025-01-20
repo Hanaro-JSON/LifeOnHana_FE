@@ -87,10 +87,14 @@ const mockData = {
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       productId: "166",
 =======
       productId: "101",
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+      productId: "166",
+>>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -103,11 +107,15 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
       productId: "155",
 =======
       productId: "101",
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+      productId: "155",
+>>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -120,11 +128,15 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
       productId: "144",
 =======
       productId: "101",
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+      productId: "144",
+>>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -137,11 +149,15 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
       productId: "133",
 =======
       productId: "101",
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+      productId: "133",
+>>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -155,10 +171,14 @@ const mockData = {
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       productId: "122",
 =======
       productId: "101",
 >>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
+=======
+      productId: "122",
+>>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -297,6 +317,7 @@ export default function Like() {
     <div className="flex flex-col h-screen">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div className="pt-6 px-6">
         <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
       </div>
@@ -312,8 +333,10 @@ export default function Like() {
 =======
       <div className="sticky top-0 z-10">
         <div className="pt-6 px-6">
+=======
+      <div className="pt-6 px-6">
+>>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
         <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
-      </div>
       </div>
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
         <div className="flex flex-col gap-4 pb-[10vh]">
