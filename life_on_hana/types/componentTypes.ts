@@ -30,9 +30,13 @@ export type TBtnProps = {
     | "hanaWallet"
     | "needLumpSum";
 <<<<<<< HEAD
+<<<<<<< HEAD
   onClick?: () => void;
 =======
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+  onClick?: () => void;
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 };
 
 export type TCarouselSectionProps = {

@@ -183,6 +183,9 @@ a {
   color: black;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 
 input[type="radio"] {
   -webkit-appearance: none;
@@ -198,6 +201,7 @@ input[type="radio"]:checked {
   background-color: var(--hanapurple);
   border: 1px solid var(--hanapurple);
   /* box-shadow: 0 0 0 1.6px var(--hanapurple); */
+<<<<<<< HEAD
 =======
 @-webkit-keyframes animate-svg-fill-1 {
   0% {
@@ -283,3 +287,6 @@ input[type="radio"]:checked {
 }
 =======
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+}
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)

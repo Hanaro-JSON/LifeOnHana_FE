@@ -32,9 +32,13 @@ export default function Btn({
   url,
   variant = "default",
 <<<<<<< HEAD
+<<<<<<< HEAD
   onClick,
 =======
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+  onClick,
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 }: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
   return variant === "needLumpSum" ? (
@@ -56,20 +60,6 @@ export default function Btn({
         {text}
       </button>
     </Link>
-  ) : variant === "needLumpSum" ? (
-    <button
-      className={`relative flex items-center justify-center ${btnClasses} rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]`}
-      type={type}
-    >
-      <span className="absolute left-1/2 -translate-x-1/2">{text}</span>
-      <div className="ml-auto pr-5">
-        <Image
-          src={arrowRight}
-          alt="Right Arrow"
-          className="dynamic-fill white" // 이 방식으로 CSS 색상 적용
-        />
-      </div>
-    </button>
   ) : (
     <button className={btnClasses} type={type} onClick={onClick}>
       {text}

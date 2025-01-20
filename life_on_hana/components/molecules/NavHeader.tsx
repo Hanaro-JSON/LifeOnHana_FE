@@ -10,10 +10,14 @@ export function NavHeader({
 }) {
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div className="flex flex-row items-center mb-6">
 =======
     <div className="flex flex-row items-center">
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
+=======
+    <div className="flex flex-row items-center mb-6">
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
       <Link href={beforePageUrl}>
         <Image src={arrowLeft} alt="before" width={10} height={10} />
       </Link>

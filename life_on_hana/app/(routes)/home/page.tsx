@@ -4,6 +4,7 @@ import Btn from "@/components/atoms/Btn";
 import { LogoHeader } from "@/components/molecules/LogoHeader";
 import MainSection from "@/components/molecules/MainSection";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useContext, useEffect, useState } from "react";
 import Section from "@/components/atoms/Section";
 import { BarGraph } from "@/components/molecules/BarGraph";
@@ -20,13 +21,13 @@ import ShortCutBtn from "@/components/molecules/ShortCutBtn";
 import { DataContext } from "@/hooks/useData";
 =======
 import Image from "next/image";
+=======
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 import { useContext, useEffect, useState } from "react";
-import arrowRight from "@/assets/arrow-right.svg";
-import Link from "next/link";
 import Section from "@/components/atoms/Section";
 import { BarGraph } from "@/components/molecules/BarGraph";
 import {
-  TRecommendCarouselItemProps,
+  type TRecommendCarouselItemProps,
   type TArticleItemProps,
   type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
@@ -36,10 +37,13 @@ import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 import ShortCutBtn from "@/components/molecules/ShortCutBtn";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 =======
 import { getNameFromServer } from "@/hooks/useData";
+=======
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 import { DataContext } from "@/hooks/useData";
 >>>>>>> 182e05b ([feat] 🐳 name 전역상태관리 추가)
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
@@ -104,6 +108,7 @@ export default function Home() {
   const { data, setName } = useContext(DataContext);
   useEffect(() => {
     console.log("이름 세팅");
+<<<<<<< HEAD
     setName("장다연");
   });
 =======
@@ -149,6 +154,10 @@ export default function Home() {
     setName("장다연");
   }, []);
 >>>>>>> 182e05b ([feat] 🐳 name 전역상태관리 추가)
+=======
+    setName("장다연");
+  });
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState("INVESTMENT");
   //내역 통계 조회

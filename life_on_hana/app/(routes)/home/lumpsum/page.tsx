@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 "use client";
 
 import Btn from "@/components/atoms/Btn";
@@ -87,6 +90,7 @@ export default function Lumpsum() {
         router.replace("/home/wallet/deposit");
     }
   };
+<<<<<<< HEAD
 
   return (
     <div className="p-6 space-y-4">
@@ -208,12 +212,131 @@ export default function Lumpsum() {
       )}
 =======
 import { NavHeader } from "@/components/molecules/NavHeader";
+=======
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 
-export default function lumpsum() {
   return (
-    <div className="p-6">
+    <div className="p-6 space-y-4">
       <NavHeader location={"목돈 가져오기"} beforePageUrl={"/home"} />
+<<<<<<< HEAD
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
+=======
+      <Section height="300">
+        <div className="w-full">
+          <div className="space-y-6">
+            <div className="flex flex-row gap-2 items-end">
+              <input
+                type="text"
+                value={amount}
+                className="font-SCDream7 text-hanapurple border-b-2 border-hanapurple w-full text-xl text-right outline-none"
+                placeholder="금액입력"
+                onChange={handleChange}
+              />
+              을
+            </div>
+            <div className="flex flex-row gap-2 items-end justify-end">
+              <LumpSumBtn
+                variant={"hanaSalaryBank"}
+                isSelected={selectedBtn === "hanaSalaryBank"}
+                onClick={() => handleBtnClick("hanaSalaryBank")}
+              />
+              <LumpSumBtn
+                variant={"otherAccounts"}
+                isSelected={selectedBtn === "otherAccounts"}
+                onClick={() => handleBtnClick("otherAccounts")}
+              />
+              <LumpSumBtn
+                variant={"loanProducts"}
+                isSelected={selectedBtn === "loanProducts"}
+                onClick={() => handleBtnClick("loanProducts")}
+              />
+              에서
+            </div>
+            <Section
+              height="300"
+              bgColor="hanalightpurple"
+              hasShadow
+              shadowColor="rgba(77,0,181,0.3)"
+            >
+              <div className="space-y-4">
+                {reasons.map((item, index) => (
+                  <div
+                    key={index}
+                    className="space-y-4 flex flex-col cursor-pointer"
+                    onClick={() => setReason(item)}
+                  >
+                    <div className="space-x-3 flex flex-row items-center">
+                      <input
+                        type="radio"
+                        id={`reason-${index}`}
+                        name="reason"
+                        value={item}
+                        checked={reason === item}
+                        onChange={(e) => setReason(e.target.value)}
+                        className={`w-4 h-4 ${
+                          reason === item
+                            ? "text-purple-500 border-purple-500"
+                            : ""
+                        }`}
+                      />
+                      <label
+                        htmlFor={`reason-${index}`}
+                        className={`text-sm ${
+                          reason === item ? "text-purple-500" : "text-gray-800"
+                        }`}
+                      >
+                        {item}
+                      </label>
+                    </div>
+                    {index !== reasons.length - 1 && (
+                      <hr className="border border-gray-200 w-full" />
+                    )}
+                  </div>
+                ))}
+                {reason === "기타" && (
+                  <input
+                    type="text"
+                    placeholder="기타 선택 시, 필수 작성"
+                    value={customReason}
+                    onChange={(e) => setCustomReason(e.target.value)}
+                    className="w-full p-2 border border-hanalightpurple rounded-lg focus:border-hanapurple outline-none"
+                  />
+                )}
+              </div>
+            </Section>
+            <div className="w-full flex justify-end">의 이유로</div>
+          </div>
+        </div>
+      </Section>
+      <Btn
+        text={`${
+          selectedBtn === "loanProducts"
+            ? "대출 상품 추천받기"
+            : "목돈 가져오기"
+        }`}
+        onClick={handleSubmit}
+      />
+      {selectedBtn === "loanProducts" && loanItems ? (
+        <div className="space-y-4">
+          <div className="font-SCDream5 text-xl mt-5">
+            {data.name}님을 위한 추천 대출 상품
+          </div>
+          {loanItems.map((loanItem, index) => (
+            <RecommendItem
+              key={index}
+              name={loanItem.name}
+              description={loanItem.description}
+              maxAmount={loanItem.maxAmount}
+              maxInterest_rate={loanItem.maxInterest_rate}
+              productType={loanItem.productType}
+              productId={loanItem.productId}
+            />
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
+>>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
     </div>
   );
 }
