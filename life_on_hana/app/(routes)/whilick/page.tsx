@@ -10,8 +10,8 @@ import WhilickItemLoading from "@/components/molecules/WhilickItemLoading";
 export default function Whilick() {
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [globalAudioState, setGlobalAudioState] = useState({
-    isPlaying: false,
-    isMute: true,
+    isPlaying: true,
+    isMute: false,
   });
 
   const mockWhilick: TMockWhilickProps[] = [

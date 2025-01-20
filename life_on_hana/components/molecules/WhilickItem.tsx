@@ -53,6 +53,7 @@ export default function WhilickItem({
       audio.currentTime = 0;
       if (globalAudioState.isPlaying && !globalAudioState.isMute) {
         audio.play().catch(console.error);
+        audio.loop = true;
       }
     } else {
       audio.pause();
@@ -74,7 +75,7 @@ export default function WhilickItem({
         {/* sound on/off */}
         <div className="z-50 absolute top-6 w-full flex flex-col space-y-6 items-center">
           <div className="w-full h-10 flex justify-end items-center px-[1.5rem]">
-            <audio ref={audioRef}>
+            <audio ref={audioRef} loop>
               <source src={ttsUrl} type="audio/mp3" />
             </audio>
             <button onClick={toggleAudio}>
