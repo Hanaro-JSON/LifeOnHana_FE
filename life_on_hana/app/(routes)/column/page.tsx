@@ -8,111 +8,89 @@ import { useState, useEffect, useRef } from "react";
 
 const mockArticles = [
   {
-    title: "새해 소망 여행 몰아서 훌주근",
+    title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
   },
   {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202505070905150744.jpg",
     is_liked: true,
   },
   {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202433061033560949.jpg",
     is_liked: false,
   },
   {
-    title: "새해 소망 여행 몰아서 훌주근",
+    title: "취미를 찾아볼까요?",
+    category: "취미",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202421251121570801.jpg",
+    is_liked: false,
+  },
+  {
+    title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
   },
   {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202505070905150744.jpg",
     is_liked: true,
   },
   {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202433061033560949.jpg",
     is_liked: false,
   },
   {
-    title: "새해 소망 여행 몰아서 훌주근",
+    title: "취미를 찾아볼까요?",
+    category: "취미",
+    published_at: "2025-01-12",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202421251121570801.jpg",
+    is_liked: false,
+  },
+  {
+    title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
   },
   {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
+    title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202505070905150744.jpg",
     is_liked: true,
   },
   {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
+    title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202433061033560949.jpg",
     is_liked: false,
   },
   {
-    title: "새해 소망 여행 몰아서 훌주근",
-    category: "여행",
+    title: "취미를 찾아볼까요?",
+    category: "취미",
     published_at: "2025-01-12",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
+    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202421251121570801.jpg",
     is_liked: false,
   },
-  {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
-    category: "취미",
-    published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true,
-  },
-  {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
-    category: "투자",
-    published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false,
-  },
-  {
-    title: "새해 소망 여행 몰아서 훌주근",
-    category: "여행",
-    published_at: "2025-01-12",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false,
-  },
-  {
-    title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
-    category: "취미",
-    published_at: "2024-12-08",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: true,
-  },
-  {
-    title: "고령 운전자를 위한 보험의 첫 걸음: 왜?(Why)",
-    category: "투자",
-    published_at: "2024-11-15",
-    thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
-    is_liked: false,
-  },
-  // Add more articles as needed...
 ];
 
 export default function Column() {
@@ -131,17 +109,14 @@ export default function Column() {
     }
 
     if (searchValue) {
-      filtered = filtered.filter(
-        (article) =>
-          article.title.includes(searchValue) ||
-          article.category.includes(searchValue)
+      filtered = filtered.filter((article) =>
+        article.title.includes(searchValue)
       );
     }
 
     setFilteredArticles(filtered);
   }, [searchValue, selectedCategory]);
 
-  // 밑줄
   useEffect(() => {
     const activeCategory = document.querySelector(
       `#${selectedCategory}`
@@ -151,7 +126,6 @@ export default function Column() {
       underlineRef.current.style.width = `${activeCategory.offsetWidth}px`;
     }
 
-    // 선택된 카테고리가 가운데로 오게 스크롤
     if (activeCategory) {
       activeCategory.scrollIntoView({
         behavior: "smooth",
@@ -163,21 +137,23 @@ export default function Column() {
 
   return (
     <div>
-      <div className="flex flex-col items-center pt-4">
-        <div className="w-full flex items-center gap-4 mb-4 px-[2rem]">
-          <Image src={column} alt="column icon" width={20} height={20} />
-          <div className="text-[1.5rem] font-Hana2bold">칼럼</div>
+      <div className="flex flex-col items-center pt-5">
+        <div className="w-full flex items-center gap-3 mb-4 px-[1rem]">
+          <Image src={column} alt="column icon" width={25} height={22} />
+          <div className="text-[1.8rem] font-Hana2bold">칼럼</div>
         </div>
       </div>
 
       <div className="flex flex-col items-center">
-        {/* 검색 영역 */}
-        <div className="w-full mb-4 px-[2rem]">
-          <SearchInput placeholder="칼럼 검색" value={searchValue} />
+        <div className="w-full mb-4 px-[1rem]">
+          <SearchInput
+            placeholder="칼럼 검색"
+            value={searchValue}
+            onChange={setSearchValue}
+          />
         </div>
 
-        <div className="w-full rounded-3xl flex flex-col">
-          {/* 카테고리 선택 영역 */}
+        <div className="w-[95%] rounded-3xl flex flex-col">
           <div className="w-full bg-white flex justify-between sticky py-4 px-6 whitespace-nowrap overflow-x-auto border-b-2 rounded-t-xl shadow-[0rem_.25rem_.25rem_0.09rem_rgba(0,0,0,0.05)]">
             {[
               "전체보기",
@@ -193,16 +169,15 @@ export default function Column() {
                 id={category}
                 className={`${
                   selectedCategory === category
-                    ? "font-bold text-black"
+                    ? "font-bold"
                     : "opacity-45"
-                } mr-6 last:mr-0 text-[1.125rem] font-SCDream5 relative`}
+                } mr-6 last:mr-0 text-[1.2rem] font-SCDream5 relative`}
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}
               </button>
             ))}
 
-            {/* 밑줄 */}
             <div
               ref={underlineRef}
               className="absolute bottom-0 h-1 bg-black transition-all duration-300 ease-in-out"
@@ -214,7 +189,7 @@ export default function Column() {
             ></div>
           </div>
 
-          <div className="bg-white p-4 w-full px-[2rem] h-[calc(100vh-13rem)] overflow-y-auto">
+          <div className="bg-white p-4 w-full px-[2rem] h-[calc(100vh-18rem)] overflow-y-auto">
             {filteredArticles.length > 0 ? (
               <div className="w-full flex flex-col items-center gap-4">
                 {filteredArticles.map((article, index) => (
