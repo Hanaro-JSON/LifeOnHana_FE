@@ -236,6 +236,7 @@ export type TRecommendItemProps = {
 export type TSearchInput = {
   placeholder: string;
   value?: string;
+  onChange?: (value: string) => void;
 };
 
 export type TShortCutBtnProps = {
