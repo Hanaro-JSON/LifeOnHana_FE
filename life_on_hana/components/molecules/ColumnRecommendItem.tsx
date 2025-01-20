@@ -58,12 +58,17 @@ export default function ColumnRecommendItem({ variant, name, onClick, isSelected
         onClick={clickEvent}
         className={`${
 <<<<<<< HEAD
+<<<<<<< HEAD
           isSelected  && "border-2 border-hanapurple "
         } rounded-[10px] bg-cover bg-center w-full min-h-32 flex flex-col items-start justify-start p-2 shadow-xl`}
 =======
           isSelected  && "border-4 border-hanapurple "
         } rounded-[10px] bg-cover bg-center w-[12rem] h-[8rem] flex flex-col items-start justify-start p-2 shadow-xl`}
 >>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
+=======
+          isSelected  && "border-2 border-hanapurple "
+        } rounded-[10px] bg-cover bg-center w-full min-h-32 flex flex-col items-start justify-start p-2 shadow-xl`}
+>>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={name}
       >

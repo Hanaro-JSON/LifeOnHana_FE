@@ -10,6 +10,9 @@ import { useRouter } from "next/navigation";
 const mockArticles = [
   {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
     article_id: 1,
     title: "제주도로 여행을 떠나볼까요???",
     category: "여행",

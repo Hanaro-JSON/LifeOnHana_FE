@@ -24,6 +24,7 @@ export default function OpenDescriptionItem({ description }: { description: stri
     const rect = event.currentTarget.getBoundingClientRect();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     const isLeft = rect.left > window.innerWidth / 2;
 
     setPopupPosition({
@@ -37,6 +38,15 @@ export default function OpenDescriptionItem({ description }: { description: stri
       top: rect.top,
       left: rect.left + rect.width,
 >>>>>>> 4018117 ([fix] 🐣 columnDetail 페이지 수정)
+=======
+    const isLeft = rect.left > window.innerWidth / 2;
+
+    setPopupPosition({
+      top: rect.top - event.currentTarget.offsetParent!.getBoundingClientRect().top + rect.height,
+      left: isLeft
+        ? rect.left - event.currentTarget.offsetParent!.getBoundingClientRect().left - 150 // 왼쪽 방향
+        : rect.left - event.currentTarget.offsetParent!.getBoundingClientRect().left + rect.width, // 오른쪽 방향
+>>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
     });
 
     setIsOpen(true);
@@ -47,6 +57,7 @@ export default function OpenDescriptionItem({ description }: { description: stri
   };
 
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div className="relative inline-block">
 <<<<<<< HEAD
@@ -89,12 +100,23 @@ export default function OpenDescriptionItem({ description }: { description: stri
           <DescriptionDetailItem idx={2} />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
 =======
+=======
+    <div className="relative inline-block">
+      {/* 아이콘 */}
+      <div className="flex">
+        <Image
+          onClick={openDescriptionEvent}
+          src={openDescriptionItem}
+          alt="용어 설명 아이콘"
+          className="w-5 h-5 cursor-pointer"
+        />
+      </div>
+>>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
 
       {/* 팝업 */}
-      <span className="flex">
       {isOpen && popupPosition && (
         <div
-          className="sticky"
+          className="absolute"
           style={{
             top: popupPosition.top,
             left: popupPosition.left,
@@ -105,7 +127,6 @@ export default function OpenDescriptionItem({ description }: { description: stri
 >>>>>>> 4018117 ([fix] 🐣 columnDetail 페이지 수정)
         </div>
       )}
-    </span>
     </div>
   );
 }
