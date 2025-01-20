@@ -3,7 +3,7 @@
 import Image from "next/image";
 import whilick_purple from "@/assets/whilick_purple.svg";
 import WhilickItem from "@/components/molecules/WhilickItem";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import WhilickItemLoading from "@/components/molecules/WhilickItemLoading";
 import { type TWhilickItemProps } from "@/types/componentTypes";
@@ -43,6 +43,18 @@ export default function Whilick() {
     }
   }, [currentIndex, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  const [top, setTop] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // const scrollEvent = (e) => {
+  //   setTop(ref.current.scrollHeight / window.innerHeight);
+  // };
+  const handleScroll = useCallback(() => {
+    if (scrollRef.current) {
+      setTop(scrollRef.current.scrollTop);
+    }
+  }, []);
+
   return (
     <>
       <div className="relative min-h-screen flex flex-col items-center justify-center">
@@ -55,7 +67,11 @@ export default function Whilick() {
         </div>
 
         {/* 상하 스크롤 영역 */}
-        <div className="snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full">
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full"
+        >
           {status === "pending" ? (
             <WhilickItemLoading />
           ) : status === "error" ? (
@@ -64,13 +80,15 @@ export default function Whilick() {
             <>
               {data.pages.map((content, pageIndex) => (
                 <React.Fragment key={pageIndex}>
-                  {content.map((item: TWhilickItemProps, itemIndex: number) => (
+                  {content.map((item: TWhilickItemProps, itemIndex: number, idx: number) => (
                     <WhilickItem
+                      idx={idx}
                       key={item.articleId}
                       {...item}
                       currentAudio={currentAudio}
                       setCurrentAudio={setCurrentAudio}
                       onContentChange={() => handleContentChange(pageIndex * 10 + itemIndex)}
+                      top={top}
                     />
                   ))}
                 </React.Fragment>
