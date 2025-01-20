@@ -93,6 +93,7 @@ export default function WhilickItem({ title, shorts, articleId, isLiked, likeCou
   return (
     <>
       <div className="snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center">
+<<<<<<< HEAD
         {/* sound on/off */}
         <div className="z-50 absolute top-6 w-full flex flex-col space-y-6 items-center">
           <div className="w-full h-10 flex justify-end items-center px-[1.5rem]">
@@ -109,6 +110,9 @@ export default function WhilickItem({ title, shorts, articleId, isLiked, likeCou
             </button>
           </div>
 
+=======
+        <div className="absolute top-24 flex flex-col space-y-6">
+>>>>>>> 112cae7 ([feat] 🐿️ WhilickPage 내 WhilickItem 컴포넌트 상하 스크롤 및 자동 스냅 기능 추가)
           {/* 칼럼 제목 */}
           <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{title}</div>
 

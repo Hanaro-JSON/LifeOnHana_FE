@@ -108,7 +108,11 @@ export default function Whilick() {
     <>
       <div className="relative min-h-screen flex flex-col items-center justify-center">
         {/* 최상단 */}
+<<<<<<< HEAD
         <div className="fixed z-50 px-[1.5rem] w-full top-6 h-10 flex justify-start items-center">
+=======
+        <div className="fixed z-50 px-[1.5rem] w-full top-6 flex justify-between items-center">
+>>>>>>> 112cae7 ([feat] 🐿️ WhilickPage 내 WhilickItem 컴포넌트 상하 스크롤 및 자동 스냅 기능 추가)
           <div className="flex items-center gap-4">
             <Image src={whilick_purple} alt="whilick_icon" style={{ width: 20, height: "auto" }} priority />
             <div className="text-[1.5rem] font-Hana2bold">휘릭</div>
@@ -207,6 +211,7 @@ export default function Whilick() {
           </button>
         </div>
 
+<<<<<<< HEAD
         <div className="absolute top-24 flex flex-col space-y-6">
           {/* 칼럼 제목 */}
           <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{mockData[0].title}</div>
@@ -236,6 +241,20 @@ export default function Whilick() {
         <div className="absolute right-12 bottom-56 z-50 flex flex-col items-center gap-4">
           <AdjustBtn typeCeilTxt="글씨" typeBottomTxt="크기" first="작게" second="보통" third="크게" mX={80} mY={90} />
           <AdjustBtn typeCeilTxt="말" typeBottomTxt="속도" first="0.5x" second="1x" third="2x" mX={80} mY={90} />
+=======
+        {/* 상하 스크롤 영역 */}
+        <div className="snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full">
+          {mockWhilick.map((item) => (
+            <WhilickItem
+              key={item.articleId}
+              title={item.title}
+              shorts={item.shorts}
+              articleId={item.articleId}
+              isLiked={item.isLiked}
+              likeCount={item.likeCount}
+            />
+          ))}
+>>>>>>> 112cae7 ([feat] 🐿️ WhilickPage 내 WhilickItem 컴포넌트 상하 스크롤 및 자동 스냅 기능 추가)
         </div>
       </div>
       {/* </div> */}
