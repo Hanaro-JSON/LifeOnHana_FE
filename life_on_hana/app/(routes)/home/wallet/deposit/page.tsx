@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import AccountDetailItem from "@/components/molecules/AccountDetailItem";
 import Btn from "@/components/atoms/Btn";
-import { TAccountDetailItemProps } from "@/types/componentTypes";
+import { type TAccountDetailItemProps } from "@/types/componentTypes";
 import HanaBankLogo from "@/assets/HanaBankLogo.svg";
 import { useRouter } from "next/navigation";
 import { NavHeader } from "@/components/molecules/NavHeader";
