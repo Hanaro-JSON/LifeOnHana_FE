@@ -31,6 +31,9 @@ import {
   TRecommendCarouselColumnProps,
 } from "@/types/componentTypes";
 import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
+import { Carousel } from "nuka-carousel";
+import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
+import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
@@ -98,6 +101,37 @@ export default function Home() {
     setName("장다연");
   });
 =======
+
+const carouselItems: TRecommendCarouselItemProps[] = [
+  {
+    productId: "1",
+    name: "상품 1",
+    description: "설명 1",
+    maxAmount: "1000만원",
+    productType: "LOAN",
+  },
+  {
+    productId: "2",
+    name: "상품 2",
+    description: "설명 2",
+    maxInterest_rate: 3.5,
+    productType: "SAVINGS",
+  },
+  {
+    productId: "2",
+    name: "상품 2",
+    description: "설명 2",
+    maxInterest_rate: 3.5,
+    productType: "LIFE",
+  },
+  {
+    productId: "2",
+    name: "상품 2",
+    description: "설명 2",
+    maxInterest_rate: 3.5,
+    productType: "SAVINGS",
+  },
+];
 
 export default function Home() {
   const [name, setName] = useState("장다연");
@@ -176,9 +210,13 @@ export default function Home() {
     }
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+
+>>>>>>> 6ab8194 ([feat] 🐳 home api 연결 전 작업 완료)
   return (
     <div className="p-6 space-y-4">
       {/* 헤더 */}
@@ -248,7 +286,7 @@ export default function Home() {
           </div>
         </div>
       </Section>
-      {/* 좋아요한 컬럼 카드드 */}
+      {/* 좋아요한 컬럼 카드 */}
       <div className="flex flex-row justify-between items-end">
         <div className="font-SCDream4 tracking-wide">
           <div>{name}님은</div>
@@ -263,8 +301,28 @@ export default function Home() {
           </Link>
         </div>
       </div>
+<<<<<<< HEAD
       <RecommendCarouselColumn items={RecommendCarouselColumnItems} />
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+      {/* <RecommendCarouselColumn items={RecommendCarouselColumnItems} /> */}
+      <FullImgCarousel items={RecommendCarouselColumnItems} />
+      {/* 추천 상품 카드 */}
+      <div className="flex flex-row justify-between items-end">
+        <div className="font-SCDream4 tracking-wide">
+          {name}님을 위한 추천 상품
+        </div>
+        <div>
+          <Link href={"/wallet"}>
+            <button className="font-SCDream2 text-[.75rem] flex items-center ">
+              <span className="text-hanapurple">추천</span> 상품 보러가기
+              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
+            </button>
+          </Link>
+        </div>
+      </div>
+      <RecommendCarouselItem items={carouselItems} />;
+>>>>>>> 6ab8194 ([feat] 🐳 home api 연결 전 작업 완료)
     </div>
   );
 }

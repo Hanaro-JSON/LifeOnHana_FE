@@ -23,10 +23,14 @@ export default function Section({
     <div className="w-full relative" style={{ height }}>
       <div
 <<<<<<< HEAD
+<<<<<<< HEAD
         className={`w-full left-0 top-0 bg-${bgColor} rounded-[.9375rem] p-6 flex items-center justify-center ${shadowClass}`}
 =======
         className={`w-full left-0 top-0 absolute bg-white rounded-[.9375rem] p-6 flex items-center ${shadowClass}`}
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+        className={`w-full left-0 top-0 absolute bg-white rounded-[.9375rem] p-6 flex items-center justify-center ${shadowClass}`}
+>>>>>>> 6ab8194 ([feat] 🐳 home api 연결 전 작업 완료)
         style={{ height }}
       >
         {children}

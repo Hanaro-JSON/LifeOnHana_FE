@@ -58,7 +58,7 @@ export default function Btn({
     </Link>
   ) : variant === "needLumpSum" ? (
     <button
-      className={`relative flex items-center justify-center ${btnClasses}`}
+      className={`relative flex items-center justify-center ${btnClasses} rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]`}
       type={type}
     >
       <span className="absolute left-1/2 -translate-x-1/2">{text}</span>
