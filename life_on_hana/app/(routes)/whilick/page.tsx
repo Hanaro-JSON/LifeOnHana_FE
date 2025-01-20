@@ -3,9 +3,10 @@
 import Image from "next/image";
 import whilick_purple from "@/assets/whilick_purple.svg";
 import WhilickItem from "@/components/molecules/WhilickItem";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { type TMockWhilickProps } from "@/types/componentTypes";
 import WhilickItemLoading from "@/components/molecules/WhilickItemLoading";
+import useDebounce from "@/hooks/useDebounce";
 
 export default function Whilick() {
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
@@ -13,6 +14,20 @@ export default function Whilick() {
     isPlaying: true,
     isMute: false,
   });
+
+  const [top, setTop] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const debouncedTop = useDebounce(top, 100);
+
+  const handleScroll = useCallback(() => {
+    if (scrollRef.current) {
+      setTop(scrollRef.current.scrollTop);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("Debounced top:", debouncedTop);
+  }, [debouncedTop]);
 
   const mockWhilick: TMockWhilickProps[] = [
     {
@@ -88,15 +103,6 @@ export default function Whilick() {
     },
   ];
 
-  const [top, setTop] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const handleScroll = useCallback(() => {
-    if (scrollRef.current) {
-      setTop(scrollRef.current.scrollTop);
-    }
-  }, []);
-  console.log("top>>>", top);
-
   return (
     <>
       <div className="relative min-h-screen flex flex-col items-center justify-center">
@@ -126,7 +132,7 @@ export default function Whilick() {
               ttsUrl={ttsUrl}
               currentAudio={currentAudio}
               setCurrentAudio={setCurrentAudio}
-              top={top}
+              top={debouncedTop}
               globalAudioState={globalAudioState}
               setGlobalAudioState={setGlobalAudioState}
             />
