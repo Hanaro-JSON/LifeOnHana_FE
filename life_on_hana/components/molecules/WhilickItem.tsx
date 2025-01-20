@@ -72,8 +72,8 @@ export default function WhilickItem({
     <>
       <div className="snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center">
         {/* sound on/off */}
-        <div className="z-50 absolute top-6 flex flex-col space-y-6 items-center">
-          <div className="z-50 w-full h-10 flex justify-end items-center px-[1.5rem]">
+        <div className="z-50 absolute top-6 w-full flex flex-col space-y-6 items-center">
+          <div className="w-full h-10 flex justify-end items-center px-[1.5rem]">
             <audio ref={soundContainer}>
               <source src={ttsUrl} type="audio/mp3" />
             </audio>
