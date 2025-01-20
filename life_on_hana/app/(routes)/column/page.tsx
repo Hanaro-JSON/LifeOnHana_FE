@@ -6,6 +6,7 @@ import ArticleItem from "@/components/molecules/ArticleItem";
 import column from "../../../public/assets/column_color.svg";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const mockArticles = [
   {
@@ -154,6 +155,19 @@ export default function Column() {
     router.push(`/column/${id}`);
   };
 
+  const listVariants = {
+    hidden: { opacity: 0, y: 20 }, // 처음에는 아래에서 투명하게
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: index * 0.05, // 각 항목에 0.1초 간격으로 애니메이션 적용
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center pt-5">
@@ -187,9 +201,7 @@ export default function Column() {
                 key={category}
                 id={category}
                 className={`${
-                  selectedCategory === category
-                    ? "font-bold"
-                    : "opacity-45"
+                  selectedCategory === category ? "font-bold" : "opacity-45"
                 } mr-6 last:mr-0 text-[1.2rem] font-SCDream5 relative`}
                 onClick={() => setSelectedCategory(category)}
               >
@@ -212,20 +224,23 @@ export default function Column() {
             {filteredArticles.length > 0 ? (
               <div className="w-full flex flex-col items-center gap-4">
                 {filteredArticles.map((article, index) => (
-                  <div
+                  <motion.div
                     key={index}
                     onClick={() => handleArticleClick(article.article_id)} // 클릭 시 라우팅
                     className="cursor-pointer w-full"
+                    custom={index} // 각 항목에 대해 index 전달
+                    initial="hidden"
+                    animate="visible"
+                    variants={listVariants}
                   >
-                  <ArticleItem
-                    key={index}
-                    title={article.title}
-                    category={article.category}
-                    published_at={article.published_at}
-                    thumbnail_s3_key={article.thumbnail_s3_key}
-                    is_liked={article.is_liked}
-                  />
-                  </div>
+                    <ArticleItem
+                      title={article.title}
+                      category={article.category}
+                      published_at={article.published_at}
+                      thumbnail_s3_key={article.thumbnail_s3_key}
+                      is_liked={article.is_liked}
+                    />
+                  </motion.div>
                 ))}
               </div>
             ) : (
@@ -249,3 +264,4 @@ export default function Column() {
     </div>
   );
 }
+
