@@ -1,5 +1,25 @@
+<<<<<<< HEAD
 import { type TAdjustBtnProps } from "@/types/componentTypes";
 import { useEffect, useRef } from "react";
+=======
+// import { type TAdjustBtnProps } from "@/types/componentTypes";
+// import { useState } from "react";
+
+import { useEffect, useRef } from "react";
+
+type TAdjustBtnProps = {
+  id: string;
+  isOpen: boolean;
+  typeCeilTxt: string;
+  typeBottomTxt: string;
+  first: string;
+  second: string;
+  third: string;
+  mX: number;
+  mY: number;
+  onToggle: (id: string) => void; // 상위 컴포넌트에 열림 상태 전달
+};
+>>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
 
 export default function AdjustBtn({
   id,
@@ -47,12 +67,18 @@ export default function AdjustBtn({
         className={` ${
           isOpen ? "bg-white text-purple-600 border shadow-purple-100 " : "bg-purple-600 text-white"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
 =======
         className={`${
           isOpen ? "bg-white text-purple-600 border shadow-purple-100" : "bg-purple-600 text-white"
 >>>>>>> 9d1d71a ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
+<<<<<<< HEAD
 =======
 >>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
+=======
+>>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
         } rounded-full size-16 font-semibold shadow-md`}
       >
         {typeCeilTxt} <br />

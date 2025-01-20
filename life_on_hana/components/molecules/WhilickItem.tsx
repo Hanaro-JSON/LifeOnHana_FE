@@ -14,6 +14,7 @@ import AdjustBtn from "../atoms/AdjustBtn";
 import Btn from "../atoms/Btn";
 import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
 import IsLike from "./IsLike";
+<<<<<<< HEAD
 >>>>>>> ad3be8a ([feat] 🐿️ WhilickItem 컴포넌트 내 arrow down 버튼 애니메이션 추가)
 
 export default function WhilickItem({
@@ -77,6 +78,18 @@ export default function WhilickItem({
     };
   }, [top, idx, globalAudioState]);
 
+=======
+import { useState } from "react";
+
+export default function WhilickItem({ title, shorts, articleId, isLiked, likeCount }: TWhilickItemProps) {
+  const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
+
+  // 동일 버튼 클릭 시 닫힘
+  const handleAdjustBtnToggle = (id: string) => {
+    setOpenedAdjustBtn((prev) => (prev === id ? null : id));
+  };
+
+>>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
   return (
     <>
       <div className="snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center">

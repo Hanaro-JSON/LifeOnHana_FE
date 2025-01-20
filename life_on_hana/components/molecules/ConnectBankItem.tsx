@@ -66,6 +66,7 @@ export default function ConnectBankItem({
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div className="w-full h-[3.75rem] flex items-center justify-between relative">
       <div className="flex items-center">
 <<<<<<< HEAD
@@ -88,6 +89,12 @@ export default function ConnectBankItem({
           {displayBankName}
         </div>
 >>>>>>> 37b88d1 ([chore] 🐳 import에 type 명시)
+=======
+    <div className="w-full h-[3.75rem] flex items-center justify-between relative">
+      <div className="flex items-center">
+        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bankName} Logo`} width={20} height={15} />
+        <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{displayBankName}</div>
+>>>>>>> 01f5c80 ([fix] 🐿️ AdjustBtn 두 개가 동시에 전부 열려있는 오류 해결)
       </div>
 
       <div className="w-[.9375rem] h-[.9375rem]">
