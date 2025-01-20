@@ -20,9 +20,12 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.64.1
         version: 5.64.1(react@19.0.0)
+<<<<<<< HEAD
       '@tanstack/react-query-devtools':
         specifier: '4'
         version: 4.36.1(@tanstack/react-query@5.64.1(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+=======
+>>>>>>> 990bbc5 ([chore] 🐿️ install React Query)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -94,6 +97,9 @@ importers:
         specifier: 8.4.7
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 990bbc5 ([chore] 🐿️ install React Query)
         version: 8.4.7(storybook@8.4.7(prettier@3.4.2))
 =======
         version: 8.4.7(storybook@8.4.7)
@@ -101,9 +107,12 @@ importers:
         specifier: ^5.62.16
         version: 5.62.16(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.3)
 >>>>>>> f1cf09b ([chore] 🐿️ install React Query)
+<<<<<<< HEAD
 =======
         version: 8.4.7(storybook@8.4.7(prettier@3.4.2))
 >>>>>>> 39cdac2 ([chore] 🐳 airbnb-lint, prettier 설정)
+=======
+>>>>>>> 990bbc5 ([chore] 🐿️ install React Query)
       '@types/node':
         specifier: ^20
         version: 20.17.12
@@ -1579,6 +1588,7 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
+<<<<<<< HEAD
   '@tanstack/match-sorter-utils@8.19.4':
     resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
     engines: {node: '>=12'}
@@ -1593,6 +1603,11 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
+=======
+  '@tanstack/query-core@5.64.1':
+    resolution: {integrity: sha512-978Wx4Wl4UJZbmvU/rkaM9cQtXXrbhK0lsz/UZhYIbyKYA8E4LdomTwyh2GHZ4oU0BKKoDH4YlKk2VscCUgNmg==}
+
+>>>>>>> 990bbc5 ([chore] 🐿️ install React Query)
   '@tanstack/react-query@5.64.1':
     resolution: {integrity: sha512-vW5ggHpIO2Yjj44b4sB+Fd3cdnlMJppXRBJkEHvld6FXh3j5dwWJoQo7mGtKI2RbSFyiyu/PhGAy0+Vv5ev9Eg==}
     peerDependencies:
@@ -6216,6 +6231,7 @@ snapshots:
       - supports-color
       - typescript
 
+<<<<<<< HEAD
   '@tanstack/match-sorter-utils@8.19.4':
     dependencies:
       remove-accents: 0.5.0
@@ -6231,6 +6247,10 @@ snapshots:
       superjson: 1.13.3
       use-sync-external-store: 1.4.0(react@19.0.0)
 
+=======
+  '@tanstack/query-core@5.64.1': {}
+
+>>>>>>> 990bbc5 ([chore] 🐿️ install React Query)
   '@tanstack/react-query@5.64.1(react@19.0.0)':
     dependencies:
       '@tanstack/query-core': 5.64.1
