@@ -57,13 +57,13 @@ export default function ColumnRecommendItem({ variant, name, onClick, isSelected
       <button
         onClick={clickEvent}
         className={`${
-          isSelected  && "border-4 border-hanapurple "
-        } rounded-[10px] bg-cover bg-center w-[12rem] h-[8rem] flex flex-col items-start justify-start p-2 shadow-xl`}
+          isSelected  && "border-2 border-hanapurple "
+        } rounded-[10px] bg-cover bg-center w-full min-h-32 flex flex-col items-start justify-start p-2 shadow-xl`}
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={name}
       >
-        <div className="text-hanapurple font-SCDream6 text-[.75rem] mb-1">{getCategory(variant)}</div>
-        <div className="line-clamp font-SCDream5 text-[.9375rem] flex justify-start text-left">{name}</div>
+        <div className="text-hanapurple font-SCDream6 text-[1.2rem] mb-1">{getCategory(variant)}</div>
+        <div className="line-clamp font-SCDream5 text-[1rem] flex justify-start text-left">{name}</div>
       </button>
       <style jsx>{`
         .line-clamp {

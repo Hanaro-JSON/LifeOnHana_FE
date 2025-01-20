@@ -44,18 +44,20 @@ export default function ArticleAIRecommendDetailItem({
         </div>
 
         {/* 제목 */}
-        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">{name}</div>
+        <div className="-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start">{name}</div>
 
         {/* 내용 */}
-        <div className="w-full text-[.8125rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow">
+        <div className="w-full text-[1.1rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow">
           <p className="text-left">{description}</p>
         </div>
 
         {/* 버튼, url */}
         {/* 현재 버튼은 Btn의 default 가져온 상태 */}
-        <div className="mt-4">
-          <Btn text={"상품정보 자세히보기"} url={link} />
-        </div>
+        <div className="mt-4 w-full flex justify-center">
+            <div className="w-full">
+                <Btn text={"상품정보 자세히보기"} url={link} />
+              </div>
+          </div>
       </div>
     </div>
   );

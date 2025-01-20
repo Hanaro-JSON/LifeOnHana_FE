@@ -5,9 +5,11 @@ import SearchInput from "@/components/molecules/SearchInput";
 import ArticleItem from "@/components/molecules/ArticleItem";
 import column from "../../../public/assets/column_color.svg";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const mockArticles = [
   {
+    article_id: 1,
     title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
@@ -15,6 +17,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 2,
     title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
@@ -22,6 +25,7 @@ const mockArticles = [
     is_liked: true,
   },
   {
+    article_id: 3,
     title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
@@ -29,6 +33,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 4,
     title: "취미를 찾아볼까요?",
     category: "취미",
     published_at: "2025-01-12",
@@ -36,6 +41,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 5,
     title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
@@ -43,6 +49,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 6,
     title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
@@ -50,6 +57,7 @@ const mockArticles = [
     is_liked: true,
   },
   {
+    article_id: 7,
     title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
@@ -57,6 +65,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 8,
     title: "취미를 찾아볼까요?",
     category: "취미",
     published_at: "2025-01-12",
@@ -64,6 +73,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 9,
     title: "제주도로 여행을 떠나볼까요???",
     category: "여행",
     published_at: "2025-01-12",
@@ -71,6 +81,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 10,
     title: "요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?",
     category: "취미",
     published_at: "2024-12-08",
@@ -78,6 +89,7 @@ const mockArticles = [
     is_liked: true,
   },
   {
+    article_id: 11,
     title: "투자를 해요",
     category: "투자",
     published_at: "2024-11-15",
@@ -85,6 +97,7 @@ const mockArticles = [
     is_liked: false,
   },
   {
+    article_id: 12,
     title: "취미를 찾아볼까요?",
     category: "취미",
     published_at: "2025-01-12",
@@ -94,6 +107,7 @@ const mockArticles = [
 ];
 
 export default function Column() {
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [filteredArticles, setFilteredArticles] = useState(mockArticles);
   const [selectedCategory, setSelectedCategory] = useState("전체보기");
@@ -134,6 +148,11 @@ export default function Column() {
       });
     }
   }, [selectedCategory]);
+
+  const handleArticleClick = (id: number) => {
+    // 동적 라우팅으로 상세 페이지로 이동
+    router.push(`/column/${id}`);
+  };
 
   return (
     <div>
@@ -193,6 +212,11 @@ export default function Column() {
             {filteredArticles.length > 0 ? (
               <div className="w-full flex flex-col items-center gap-4">
                 {filteredArticles.map((article, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleArticleClick(article.article_id)} // 클릭 시 라우팅
+                    className="cursor-pointer w-full"
+                  >
                   <ArticleItem
                     key={index}
                     title={article.title}
@@ -201,6 +225,7 @@ export default function Column() {
                     thumbnail_s3_key={article.thumbnail_s3_key}
                     is_liked={article.is_liked}
                   />
+                  </div>
                 ))}
               </div>
             ) : (
