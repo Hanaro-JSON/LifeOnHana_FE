@@ -48,8 +48,12 @@ export default function WhilickItem({
 
     const isVisible = Math.floor(top / window.innerHeight) === idx;
 
-    if (isVisible && globalAudioState.isPlaying && !globalAudioState.isMute) {
-      audio.play().catch(console.error);
+    if (isVisible) {
+      // 오디오를 처음으로 되감기
+      audio.currentTime = 0;
+      if (globalAudioState.isPlaying && !globalAudioState.isMute) {
+        audio.play().catch(console.error);
+      }
     } else {
       audio.pause();
     }
