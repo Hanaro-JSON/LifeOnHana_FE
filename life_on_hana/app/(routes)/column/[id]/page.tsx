@@ -74,10 +74,8 @@ const mockData = {
 export default function Detail() {
   const [article] = useState(mockData);
 
-  // 하나만 선택될 수 있도록 관리하는 state
   const [selectedProduct, setSelectedProduct] = useState<TArticleAIRecommendDetailItemProps | null>(null);
 
-  // 제목 8글자 기준 나누기
   const [titleParts, setTitleParts] = useState<string[]>([]);
   useEffect(() => {
     const splitTitle = (title: string) => {
@@ -90,29 +88,37 @@ export default function Detail() {
     setTitleParts(splitTitle(article.title));
   }, [article.title]);
 
-  // 상품 클릭 시 상태 변경: 이미 선택된 상품을 다시 클릭하면 선택 해제해주고 싶다면 토글 로직 추가
   const handleProductClick = (product: TArticleAIRecommendDetailItemProps) => {
     if (selectedProduct?.product_id === product.product_id) {
-      // 이미 같은 상품을 누른 경우 해제(토글)한다면
       setSelectedProduct(null);
     } else {
-      // 그 외에는 클릭한 상품으로 변경
       setSelectedProduct(product);
     }
+  };
+
+  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
+
+  const handleFontSizeChange = (value: number) => {
+    setFontSizeMultiplier(value);
   };
 
   return (
     <div className="h-screen bg-white">
       
         <AdjustBtn
-          typeCeilTxt="글씨"
-          typeButtomTxt="크기"
-          first="작게"
-          second="보통"
-          thired="크게"
-          mX={90}
-          mY={75}
-        />
+        typeCeilTxt="글씨"
+        typeButtomTxt="크기"
+        first="보통"
+        second="크게"
+        thired="왕큼"
+        mX={90}
+        mY={75}
+        onChange={(value) => {
+          if (value === 1) handleFontSizeChange(1.0);
+          if (value === 2) handleFontSizeChange(1.3);
+          if (value === 3) handleFontSizeChange(1.5);
+        }}
+      />
         <MoveToTopBtn />
         <MoveToBackBtn />
       <div className="flex flex-col items-center">
@@ -162,57 +168,55 @@ export default function Detail() {
           {/* 본문, 관련 상품 영역 */}
           <div className=" w-[90%] flex flex-col mx-auto">
             <div className="font-SCDream5 text-[15px] mb-2">{formatDate(article.published_at)}</div>
-
-<div>
-  {article.content.map((item, index) => {
-    if (item.type === "IMAGE") {
-      // 이미지는 블록 요소로 감싸서 새 줄로 처리
-      return (
-        <div key={index} className="my-4">
-          <div className="flex justify-center items-center">
-          <Image
-            src={item.content}
-            alt={item.caption ?? "이미지"}
-            width={340}
-            height={255}
-            className="w-full"
-          />
-          </div>
-        </div>
-      );
-    } else if (item.type === "TEXT") {
-      // 줄바꿈 없이 그냥 이어붙이기 위해 span 사용
-      return (
-        <span
-          key={index}
-          className="font-SCDream3 text-[16px] leading-relaxed"
-        >
-          {item.content}
-        </span>
-      );
-    } else if (item.type === "WORD") {
-      // WORD도 동일하게 span 사용, underline 스타일만 추가
-      return (
-        <span key={index} className="font-SCDream3 text-[16px] leading-relaxed underline decoration-1 decoration-hanapurple">
-          {item.content} <OpenDescriptionItem description={item.description!} />
-        </span>
-      );
-    } else {
-      return null; // 그 외 type은 처리 없음
-    }
-  })}
-</div>
-
-
+              <div>
+                {article.content.map((item, index) => {
+                  if (item.type === "IMAGE") {
+                    return (
+                      <div key={index} className="my-4">
+                        <div className="flex justify-center items-center">
+                        <Image
+                          src={item.content}
+                          alt={item.caption ?? "이미지"}
+                          width={340}
+                          height={255}
+                          className="w-full"
+                        />
+                        </div>
+                      </div>
+                    );
+                  } else if (item.type === "TEXT") {
+                    return (
+                      <span
+                        key={index}
+                        className="font-SCDream3 leading-relaxed"
+                        style={{
+                            fontSize: `calc(1.3rem * ${fontSizeMultiplier})`,
+                          }}
+                      >
+                        {item.content}
+                      </span>
+                    );
+                  } else if (item.type === "WORD") {
+                    return (
+                      <span key={index} className="font-SCDream3 leading-relaxed underline decoration-1 decoration-hanapurple"
+                                        style={{
+                                          fontSize: `calc(1.3rem * ${fontSizeMultiplier})`,
+                                        }}>
+                        {item.content} <OpenDescriptionItem description={item.description!} />
+                      </span>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+              </div>
             <div className="w-[100%] mx-auto border-b-2 border-b-hanadeepgray my-6"></div>
-
             <div className="font-SCDream5 text-[15px] my-3">관련있는 상품</div>
             <div className="flex gap-5">
               <div className="w-[90%]">
               <ColumnRecommendItem
                 variant="TRAVEL"
                 name={article.related_products[0].name}
-                // 현재 selectedProduct와 비교하여 true/false 판별
                 isSelected={selectedProduct?.product_id === article.related_products[0].product_id}
                 onClick={() => handleProductClick(article.related_products[0])}
               />
@@ -226,9 +230,7 @@ export default function Detail() {
               />
               </div>
             </div>
-
             <div className="font-SCDream5 text-[15px] my-3 mt-9">XXX님의 AI 맞춤 정보</div>
-
             <div className="mb-20">
               {selectedProduct ? (
                 <ArticleAIRecommendDetailItem
