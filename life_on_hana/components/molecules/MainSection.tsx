@@ -21,7 +21,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
       <Section height="13.9375rem">
         <div className="w-full flex flex-col">
           <div className="flex justify-center text-center mb-2">
-            <Image src={randomItem.label} alt="제목" className="w-[80%]" width={300} height={300} />
+            <Image src={randomItem.label} alt="제목" className="w-[80%]" width={300} height={300} priority />
           </div>
           <div className="w-full flex justify-between items-center">
             <div>
@@ -31,7 +31,14 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
               </div>
               <div className="font-SCDream8 text-[1.4375rem]">{walletAmount}만원</div>
             </div>
-            <Image src={randomItem.src} alt="mainSectionImg" width={100} height={100} />
+            <Image
+              src={randomItem.src}
+              alt="mainSectionImg"
+              width={100}
+              height={100}
+              style={{ width: "auto", height: "auto" }}
+              priority
+            />
           </div>
 
           <Link href={"/wallet"}>
