@@ -159,10 +159,14 @@ export default function Home() {
     mockExpenseCategories
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
   //칼럼 목록 조회
 =======
   //컬럼 목록 조회
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+  //칼럼 목록 조회
+>>>>>>> 08f00b8 ([fix] 🐳 오타 수정)
   const [articles, setArticles] = useState(mockArticles);
   const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
     useState<TRecommendCarouselColumnProps[]>([]);
