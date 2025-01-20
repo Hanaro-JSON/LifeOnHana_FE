@@ -42,10 +42,7 @@ export default function Nav() {
                 width={24}
                 height={24}
                 style={{ width: "auto", height: "auto" }}
-<<<<<<< HEAD
                 priority
-=======
->>>>>>> 692efb1 ([fix] 🐿️ Image 로그 과정 중 발생하는 경고 해결)
               />
               <span className={segment === route ? clickedLableClassNames : lableClassNames}>{label}</span>
             </Link>
