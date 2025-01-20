@@ -91,27 +91,44 @@ export default function LikedAccountProductDetailItem({
         <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
           {closeBtn && (
 <<<<<<< HEAD
+<<<<<<< HEAD
             <button onClick={handleCloseClick} className="p-1">
               <Image src={X} alt="Close" width={15} height={15} />
 =======
             <button onClick={handleClose} className="p-1">
               <Image src={X} alt="Close" width={13} height={13} priority />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+            <button onClick={handleCloseClick} className="p-1">
+              <Image src={X} alt="Close" width={13} height={13} />
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
             </button>
           )}
         </div>
 
         {/* 제목 */}
+<<<<<<< HEAD
         <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2">
+=======
+        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start mb-2">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           {name}
         </div>
 
         {/* 내용 */}
+<<<<<<< HEAD
         <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[6rem] flex-grow mb-2">
           <p className="text-left">{description}</p>
         </div>
 
         <div className="text-[1.3rem] font-SCDream8 text-left self-start mb-2">
+=======
+        <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[6rem] flex-grow mb-2">
+          <p className="text-left">{description}</p>
+        </div>
+
+        <div className="text-[.9375rem] font-SCDream8 text-left self-start mb-2">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           나의 예상 혜택
         </div>
 
@@ -119,20 +136,34 @@ export default function LikedAccountProductDetailItem({
           <div className="w-full h-[100%] left-0 top-0  bg-[#f4ebfb] rounded-[18px]">
             <div className="p-4 m-2">
               <div className="flex justify-between">
+<<<<<<< HEAD
                 <div className="text-black text-[1rem] font-SCDream3">
                   만기금액(세전)
                 </div>
                 <div className="text-right text-black text-[1rem] font-SCDream5">
+=======
+                <div className="text-black text-[.8125rem] font-SCDream3">
+                  만기금액(세전)
+                </div>
+                <div className="text-right text-black text-[.8125rem] font-SCDream5">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
                   {calculatedAmount
                     ? `${parseInt(calculatedAmount).toLocaleString()}원`
                     : "금액을 입력해주세요"}
                 </div>
               </div>
               <div className="flex justify-between mt-2">
+<<<<<<< HEAD
                 <div className="text-black text-[1rem] font-SCDream3">
                   적용금리
                 </div>
                 <div className="text-right text-black text-[1rem] font-SCDream5">
+=======
+                <div className="text-black text-[.8125rem] font-SCDream3">
+                  적용금리
+                </div>
+                <div className="text-right text-black text-[.8125rem] font-SCDream5">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
                   {calculatedAmount === "0"
                     ? `${savingsInfo.basicInterestRate}% ~ ${savingsInfo.maxInterestRate}%`
                     : `연 ${interestRate}%`}
@@ -143,7 +174,11 @@ export default function LikedAccountProductDetailItem({
         </div>
 
         {/* 적금 계산 입력 폼 */}
+<<<<<<< HEAD
         <div className="flex flex-col text-[1rem]">
+=======
+        <div className="flex flex-col text-[.8125rem]">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           <div className="flex items-center">
             <input
               type="text"
@@ -184,10 +219,15 @@ export default function LikedAccountProductDetailItem({
         </div>
 
         {/* 버튼 */}
+<<<<<<< HEAD
         <div className="mt-4 w-full flex justify-center">
           <div className="w-full">
             <Btn text={"상품정보 자세히보기"} url={link} />
           </div>
+=======
+        <div className="mt-4 -ml-2">
+          <Btn text={"상품정보 자세히보기"} url={link} />
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
         </div>
       </div>
     </div>

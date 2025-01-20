@@ -3,16 +3,26 @@
 import { useState, useEffect } from "react";
 import { RecommendItem } from "@/components/molecules/RecommendItem";
 import {
+<<<<<<< HEAD
   type TRecommendItemProps,
   type TLikedLoanProductDetailItemProps,
   type TLikedAccountProductDetailItemProps,
   type TLikedLifeProductDetailItemProps,
+=======
+  TRecommendItemProps,
+  TLikedLoanProductDetailItemProps,
+  TLikedAccountProductDetailItemProps,
+  TLikedLifeProductDetailItemProps,
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
 } from "@/types/componentTypes";
 
 import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductDetailItem";
 import LikedAccountProductDetailItem from "@/components/molecules/LikedAccountProductDetailItem";
 import LikedLifeProductDetailItem from "@/components/molecules/LikedLifeProductDetail";
+<<<<<<< HEAD
 import { NavHeader } from "@/components/molecules/NavHeader";
+=======
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
 
 const mockData = {
   code: 200,
@@ -66,7 +76,11 @@ const mockData = {
       category: "대출",
     },
     {
+<<<<<<< HEAD
       productId: "166",
+=======
+      productId: "101",
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -79,7 +93,11 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
       productId: "155",
+=======
+      productId: "101",
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -92,7 +110,11 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
       productId: "144",
+=======
+      productId: "101",
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -105,7 +127,11 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
       productId: "133",
+=======
+      productId: "101",
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -118,7 +144,11 @@ const mockData = {
       minCreditScore: null,
     },
     {
+<<<<<<< HEAD
       productId: "122",
+=======
+      productId: "101",
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -255,11 +285,19 @@ export default function Like() {
 
   return (
     <div className="flex flex-col h-screen">
+<<<<<<< HEAD
       <div className="pt-6 px-6">
         <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
       </div>
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
         <div className="flex flex-col gap-4 pb-[10vh]">
+=======
+      <div className="font-Hana2heavy text-[1.25rem] my-6 text-center sticky top-0 z-10">
+        관심있을 만한 상품 (컴포넌트로 분리한거 가져오기)
+      </div>
+      <div className="flex-1 overflow-y-auto px-5 mb-32" >
+        <div className="flex flex-col gap-28 pb-[10vh]">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           {products.map((product) => (
             <RecommendItem key={product.productId} {...product} />
           ))}

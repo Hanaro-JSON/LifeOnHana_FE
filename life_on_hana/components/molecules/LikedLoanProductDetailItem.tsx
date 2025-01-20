@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
 import React from "react";
 import Btn from "../atoms/Btn";
 import X from "../../assets/X.svg";
@@ -56,28 +59,45 @@ export default function LikedLoanProductDetailItem({
         <div className=" top-[-1rem] right-[-1rem] flex justify-end items-center w-full">
           {closeBtn && (
 <<<<<<< HEAD
+<<<<<<< HEAD
             <button onClick={handleCloseClick} className="p-1">
               <Image src={X} alt="Close" width={15} height={15} />
 =======
             <button onClick={handleClose} className="p-1">
               <Image src={X} alt="Close" width={13} height={13} priority />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+=======
+            <button onClick={handleCloseClick} className="p-1">
+              <Image src={X} alt="Close" width={13} height={13} />
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
             </button>
           )}
         </div>
 
         {/* 제목 */}
+<<<<<<< HEAD
         <div className="-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2">
+=======
+        <div className="-mt-[0.5rem] text-[.9375rem] font-SCDream8 text-left self-start">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           {name}
         </div>
 
         {/* 내용 */}
+<<<<<<< HEAD
         <div className="w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[7rem] flex-grow">
+=======
+        <div className="w-[17.3rem] text-[.8125rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[9rem] flex-grow">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           <p>{description}</p>
         </div>
 
         {/* 상세정보: 특징/대상/한도/기간 */}
+<<<<<<< HEAD
         <div className="space-y-4 mt-8">
+=======
+        <div className="space-y-4 -mt-2">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           {[
             { label: "특징", content: feature },
             { label: "대상", content: target },
@@ -93,7 +113,11 @@ export default function LikedLoanProductDetailItem({
                   {label}
                 </div>
               </div>
+<<<<<<< HEAD
               <div className="text-[1rem] font-SCDream3 flex-grow">
+=======
+              <div className="text-[.6875rem] font-SCDream3 flex-grow">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
                 {content}
               </div>
             </div>
@@ -101,8 +125,12 @@ export default function LikedLoanProductDetailItem({
         </div>
 
         {/* 버튼 */}
+<<<<<<< HEAD
         <div className="mt-4 w-full flex justify-center">
           <div className="w-full">
+=======
+        <div className="mt-4 -ml-2">
+>>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
           <Btn text={"상품정보 자세히보기"} url={link} />
           </div>
         </div>
