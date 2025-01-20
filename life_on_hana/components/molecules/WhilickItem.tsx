@@ -4,6 +4,7 @@ import AdjustBtn from "@/components/atoms/AdjustBtn";
 import Btn from "@/components/atoms/Btn";
 import CopyClipboardBtn from "@/components/atoms/CopyClipboardBtn";
 import IsLike from "@/components/molecules/IsLike";
+<<<<<<< HEAD
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import soundOn from "@/assets/sound-on.svg";
@@ -16,6 +17,12 @@ import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
 import IsLike from "./IsLike";
 <<<<<<< HEAD
 >>>>>>> ad3be8a ([feat] 🐿️ WhilickItem 컴포넌트 내 arrow down 버튼 애니메이션 추가)
+=======
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import soundOn from "@/assets/sound-on.svg";
+import soundOff from "@/assets/sound-off.svg";
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
 
 export default function WhilickItem({
   idx,

@@ -9,6 +9,9 @@ export default function DescriptionDetailItem({
   return (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
     <div
       className="w-[12.5rem] max-h-[6.25rem] bg-white border-2 border-hanapurple rounded-lg p-2 shadow-lg"
       onClick={(e) => e.stopPropagation()} // 이벤트 전파 방지
@@ -35,6 +38,7 @@ export default function DescriptionDetailItem({
       )}
     </>
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
     <div
       className="w-[12.5rem] max-h-[6.25rem] bg-white border-2 border-hanapurple rounded-lg p-2 shadow-lg"
@@ -46,5 +50,7 @@ export default function DescriptionDetailItem({
       </div>
     </div>
 >>>>>>> 4018117 ([fix] 🐣 columnDetail 페이지 수정)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
   );
 }

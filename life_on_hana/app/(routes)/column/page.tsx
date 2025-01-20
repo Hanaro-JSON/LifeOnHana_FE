@@ -142,8 +142,11 @@ export default function Column() {
 =======
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
+<<<<<<< HEAD
 =======
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
   },
   {
     title: "'선순환' 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력",
@@ -179,6 +182,7 @@ export default function Column() {
     published_at: "2024-11-15",
     thumbnail_s3_key: "https://hana1qm.com/dataFile/bbs/202432011132520529.jpg",
     is_liked: false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   },
@@ -275,6 +279,10 @@ export default function Column() {
     is_liked: false,
   },
 >>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
+=======
+  },
+  // Add more articles as needed...
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
 ];
 
 export default function Column() {
@@ -294,16 +302,22 @@ export default function Column() {
     if (searchValue) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
       filtered = filtered.filter((article) =>
         article.title.includes(searchValue)
 =======
       filtered = filtered.filter(
         (article) => article.title.includes(searchValue) || article.category.includes(searchValue)
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
       filtered = filtered.filter((article) =>
         article.title.includes(searchValue)
 >>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
       );
     }
 
@@ -336,24 +350,35 @@ export default function Column() {
   return (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
     <div>
       <div className="flex flex-col items-center pt-5">
         <div className="w-full flex items-center gap-3 mb-4 px-[1rem]">
           <Image src={column} alt="column icon" width={25} height={22} />
           <div className="text-[1.8rem] font-Hana2bold">칼럼</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <div className="bg-[#f1f0f2]">
 =======
     <div>
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
+=======
+=======
+    <div className="bg-[#f1f0f2]">
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
       <div className="flex flex-col items-center pt-4">
         <div className="w-full flex items-center gap-4 mb-4 px-[2rem]">
           <Image src={column} alt="column icon" width={20} height={20} priority />
           <div className="text-[1.5rem] font-Hana2bold">칼럼</div>
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
 >>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
         </div>
       </div>
 
@@ -361,8 +386,11 @@ export default function Column() {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
         <div className="w-full mb-4 px-[1rem]">
           <SearchInput
             placeholder="칼럼 검색"
@@ -370,11 +398,15 @@ export default function Column() {
             onChange={setSearchValue}
           />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
 =======
         {/* 검색 영역 */}
         <div className="w-full mb-4 px-[2rem]">
           <SearchInput placeholder="칼럼 검색" value={searchValue} />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
         {/* 검색 영역 */}
         <div className="w-full mb-4 px-[2rem]">
@@ -382,6 +414,8 @@ export default function Column() {
 >>>>>>> 80c83aa ([feat] 🐳 NavHeader component 생성)
 =======
 >>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
         </div>
 
         <div className="w-[95%] rounded-3xl flex flex-col">
@@ -405,12 +439,18 @@ export default function Column() {
                     : "opacity-45"
                 } mr-6 last:mr-0 text-[1.2rem] font-SCDream5 relative`}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
 =======
                   selectedCategory === category ? "font-bold text-black" : "opacity-45"
                 } mr-6 last:mr-0 text-[1.125rem] font-SCDream5 relative`}
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
 >>>>>>> c4a3107 ([fix] 🐣 column페이지 크기 및 컴포넌트 조절)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}

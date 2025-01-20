@@ -3,8 +3,11 @@ import Image from "next/image";
 import openDescriptionItem from "@/assets/openDescriptionItem.svg";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 4018117 ([fix] 🐣 columnDetail 페이지 수정)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
 import DescriptionDetailItem from "./DescriptionDetailItem";
 =======
 import { useState } from "react";
@@ -83,10 +86,13 @@ export default function OpenDescriptionItem({ description }: { description: stri
         >
           <DescriptionDetailItem description={description} closePopup={closePopup} />
 =======
+<<<<<<< HEAD
 =======
     <div className="inline-block">
       {/* 아이콘 */}
 >>>>>>> 4018117 ([fix] 🐣 columnDetail 페이지 수정)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
       <Image
         onClick={openDescriptionEvent}
         src={openDescriptionItem}
@@ -95,10 +101,14 @@ export default function OpenDescriptionItem({ description }: { description: stri
         priority
       />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
       {isOpen && (
         <div className="absolute z-10 right-5 top-full">
           <DescriptionDetailItem idx={2} />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
 =======
     <div className="relative inline-block">
@@ -125,6 +135,8 @@ export default function OpenDescriptionItem({ description }: { description: stri
         >
           <DescriptionDetailItem description={description} closePopup={closePopup} />
 >>>>>>> 4018117 ([fix] 🐣 columnDetail 페이지 수정)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
         </div>
       )}
     </div>

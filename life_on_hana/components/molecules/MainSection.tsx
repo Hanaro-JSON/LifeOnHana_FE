@@ -103,7 +103,11 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
 =======
             </div>
           </div>
+<<<<<<< HEAD
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+<<<<<<< HEAD
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
           <div className="mt-3">
             <Link href={"/wallet"}>
               <button className="font-SCDream3 text-[.75rem] flex items-center ">
@@ -113,6 +117,9 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
             </Link>
           </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
 =======
 
           <Link href={"/wallet"}>
@@ -122,8 +129,11 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
             </button>
           </Link>
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
 >>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
         </div>
       </Section>
     </>

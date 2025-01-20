@@ -92,12 +92,16 @@ export default function LikedAccountProductDetailItem({
           {closeBtn && (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
             <button onClick={handleCloseClick} className="p-1">
               <Image src={X} alt="Close" width={15} height={15} />
 =======
             <button onClick={handleClose} className="p-1">
               <Image src={X} alt="Close" width={13} height={13} priority />
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)
+<<<<<<< HEAD
 =======
             <button onClick={handleCloseClick} className="p-1">
 <<<<<<< HEAD
@@ -106,6 +110,8 @@ export default function LikedAccountProductDetailItem({
 =======
               <Image src={X} alt="Close" width={15} height={15} />
 >>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
+=======
+>>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
             </button>
           )}
         </div>
