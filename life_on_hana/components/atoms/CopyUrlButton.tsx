@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f6439c0 ([feat] 🐿️ Whilick 페이지 생성)
 <<<<<<< HEAD:life_on_hana/components/atoms/CopyUrlButton.tsx
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -57,9 +60,12 @@ export default function CopyUrlButton() {
   );
 }
 =======
+<<<<<<< HEAD
 =======
 <<<<<<<< HEAD:life_on_hana/components/atoms/CopyClipboardBtn.tsx
 >>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
+=======
+>>>>>>> f6439c0 ([feat] 🐿️ Whilick 페이지 생성)
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import CopyClipboardBtnImg from "@/assets/CopyClipboardBtnImg.svg";
@@ -106,13 +112,17 @@ export default function CopyClipboardBtn() {
         className="mb-2 cursor-pointer"
         onClick={handleCopy}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         priority
 >>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
+=======
+>>>>>>> f6439c0 ([feat] 🐿️ Whilick 페이지 생성)
       />
     </div>
   );
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> a04ec47 ([feat] 🐿️ Whilick 페이지 생성):life_on_hana/components/atoms/CopyClipboardBtn.tsx
 =======
@@ -175,3 +185,6 @@ export default function CopyUrlButton() {
 }
 >>>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가):life_on_hana/components/atoms/CopyUrlButton.tsx
 >>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
+=======
+>>>>>>> a04ec47 ([feat] 🐿️ Whilick 페이지 생성):life_on_hana/components/atoms/CopyClipboardBtn.tsx
+>>>>>>> f6439c0 ([feat] 🐿️ Whilick 페이지 생성)
