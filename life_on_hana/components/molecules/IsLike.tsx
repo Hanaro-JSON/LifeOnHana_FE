@@ -20,32 +20,14 @@ export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: T
           <Image
             src={isLiked ? HeartYes : HeartNo}
             alt={isLiked ? "Liked" : "Not Liked"}
-<<<<<<< HEAD
-<<<<<<< HEAD
             width={30}
             height={30}
-=======
-            width={24}
-            height={24}
->>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
-=======
-            width={30}
-            height={30}
->>>>>>> f6439c0 ([feat] 🐿️ Whilick 페이지 생성)
             onClick={toggleLike}
             className="cursor-pointer"
             priority
           />
         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <div className="mt-1 text-[1rem] text-hanapurple font-SCDream3">{count}</div>
-=======
-        <div className="mt-1 text-[.7rem] text-hanapurple font-SCDream3">{count}</div>
->>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
-=======
-        <div className="mt-1 text-[1rem] text-hanapurple font-SCDream3">{count}</div>
->>>>>>> f6439c0 ([feat] 🐿️ Whilick 페이지 생성)
       </div>
     </>
   );
