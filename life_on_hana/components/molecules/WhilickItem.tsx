@@ -17,7 +17,14 @@ export default function WhilickItem({
   likeCount,
   ttsUrl,
   top,
-}: TWhilickItemProps & { idx: number; top: number }) {
+  globalAudioState,
+  setGlobalAudioState,
+}: TWhilickItemProps & {
+  idx: number;
+  top: number;
+  globalAudioState: { isPlaying: boolean; isMute: boolean };
+  setGlobalAudioState: React.Dispatch<React.SetStateAction<{ isPlaying: boolean; isMute: boolean }>>;
+}) {
   // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
 
@@ -26,19 +33,14 @@ export default function WhilickItem({
   };
 
   // audio
-  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const toggleAudio = useCallback(() => {
-    const audio = audioRef.current!;
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.volume = 1;
-      audio.play().catch(console.error);
-    }
-    setIsPlaying(!isPlaying);
-  }, [isPlaying]);
+    setGlobalAudioState((prevState) => ({
+      isPlaying: !prevState.isPlaying,
+      isMute: prevState.isPlaying,
+    }));
+  }, [setGlobalAudioState]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -46,18 +48,16 @@ export default function WhilickItem({
 
     const isVisible = Math.floor(top / window.innerHeight) === idx;
 
-    if (isVisible) {
+    if (isVisible && globalAudioState.isPlaying && !globalAudioState.isMute) {
       audio.play().catch(console.error);
-      setIsPlaying(true);
     } else {
       audio.pause();
-      setIsPlaying(false);
     }
 
     return () => {
       audio.pause();
     };
-  }, [top, idx]);
+  }, [top, idx, globalAudioState]);
 
   return (
     <>
@@ -70,8 +70,8 @@ export default function WhilickItem({
             </audio>
             <button onClick={toggleAudio}>
               <Image
-                src={isPlaying ? soundOn : soundOff}
-                alt={isPlaying ? "소리켬" : "소리끔"}
+                src={globalAudioState.isPlaying && !globalAudioState.isMute ? soundOn : soundOff}
+                alt={globalAudioState.isPlaying && !globalAudioState.isMute ? "소리켬" : "소리끔"}
                 style={{ width: 20, height: "auto" }}
                 priority
               />
@@ -80,7 +80,6 @@ export default function WhilickItem({
 
           {/* 칼럼 제목 */}
           <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{title}</div>
-          <div className="px-[1.5rem] font-SCDream5 text-[2rem] text-center">{articleId}</div>
 
           {/* 칼럼 요약내용 */}
           <div

@@ -3,89 +3,52 @@
 import Image from "next/image";
 import whilick_purple from "@/assets/whilick_purple.svg";
 import WhilickItem from "@/components/molecules/WhilickItem";
-import { useCallback, useRef, useState } from "react";
-import { type TMockWhilickProps } from "@/types/componentTypes";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import WhilickItemLoading from "@/components/molecules/WhilickItemLoading";
+import { type TWhilickItemProps } from "@/types/componentTypes";
 
-export default function Whilick() {
+// api 연결
+const fetchWhilickItems = async ({ pageParam = 0 }) => {
+  const response = await fetch(`/whilick?offset=${pageParam}&limit=10`);
+  return response.json();
+};
+
+export default function WhilickPractice() {
+  // 현재 보고 있는 컨텐츠의 인덱스를 추적
+  const [currentIndex, setCurrentIndex] = useState(0);
+  // 현재 보고 있는 오디오를 추적
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
 
-  const mockWhilick: TMockWhilickProps[] = [
-    {
-      title: "알아 두면 쓸데 많은 1900년대 비엔나 미술 속으로",
-      articleId: 1,
-      text: [
-        {
-          paragraphId: 1,
-          content: "아트 애호가들의 심장을 뛰게 만드는 전시가 찾아왔다.",
-          startTime: 0.0,
-          endTime: 4.2,
-        },
-        {
-          paragraphId: 2,
-          content: "용산 국립중앙박물관에서 열리는 오스트리아 레오폴트 미술관컬렉션이 바로 그것.",
-          startTime: 4.2,
-          endTime: 10.5,
-        },
-        {
-          paragraphId: 3,
-          content: "우리가 몰랐던 1900년대 비엔나에 불어온 미술 사조의 변화를 엿볼 수 있는 좋은 기회다.",
-          startTime: 10.5,
-          endTime: 15,
-        },
-      ],
-      likeCount: 5,
-      isLiked: false,
-      ttsUrl: "/assets/audio/audio1.mp3",
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
+    queryKey: ["whilickItems"],
+    queryFn: fetchWhilickItems,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.length < 10) return undefined;
+      return pages.length * 10;
     },
-    {
-      title: "새해 소망 여행 울산시 울주군",
-      articleId: 2,
-      text: [
-        {
-          paragraphId: 1,
-          content: "누구나 마음속에 새해 이루고 싶은 소망이 있을 것이다.",
-          startTime: 0.0,
-          endTime: 4.2,
-        },
-        {
-          paragraphId: 2,
-          content:
-            "2025년 새해 가장 먼저 해가 떠오르는 간절곶에서, 예부터 소망이 이뤄진다고 여겨진 영험한 곳 파래소폭포에서 마음 깊은 곳에 간직한 소망을 펼쳐 보여도 좋겠다.",
-          startTime: 4.2,
-          endTime: 10.5,
-        },
-      ],
-      likeCount: 15,
-      isLiked: false,
-      ttsUrl: "/assets/audio/audio2.mp3",
-    },
-    {
-      title: "‘흑백요리사’ 속 셰프의 레스토랑 가이드",
-      articleId: 3,
-      text: [
-        {
-          paragraphId: 1,
-          content:
-            "넷플릭스 요리 경연 프로그램 ‘흑백요리사’ 열풍이 불면서 출연한 셰프들의 레스토랑들도 덩달아 인기를 얻고 있다.",
-          startTime: 0.0,
-          endTime: 4.2,
-        },
-        {
-          paragraphId: 2,
-          content: "지금 가장 핫한 곳은 어느 곳이고, 예약 없이 갈 수 있는 레스토랑은 과연 어디일까?",
-          startTime: 4.2,
-          endTime: 10.5,
-        },
-      ],
-      likeCount: 10,
-      isLiked: true,
-      ttsUrl: "/assets/audio/audio3.mp3",
-    },
-  ];
+    getPreviousPageParam: (firstPage) => firstPage.prevCursor,
+  });
+
+  // 컨텐츠를 넘길 때마다 인덱스를 업데이트하는 함수
+  const handleContentChange = (newIndex: number) => {
+    setCurrentIndex(newIndex);
+  };
+
+  // 현재 인덱스를 모니터링하고 필요할 때 다음 페이지를 미리 로딩
+  useEffect(() => {
+    if (currentIndex % 10 >= 7 && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [currentIndex, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const [top, setTop] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // const scrollEvent = (e) => {
+  //   setTop(ref.current.scrollHeight / window.innerHeight);
+  // };
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
       setTop(scrollRef.current.scrollTop);
@@ -109,22 +72,29 @@ export default function Whilick() {
           onScroll={handleScroll}
           className="snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full"
         >
-          {mockWhilick.map(({ articleId, title, text, isLiked, likeCount, ttsUrl }, idx) => (
-            <WhilickItem
-              idx={idx}
-              key={articleId}
-              title={title}
-              text={text}
-              articleId={articleId}
-              isLiked={isLiked}
-              likeCount={likeCount}
-              ttsUrl={ttsUrl}
-              currentAudio={currentAudio}
-              setCurrentAudio={setCurrentAudio}
-              top={top}
-            />
-          ))}
-          <WhilickItemLoading />
+          {status === "pending" ? (
+            <WhilickItemLoading />
+          ) : status === "error" ? (
+            <p>Error: {"error.message"}</p>
+          ) : (
+            <>
+              {data.pages.map((content, pageIndex) => (
+                <React.Fragment key={pageIndex}>
+                  {content.map((item: TWhilickItemProps, itemIndex: number, idx: number) => (
+                    <WhilickItem
+                      idx={idx}
+                      key={item.articleId}
+                      {...item}
+                      currentAudio={currentAudio}
+                      setCurrentAudio={setCurrentAudio}
+                      onContentChange={() => handleContentChange(pageIndex * 10 + itemIndex)}
+                      top={top}
+                    />
+                  ))}
+                </React.Fragment>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </>
