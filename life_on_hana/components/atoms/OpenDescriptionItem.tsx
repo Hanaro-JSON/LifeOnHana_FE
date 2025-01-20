@@ -15,10 +15,13 @@ export default function OpenDescriptionItem({ description }: { description: stri
 
     const rect = event.currentTarget.getBoundingClientRect();
 
-    // 버튼 오른쪽 옆(조금 떨어진) 위치로 설정
+    const isLeft = rect.left > window.innerWidth / 2;
+
     setPopupPosition({
-      top: rect.top,
-      left: rect.left + rect.width,
+      top: rect.top - event.currentTarget.offsetParent!.getBoundingClientRect().top + rect.height,
+      left: isLeft
+        ? rect.left - event.currentTarget.offsetParent!.getBoundingClientRect().left - 150 // 왼쪽 방향
+        : rect.left - event.currentTarget.offsetParent!.getBoundingClientRect().left + rect.width, // 오른쪽 방향
     });
 
     setIsOpen(true);
@@ -29,20 +32,21 @@ export default function OpenDescriptionItem({ description }: { description: stri
   };
 
   return (
-    <div className="inline-block">
+    <div className="relative inline-block">
       {/* 아이콘 */}
-      <Image
-        onClick={openDescriptionEvent}
-        src={openDescriptionItem}
-        alt="용어설명클릭"
-        className="w-5 cursor-pointer"
-      />
+      <div className="flex">
+        <Image
+          onClick={openDescriptionEvent}
+          src={openDescriptionItem}
+          alt="용어 설명 아이콘"
+          className="w-5 h-5 cursor-pointer"
+        />
+      </div>
 
       {/* 팝업 */}
-      <span className="flex">
       {isOpen && popupPosition && (
         <div
-          className="sticky"
+          className="absolute"
           style={{
             top: popupPosition.top,
             left: popupPosition.left,
@@ -52,7 +56,6 @@ export default function OpenDescriptionItem({ description }: { description: stri
           <DescriptionDetailItem description={description} closePopup={closePopup} />
         </div>
       )}
-    </span>
     </div>
   );
 }

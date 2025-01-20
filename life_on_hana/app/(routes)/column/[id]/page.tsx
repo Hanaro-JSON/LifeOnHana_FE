@@ -13,7 +13,7 @@ import MoveToBackBtn from "@/components/atoms/MoveToBackBtn";
 import AdjustBtn from "@/components/atoms/AdjustBtn";
 import OpenDescriptionItem from "@/components/atoms/OpenDescriptionItem";
 import { formatDate } from "@/utils/formatDate";
-
+import { LogoHeader } from "@/components/molecules/LogoHeader";
 const mockData = {
   article_id: 1,
   title: "새해 소망 여행 울산시 울주군",
@@ -27,7 +27,7 @@ const mockData = {
     {
       type: "WORD",
       content: "어려운용어",
-      description: "어려운용어에 대한 설명입니다."
+      description: "어려운용어에 대한 설명입니다.어려운용어에 대한 설명입니다.어려운용어에 대한 설명입니다.어려운용어에 대한 설명입니다."
     },
     {
       type: "TEXT",
@@ -117,17 +117,17 @@ export default function Detail() {
         <MoveToBackBtn />
       <div className="flex flex-col items-center">
         
-        <div className="w-full flex items-center px-[32px] font-Hana2heavy font-semibold text-[25px] text-hanapurple">
-          LIFE on HANA
+        <div className="w-[90%] flex items-center -mt-8">
+          <LogoHeader isMain={false}/>
         </div>
-        <div className="w-full flex items-center gap-4 mb-4 px-[32px]">
+        <div className="w-[90%] flex items-center gap-3 mt-2 mb-4">
           <Image src={column} alt="column icon" width={20} height={20} />
-          <div className="text-[24px] font-Hana2bold">칼럼</div>
+          <div className="text-[1.5rem] font-Hana2bold">칼럼</div>
         </div>
       </div>
 
       <div className="w-full flex flex-col">
-        <div className="w-full h-[calc(100vh-208px)] overflow-y-auto">
+        <div className="w-full h-[80vh] overflow-y-auto">
           {/* 상단 헤더 이미지 영역 */}
           <div className="relative w-full h-[150px]">
             <Image
@@ -137,7 +137,8 @@ export default function Detail() {
               objectFit="cover"
               className="opacity-70"
             />
-            <div className="absolute w-full h-full flex flex-col justify-center items-start left-6">
+            <div className="flex justify-center">
+            <div className="absolute w-[90%] h-full flex flex-col justify-center items-start">
               <div className="font-SCDream8 text-[22.4px] text-hanapurple font-bold">
                 {article.category}
               </div>
@@ -147,11 +148,12 @@ export default function Detail() {
                 {titleParts[1]}
               </div>
             </div>
+            </div>
           </div>
 
           {/* 좋아요, 공유 영역 */}
           <div className="flex justify-end items-center m-4">
-            <IsLike likeCount={article.likeCount} isLiked={article.is_liked} />
+            <IsLike likeCount={article.likeCount} isLiked={article.is_liked}  />
             <div className="mb-2">
             <CopyUrlButton />
             </div>
@@ -173,7 +175,7 @@ export default function Detail() {
             alt={item.caption ?? "이미지"}
             width={340}
             height={255}
-            className=""
+            className="w-full"
           />
           </div>
         </div>
@@ -205,7 +207,8 @@ export default function Detail() {
             <div className="w-[100%] mx-auto border-b-2 border-b-hanadeepgray my-6"></div>
 
             <div className="font-SCDream5 text-[15px] my-3">관련있는 상품</div>
-            <div className="flex justify-between">
+            <div className="flex gap-5">
+              <div className="w-[90%]">
               <ColumnRecommendItem
                 variant="TRAVEL"
                 name={article.related_products[0].name}
@@ -213,12 +216,15 @@ export default function Detail() {
                 isSelected={selectedProduct?.product_id === article.related_products[0].product_id}
                 onClick={() => handleProductClick(article.related_products[0])}
               />
+              </div>
+              <div className="w-[90%]">
               <ColumnRecommendItem
                 variant="TRAVEL"
                 name={article.related_products[1].name}
                 isSelected={selectedProduct?.product_id === article.related_products[1].product_id}
                 onClick={() => handleProductClick(article.related_products[1])}
               />
+              </div>
             </div>
 
             <div className="font-SCDream5 text-[15px] my-3 mt-9">XXX님의 AI 맞춤 정보</div>

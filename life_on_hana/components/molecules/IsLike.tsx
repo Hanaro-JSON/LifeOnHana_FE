@@ -20,13 +20,13 @@ export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: T
           <Image
             src={isLiked ? HeartYes : HeartNo}
             alt={isLiked ? "Liked" : "Not Liked"}
-            width={20}
-            height={20}
+            width={24}
+            height={24}
             onClick={toggleLike}
             className="cursor-pointer"
           />
         </div>
-        <div className="mt-1 text-[.5rem] text-hanapurple font-SCDream3">{count}</div>
+        <div className="mt-1 text-[.7rem] text-hanapurple font-SCDream3">{count}</div>
       </div>
     </div>
   );
