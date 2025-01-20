@@ -93,6 +93,7 @@ importers:
       '@storybook/test':
         specifier: 8.4.7
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 8.4.7(storybook@8.4.7(prettier@3.4.2))
 =======
         version: 8.4.7(storybook@8.4.7)
@@ -100,6 +101,9 @@ importers:
         specifier: ^5.62.16
         version: 5.62.16(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.3)
 >>>>>>> f1cf09b ([chore] 🐿️ install React Query)
+=======
+        version: 8.4.7(storybook@8.4.7(prettier@3.4.2))
+>>>>>>> 39cdac2 ([chore] 🐳 airbnb-lint, prettier 설정)
       '@types/node':
         specifier: ^20
         version: 20.17.12
