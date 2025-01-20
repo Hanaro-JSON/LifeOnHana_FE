@@ -43,8 +43,8 @@ export default function SigninPage() {
       <div className="flex-grow flex justify-center items-center">
         <div className="flex flex-col pb-44 items-center justify-center w-full max-w-md px-4">
           <div className="flex flex-col items-center mb-6">
-            <Image src={logo} alt="Logo" className="w-32 mb-2" />
-            <Image src={logoText} alt="LogoText" className="mb-2" />
+            <Image src={logo} alt="Logo" className="w-32 mb-2" priority />
+            <Image src={logoText} alt="LogoText" className="mb-2" priority />
             <div className="font-SCDream5 text-[#A6A6A6] text-xs">
               소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
             </div>

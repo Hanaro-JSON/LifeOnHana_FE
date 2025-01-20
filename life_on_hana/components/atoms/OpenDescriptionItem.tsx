@@ -1,7 +1,7 @@
 import Image from "next/image";
 import openDescriptionItem from "@/assets/openDescriptionItem.svg";
 import { useState } from "react";
-import DescriptionDetailItem from "./DescriptionDetailItem";
+import DescriptionDetailItem from "@/components/atoms/DescriptionDetailItem";
 
 export default function OpenDescriptionItem() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,6 +16,7 @@ export default function OpenDescriptionItem() {
         src={openDescriptionItem}
         alt="용어설명클릭"
         className="w-5 cursor-pointer"
+        priority
       />
       {isOpen && (
         <div className="absolute z-10 right-5 top-full">

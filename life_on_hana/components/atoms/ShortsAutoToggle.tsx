@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import play from "../../assets/play.svg";
-import pause from "../../assets/pause.svg";
+import play from "@/assets/play.svg";
+import pause from "@/assets/pause.svg";
 import { type TShortsAutoToggleProps } from "@/types/componentTypes";
 
 export default function ShortsAutoToggle({ initialState = "play", onToggle }: TShortsAutoToggleProps) {
@@ -34,6 +34,7 @@ export default function ShortsAutoToggle({ initialState = "play", onToggle }: TS
           } bg-hanapurple`}
           src={play}
           alt="Play"
+          priority
         />
       </div>
 
@@ -47,6 +48,7 @@ export default function ShortsAutoToggle({ initialState = "play", onToggle }: TS
           } bg-hanapurple`}
           src={pause}
           alt="Pause"
+          priority
         />
       </div>
     </div>

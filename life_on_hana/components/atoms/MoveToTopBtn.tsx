@@ -19,6 +19,7 @@ export default function MoveToTopBtn() {
         src={moveToTopBtn}
         alt="Logo"
         className="fixed bottom-[10%] right-[5%] w-[3.125rem] mb-5 cursor-pointer"
+        priority
       />
     </>
   );

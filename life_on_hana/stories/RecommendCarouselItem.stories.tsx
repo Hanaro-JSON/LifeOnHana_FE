@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { RecommendCarouselItem } from "../components/molecules/RecommendCarouselItem";
+import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 
 const meta: Meta<typeof RecommendCarouselItem> = {
   title: "molecule component/RecommendCarouselItem",

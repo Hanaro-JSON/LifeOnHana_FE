@@ -43,6 +43,7 @@ export default function CopyClipboardBtn() {
         width={30}
         className="mb-2 cursor-pointer"
         onClick={handleCopy}
+        priority
       />
     </div>
   );

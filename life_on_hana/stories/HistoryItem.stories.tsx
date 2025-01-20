@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import HistoryItem from "../components/molecules/HistoryItem";
+import HistoryItem from "@/components/molecules/HistoryItem";
 
 const meta: Meta<typeof HistoryItem> = {
   title: "Molecule component/HistoryItem",

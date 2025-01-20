@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import AssetManageWayItem from "../components/molecules/AssetManageWayItem";
+import AssetManageWayItem from "@/components/molecules/AssetManageWayItem";
 
 const meta: Meta<typeof AssetManageWayItem> = {
   title: "molecule component/AssetManageWayItem",

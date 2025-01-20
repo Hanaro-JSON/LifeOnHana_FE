@@ -23,10 +23,10 @@ export default function SearchInput({ placeholder, value = "" }: TSearchInput) {
 
       {inputValue ? (
         <button onClick={removeAllValue} className="absolute right-[.9375rem]">
-          <Image src={removeAllBtn} alt="삭제" />
+          <Image src={removeAllBtn} alt="삭제" priority />
         </button>
       ) : (
-        <Image src={searchBtn} alt="검색" className="absolute right-[.9375rem]" />
+        <Image src={searchBtn} alt="검색" className="absolute right-[.9375rem]" priority />
       )}
     </div>
   );

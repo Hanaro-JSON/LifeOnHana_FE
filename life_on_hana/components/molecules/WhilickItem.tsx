@@ -1,8 +1,8 @@
 import { type TWhilickItemProps } from "@/types/componentTypes";
-import AdjustBtn from "../atoms/AdjustBtn";
-import Btn from "../atoms/Btn";
-import CopyClipboardBtn from "../atoms/CopyClipboardBtn";
-import IsLike from "./IsLike";
+import AdjustBtn from "@/components/atoms/AdjustBtn";
+import Btn from "@/components/atoms/Btn";
+import CopyClipboardBtn from "@/components/atoms/CopyClipboardBtn";
+import IsLike from "@/components/molecules/IsLike";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import soundOn from "@/assets/sound-on.svg";
@@ -77,6 +77,7 @@ export default function WhilickItem({
                 src={isPlaying ? soundOn : soundOff}
                 alt={isPlaying ? "소리켬" : "소리끔"}
                 style={{ width: 20, height: "auto" }}
+                priority
               />
             </button>
           </div>

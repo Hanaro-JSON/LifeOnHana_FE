@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Image from "next/image";
-import MydataCheckNo from "../../assets/MydataCheckNo.svg";
-import MydataCheckYes from "../../assets/MydataCheckYes.svg";
-import HanaBankLogo from "../../assets/HanaBankLogo.svg";
-import NonghyupBankLogo from "../../assets/NonghyupBankLogo.svg";
-import ShinhanBankLogo from "../../assets/ShinhanBankLogo.svg";
-import WooriBankLogo from "../../assets/WooriBankLogo.svg";
-import TossBankLogo from "../../assets/TossBankLogo.svg";
-import NaverBankLogo from "../../assets/NaverBankLogo.svg";
-import KakaoBankLogo from "../../assets/KakaoBankLogo.svg";
+import MydataCheckNo from "@/assets/MydataCheckNo.svg";
+import MydataCheckYes from "@/assets/MydataCheckYes.svg";
+import HanaBankLogo from "@/assets/HanaBankLogo.svg";
+import NonghyupBankLogo from "@/assets/NonghyupBankLogo.svg";
+import ShinhanBankLogo from "@/assets/ShinhanBankLogo.svg";
+import WooriBankLogo from "@/assets/WooriBankLogo.svg";
+import TossBankLogo from "@/assets/TossBankLogo.svg";
+import NaverBankLogo from "@/assets/NaverBankLogo.svg";
+import KakaoBankLogo from "@/assets/KakaoBankLogo.svg";
 import { type TConnectBankItemProps } from "@/types/componentTypes";
 
 export default function ConnectBankItem({ bankName, initialIsMydataChecked = false, onToggle }: TConnectBankItemProps) {
@@ -46,7 +46,7 @@ export default function ConnectBankItem({ bankName, initialIsMydataChecked = fal
   return (
     <div className="w-full h-[3.75rem] flex items-center justify-between relative">
       <div className="flex items-center">
-        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bankName} Logo`} width={20} height={15} />
+        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bankName} Logo`} width={20} height={15} priority />
         <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{displayBankName}</div>
       </div>
 
@@ -58,6 +58,7 @@ export default function ConnectBankItem({ bankName, initialIsMydataChecked = fal
           height={20}
           onClick={toggleMydata}
           className="cursor-pointer"
+          priority
         />
       </div>
     </div>

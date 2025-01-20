@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import SmallWhilickItem from "../components/molecules/SmallWhilickItem";
+import SmallWhilickItem from "@/components/molecules/SmallWhilickItem";
 
 const meta: Meta<typeof SmallWhilickItem> = {
   title: "molecule component/SmallWhilickItem",

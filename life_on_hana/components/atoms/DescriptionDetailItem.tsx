@@ -33,7 +33,7 @@ export default function DescriptionDetailItem({ idx }: { idx: number }) {
           >
             <div className="w-[90%] max-h-[5rem] text-[.6875rem] text-start overflow-scroll">{descriptions(idx)}</div>
             <button className="w-[5%]flex justify-center items-center text-xs" onClick={closeBalloon}>
-              <Image src={exitBtn} alt="Close Button" className="w-3 h-3 cursor-pointer" />
+              <Image src={exitBtn} alt="Close Button" className="w-3 h-3 cursor-pointer" priority />
             </button>
           </div>
         </div>

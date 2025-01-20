@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Image from "next/image";
-import AccountCheckNo from "../../assets/MydataCheckNo.svg";
-import AccountCheckYes from "../../assets/MydataCheckYes.svg";
-import HanaBankLogo from "../../assets/HanaBankLogo.svg";
-import NonghyupBankLogo from "../../assets/NonghyupBankLogo.svg";
-import ShinhanBankLogo from "../../assets/ShinhanBankLogo.svg";
-import WooriBankLogo from "../../assets/WooriBankLogo.svg";
-import TossBankLogo from "../../assets/TossBankLogo.svg";
-import NaverBankLogo from "../../assets/NaverBankLogo.svg";
-import KakaoBankLogo from "../../assets/KakaoBankLogo.svg";
+import AccountCheckNo from "@/assets/MydataCheckNo.svg";
+import AccountCheckYes from "@/assets/MydataCheckYes.svg";
+import HanaBankLogo from "@/assets/HanaBankLogo.svg";
+import NonghyupBankLogo from "@/assets/NonghyupBankLogo.svg";
+import ShinhanBankLogo from "@/assets/ShinhanBankLogo.svg";
+import WooriBankLogo from "@/assets/WooriBankLogo.svg";
+import TossBankLogo from "@/assets/TossBankLogo.svg";
+import NaverBankLogo from "@/assets/NaverBankLogo.svg";
+import KakaoBankLogo from "@/assets/KakaoBankLogo.svg";
 import { type TAccountDetailItemProps } from "@/types/componentTypes";
 
 export default function AccountDetailItem({ bank, accountNumber, accountName, balance }: TAccountDetailItemProps) {
@@ -38,7 +38,7 @@ export default function AccountDetailItem({ bank, accountNumber, accountName, ba
   return (
     <div className="w-[24.5625rem] flex flex-col justify-between relative p-2 border-b">
       <div className="flex items-center mb-2">
-        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bank} Logo`} width={20} height={15} />
+        <Image className="w-5 h-[.95rem]" src={bankLogo} alt={`${bank} Logo`} width={20} height={15} priority />
         <div className="ml-2 text-black text-[.9375rem] font-SCDream3">{accountName}</div>
       </div>
       <div className="text-[.625rem] text-black font-SCDream3 ml-7">{accountNumber}</div>
@@ -69,6 +69,7 @@ export default function AccountDetailItem({ bank, accountNumber, accountName, ba
           height={20}
           onClick={toggleAccount}
           className="cursor-pointer"
+          priority
         />
       </div>
     </div>

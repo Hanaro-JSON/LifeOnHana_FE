@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import ShortsAutoToggle from "../components/atoms/ShortsAutoToggle";
+import ShortsAutoToggle from "@/components/atoms/ShortsAutoToggle";
 
 const meta: Meta<typeof ShortsAutoToggle> = {
   title: "Atom Component/ShortsAutoToggle",

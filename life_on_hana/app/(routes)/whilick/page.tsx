@@ -89,7 +89,7 @@ export default function Whilick() {
         {/* 최상단 */}
         <div className="fixed z-50 px-[1.5rem] w-full top-6 h-10 flex justify-start items-center">
           <div className="flex items-center gap-4">
-            <Image src={whilick_purple} alt="whilick_icon" style={{ width: 20, height: "auto" }} />
+            <Image src={whilick_purple} alt="whilick_icon" style={{ width: 20, height: "auto" }} priority />
             <div className="text-[1.5rem] font-Hana2bold">휘릭</div>
           </div>
         </div>

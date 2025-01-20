@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Section from "../atoms/Section";
+import Section from "@/components/atoms/Section";
 import Link from "next/link";
-import arrowRight from "../../assets/arrow-right.svg";
+import arrowRight from "@/assets/arrow-right.svg";
 import { type TMainSectionProps } from "@/types/componentTypes";
 
 const variants = [
@@ -37,7 +37,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
           <Link href={"/wallet"}>
             <button className="font-SCDream3 text-[.75rem] flex items-center ">
               <span className="text-hanapurple">월급&nbsp;</span>설정하러 가기
-              <Image src={arrowRight} alt="Right Arrow" className="ml-2" />
+              <Image src={arrowRight} alt="Right Arrow" className="ml-2" priority />
             </button>
           </Link>
         </div>

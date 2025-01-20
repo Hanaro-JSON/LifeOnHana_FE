@@ -1,5 +1,5 @@
 import Link from "next/link";
-import arrowRight from "../../assets/KeyboardArrowRight.svg";
+import arrowRight from "@/assets/KeyboardArrowRight.svg";
 import Image from "next/image";
 import { type TShortCutBtnProps } from "@/types/componentTypes";
 
@@ -38,7 +38,7 @@ export default function ShortCutBtn({ url, variant = "default" }: TShortCutBtnPr
           <span>{text}</span>
         </div>
         <div className="w-[.9375rem] h-[.9375rem] relative flex items-center justify-center overflow-hidden">
-          <Image src={arrowRight} alt="Right Arrow" />
+          <Image src={arrowRight} alt="Right Arrow" priority />
         </div>
       </Link>
     </div>
