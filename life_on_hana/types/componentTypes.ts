@@ -145,7 +145,7 @@ export type TIsLikeProps = {
 };
 
 export type TLikedAccountProductDetailItemProps = {
-  productId: string;
+  productId: number;
   name: string;
   description: string;
   link: string;
@@ -158,7 +158,7 @@ export type TLikedAccountProductDetailItemProps = {
 };
 
 export type TLikedLifeProductDetailItemProps = {
-  productId: string;
+  productId: number;
   name: string;
   description: string;
   link: string;
@@ -167,7 +167,7 @@ export type TLikedLifeProductDetailItemProps = {
 };
 
 export type TLikedLoanProductDetailItemProps = {
-  productId: string;
+  productId: number;
   name: string;
   description: string;
   feature: string;

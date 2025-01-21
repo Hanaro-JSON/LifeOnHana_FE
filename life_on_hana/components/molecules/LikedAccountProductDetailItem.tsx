@@ -106,9 +106,9 @@ export default function LikedAccountProductDetailItem({
         </div>
 
         <div className='w-full h-[20%] relative mb-3'>
-          <div className='w-full h-[100%] left-0 top-0  bg-[#f4ebfb] rounded-[18px]'>
+          <div className='w-full h-[100%] left-0 top-0 bg-[#f4ebfb] rounded-[18px]'>
             <div className='p-4 m-2'>
-              <div className='flex justify-between'>
+              <div className='flex justify-between mt-2'>
                 <div className='text-black text-[1rem] font-SCDream3'>
                   만기금액(세전)
                 </div>
@@ -159,16 +159,58 @@ export default function LikedAccountProductDetailItem({
             <span className='ml-2'>년 동안</span>
           </div>
           <div className='flex items-center gap-2'>
-            <input
-              type='number'
-              value={interestRate}
-              onChange={handleInterestRateChange}
-              className='w-[4rem] p-2 border-b-2 border-hanalightpurple focus:outline-none focus:border-hanapurple text-hanapurple font-SCDream8'
-              placeholder='금리'
-              min={savingsInfo.basicInterestRate}
-              max={savingsInfo.maxInterestRate}
-              step='0.1'
-            />
+            <div className='relative'>
+              <div className='flex gap-1'>
+                <input
+                  type='number'
+                  value={interestRate}
+                  onChange={handleInterestRateChange}
+                  className='w-[3rem] p-2 border-b-2 border-hanalightpurple focus:outline-none focus:border-hanapurple text-hanapurple font-SCDream8 text-center'
+                  placeholder='금리'
+                  min={savingsInfo.basicInterestRate}
+                  max={savingsInfo.maxInterestRate}
+                  step='0.1'
+                />
+                {/* 화살표 버튼 */}
+                <div className=''>
+                  <div className='flex flex-col'>
+                    <button
+                      type='button'
+                      className='text-hanapurple hover:text-hanadarkpurple'
+                      onClick={() => {
+                        if (interestRate + 0.1 <= savingsInfo.maxInterestRate) {
+                          const newRate = parseFloat(
+                            (interestRate + 0.1).toFixed(1)
+                          );
+                          setInterestRate(newRate);
+                          calculateAmount(amount, years, newRate);
+                        }
+                      }}
+                    >
+                      ▲
+                    </button>
+                    <button
+                      type='button'
+                      className='text-hanapurple hover:text-hanadarkpurple'
+                      onClick={() => {
+                        if (
+                          interestRate - 0.1 >=
+                          savingsInfo.basicInterestRate
+                        ) {
+                          const newRate = parseFloat(
+                            (interestRate - 0.1).toFixed(1)
+                          );
+                          setInterestRate(newRate);
+                          calculateAmount(amount, years, newRate);
+                        }
+                      }}
+                    >
+                      ▼
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <span>로 저축하기</span>
           </div>
         </div>
