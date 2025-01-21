@@ -75,7 +75,7 @@ export default function AdjustBtn({
               type='range'
               min='1'
               max='3'
-              defaultValue='1'
+              defaultValue='2'
               onChange={handleFontSizeChange}
               className='w-[80%] h-2 bg-gradient-to-r from-purple-600 to-purple-200 rounded-sm custom-range'
             />

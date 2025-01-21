@@ -73,10 +73,25 @@ export default function WhilickItem({
 
   // 글씨 크기 조절
   const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
-
   const handleFontSizeChange = (value: number) => {
     setFontSizeMultiplier(value);
   };
+
+  // 오디오 속도 조절
+  const [audioSpeed, setAudioSpeed] = useState(1.0);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = audioSpeed;
+    }
+  }, [audioSpeed]);
+
+  const handleAudioSpeedChange = useCallback((value: number) => {
+    setAudioSpeed(value);
+    if (audioRef.current instanceof HTMLAudioElement) {
+      audioRef.current.playbackRate = value;
+    }
+  }, []);
 
   return (
     <>
@@ -117,7 +132,7 @@ export default function WhilickItem({
               maxHeight: 'calc(100vh - 25rem)',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
-              fontSize: `calc(1.8rem * ${fontSizeMultiplier})`,
+              fontSize: `calc(2rem * ${fontSizeMultiplier})`,
             }}
           >
             {text.map((elem) => {
@@ -174,16 +189,16 @@ export default function WhilickItem({
             isOpen={openedAdjustBtn === 'font-size'}
             typeCeilTxt='글씨'
             typeBottomTxt='크기'
-            first='보통'
-            second='크게'
-            third='아주크게'
+            first='작게'
+            second='보통'
+            third='크게'
             mX={80}
             mY={90}
             onToggle={handleAdjustBtnToggle}
             onChange={(value) => {
-              if (value === 1) handleFontSizeChange(1.0);
-              if (value === 2) handleFontSizeChange(1.3);
-              if (value === 3) handleFontSizeChange(1.5);
+              if (value === 1) handleFontSizeChange(0.8);
+              if (value === 2) handleFontSizeChange(1.0);
+              if (value === 3) handleFontSizeChange(1.2);
             }}
           />
           <AdjustBtn
@@ -191,16 +206,16 @@ export default function WhilickItem({
             isOpen={openedAdjustBtn === 'tts-speed'}
             typeCeilTxt='말'
             typeBottomTxt='속도'
-            first='0.5x'
+            first='0.75x'
             second='1x'
-            third='2x'
+            third='1.5x'
             mX={80}
             mY={90}
             onToggle={handleAdjustBtnToggle}
             onChange={(value) => {
-              if (value === 1) handleFontSizeChange(1.0);
-              if (value === 2) handleFontSizeChange(1.3);
-              if (value === 3) handleFontSizeChange(1.5);
+              if (value === 1) handleAudioSpeedChange(0.75);
+              if (value === 2) handleAudioSpeedChange(1.0);
+              if (value === 3) handleAudioSpeedChange(1.5);
             }}
           />
         </div>
