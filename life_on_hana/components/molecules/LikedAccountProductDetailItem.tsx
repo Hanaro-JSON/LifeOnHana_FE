@@ -106,9 +106,9 @@ export default function LikedAccountProductDetailItem({
         </div>
 
         <div className='w-full h-[20%] relative mb-3'>
-          <div className='w-full h-[100%] left-0 top-0  bg-[#f4ebfb] rounded-[18px]'>
+          <div className='w-full h-[100%] left-0 top-0 bg-[#f4ebfb] rounded-[18px]'>
             <div className='p-4 m-2'>
-              <div className='flex justify-between'>
+              <div className='flex justify-between mt-2'>
                 <div className='text-black text-[1rem] font-SCDream3'>
                   만기금액(세전)
                 </div>
