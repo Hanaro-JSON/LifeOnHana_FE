@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 <<<<<<< HEAD
 =======
 >>>>>>> 2448682 ([style] 🐿️ import 방식 통일)
-import CopyClipboardBtn from "../components/atoms/CopyUrlButton";
+import CopyClipboardBtn from "../components/atoms/CopyClipboardBtn";
 =======
 import CopyClipboardBtn from "@/components/atoms/CopyClipboardBtn";
 >>>>>>> 3d64a77 ([style] 🐿️ import 방식 통일)

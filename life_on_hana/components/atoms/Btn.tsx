@@ -22,27 +22,13 @@ const getBtnClasses = (variant: string) => {
   }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
-=======
-
->>>>>>> 277776c ([feat] 🐣 homeWalletDeposit 추가)
 export default function Btn({
   type,
   text,
   url,
   variant = "default",
-<<<<<<< HEAD
-<<<<<<< HEAD
   onClick,
-=======
->>>>>>> fab1a52 ([feat] 🐳 추천 상품 제외 home 퍼블 완료)
-=======
-  onClick,
->>>>>>> 3fddbbd ([feat] 🐳 home/lumpsum api 연결 전 작업 완료)
 }: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
   return variant === "needLumpSum" ? (

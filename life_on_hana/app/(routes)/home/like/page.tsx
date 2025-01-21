@@ -3,36 +3,16 @@
 import { useState, useEffect } from "react";
 import { RecommendItem } from "@/components/molecules/RecommendItem";
 import {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2ac0c0c ([style] 🐣 type 추가)
   type TRecommendItemProps,
   type TLikedLoanProductDetailItemProps,
   type TLikedAccountProductDetailItemProps,
   type TLikedLifeProductDetailItemProps,
-<<<<<<< HEAD
-=======
-  TRecommendItemProps,
-  TLikedLoanProductDetailItemProps,
-  TLikedAccountProductDetailItemProps,
-  TLikedLifeProductDetailItemProps,
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
->>>>>>> 2ac0c0c ([style] 🐣 type 추가)
 } from "@/types/componentTypes";
 
 import LikedLoanProductDetailItem from "@/components/molecules/LikedLoanProductDetailItem";
 import LikedAccountProductDetailItem from "@/components/molecules/LikedAccountProductDetailItem";
 import LikedLifeProductDetailItem from "@/components/molecules/LikedLifeProductDetail";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { NavHeader } from "@/components/molecules/NavHeader";
-=======
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-import { NavHeader } from "@/components/molecules/NavHeader";
->>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
 
 const mockData = {
   code: 200,
@@ -86,15 +66,7 @@ const mockData = {
       category: "대출",
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
       productId: "166",
-=======
-      productId: "101",
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-      productId: "166",
->>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -107,15 +79,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
       productId: "155",
-=======
-      productId: "101",
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-      productId: "155",
->>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -128,15 +92,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
       productId: "144",
-=======
-      productId: "101",
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-      productId: "144",
->>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -149,15 +105,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
       productId: "133",
-=======
-      productId: "101",
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-      productId: "133",
->>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -170,15 +118,7 @@ const mockData = {
       minCreditScore: null,
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
       productId: "122",
-=======
-      productId: "101",
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-      productId: "122",
->>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
       name: "하나햇살론뱅크",
       description: "정책 서민 지원 상품",
       category: "대출",
@@ -315,32 +255,11 @@ export default function Like() {
 
   return (
     <div className="flex flex-col h-screen">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       <div className="pt-6 px-6">
         <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
       </div>
       <div className="flex-1 overflow-y-auto px-5 mb-32" >
         <div className="flex flex-col gap-4 pb-[10vh]">
-=======
-      <div className="font-Hana2heavy text-[1.25rem] my-6 text-center sticky top-0 z-10">
-        관심있을 만한 상품 (컴포넌트로 분리한거 가져오기)
-      </div>
-      <div className="flex-1 overflow-y-auto px-5 mb-32" >
-        <div className="flex flex-col gap-28 pb-[10vh]">
->>>>>>> a71a48c ([feat] 🐣 homeLikeProducts 페이지 추가)
-=======
-      <div className="sticky top-0 z-10">
-        <div className="pt-6 px-6">
-=======
-      <div className="pt-6 px-6">
->>>>>>> 6c5b400 ([fix] 🐣 상단 고정 NavHeader)
-        <NavHeader location={"관심있을 만한 상품"} beforePageUrl={"."} />
-      </div>
-      <div className="flex-1 overflow-y-auto px-5 mb-32" >
-        <div className="flex flex-col gap-4 pb-[10vh]">
->>>>>>> eaa3cc1 ([fix] 🐣 homeLike 페이지의 글자 크기 및 컴포넌트 크기 조절)
           {products.map((product) => (
             <RecommendItem key={product.productId} {...product} />
           ))}

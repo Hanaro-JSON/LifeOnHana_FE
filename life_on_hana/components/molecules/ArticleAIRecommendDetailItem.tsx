@@ -47,15 +47,7 @@ export default function ArticleAIRecommendDetailItem({
         <div className="-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start">{name}</div>
 
         {/* 내용 */}
-<<<<<<< HEAD
-<<<<<<< HEAD
         <div className="w-full text-[1.1rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow">
-=======
-        <div className="w-full text-[.8125rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow">
->>>>>>> 0b1551a ([feat] 🐣 columnDetail 페이지 추가)
-=======
-        <div className="w-full text-[1.1rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow">
->>>>>>> d257b51 ([fix] 🐣 column관련 목록과 자세히 보기 동적으로 수정)
           <p className="text-left">{description}</p>
         </div>
 
