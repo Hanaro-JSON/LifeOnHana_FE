@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type TRecommendCarouselColumnProps = {
   article_id: number;
@@ -16,37 +16,37 @@ export type TAdjustBtnProps = {
   third: string;
   mX: number;
   mY: number;
-  onToggle?: (id: string) => void;
-  onChange?: (value: number) => void;
+  onToggle: (id: string) => void;
+  onChange: (value: number) => void;
 };
 
 export type TBtnProps = {
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   text: string;
   url?: string;
   variant?:
-    | "default"
-    | "moveToArticle"
-    | "beforeChooseAccount"
-    | "hanaWallet"
-    | "needLumpSum";
+    | 'default'
+    | 'moveToArticle'
+    | 'beforeChooseAccount'
+    | 'hanaWallet'
+    | 'needLumpSum';
   onClick?: () => void;
 };
 
 export type TCarouselSectionProps = {
-  variant?: "default" | "column" | "product";
+  variant?: 'default' | 'column' | 'product';
   items: ReactNode[];
   onIndexChange?: (index: number) => void;
 };
 
 export type TGraphToggleProps = {
-  initialState: "bar" | "circle";
-  onToggle?: (state: "bar" | "circle") => void;
+  initialState: 'bar' | 'circle';
+  onToggle?: (state: 'bar' | 'circle') => void;
 };
 
 export type TMiniBtnProps = {
   text: string;
-  variant?: "default" | "cancel";
+  variant?: 'default' | 'cancel';
 };
 
 export type TSectionProps = {
@@ -58,8 +58,8 @@ export type TSectionProps = {
 };
 
 export type TShortsAutoToggleProps = {
-  initialState: "play" | "pause";
-  onToggle?: (state: "play" | "pause") => void;
+  initialState: 'play' | 'pause';
+  onToggle?: (state: 'play' | 'pause') => void;
 };
 
 export type TAccountDetailItemProps = {
@@ -69,7 +69,7 @@ export type TAccountDetailItemProps = {
   balance: number;
   isAccountChecked?: boolean;
   onSelect?: (checked: boolean) => void;
-  onAmountChange?: (isExceeding: boolean) => void
+  onAmountChange?: (isExceeding: boolean) => void;
 };
 
 export type TArticleAIRecommendDetailItemProps = {
@@ -90,14 +90,14 @@ export type TArticleItemProps = {
 };
 
 export type TAssetManageWayItemProps =
-  | "adjust"
-  | "rebalancing"
-  | "managing"
-  | "product"
-  | "invest"
-  | "trip"
-  | "culture"
-  | "realEstate";
+  | 'adjust'
+  | 'rebalancing'
+  | 'managing'
+  | 'product'
+  | 'invest'
+  | 'trip'
+  | 'culture'
+  | 'realEstate';
 
 export type TColumnMainImgItemProps = {
   variant: string;
@@ -118,16 +118,16 @@ export type TConnectBankItemProps = {
 };
 
 export type THistoryItemCategoryProps =
-  | "FOOD"
-  | "SNACK"
-  | "EDUCATION"
-  | "HOBBY"
-  | "HEALTH"
-  | "FIXED_EXPENSE"
-  | "TRAVEL"
-  | "DEPOSIT"
-  | "INTEREST"
-  | "ETC";
+  | 'FOOD'
+  | 'SNACK'
+  | 'EDUCATION'
+  | 'HOBBY'
+  | 'HEALTH'
+  | 'FIXED_EXPENSE'
+  | 'TRAVEL'
+  | 'DEPOSIT'
+  | 'INTEREST'
+  | 'ETC';
 
 export type THistoryItemProps = {
   historyId: number;
@@ -188,13 +188,16 @@ export type TLikedLoanProductDetailItemProps = {
 export type TLoginLabelInputProps = {
   label: string;
   id: string;
-  type: "text" | "password";
+  type: 'text' | 'password';
   name: string;
   placeholder: string;
   errorMsg?: string;
 };
 
-export type TLumpSumBtnProps = "hanaSalaryBank" | "otherAccounts" | "loanProducts";
+export type TLumpSumBtnProps =
+  | 'hanaSalaryBank'
+  | 'otherAccounts'
+  | 'loanProducts';
 
 export type TMainSectionProps = {
   name: string | null | undefined;
@@ -216,7 +219,7 @@ export type TRecommendCarouselItemProps = {
   basicInterest_rate?: number;
   maxInterest_rate?: number;
   maxPeriod?: string;
-  productType: "LOAN" | "SAVINGS" | "LIFE";
+  productType: 'LOAN' | 'SAVINGS' | 'LIFE';
 };
 
 export type TRecommendItemProps = {
@@ -230,7 +233,7 @@ export type TRecommendItemProps = {
   basicInterest_rate?: number;
   maxInterest_rate?: number;
   maxPeriod?: string;
-  productType: "LOAN" | "SAVINGS" | "LIFE";
+  productType: 'LOAN' | 'SAVINGS' | 'LIFE';
   onClick?: () => void;
 };
 
@@ -242,7 +245,7 @@ export type TSearchInput = {
 
 export type TShortCutBtnProps = {
   url: string;
-  variant?: "default" | "column" | "spend" | "product";
+  variant?: 'default' | 'column' | 'spend' | 'product';
 };
 
 export type TSmallWhilickItemProps = {
@@ -253,22 +256,22 @@ export type TSmallWhilickItemProps = {
 
 export type TGraphExpenseCategoriesProps = {
   category:
-    | "FOOD"
-    | "SNACK"
-    | "EDUCATION"
-    | "HOBBY"
-    | "HEALTH"
-    | "FIXED_EXPENSE"
-    | "TRAVEL"
-    | "DEPOSIT"
-    | "INTEREST"
-    | "ETC";
+    | 'FOOD'
+    | 'SNACK'
+    | 'EDUCATION'
+    | 'HOBBY'
+    | 'HEALTH'
+    | 'FIXED_EXPENSE'
+    | 'TRAVEL'
+    | 'DEPOSIT'
+    | 'INTEREST'
+    | 'ETC';
   amount: number;
   percentage: number;
 };
 
 export type TGraphProps = {
-  type: "mydata" | "statistics";
+  type: 'mydata' | 'statistics';
   expenseCategories?: TGraphExpenseCategoriesProps[];
   depositAmount?: number;
   depositPercentage?: number;
@@ -285,7 +288,12 @@ export type TGraphProps = {
 export type TMockWhilickProps = {
   title: string;
   articleId: number;
-  text: { paragraphId: number; content: string; startTime: number; endTime: number }[];
+  text: {
+    paragraphId: number;
+    content: string;
+    startTime: number;
+    endTime: number;
+  }[];
   likeCount: number;
   isLiked: boolean;
   ttsUrl: string;
@@ -305,6 +313,8 @@ export type TWhilickItemProps = {
   likeCount: number;
   ttsUrl: string;
   currentAudio: HTMLAudioElement | null;
-  setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | null>>;
+  setCurrentAudio: React.Dispatch<
+    React.SetStateAction<HTMLAudioElement | null>
+  >;
   onContentChange?: () => void;
 };
