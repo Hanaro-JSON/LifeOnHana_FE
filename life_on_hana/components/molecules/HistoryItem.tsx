@@ -68,7 +68,7 @@ export default function HistoryItem({ category, amount, description, historyDate
     <>
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row gap-3">
-          <Image src={getSrc(category)} alt={getLabel(category)} width={40} height={40} />
+          <Image src={getSrc(category)} alt={getLabel(category)} width={40} height={40} priority />
           <div className="flex flex-col py-2">
             <div className="font-SCDream3 text-[.8025rem]">{getLabel(category)}</div>
             <div className="font-SCDream5 text-[.9rem]">{description}</div>

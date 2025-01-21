@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
 module.exports = {
   images: {
     domains: ['www.hana1qm.com', 'hana1qm.com'],
-    
   },
 };
 //

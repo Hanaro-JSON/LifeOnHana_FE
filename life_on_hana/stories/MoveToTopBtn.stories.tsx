@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import MoveToTopBtn from "../components/atoms/MoveToTopBtn";
+import MoveToTopBtn from "@/components/atoms/MoveToTopBtn";
 
 const meta: Meta<typeof MoveToTopBtn> = {
   title: "atom component/MoveToTopBtn",

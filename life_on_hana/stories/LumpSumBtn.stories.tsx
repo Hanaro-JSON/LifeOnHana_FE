@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import LumpSumBtn from "../components/molecules/LumpSumBtn";
+import LumpSumBtn from "@/components/molecules/LumpSumBtn";
 
 const meta: Meta<typeof LumpSumBtn> = {
   title: "molecule component/LumpSumBtn",

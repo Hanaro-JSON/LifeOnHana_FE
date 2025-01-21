@@ -1,16 +1,35 @@
 import { type TAdjustBtnProps } from "@/types/componentTypes";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function AdjustBtn({
+  id,
+  isOpen,
   typeCeilTxt = "말",
-  typeButtomTxt = "속도",
+  typeBottomTxt = "속도",
   first = "0.5x",
   second = "1x",
-  thired = "2x",
+  third = "2x",
   mX = 80,
   mY = 90,
+  onToggle,
   onChange,
 }: TAdjustBtnProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // 바깥 클릭 시 닫기
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (isOpen && wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        onToggle("");
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [isOpen, onToggle]);
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSelector = () => {
@@ -24,6 +43,8 @@ export default function AdjustBtn({
 
   return (
     <div
+      ref={wrapperRef}
+      onClick={() => onToggle(id)}
       className="relative inline-block"
       style={{
         left: `${mX}%`,
@@ -40,7 +61,7 @@ export default function AdjustBtn({
         } rounded-full size-16 font-semibold shadow-md`}
       >
         {typeCeilTxt} <br />
-        {typeButtomTxt}
+        {typeBottomTxt}
       </button>
 
       {isOpen && (
@@ -60,7 +81,7 @@ export default function AdjustBtn({
           <div className="w-[80%] flex justify-between text-center bg-white text-sm mt-2 font-bold">
             <p className="bg-white">{first}</p>
             <p className="bg-white">{second}</p>
-            <p className="bg-white">{thired}</p>
+            <p className="bg-white">{third}</p>
           </div>
         </div>
       )}

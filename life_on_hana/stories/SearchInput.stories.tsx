@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import SearchInput from "../components/molecules/SearchInput";
+import SearchInput from "@/components/molecules/SearchInput";
 
 const meta: Meta<typeof SearchInput> = {
   title: "molecule component/SearchInput",
