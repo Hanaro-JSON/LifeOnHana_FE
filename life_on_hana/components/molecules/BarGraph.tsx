@@ -26,44 +26,16 @@ export function BarGraph({
     type === "mydata" && expenseCategories
       ? [
           {
-            FOOD:
-              expenseCategories.find((category) => category.category === "FOOD")
-                ?.percentage || 0,
-            SNACK:
-              expenseCategories.find(
-                (category) => category.category === "SNACK"
-              )?.percentage || 0,
-            EDUCATION:
-              expenseCategories.find(
-                (category) => category.category === "EDUCATION"
-              )?.percentage || 0,
-            HOBBY:
-              expenseCategories.find(
-                (category) => category.category === "HOBBY"
-              )?.percentage || 0,
-            HEALTH:
-              expenseCategories.find(
-                (category) => category.category === "HEALTH"
-              )?.percentage || 0,
-            FIXED_EXPENSE:
-              expenseCategories.find(
-                (category) => category.category === "FIXED_EXPENSE"
-              )?.percentage || 0,
-            TRAVEL:
-              expenseCategories.find(
-                (category) => category.category === "TRAVEL"
-              )?.percentage || 0,
-            DEPOSIT:
-              expenseCategories.find(
-                (category) => category.category === "DEPOSIT"
-              )?.percentage || 0,
-            INTEREST:
-              expenseCategories.find(
-                (category) => category.category === "INTEREST"
-              )?.percentage || 0,
-            ETC:
-              expenseCategories.find((category) => category.category === "ETC")
-                ?.percentage || 0,
+            FOOD: expenseCategories.find((category) => category.category === "FOOD")?.percentage || 0,
+            SNACK: expenseCategories.find((category) => category.category === "SNACK")?.percentage || 0,
+            EDUCATION: expenseCategories.find((category) => category.category === "EDUCATION")?.percentage || 0,
+            HOBBY: expenseCategories.find((category) => category.category === "HOBBY")?.percentage || 0,
+            HEALTH: expenseCategories.find((category) => category.category === "HEALTH")?.percentage || 0,
+            FIXED_EXPENSE: expenseCategories.find((category) => category.category === "FIXED_EXPENSE")?.percentage || 0,
+            TRAVEL: expenseCategories.find((category) => category.category === "TRAVEL")?.percentage || 0,
+            DEPOSIT: expenseCategories.find((category) => category.category === "DEPOSIT")?.percentage || 0,
+            INTEREST: expenseCategories.find((category) => category.category === "INTEREST")?.percentage || 0,
+            ETC: expenseCategories.find((category) => category.category === "ETC")?.percentage || 0,
           },
         ]
       : [
@@ -133,18 +105,13 @@ export function BarGraph({
             axisLine={false}
             tickFormatter={(value) => value.slice(0, 3)}
           />
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent hideLabel />}
-          />
+          <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
           <ChartLegend content={<ChartLegendContent />} />
 
           {Object.entries(chartData[0]).map(([category, percentage], index) => {
             // Check if percentage is 0, if so, return null to skip rendering
             if (percentage === 0) return null;
-            const filteredChartData = Object.entries(chartData[0]).filter(
-              ([, percentage]) => percentage > 0
-            );
+            const filteredChartData = Object.entries(chartData[0]).filter(([, percentage]) => percentage > 0);
             const lengthOfFilteredData = filteredChartData.length;
             return (
               <Bar
@@ -152,13 +119,7 @@ export function BarGraph({
                 dataKey={category}
                 stackId="a"
                 fill={bluePurpleColors[index % bluePurpleColors.length]} // Assign colors dynamically
-                radius={
-                  index === 0
-                    ? [4, 0, 0, 4]
-                    : index === lengthOfFilteredData - 1
-                    ? [0, 4, 4, 0]
-                    : [0, 0, 0, 0]
-                }
+                radius={index === 0 ? [4, 0, 0, 4] : index === lengthOfFilteredData - 1 ? [0, 4, 4, 0] : [0, 0, 0, 0]}
               />
             );
           })}

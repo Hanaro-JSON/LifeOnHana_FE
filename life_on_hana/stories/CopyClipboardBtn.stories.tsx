@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
-import CopyClipboardBtn from "../components/atoms/CopyUrlButton";
+import { Meta, StoryObj } from '@storybook/react';
+import CopyClipboardBtn from '@/components/atoms/CopyClipboardBtn';
 
 const meta: Meta<typeof CopyClipboardBtn> = {
-  title: "atom component/CopyClipboardBtn",
+  title: 'atom component/CopyClipboardBtn',
   component: CopyClipboardBtn,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 };
 

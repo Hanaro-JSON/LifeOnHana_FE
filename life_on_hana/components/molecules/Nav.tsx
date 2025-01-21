@@ -9,7 +9,7 @@ const navItem: TNavItemProps[] = [
   {
     route: "whilick",
     label: "휘릭",
-    icon: { default: "/assets/whilick.svg", clicked: "/assets/whilick_clicked.svg" },
+    icon: { default: "/assets/whilick_gray.svg", clicked: "/assets/whilick_white.svg" },
   },
   {
     route: "home",
@@ -36,7 +36,14 @@ export default function Nav() {
         {navItem.map(({ route, label, icon }: TNavItemProps) => {
           return (
             <Link key={route} href={`/${route}`} className="flex flex-col justify-center items-center">
-              <Image src={segment === route ? icon.clicked : icon.default} alt={label} width={24} height={24} />
+              <Image
+                src={segment === route ? icon.clicked : icon.default}
+                alt={label}
+                width={24}
+                height={24}
+                style={{ width: "auto", height: "auto" }}
+                priority
+              />
               <span className={segment === route ? clickedLableClassNames : lableClassNames}>{label}</span>
             </Link>
           );

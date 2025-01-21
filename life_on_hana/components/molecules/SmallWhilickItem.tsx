@@ -42,7 +42,8 @@ export default function SmallWhilickItem({
             alt='큰따옴표'
             width={20}
             height={20}
-            className='absolute top-10'
+            className='absolute top-10' 
+            priority
           />
           <div className='w-full h-1/2  flex justify-center items-center'>
             <div className='line-clamp text-white font-SCDream6 text-[.8125rem]'>

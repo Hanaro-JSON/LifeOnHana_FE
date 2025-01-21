@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Btn from "@/components/atoms/Btn";
@@ -12,7 +13,7 @@ import {
   type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
 } from "@/types/componentTypes";
-import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
+// import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
 import { FullImgCarousel } from "@/components/molecules/FullImgCarousel";
 import { RecommendCarouselItem } from "@/components/molecules/RecommendCarouselItem";
 import ShortCutBtn from "@/components/molecules/ShortCutBtn";

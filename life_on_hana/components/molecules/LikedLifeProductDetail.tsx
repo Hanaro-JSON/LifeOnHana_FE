@@ -2,7 +2,7 @@ import React from "react";
 import Btn from "../atoms/Btn";
 import X from "../../assets/X.svg";
 import Image from "next/image";
-import { TLikedLifeProductDetailItemProps } from "@/types/componentTypes";
+import { type TLikedLifeProductDetailItemProps } from "@/types/componentTypes";
 
 export default function LikedLifeProductDetailItem({
   name,

@@ -7,13 +7,16 @@ export type TRecommendCarouselColumnProps = {
 };
 
 export type TAdjustBtnProps = {
+  id: string;
+  isOpen: boolean;
   typeCeilTxt: string;
-  typeButtomTxt: string;
+  typeBottomTxt: string;
   first: string;
   second: string;
-  thired: string;
+  third: string;
   mX: number;
   mY: number;
+  onToggle?: (id: string) => void;
   onChange?: (value: number) => void;
 };
 
@@ -191,10 +194,7 @@ export type TLoginLabelInputProps = {
   errorMsg?: string;
 };
 
-export type TLumpSumBtnProps =
-  | "hanaSalaryBank"
-  | "otherAccounts"
-  | "loanProducts";
+export type TLumpSumBtnProps = "hanaSalaryBank" | "otherAccounts" | "loanProducts";
 
 export type TMainSectionProps = {
   name: string | null | undefined;
@@ -231,7 +231,7 @@ export type TRecommendItemProps = {
   maxInterest_rate?: number;
   maxPeriod?: string;
   productType: "LOAN" | "SAVINGS" | "LIFE";
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export type TSearchInput = {
@@ -280,4 +280,31 @@ export type TGraphProps = {
   stockPercentage?: number;
   realEstateAmount?: number;
   realEstatePercentage?: number;
+};
+
+export type TMockWhilickProps = {
+  title: string;
+  articleId: number;
+  text: { paragraphId: number; content: string; startTime: number; endTime: number }[];
+  likeCount: number;
+  isLiked: boolean;
+  ttsUrl: string;
+};
+
+export type TWhilickItemProps = {
+  idx: number;
+  title: string;
+  text: {
+    paragraphId: number;
+    content: string;
+    startTime: number;
+    endTime: number;
+  }[];
+  articleId: number;
+  isLiked: boolean;
+  likeCount: number;
+  ttsUrl: string;
+  currentAudio: HTMLAudioElement | null;
+  setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | null>>;
+  onContentChange?: () => void;
 };

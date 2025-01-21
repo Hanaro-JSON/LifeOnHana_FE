@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import HeartNo from '../../assets/HeartNo.svg';
-import HeartYes from '../../assets/HeartYes.svg';
+import HeartNo from '@/assets/HeartNo.svg';
+import HeartYes from '@/assets/HeartYes.svg';
 import Image from 'next/image';
 import { type TIsLikeProps } from '@/types/componentTypes';
 
@@ -33,6 +33,6 @@ export default function IsLike({
           {count}
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import MiniBtn from "../components/atoms/MiniBtn";
+import MiniBtn from "@/components/atoms/MiniBtn";
 
 const meta: Meta<typeof MiniBtn> = {
   title: "atom component/MiniBtn",

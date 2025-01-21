@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { BarGraph } from "@/components/molecules/BarGraph";
 import { type TGraphExpenseCategoriesProps } from "@/types/componentTypes";
+
 const meta: Meta<typeof BarGraph> = {
   title: "Molecule Component/BarGraph",
   component: BarGraph,
