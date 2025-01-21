@@ -1,5 +1,10 @@
 import { ReactNode } from 'react';
 
+export type TVerticalBarGraphProps = {
+  month: string;
+  totalExpense: number;
+};
+
 export type TRecommendCarouselColumnProps = {
   article_id: number;
   title: string;

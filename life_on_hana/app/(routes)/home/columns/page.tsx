@@ -5,7 +5,6 @@ import { NavHeader } from '@/components/molecules/NavHeader';
 import { WhilickCarousel } from '@/components/molecules/WhilickCarousel';
 import { type TArticlesLiked } from '@/types/dataTypes';
 import { getCategory } from '@/utils/convertEnumtoString';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const mockArticles: TArticlesLiked[] = [
@@ -108,12 +107,11 @@ const mockArticles: TArticlesLiked[] = [
 ];
 
 export default function Columns() {
-  const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [likedArticles, setLikeArticles] =
     useState<TArticlesLiked[]>(mockArticles);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // setLikeArticles(mockArticles);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startIdx, setStartIdx] = useState(0);
 
   const ArticleList = ({ articles }: { articles: TArticlesLiked[] }) => (
