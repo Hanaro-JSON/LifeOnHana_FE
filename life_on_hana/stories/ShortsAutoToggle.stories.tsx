@@ -1,15 +1,15 @@
-import { Meta, StoryObj } from "@storybook/react";
-import ShortsAutoToggle from "@/components/atoms/ShortsAutoToggle";
+import { Meta, StoryObj } from '@storybook/react';
+import ShortsAutoToggle from '@/components/atoms/ShortsAutoToggle';
 
 const meta: Meta<typeof ShortsAutoToggle> = {
-  title: "Atom Component/ShortsAutoToggle",
+  title: 'Atom Component/ShortsAutoToggle',
   component: ShortsAutoToggle,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     initialState: {
       control: {
-        type: "radio",
-        options: ["play", "pause"],
+        type: 'radio',
+        options: ['play', 'pause'],
       },
     },
   },
@@ -20,18 +20,18 @@ type Story = StoryObj<typeof ShortsAutoToggle>;
 
 export const Default: Story = {
   args: {
-    initialState: "play",
+    initialState: 'play',
   },
 };
 
 export const Play: Story = {
   args: {
-    initialState: "play",
+    initialState: 'play',
   },
 };
 
 export const Pause: Story = {
   args: {
-    initialState: "pause",
+    initialState: 'pause',
   },
 };

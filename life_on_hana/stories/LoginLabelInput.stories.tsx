@@ -1,32 +1,32 @@
-import { Meta, StoryObj } from "@storybook/react";
-import LoginLabelInput from "@/components/molecules/LoginLabelInput";
+import { Meta, StoryObj } from '@storybook/react';
+import LoginLabelInput from '@/components/molecules/LoginLabelInput';
 
 const meta: Meta<typeof LoginLabelInput> = {
-  title: "Molecule component/LoginLabelInput",
+  title: 'Molecule component/LoginLabelInput',
   component: LoginLabelInput,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     label: {
-      control: "text",
+      control: 'text',
     },
     id: {
-      control: "text",
+      control: 'text',
     },
     type: {
       control: {
-        type: "select",
-        options: ["text", "password"],
+        type: 'select',
+        options: ['text', 'password'],
       },
     },
     name: {
-      control: "text",
+      control: 'text',
     },
     placeholder: {
-      control: "text",
+      control: 'text',
     },
     errorMsg: {
-      control: "text",
-      description: "id 혹은 pw를 입력하세요.",
+      control: 'text',
+      description: 'id 혹은 pw를 입력하세요.',
     },
   },
 };
@@ -36,20 +36,20 @@ type Story = StoryObj<typeof LoginLabelInput>;
 
 export const Default: Story = {
   args: {
-    label: "id",
-    id: "id",
-    type: "text",
-    name: "id",
-    placeholder: "id를 입력하세요.",
+    label: 'id',
+    id: 'id',
+    type: 'text',
+    name: 'id',
+    placeholder: 'id를 입력하세요.',
   },
 };
 
 export const Password: Story = {
   args: {
-    label: "Password",
-    id: "pw",
-    type: "password",
-    name: "pw",
-    placeholder: "pw를 입력하세요.",
+    label: 'Password',
+    id: 'pw',
+    type: 'password',
+    name: 'pw',
+    placeholder: 'pw를 입력하세요.',
   },
 };

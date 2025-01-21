@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
-import MoveToTopBtn from "@/components/atoms/MoveToTopBtn";
+import { Meta, StoryObj } from '@storybook/react';
+import MoveToTopBtn from '@/components/atoms/MoveToTopBtn';
 
 const meta: Meta<typeof MoveToTopBtn> = {
-  title: "atom component/MoveToTopBtn",
+  title: 'atom component/MoveToTopBtn',
   component: MoveToTopBtn,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 };
 

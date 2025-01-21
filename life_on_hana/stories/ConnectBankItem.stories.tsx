@@ -1,18 +1,18 @@
-import { Meta, StoryObj } from "@storybook/react";
-import ConnectBankItem from "@/components/molecules/ConnectBankItem";
+import { Meta, StoryObj } from '@storybook/react';
+import ConnectBankItem from '@/components/molecules/ConnectBankItem';
 
 const meta: Meta<typeof ConnectBankItem> = {
-  title: "molecule component/ConnectBankItem", 
-  component: ConnectBankItem, 
-  tags: ["autodocs"], 
+  title: 'molecule component/ConnectBankItem',
+  component: ConnectBankItem,
+  tags: ['autodocs'],
   argTypes: {
     bankName: {
-      control: "text",
-      description: "은행 이름", 
+      control: 'text',
+      description: '은행 이름',
     },
     initialIsMydataChecked: {
-      control: "boolean", 
-      description: "MyData 체크 여부", 
+      control: 'boolean',
+      description: 'MyData 체크 여부',
     },
   },
 };
@@ -23,28 +23,28 @@ type Story = StoryObj<typeof ConnectBankItem>;
 
 export const Default: Story = {
   args: {
-    bankName: "HANA",
-    initialIsMydataChecked: false, 
+    bankName: 'HANA',
+    initialIsMydataChecked: false,
   },
 };
 
 export const Checked: Story = {
   args: {
-    bankName: "HANA",
+    bankName: 'HANA',
     initialIsMydataChecked: true,
   },
 };
 
 export const SHINHAN: Story = {
   args: {
-    bankName: "SHINHAN",
-    initialIsMydataChecked: false, 
+    bankName: 'SHINHAN',
+    initialIsMydataChecked: false,
   },
 };
 
 export const KAKAO: Story = {
   args: {
-    bankName: "KAKAO", 
+    bankName: 'KAKAO',
     initialIsMydataChecked: true,
   },
 };

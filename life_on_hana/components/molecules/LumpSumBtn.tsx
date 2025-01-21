@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { type TLumpSumBtnProps } from "@/types/componentTypes";
+import Image from 'next/image';
+import { type TLumpSumBtnProps } from '@/types/componentTypes';
 
 const getLabel = (variant: TLumpSumBtnProps) => {
   switch (variant) {
-    case "hanaSalaryBank":
-      return "하나 월급통장";
-    case "otherAccounts":
-      return "다른 통장";
-    case "loanProducts":
-      return "대출 상품";
+    case 'hanaSalaryBank':
+      return '하나 월급통장';
+    case 'otherAccounts':
+      return '다른 통장';
+    case 'loanProducts':
+      return '대출 상품';
     default:
-      return "";
+      return '';
   }
 };
 
 const getSrc = (variant: TLumpSumBtnProps) => {
   switch (variant) {
-    case "hanaSalaryBank":
-      return "/assets/hanaSalaryBank.svg";
-    case "otherAccounts":
-      return "/assets/otherAccounts.svg";
-    case "loanProducts":
-      return "/assets/loanProducts.svg";
+    case 'hanaSalaryBank':
+      return '/assets/hanaSalaryBank.svg';
+    case 'otherAccounts':
+      return '/assets/otherAccounts.svg';
+    case 'loanProducts':
+      return '/assets/loanProducts.svg';
     default:
-      return "";
+      return '';
   }
 };
 
@@ -39,7 +39,7 @@ export default function LumpSumBtn({
   onClick: () => void;
 }) {
   const commonClassNames =
-    "flex flex-col justify-center items-center w-[6rem] h-[6rem] rounded-xl";
+    'flex flex-col justify-center items-center w-[6rem] h-[6rem] rounded-xl';
 
   return (
     <button
@@ -47,16 +47,16 @@ export default function LumpSumBtn({
       style={
         isSelected
           ? {
-              backgroundColor: "rgba(77, 0, 181, 0.2)",
+              backgroundColor: 'rgba(77, 0, 181, 0.2)',
               boxShadow:
-                "0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(77, 0, 181, 0.25) inset",
+                '0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(77, 0, 181, 0.25) inset',
             }
           : undefined
       }
       className={`${commonClassNames} ${
         isSelected
-          ? "shadow-inner"
-          : "shadow-[0px_4px_3px_rgba(77,0,181,0.3)] bg-hanalightpurple"
+          ? 'shadow-inner'
+          : 'shadow-[0px_4px_3px_rgba(77,0,181,0.3)] bg-hanalightpurple'
       }`}
     >
       <Image
@@ -65,7 +65,7 @@ export default function LumpSumBtn({
         width={50}
         height={50}
       />
-      <div className="font-SCDream5 text-[0.7rem]">{getLabel(variant)}</div>
+      <div className='font-SCDream5 text-[0.7rem]'>{getLabel(variant)}</div>
     </button>
   );
 }

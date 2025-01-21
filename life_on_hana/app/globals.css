@@ -3,93 +3,93 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Hana2bold";
-  src: url("./fonts/Hana2-Bold.otf") format("truetype");
+  font-family: 'Hana2bold';
+  src: url('./fonts/Hana2-Bold.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Hana2cm";
-  src: url("./fonts/Hana2-CM.otf") format("truetype");
+  font-family: 'Hana2cm';
+  src: url('./fonts/Hana2-CM.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Hana2heavy";
-  src: url("./fonts/Hana2-Heavy.otf") format("truetype");
+  font-family: 'Hana2heavy';
+  src: url('./fonts/Hana2-Heavy.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Hana2light";
-  src: url("./fonts/Hana2-Light.otf") format("truetype");
+  font-family: 'Hana2light';
+  src: url('./fonts/Hana2-Light.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Hana2medium";
-  src: url("./fonts/Hana2-Medium.otf") format("truetype");
+  font-family: 'Hana2medium';
+  src: url('./fonts/Hana2-Medium.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Hana2regular";
-  src: url("./fonts/Hana2-Regular.otf") format("truetype");
+  font-family: 'Hana2regular';
+  src: url('./fonts/Hana2-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "SCDream1";
-  src: url("./fonts/SCDream1.otf") format("truetype");
+  font-family: 'SCDream1';
+  src: url('./fonts/SCDream1.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream2";
-  src: url("./fonts/SCDream2.otf") format("truetype");
+  font-family: 'SCDream2';
+  src: url('./fonts/SCDream2.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream3";
-  src: url("./fonts/SCDream3.otf") format("truetype");
+  font-family: 'SCDream3';
+  src: url('./fonts/SCDream3.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream4";
-  src: url("./fonts/SCDream4.otf") format("truetype");
+  font-family: 'SCDream4';
+  src: url('./fonts/SCDream4.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream5";
-  src: url("./fonts/SCDream5.otf") format("truetype");
+  font-family: 'SCDream5';
+  src: url('./fonts/SCDream5.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream6";
-  src: url("./fonts/SCDream6.otf") format("truetype");
+  font-family: 'SCDream6';
+  src: url('./fonts/SCDream6.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream7";
-  src: url("./fonts/SCDream7.otf") format("truetype");
+  font-family: 'SCDream7';
+  src: url('./fonts/SCDream7.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream8";
-  src: url("./fonts/SCDream8.otf") format("truetype");
+  font-family: 'SCDream8';
+  src: url('./fonts/SCDream8.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "SCDream9";
-  src: url("./fonts/SCDream9.otf") format("truetype");
+  font-family: 'SCDream9';
+  src: url('./fonts/SCDream9.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -131,7 +131,7 @@ html {
 }
 
 html {
-  font-family: "SCDream2";
+  font-family: 'SCDream2';
   --background: #f1f0f2;
 }
 
@@ -179,7 +179,7 @@ a {
   color: black;
 }
 
-input[type="radio"] {
+input[type='radio'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -189,7 +189,7 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-input[type="radio"]:checked {
+input[type='radio']:checked {
   background-color: var(--hanapurple);
   border: 1px solid var(--hanapurple);
   /* box-shadow: 0 0 0 1.6px var(--hanapurple); */
@@ -232,8 +232,10 @@ input[type="radio"]:checked {
 }
 
 .whilick-down-1 {
-  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
-  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
 }
 
 @-webkit-keyframes animate-svg-fill-2 {
@@ -273,8 +275,10 @@ input[type="radio"]:checked {
 }
 
 .whilick-down-2 {
-  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
-  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
 }
 
 @keyframes animate-svg-fill-1 {
@@ -296,8 +300,10 @@ input[type="radio"]:checked {
 }
 
 .whilick-down-1 {
-  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
-  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
 }
 
 @-webkit-keyframes animate-svg-fill-2 {
@@ -337,6 +343,8 @@ input[type="radio"]:checked {
 }
 
 .whilick-down-2 {
-  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
-  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
+  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
 }

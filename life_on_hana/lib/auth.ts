@@ -1,5 +1,5 @@
-import NextAuth, { User } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import NextAuth, { User } from 'next-auth';
+import Credentials from 'next-auth/providers/credentials';
 
 // const secret = 'your-secret-key';
 
@@ -11,21 +11,21 @@ export const {
 } = NextAuth({
   providers: [
     Credentials({
-      name: "emailLogin",
+      name: 'emailLogin',
       credentials: {
         id: {
-          label: "id",
-          type: "email",
+          label: 'id',
+          type: 'email',
         },
-        pw: { label: "pw", type: "password" },
+        pw: { label: 'pw', type: 'password' },
       },
       async authorize(credentials) {
         if (!credentials || !credentials.id || !credentials.pw) return null;
         // Spring API로 사용자 검증 요청
         const user = {
           email: credentials.id,
-          name: "Guest",
-          id: "xxx",
+          name: 'Guest',
+          id: 'xxx',
         } as User;
         return user;
       },
@@ -40,8 +40,8 @@ export const {
       // 토큰 정보를 세션에 전달
       session.user = {
         ...session.user,
-        email: token.email || "",
-        name: token.name || "",
+        email: token.email || '',
+        name: token.name || '',
       };
 
       // 커스텀 필드 추가
@@ -61,7 +61,7 @@ export const {
   //   strategy: 'database',
   // },
   pages: {
-    signIn: "/signin",
+    signIn: '/signin',
   },
   trustHost: true,
 });

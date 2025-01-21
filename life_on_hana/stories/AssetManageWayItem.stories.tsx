@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import AssetManageWayItem from "@/components/molecules/AssetManageWayItem";
+import { Meta, StoryObj } from '@storybook/react';
+import AssetManageWayItem from '@/components/molecules/AssetManageWayItem';
 
 const meta: Meta<typeof AssetManageWayItem> = {
-  title: "molecule component/AssetManageWayItem",
+  title: 'molecule component/AssetManageWayItem',
   component: AssetManageWayItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    variant: { type: "string", description: "종류" },
+    variant: { type: 'string', description: '종류' },
   },
 };
 
@@ -15,48 +15,48 @@ type Story = StoryObj<typeof AssetManageWayItem>;
 
 export const adjust: Story = {
   args: {
-    variant: "adjust",
+    variant: 'adjust',
   },
 };
 
 export const rebalancing: Story = {
   args: {
-    variant: "rebalancing",
+    variant: 'rebalancing',
   },
 };
 
 export const managing: Story = {
   args: {
-    variant: "managing",
+    variant: 'managing',
   },
 };
 
 export const product: Story = {
   args: {
-    variant: "product",
+    variant: 'product',
   },
 };
 
 export const invest: Story = {
   args: {
-    variant: "invest",
+    variant: 'invest',
   },
 };
 
 export const trip: Story = {
   args: {
-    variant: "trip",
+    variant: 'trip',
   },
 };
 
 export const culture: Story = {
   args: {
-    variant: "culture",
+    variant: 'culture',
   },
 };
 
 export const realEstate: Story = {
   args: {
-    variant: "realEstate",
+    variant: 'realEstate',
   },
 };

@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import DescriptionDetailItem from "@/components/atoms/DescriptionDetailItem";
+import { Meta, StoryObj } from '@storybook/react';
+import DescriptionDetailItem from '@/components/atoms/DescriptionDetailItem';
 
 const meta: Meta<typeof DescriptionDetailItem> = {
-  title: "atom component/DescriptionDetailItem",
+  title: 'atom component/DescriptionDetailItem',
   component: DescriptionDetailItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    idx: { type: "number" },
+    idx: { type: 'number' },
   },
 };
 

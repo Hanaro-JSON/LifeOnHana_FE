@@ -1,19 +1,19 @@
-"use client";
-import { Session } from "next-auth";
-import { useRouter } from "next/navigation";
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+'use client';
+import { Session } from 'next-auth';
+import { useRouter } from 'next/navigation';
+import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 type LocalData = {
   email: string;
   name: string | undefined | null;
 };
 let DefaultData: LocalData = {
-  email: "",
-  name: "",
+  email: '',
+  name: '',
 };
 const contextInitValue = {
   data: DefaultData,
   getSession: async () => {
-    const sess: Session | null = { user: { email: "", name: "" }, expires: "" };
+    const sess: Session | null = { user: { email: '', name: '' }, expires: '' };
     return Promise.resolve(sess);
   },
   setName: async (name: string) => {
@@ -21,7 +21,7 @@ const contextInitValue = {
     return name;
   },
 };
-type ContextProps = Omit<typeof contextInitValue, "getSession" | "setName"> & {
+type ContextProps = Omit<typeof contextInitValue, 'getSession' | 'setName'> & {
   getSession: () => Promise<Session | null>;
   setName: (name: string) => void;
 };
@@ -53,7 +53,7 @@ export const DataProvider = ({
       if (!session?.user?.email) return;
       const { email, name } = session.user;
       const localData = JSON.parse(
-        localStorage.getItem(email) || "null"
+        localStorage.getItem(email) || 'null'
       ) as LocalData;
       console.log(localData);
       if (!localData) {
@@ -65,7 +65,7 @@ export const DataProvider = ({
         if (email && localData.email !== email) {
           await signOut();
           localStorage.removeItem(email);
-          router.push("/");
+          router.push('/');
           return;
         }
         setData(localData);

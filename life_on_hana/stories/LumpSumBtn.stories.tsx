@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import LumpSumBtn from "@/components/molecules/LumpSumBtn";
+import { Meta, StoryObj } from '@storybook/react';
+import LumpSumBtn from '@/components/molecules/LumpSumBtn';
 
 const meta: Meta<typeof LumpSumBtn> = {
-  title: "molecule component/LumpSumBtn",
+  title: 'molecule component/LumpSumBtn',
   component: LumpSumBtn,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    variant: { type: "string", description: "종류" },
+    variant: { type: 'string', description: '종류' },
   },
 };
 
@@ -15,18 +15,18 @@ type Story = StoryObj<typeof LumpSumBtn>;
 
 export const HanaSalaryBank: Story = {
   args: {
-    variant: "hanaSalaryBank",
+    variant: 'hanaSalaryBank',
   },
 };
 
 export const OtherAccounts: Story = {
   args: {
-    variant: "otherAccounts",
+    variant: 'otherAccounts',
   },
 };
 
 export const LoanProducts: Story = {
   args: {
-    variant: "loanProducts",
+    variant: 'loanProducts',
   },
 };

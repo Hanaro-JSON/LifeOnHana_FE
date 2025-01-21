@@ -1,28 +1,28 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { RecommendItem } from "@/components/molecules/RecommendItem";
+import { Meta, StoryObj } from '@storybook/react';
+import { RecommendItem } from '@/components/molecules/RecommendItem';
 
 const meta: Meta<typeof RecommendItem> = {
-  title: "molecule component/RecommendItem",
+  title: 'molecule component/RecommendItem',
   component: RecommendItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     productType: {
       control: {
-        type: "select",
-        options: ["LOAN", "SAVINGS", "LIFE"],
+        type: 'select',
+        options: ['LOAN', 'SAVINGS', 'LIFE'],
       },
     },
     name: {
-      control: "text",
+      control: 'text',
     },
     description: {
-      control: "text",
+      control: 'text',
     },
     maxAmount: {
-      control: "text",
+      control: 'text',
     },
     maxInterest_rate: {
-      control: "number",
+      control: 'number',
     },
   },
 };
@@ -32,29 +32,29 @@ type Story = StoryObj<typeof RecommendItem>;
 
 export const Loan: Story = {
   args: {
-    productId: "1",
-    name: "대출 상품",
-    description: "최대 한도와 조건이 좋은 대출 상품입니다.",
-    maxAmount: "1억 원",
-    productType: "LOAN",
+    productId: '1',
+    name: '대출 상품',
+    description: '최대 한도와 조건이 좋은 대출 상품입니다.',
+    maxAmount: '1억 원',
+    productType: 'LOAN',
   },
 };
 
 export const Savings: Story = {
   args: {
-    productId: "2",
-    name: "적금 상품",
-    description: "높은 금리의 적금 상품입니다.",
+    productId: '2',
+    name: '적금 상품',
+    description: '높은 금리의 적금 상품입니다.',
     maxInterest_rate: 3.5,
-    productType: "SAVINGS",
+    productType: 'SAVINGS',
   },
 };
 
 export const Life: Story = {
   args: {
-    productId: "3",
-    name: "보험 상품",
-    description: "삶을 지켜주는 든든한 보험 상품입니다.",
-    productType: "LIFE",
+    productId: '3',
+    name: '보험 상품',
+    description: '삶을 지켜주는 든든한 보험 상품입니다.',
+    productType: 'LIFE',
   },
 };

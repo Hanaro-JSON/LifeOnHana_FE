@@ -1,13 +1,13 @@
-import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import Section from "@/components/atoms/Section";
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import Section from '@/components/atoms/Section';
 
 const meta: Meta<typeof Section> = {
-  title: "atom component/Section",
+  title: 'atom component/Section',
   component: Section,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    hasShadow: { type: "boolean" },
+    hasShadow: { type: 'boolean' },
   },
 };
 

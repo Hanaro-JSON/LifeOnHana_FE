@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import IsLike from "@/components/molecules/IsLike";
+import { Meta, StoryObj } from '@storybook/react';
+import IsLike from '@/components/molecules/IsLike';
 
 const meta: Meta<typeof IsLike> = {
-  title: "Molecule Component/IsLike",
+  title: 'Molecule Component/IsLike',
   component: IsLike,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    likeCount: { control: "number", description: "초기 좋아요 개수" },
+    likeCount: { control: 'number', description: '초기 좋아요 개수' },
   },
 };
 
