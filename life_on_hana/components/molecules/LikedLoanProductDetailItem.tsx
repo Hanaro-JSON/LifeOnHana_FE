@@ -72,7 +72,10 @@ export default function LikedLoanProductDetailItem({
             { label: '한도', content: formatAmountRange() },
             {
               label: '기간',
-              content: `${loanInfo.minPeriod}개월 ~ ${loanInfo.maxPeriod}개월`,
+              content:
+                loanInfo.minPeriod == null && loanInfo.maxPeriod == null
+                  ? '기간 정보 없음'
+                  : `${loanInfo.minPeriod ?? ''}개월 ~ ${loanInfo.maxPeriod ?? ''}개월`,
             },
           ].map(({ label, content }) => (
             <div key={label} className='flex items-center'>
