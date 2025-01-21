@@ -1,6 +1,6 @@
 import { Carousel } from "nuka-carousel";
 import Image from "next/image";
-import { TRecommendCarouselColumnProps } from "@/types/componentTypes";
+import { type TRecommendCarouselColumnProps } from "@/types/componentTypes";
 import Link from "next/link";
 
 export function FullImgCarousel({
