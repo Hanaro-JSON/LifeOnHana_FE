@@ -12,6 +12,7 @@ export default function AdjustBtn({
   mX = 80,
   mY = 90,
   onToggle,
+  onChange,
 }: TAdjustBtnProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -28,6 +29,17 @@ export default function AdjustBtn({
       document.removeEventListener("click", handleOutsideClick);
     };
   }, [isOpen, onToggle]);
+  
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSelector = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    if (onChange) onChange(value);
+  };
 
   return (
     <div
@@ -40,25 +52,29 @@ export default function AdjustBtn({
         transform: "translate(-50%, -50%)",
       }}
     >
-      {/* 글씨 크기 버튼 */}
       <button
+        onClick={toggleSelector}
         className={`${
-          isOpen ? "bg-white text-purple-600 border shadow-purple-100" : "bg-purple-600 text-white"
+          isOpen
+            ? "bg-white text-purple-600 border shadow-purple-100"
+            : "bg-purple-600 text-white"
         } rounded-full size-16 font-semibold shadow-md`}
       >
         {typeCeilTxt} <br />
         {typeBottomTxt}
       </button>
 
-      {/* 선택 바 */}
       {isOpen && (
-        <div className="h-16 -z-20 absolute -left-[13rem] -top-0 transform bg-white rounded-2xl shadow-lg p-4 w-64">
+        <div
+          className="h-16 -z-20 absolute -left-[13rem] -top-0 transform bg-white rounded-2xl shadow-lg p-4 w-64"
+        >
           <div className="flex items-center justify-between">
             <input
               type="range"
               min="1"
               max="3"
-              defaultValue="2"
+              defaultValue="1"
+              onChange={handleFontSizeChange}
               className="w-[80%] h-2 bg-gradient-to-r from-purple-600 to-purple-200 rounded-sm custom-range"
             />
           </div>

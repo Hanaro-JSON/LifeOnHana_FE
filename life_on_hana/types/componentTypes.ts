@@ -16,7 +16,8 @@ export type TAdjustBtnProps = {
   third: string;
   mX: number;
   mY: number;
-  onToggle: (id: string) => void;
+  onToggle?: (id: string) => void;
+  onChange?: (value: number) => void;
 };
 
 export type TBtnProps = {
