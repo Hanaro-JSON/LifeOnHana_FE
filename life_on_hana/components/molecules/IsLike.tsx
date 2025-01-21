@@ -1,10 +1,13 @@
-import { useState } from "react";
-import HeartNo from "../../assets/HeartNo.svg";
-import HeartYes from "../../assets/HeartYes.svg";
-import Image from "next/image";
-import { type TIsLikeProps } from "@/types/componentTypes";
+import { useState } from 'react';
+import HeartNo from '../../assets/HeartNo.svg';
+import HeartYes from '../../assets/HeartYes.svg';
+import Image from 'next/image';
+import { type TIsLikeProps } from '@/types/componentTypes';
 
-export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: TIsLikeProps) {
+export default function IsLike({
+  likeCount,
+  isLiked: initialIsLiked = false,
+}: TIsLikeProps) {
   const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
   const [count, setCount] = useState<number>(likeCount);
 
@@ -14,19 +17,21 @@ export default function IsLike({ likeCount, isLiked: initialIsLiked = false }: T
   };
 
   return (
-    <div className="w-[3rem]">
-      <div className="flex flex-col items-center">
-        <div className="relative flex justify-center items-center">
+    <div className='w-[3rem]'>
+      <div className='flex flex-col items-center'>
+        <div className='relative flex justify-center items-center'>
           <Image
             src={isLiked ? HeartYes : HeartNo}
-            alt={isLiked ? "Liked" : "Not Liked"}
+            alt={isLiked ? 'Liked' : 'Not Liked'}
             width={24}
             height={24}
             onClick={toggleLike}
-            className="cursor-pointer"
+            className='cursor-pointer'
           />
         </div>
-        <div className="mt-1 text-[.7rem] text-hanapurple font-SCDream3">{count}</div>
+        <div className='mt-1 text-[.7rem] text-hanapurple font-SCDream3'>
+          {count}
+        </div>
       </div>
     </div>
   );
