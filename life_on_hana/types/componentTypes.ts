@@ -312,9 +312,14 @@ export type TWhilickItemProps = {
   isLiked: boolean;
   likeCount: number;
   ttsUrl: string;
-  currentAudio: HTMLAudioElement | null;
-  setCurrentAudio: React.Dispatch<
-    React.SetStateAction<HTMLAudioElement | null>
+  top: number;
+  globalAudioState: { isPlaying: boolean; isMute: boolean };
+  setGlobalAudioState: React.Dispatch<
+    React.SetStateAction<{ isPlaying: boolean; isMute: boolean }>
   >;
+  globalAudioSpeed: number;
+  setGlobalAudioSpeed: React.Dispatch<React.SetStateAction<number>>;
+  globalFontSize: number;
+  setGlobalFontSize: React.Dispatch<React.SetStateAction<number>>;
   onContentChange?: () => void;
 };

@@ -19,14 +19,11 @@ export default function WhilickItem({
   top,
   globalAudioState,
   setGlobalAudioState,
-}: TWhilickItemProps & {
-  idx: number;
-  top: number;
-  globalAudioState: { isPlaying: boolean; isMute: boolean };
-  setGlobalAudioState: React.Dispatch<
-    React.SetStateAction<{ isPlaying: boolean; isMute: boolean }>
-  >;
-}) {
+  globalAudioSpeed,
+  setGlobalAudioSpeed,
+  globalFontSize,
+  setGlobalFontSize,
+}: TWhilickItemProps) {
   // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
 
@@ -72,26 +69,26 @@ export default function WhilickItem({
   }, [top, idx, globalAudioState]);
 
   // 글씨 크기 조절
-  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
   const handleFontSizeChange = (value: number) => {
-    setFontSizeMultiplier(value);
+    setGlobalFontSize(value);
   };
 
   // 오디오 속도 조절
-  const [audioSpeed, setAudioSpeed] = useState(1.0);
+  const handleAudioSpeedChange = useCallback(
+    (value: number) => {
+      setGlobalAudioSpeed(value);
+      if (audioRef.current instanceof HTMLAudioElement) {
+        audioRef.current.playbackRate = value;
+      }
+    },
+    [setGlobalAudioSpeed]
+  );
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.playbackRate = audioSpeed;
-    }
-  }, [audioSpeed]);
-
-  const handleAudioSpeedChange = useCallback((value: number) => {
-    setAudioSpeed(value);
     if (audioRef.current instanceof HTMLAudioElement) {
-      audioRef.current.playbackRate = value;
+      audioRef.current.playbackRate = globalAudioSpeed;
     }
-  }, []);
+  }, [globalAudioSpeed]);
 
   return (
     <>
@@ -129,10 +126,10 @@ export default function WhilickItem({
           <div
             className='gap-5 px-[1.5rem] flex flex-col text-center items-center w-full font-SCDream8 text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
             style={{
-              maxHeight: 'calc(100vh - 25rem)',
+              maxHeight: 'calc(100vh - 400px)',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
-              fontSize: `calc(2rem * ${fontSizeMultiplier})`,
+              fontSize: `calc(2rem * ${globalFontSize})`,
             }}
           >
             {text.map((elem) => {
