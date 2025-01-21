@@ -14,6 +14,7 @@ export type TAdjustBtnProps = {
   thired: string;
   mX: number;
   mY: number;
+  onChange?: (value: number) => void;
 };
 
 export type TBtnProps = {
