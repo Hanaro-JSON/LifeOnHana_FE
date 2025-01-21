@@ -78,7 +78,6 @@ const carouselItems: TRecommendCarouselItemProps[] = [
 export default function Home() {
   const { data, setName } = useContext(DataContext);
   useEffect(() => {
-    console.log('이름 세팅');
     setName('장다연');
   });
   const [walletAmount, setWalletAmount] = useState(100);

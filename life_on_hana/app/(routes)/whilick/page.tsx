@@ -3,19 +3,18 @@
 import Image from 'next/image';
 import whilick_purple from '@/assets/whilick_purple.svg';
 import WhilickItem from '@/components/molecules/WhilickItem';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { type TMockWhilickProps } from '@/types/componentTypes';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
 
 export default function Whilick() {
-  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
-    null
-  );
   const [globalAudioState, setGlobalAudioState] = useState({
     isPlaying: true,
     isMute: false,
   });
+  const [globalAudioSpeed, setGlobalAudioSpeed] = useState(1.0);
+  const [globalFontSize, setGlobalFontSize] = useState(1.0);
 
   const [top, setTop] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -26,10 +25,6 @@ export default function Whilick() {
       setTop(scrollRef.current.scrollTop);
     }
   }, []);
-
-  useEffect(() => {
-    console.log('Debounced top:', debouncedTop);
-  }, [debouncedTop]);
 
   const mockWhilick: TMockWhilickProps[] = [
     {
@@ -59,7 +54,8 @@ export default function Whilick() {
       ],
       likeCount: 5,
       isLiked: false,
-      ttsUrl: '/assets/audio/audio1.mp3',
+      ttsUrl:
+        'https://d1g084wcjwihe3.cloudfront.net/tts/영화관에서_미리_메리_크리스마스_20250121_140209.mp3',
     },
     {
       title: '새해 소망 여행 울산시 울주군',
@@ -141,11 +137,13 @@ export default function Whilick() {
                 isLiked={isLiked}
                 likeCount={likeCount}
                 ttsUrl={ttsUrl}
-                currentAudio={currentAudio}
-                setCurrentAudio={setCurrentAudio}
                 top={debouncedTop}
                 globalAudioState={globalAudioState}
                 setGlobalAudioState={setGlobalAudioState}
+                globalAudioSpeed={globalAudioSpeed}
+                setGlobalAudioSpeed={setGlobalAudioSpeed}
+                globalFontSize={globalFontSize}
+                setGlobalFontSize={setGlobalFontSize}
               />
             )
           )}

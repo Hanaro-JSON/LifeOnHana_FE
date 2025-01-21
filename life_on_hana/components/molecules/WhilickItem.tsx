@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import soundOn from '@/assets/sound-on.svg';
 import soundOff from '@/assets/sound-off.svg';
+import useDebounce from '@/hooks/useDebounce';
 
 export default function WhilickItem({
   idx,
@@ -19,16 +20,14 @@ export default function WhilickItem({
   top,
   globalAudioState,
   setGlobalAudioState,
-}: TWhilickItemProps & {
-  idx: number;
-  top: number;
-  globalAudioState: { isPlaying: boolean; isMute: boolean };
-  setGlobalAudioState: React.Dispatch<
-    React.SetStateAction<{ isPlaying: boolean; isMute: boolean }>
-  >;
-}) {
+  globalAudioSpeed,
+  setGlobalAudioSpeed,
+  globalFontSize,
+  setGlobalFontSize,
+}: TWhilickItemProps) {
   // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
+  const debouncedOpenedAdjustBtn = useDebounce(openedAdjustBtn, 100);
 
   const handleAdjustBtnToggle = (id: string) => {
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
@@ -59,17 +58,56 @@ export default function WhilickItem({
       }
     } else {
       audio.pause();
+      // 열려있던 AdjustBtn 전부 닫힘
+      setOpenedAdjustBtn(null);
     }
 
-    // 스크롤 중 오디오 멈춤
+    // 스크롤 중
     if (Math.floor(top % window.innerHeight) != 0) {
       audio.pause();
+      setOpenedAdjustBtn(null);
     }
 
     return () => {
       audio.pause();
     };
   }, [top, idx, globalAudioState]);
+
+  // 글씨 크기 조절
+  const handleFontSizeChange = (value: number) => {
+    setGlobalFontSize(value);
+  };
+
+  // 오디오 속도 조절
+  const handleAudioSpeedChange = useCallback(
+    (value: number) => {
+      setGlobalAudioSpeed(value);
+      if (audioRef.current instanceof HTMLAudioElement) {
+        audioRef.current.playbackRate = value;
+      }
+    },
+    [setGlobalAudioSpeed]
+  );
+
+  useEffect(() => {
+    if (audioRef.current instanceof HTMLAudioElement) {
+      audioRef.current.playbackRate = globalAudioSpeed;
+    }
+  }, [globalAudioSpeed]);
+
+  const getFontSizeCurrentValue = () => {
+    if (globalFontSize === 0.8) return '1';
+    if (globalFontSize === 1.0) return '2';
+    if (globalFontSize === 1.2) return '3';
+    return '2';
+  };
+
+  const getAudioSpeedCurrentValue = () => {
+    if (globalAudioSpeed === 0.75) return '1';
+    if (globalAudioSpeed === 1.0) return '2';
+    if (globalAudioSpeed === 1.5) return '3';
+    return '2';
+  };
 
   return (
     <>
@@ -105,11 +143,12 @@ export default function WhilickItem({
 
           {/* 칼럼 요약내용 */}
           <div
-            className='gap-5 px-[1.5rem] flex flex-col text-center items-center  w-full font-SCDream8 text-[1.8rem] text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
+            className='gap-5 px-[1.5rem] flex flex-col text-center items-center w-full font-SCDream8 text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
             style={{
-              maxHeight: 'calc(100vh - 35rem)',
+              maxHeight: 'calc(100vh - 400px)',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
+              fontSize: `calc(2rem * ${globalFontSize})`,
             }}
           >
             {text.map((elem) => {
@@ -163,7 +202,7 @@ export default function WhilickItem({
         <div className='absolute right-12 bottom-60 z-50 flex flex-col items-center gap-4'>
           <AdjustBtn
             id='font-size'
-            isOpen={openedAdjustBtn === 'font-size'}
+            isOpen={debouncedOpenedAdjustBtn === 'font-size'}
             typeCeilTxt='글씨'
             typeBottomTxt='크기'
             first='작게'
@@ -171,19 +210,31 @@ export default function WhilickItem({
             third='크게'
             mX={80}
             mY={90}
+            currentValue={getFontSizeCurrentValue()}
             onToggle={handleAdjustBtnToggle}
+            onChange={(value) => {
+              if (value === 1) handleFontSizeChange(0.8);
+              if (value === 2) handleFontSizeChange(1.0);
+              if (value === 3) handleFontSizeChange(1.2);
+            }}
           />
           <AdjustBtn
             id='tts-speed'
-            isOpen={openedAdjustBtn === 'tts-speed'}
+            isOpen={debouncedOpenedAdjustBtn === 'tts-speed'}
             typeCeilTxt='말'
             typeBottomTxt='속도'
-            first='0.5x'
+            first='0.75x'
             second='1x'
-            third='2x'
+            third='1.5x'
             mX={80}
             mY={90}
+            currentValue={getAudioSpeedCurrentValue()}
             onToggle={handleAdjustBtnToggle}
+            onChange={(value) => {
+              if (value === 1) handleAudioSpeedChange(0.75);
+              if (value === 2) handleAudioSpeedChange(1.0);
+              if (value === 3) handleAudioSpeedChange(1.5);
+            }}
           />
         </div>
       </div>
