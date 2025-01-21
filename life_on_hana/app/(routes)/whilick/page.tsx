@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import whilick_purple from '@/assets/whilick_purple.svg';
 import WhilickItem from '@/components/molecules/WhilickItem';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { type TMockWhilickProps } from '@/types/componentTypes';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
@@ -26,10 +26,6 @@ export default function Whilick() {
       setTop(scrollRef.current.scrollTop);
     }
   }, []);
-
-  useEffect(() => {
-    console.log('Debounced top:', debouncedTop);
-  }, [debouncedTop]);
 
   const mockWhilick: TMockWhilickProps[] = [
     {

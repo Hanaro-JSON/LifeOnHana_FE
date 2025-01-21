@@ -71,6 +71,13 @@ export default function WhilickItem({
     };
   }, [top, idx, globalAudioState]);
 
+  // 글씨 크기 조절
+  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
+
+  const handleFontSizeChange = (value: number) => {
+    setFontSizeMultiplier(value);
+  };
+
   return (
     <>
       <div className='snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center'>
@@ -105,11 +112,12 @@ export default function WhilickItem({
 
           {/* 칼럼 요약내용 */}
           <div
-            className='gap-5 px-[1.5rem] flex flex-col text-center items-center  w-full font-SCDream8 text-[1.8rem] text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
+            className='gap-5 px-[1.5rem] flex flex-col text-center items-center w-full font-SCDream8 text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
             style={{
-              maxHeight: 'calc(100vh - 35rem)',
+              maxHeight: 'calc(100vh - 25rem)',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
+              fontSize: `calc(1.8rem * ${fontSizeMultiplier})`,
             }}
           >
             {text.map((elem) => {
@@ -166,12 +174,17 @@ export default function WhilickItem({
             isOpen={openedAdjustBtn === 'font-size'}
             typeCeilTxt='글씨'
             typeBottomTxt='크기'
-            first='작게'
-            second='보통'
-            third='크게'
+            first='보통'
+            second='크게'
+            third='아주크게'
             mX={80}
             mY={90}
             onToggle={handleAdjustBtnToggle}
+            onChange={(value) => {
+              if (value === 1) handleFontSizeChange(1.0);
+              if (value === 2) handleFontSizeChange(1.3);
+              if (value === 3) handleFontSizeChange(1.5);
+            }}
           />
           <AdjustBtn
             id='tts-speed'
@@ -184,6 +197,11 @@ export default function WhilickItem({
             mX={80}
             mY={90}
             onToggle={handleAdjustBtnToggle}
+            onChange={(value) => {
+              if (value === 1) handleFontSizeChange(1.0);
+              if (value === 2) handleFontSizeChange(1.3);
+              if (value === 3) handleFontSizeChange(1.5);
+            }}
           />
         </div>
       </div>
