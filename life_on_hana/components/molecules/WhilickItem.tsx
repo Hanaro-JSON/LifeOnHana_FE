@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import soundOn from '@/assets/sound-on.svg';
 import soundOff from '@/assets/sound-off.svg';
+import useDebounce from '@/hooks/useDebounce';
 
 export default function WhilickItem({
   idx,
@@ -26,6 +27,11 @@ export default function WhilickItem({
 }: TWhilickItemProps) {
   // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
+  const debouncedOpenedAdjustBtn = useDebounce(openedAdjustBtn, 100);
+
+  useEffect(() => {
+    console.log('debouncedOpenedAdjustBtn: ', debouncedOpenedAdjustBtn);
+  }, [debouncedOpenedAdjustBtn]);
 
   const handleAdjustBtnToggle = (id: string) => {
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
@@ -56,11 +62,14 @@ export default function WhilickItem({
       }
     } else {
       audio.pause();
+      // 열려있던 AdjustBtn 전부 닫힘
+      setOpenedAdjustBtn(null);
     }
 
-    // 스크롤 중 오디오 멈춤
+    // 스크롤 중
     if (Math.floor(top % window.innerHeight) != 0) {
       audio.pause();
+      setOpenedAdjustBtn(null);
     }
 
     return () => {
@@ -90,20 +99,18 @@ export default function WhilickItem({
     }
   }, [globalAudioSpeed]);
 
-  // 글씨 크기에 대한 currentValue 계산
   const getFontSizeCurrentValue = () => {
     if (globalFontSize === 0.8) return '1';
     if (globalFontSize === 1.0) return '2';
     if (globalFontSize === 1.2) return '3';
-    return '2'; // 기본값
+    return '2';
   };
 
-  // 오디오 속도에 대한 currentValue 계산
   const getAudioSpeedCurrentValue = () => {
     if (globalAudioSpeed === 0.75) return '1';
     if (globalAudioSpeed === 1.0) return '2';
     if (globalAudioSpeed === 1.5) return '3';
-    return '2'; // 기본값
+    return '2';
   };
 
   return (
@@ -199,7 +206,7 @@ export default function WhilickItem({
         <div className='absolute right-12 bottom-60 z-50 flex flex-col items-center gap-4'>
           <AdjustBtn
             id='font-size'
-            isOpen={openedAdjustBtn === 'font-size'}
+            isOpen={debouncedOpenedAdjustBtn === 'font-size'}
             typeCeilTxt='글씨'
             typeBottomTxt='크기'
             first='작게'
@@ -217,7 +224,7 @@ export default function WhilickItem({
           />
           <AdjustBtn
             id='tts-speed'
-            isOpen={openedAdjustBtn === 'tts-speed'}
+            isOpen={debouncedOpenedAdjustBtn === 'tts-speed'}
             typeCeilTxt='말'
             typeBottomTxt='속도'
             first='0.75x'
