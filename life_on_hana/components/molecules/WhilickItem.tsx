@@ -90,6 +90,22 @@ export default function WhilickItem({
     }
   }, [globalAudioSpeed]);
 
+  // 글씨 크기에 대한 currentValue 계산
+  const getFontSizeCurrentValue = () => {
+    if (globalFontSize === 0.8) return '1';
+    if (globalFontSize === 1.0) return '2';
+    if (globalFontSize === 1.2) return '3';
+    return '2'; // 기본값
+  };
+
+  // 오디오 속도에 대한 currentValue 계산
+  const getAudioSpeedCurrentValue = () => {
+    if (globalAudioSpeed === 0.75) return '1';
+    if (globalAudioSpeed === 1.0) return '2';
+    if (globalAudioSpeed === 1.5) return '3';
+    return '2'; // 기본값
+  };
+
   return (
     <>
       <div className='snap-start w-full min-h-screen scroll-snap-align-start px-[1.5rem] relative bg-gradient-to-b from-hanalightpurple to-[#B399C8] flex flex-col items-center justify-center'>
@@ -191,6 +207,7 @@ export default function WhilickItem({
             third='크게'
             mX={80}
             mY={90}
+            currentValue={getFontSizeCurrentValue()}
             onToggle={handleAdjustBtnToggle}
             onChange={(value) => {
               if (value === 1) handleFontSizeChange(0.8);
@@ -208,6 +225,7 @@ export default function WhilickItem({
             third='1.5x'
             mX={80}
             mY={90}
+            currentValue={getAudioSpeedCurrentValue()}
             onToggle={handleAdjustBtnToggle}
             onChange={(value) => {
               if (value === 1) handleAudioSpeedChange(0.75);
