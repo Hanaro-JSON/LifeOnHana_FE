@@ -12,7 +12,7 @@ export default function AdjustBtn({
   currentValue = '2',
   mX = 80,
   mY = 90,
-  onToggle = () => {},
+  onToggle,
   onChange,
 }: TAdjustBtnProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
