@@ -79,3 +79,46 @@ export const fetchLifeProductDetails = async (productId: number) => {
 
   return await response.json();
 };
+
+// column
+export const fetchArticles = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch articles');
+  }
+
+  const data = await response.json();
+  return data.data.articles;
+};
+
+// ArticleItem 좋아요
+export const likeArticle = async (articleId: number, isLiked: boolean) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/${articleId}/like`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+      body: JSON.stringify({ isLiked }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to update like status');
+  }
+
+  const data = await response.json();
+  return data.data;
+};
