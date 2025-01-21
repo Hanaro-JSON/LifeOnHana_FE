@@ -29,10 +29,6 @@ export default function WhilickItem({
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
   const debouncedOpenedAdjustBtn = useDebounce(openedAdjustBtn, 100);
 
-  useEffect(() => {
-    console.log('debouncedOpenedAdjustBtn: ', debouncedOpenedAdjustBtn);
-  }, [debouncedOpenedAdjustBtn]);
-
   const handleAdjustBtnToggle = (id: string) => {
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
   };
