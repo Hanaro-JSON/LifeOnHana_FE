@@ -1,4 +1,4 @@
-import { TArticleItemProps } from './types/componentTypes';
+import { type TArticleItemProps } from './types/componentTypes';
 
 // home/like 상품 불러오기
 export const fetchLikedProducts = async () => {
@@ -8,7 +8,7 @@ export const fetchLikedProducts = async () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`, // Bearer Token 사용
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
       },
     }
   );
