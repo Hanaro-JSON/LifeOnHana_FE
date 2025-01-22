@@ -11,10 +11,6 @@ import { BarGraph } from '@/components/molecules/BarGraph';
 import { CircleGraph } from '@/components/molecules/CircleGraph';
 import Image from 'next/image';
 import snake from '@/assets/snake.svg';
-import { LineGraph } from '@/components/molecules/LineGraph';
-import Btn from '@/components/atoms/Btn';
-import AssetManageWayItem from '@/components/molecules/AssetManageWayItem';
-import { useToast } from '@/hooks/use-toast';
 
 const mockMyData: TGetUsersMydata = {
   pensionStart: '2035',
