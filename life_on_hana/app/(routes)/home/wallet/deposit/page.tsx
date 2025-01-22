@@ -27,7 +27,7 @@ export default function Deposit() {
         setMainAccount(data.mainAccount);
         setOtherAccounts(data.otherAccounts);
       } catch (error) {
-        console.error('Error fetching account data:', error);
+        console.error('계좌 목록 불러오기 오류:', error);
       }
     };
 
