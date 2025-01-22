@@ -13,6 +13,7 @@ import KBBankLogo from '@/assets/KBBankLogo.svg';
 import { type TAccountDetailItemProps } from '@/types/componentTypes';
 
 export default function AccountDetailItem({
+  // accountId,
   bank,
   accountNumber,
   accountName,
@@ -20,9 +21,12 @@ export default function AccountDetailItem({
   isAccountChecked = false,
   onSelect,
   onAmountChange,
+  initialAmount,
 }: TAccountDetailItemProps) {
   const [checked, setChecked] = useState<boolean>(isAccountChecked);
-  const [withdrawalAmount, setWithdrawalAmount] = useState<string>('');
+  const [withdrawalAmount, setWithdrawalAmount] = useState<string>(
+    initialAmount || ''
+  );
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
@@ -36,28 +40,31 @@ export default function AccountDetailItem({
   };
 
   const formatNumber = (value: string) => {
-    if (!value || isNaN(Number(value.replaceAll(',', '')))) return '';
-    return Number(value.replaceAll(',', '')).toLocaleString('en-US');
+    if (!value) return '';
+    const numericValue = value.replace(/\D/g, '');
+    return Number(numericValue).toLocaleString('en-US');
   };
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value.replace(/[,.원]/g, '');
+    const rawValue = e.target.value.replace(/,/g, '');
     const formattedValue = formatNumber(rawValue);
 
-    const inputAmount = Number(rawValue);
+    setWithdrawalAmount(formattedValue);
 
-    if (inputAmount === 0) {
+    const numericAmount = parseInt(rawValue, 10);
+    if (isNaN(numericAmount) || numericAmount <= 0) {
       setErrorMessage('0보다 큰 값을 입력하세요.');
-      onAmountChange?.(true);
-    } else if (inputAmount > balance) {
-      setErrorMessage('출금 가능 금액을 초과했습니다.');
-      onAmountChange?.(true);
-    } else {
-      setErrorMessage('');
-      onAmountChange?.(false);
+      onAmountChange?.(true, formattedValue);
+      return;
     }
 
-    setWithdrawalAmount(formattedValue);
+    if (numericAmount > balance) {
+      setErrorMessage('출금 가능 금액을 초과했습니다.');
+      onAmountChange?.(true, formattedValue);
+    } else {
+      setErrorMessage('');
+      onAmountChange?.(false, formattedValue);
+    }
   };
 
   const bankLogoMap: Record<string, string> = {
@@ -101,23 +108,22 @@ export default function AccountDetailItem({
           height={15}
         />
         <div className='flex flex-col ml-2'>
-          <div className='text-[1.1rem] font-SCDream3'>{accountName}</div>
+          <div className='text-[1.1rem] font-SCDream4'>{accountName}</div>
           <div className='text-[1rem] font-SCDream3'>
             {formattedAccountNumber}
           </div>
         </div>
       </div>
-      <div className='flex justify-between mb-3 text-[.8rem] mt-1'>
-        <div className='font-SCDream3 ml-9'>출금 가능</div>
+      <div className='flex justify-between mb-2 text-[.9rem]'>
+        <div className='font-SCDream3 ml-9'></div>
         <div className='font-SCDream8'>{balance.toLocaleString()} 원</div>
       </div>
 
-      {/* 금액 입력 영역: 체크되었을 때만 보임 */}
       {checked && (
         <div className='mt-4'>
           <div className='text-[1rem] font-SCDream3'>출금금액</div>
           {errorMessage && (
-            <div className='text-rose-500 text-[.8rem] mt-1'>
+            <div className='text-rose-500 text-[.9rem] mt-1'>
               {errorMessage}
             </div>
           )}
@@ -129,12 +135,11 @@ export default function AccountDetailItem({
               placeholder={`${balance.toLocaleString()}`}
               className='mt-2 w-[95%] h-[2.3rem] p-2 border border-hanapurple rounded-md text-right text-[1rem] font-SCDream8 focus:outline-none focus:border-hanapurple focus:border-2'
             />
-            <div className='ml-2 text-[1rem] font-SCDream5 mt-2'>원</div>
+            <div className='ml-2 text-[1.1rem] font-SCDream5 mt-2'>원</div>
           </div>
         </div>
       )}
 
-      {/* 체크 아이콘 */}
       <div className='absolute top-4 right-[0.1rem] w-[1.7rem] h-[1.7rem]'>
         <Image
           src={checked ? AccountCheckYes : AccountCheckNo}

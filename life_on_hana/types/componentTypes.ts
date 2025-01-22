@@ -64,13 +64,15 @@ export type TShortsAutoToggleProps = {
 };
 
 export type TAccountDetailItemProps = {
+  accountId: bigint;
   bank: string;
   accountNumber: string;
   accountName: string;
   balance: number;
   isAccountChecked?: boolean;
   onSelect?: (checked: boolean) => void;
-  onAmountChange?: (isExceeding: boolean) => void;
+  onAmountChange?: (isExceeding: boolean, amount?: string) => void; // amount 추가
+  initialAmount?: string;
 };
 
 export type TArticleAIRecommendDetailItemProps = {

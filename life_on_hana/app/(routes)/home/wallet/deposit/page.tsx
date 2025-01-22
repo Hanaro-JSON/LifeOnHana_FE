@@ -8,7 +8,7 @@ import { type TAccountDetailItemProps } from '@/types/componentTypes';
 import HanaBankLogo from '@/assets/HanaBankLogo.svg';
 import { useRouter } from 'next/navigation';
 import { NavHeader } from '@/components/molecules/NavHeader';
-import { fetchAccountData } from '@/api';
+import { fetchAccountData, transferFunds } from '@/api';
 
 export default function Deposit() {
   const router = useRouter();
@@ -17,8 +17,8 @@ export default function Deposit() {
     []
   );
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [amounts, setAmounts] = useState<{ [key: number]: string }>({});
   const [isExceeding, setIsExceeding] = useState<boolean>(false);
-  const [withdrawalAmount, setWithdrawalAmount] = useState<string>('');
 
   useEffect(() => {
     const loadAccountData = async () => {
@@ -34,38 +34,49 @@ export default function Deposit() {
     loadAccountData();
   }, []);
 
-  useEffect(() => {
-    fetchAccountData();
-  }, []);
-
   const handleSelectAccount = (index: number, checked: boolean) => {
     setSelectedIndex(checked ? index : null);
   };
 
-  const handleComplete = () => {
-    if (isExceeding) {
-      alert('출금 금액을 조절해주세요.');
+  const handleAmountChange = (
+    index: number,
+    isExceeding: boolean,
+    amount?: string
+  ) => {
+    setIsExceeding(isExceeding);
+    if (!isExceeding && amount !== undefined) {
+      setAmounts((prev) => ({ ...prev, [index]: amount }));
+    }
+  };
+
+  const handleComplete = async () => {
+    if (selectedIndex === null || !mainAccount) {
       return;
     }
-    if (
-      !withdrawalAmount ||
-      parseInt(withdrawalAmount.replace(/,/g, ''), 10) <= 0
-    ) {
-      alert('출금 금액을 입력하세요!');
-      return;
+
+    const amount = parseFloat(amounts[selectedIndex]?.replace(/,/g, '') || '0');
+
+    try {
+      const fromAccount = otherAccounts[selectedIndex];
+      const response = await transferFunds(
+        Number(fromAccount.accountId),
+        Number(mainAccount.accountId),
+        amount
+      );
+
+      router.push(
+        `/home/wallet/deposit/finished?transferData=${encodeURIComponent(JSON.stringify(response.data))}`
+      );
+    } catch (error) {
+      console.error('이체 실패:', error);
     }
-    if (selectedIndex === null) {
-      alert('출금 계좌를 먼저 선택하세요!');
-      return;
-    }
-    router.push('deposit/finished');
   };
 
   const btnVariant =
     selectedIndex !== null &&
     !isExceeding &&
-    withdrawalAmount &&
-    parseInt(withdrawalAmount.replace(/,/g, ''), 10) > 0
+    amounts[selectedIndex] &&
+    parseFloat(amounts[selectedIndex]?.replace(/,/g, '') || '0') > 0
       ? 'default'
       : 'beforeChooseAccount';
 
@@ -90,10 +101,10 @@ export default function Deposit() {
                   height={50}
                 />
                 <div className='ml-1'>
-                  <div className='font-SCDream5 text-[1rem] mb-1'>
+                  <div className='font-SCDream5 text-[1.1rem] mb-1'>
                     {mainAccount.accountName}
                   </div>
-                  <div className='font-SCDream3 text-[.8125rem]'>
+                  <div className='font-SCDream3 text-[0.9rem]'>
                     {mainAccount.accountNumber.replace(
                       /(\d{6})(\d{2})(\d{5})/,
                       '$1-$2-$3'
@@ -101,7 +112,7 @@ export default function Deposit() {
                   </div>
                 </div>
               </div>
-              <div className='text-right font-SCDream5 text-[1rem] mr-4 mb-2'>
+              <div className='text-right font-SCDream8 text-[1rem] mr-4 mb-2'>
                 {mainAccount.balance.toLocaleString()} 원
               </div>
             </div>
@@ -117,6 +128,7 @@ export default function Deposit() {
           <div className='p-2 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1 items-center'>
             {otherAccounts.map((acc, idx) => (
               <AccountDetailItem
+                accountId={acc.accountId}
                 key={idx}
                 bank={acc.bank}
                 accountNumber={acc.accountNumber}
@@ -124,12 +136,9 @@ export default function Deposit() {
                 balance={acc.balance}
                 isAccountChecked={selectedIndex === idx}
                 onSelect={(checked) => handleSelectAccount(idx, checked)}
-                onAmountChange={(exceeding) => {
-                  setIsExceeding(exceeding);
-                  if (!exceeding) {
-                    setWithdrawalAmount(acc.balance.toString());
-                  }
-                }}
+                onAmountChange={(exceeding, amount) =>
+                  handleAmountChange(idx, exceeding, amount)
+                }
               />
             ))}
           </div>
@@ -146,7 +155,6 @@ export default function Deposit() {
         </div>
       </div>
 
-      {/* y축 스크롤 안보이게 */}
       <style jsx global>{`
         .overflow-y-auto::-webkit-scrollbar {
           display: none;
