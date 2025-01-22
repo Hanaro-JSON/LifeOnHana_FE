@@ -181,3 +181,39 @@ export const fetchAccountData = async () => {
   return data.data;
 };
 
+// home/wallet/deposit/finished
+export const transferFunds = async (
+  fromAccountId: number,
+  toAccountId: number,
+  amount: number
+) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/account/transfer`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
+        body: JSON.stringify({
+          fromAccountId: fromAccountId,
+          toAccountId: toAccountId,
+          amount: parseFloat(amount.toFixed(2)),
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('응답 오류:', errorText);
+      throw new Error(`이체 요청에 실패했습니다: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('이체 요청 오류:', error);
+    throw new Error('이체 요청 중 오류가 발생했습니다.');
+  }
+};
