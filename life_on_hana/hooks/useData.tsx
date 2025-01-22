@@ -1,5 +1,4 @@
 'use client';
-
 import { Session } from 'next-auth';
 import { useRouter } from 'next/navigation';
 import {
@@ -9,19 +8,16 @@ import {
   useEffect,
   useState,
 } from 'react';
-
 type LocalData = {
   email: string;
   name: string | undefined | null;
   birth: string | undefined | null;
 };
-
 let DefaultData: LocalData = {
   email: '',
   name: '',
   birth: '',
 };
-
 const contextInitValue = {
   data: DefaultData,
   getSession: async () => {
@@ -45,9 +41,7 @@ type ContextProps = Omit<
   setName: (name: string) => void;
   setBirth: (birth: string) => void;
 };
-
 export const DataContext = createContext<ContextProps>(contextInitValue);
-
 export const DataProvider = ({
   children,
   getSession,
@@ -56,7 +50,6 @@ export const DataProvider = ({
   getSession: () => Promise<Session | null>;
   signOut: () => void;
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, setData] = useState<LocalData>(DefaultData);
 
   const setDataWithStorage = useCallback(
@@ -64,7 +57,9 @@ export const DataProvider = ({
       const { email } = newer;
       if (!email) return;
       localStorage.setItem(email, JSON.stringify(newer));
-      // setData(newer);
+      if (JSON.stringify(data) !== JSON.stringify(newer)) {
+        setData(newer);
+      }
       DefaultData = data;
     },
     [data]
@@ -83,7 +78,6 @@ export const DataProvider = ({
   useEffect(() => {
     (async function () {
       const session = await getSession();
-
       if (!session?.user?.email) return;
       const { email, name } = session.user;
       const localData = JSON.parse(
@@ -103,10 +97,12 @@ export const DataProvider = ({
           router.push('/');
           return;
         }
+        if (JSON.stringify(data) !== JSON.stringify(localData)) {
+          setData(localData);
+        }
       }
     })();
-  }, [getSession, signOut, router, setDataWithStorage]);
-
+  }, [getSession, signOut, router, setDataWithStorage, data]);
   return (
     <DataContext.Provider value={{ data, getSession, setName, setBirth }}>
       {children}

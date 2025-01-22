@@ -8,6 +8,7 @@ import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import LoginLabelInput from '@/components/molecules/LoginLabelInput';
 import { useToast } from '@/hooks/use-toast';
+import { authenticate } from '@/actions/myauth';
 
 type TDataProps = {
   accessTocken: string;
@@ -26,6 +27,21 @@ export default function SigninPage() {
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrorMsg(null);
+
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const result = await authenticate(formData);
+
+    if (result.error) {
+      setErrorMsg(result.error);
+
+      // 특정 필드로 포커스 이동
+      if (result.error === 'id' && idInputRef.current) {
+        idInputRef.current.focus();
+      } else if (result.error === 'pw' && passwordInputRef.current) {
+        passwordInputRef.current.focus();
+      }
+    }
 
     const authId = idInputRef.current?.value || '';
     const password = passwordInputRef.current?.value || '';
@@ -69,7 +85,7 @@ export default function SigninPage() {
           router.replace('/signin/mydata');
         }
         // id 틀림
-        else if (data.code === 401) {
+        if (data.code === 401) {
           setErrorMsg('pw');
         }
         // 전부 틀림
