@@ -1,4 +1,4 @@
-import { TVerticalBarGraphProps } from './componentTypes';
+import { type TVerticalBarGraphProps } from './componentTypes';
 
 export type TArticlesLiked = {
   articleId: number;
