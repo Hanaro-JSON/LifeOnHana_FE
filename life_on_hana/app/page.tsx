@@ -10,6 +10,7 @@ export default function page() {
             alt='로고'
             width={90}
             height={90}
+            priority
           />
           <Image
             src='/assets/logoText_white.svg'
@@ -17,6 +18,7 @@ export default function page() {
             className='my-2'
             width={1000}
             height={1000}
+            priority
           />
           <div className='font-SCDream5 text-[.8125rem] text-white'>
             소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
@@ -28,6 +30,7 @@ export default function page() {
           width={100}
           height={100}
           className='absolute bottom-10'
+          priority
         />
       </div>
     </>

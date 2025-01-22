@@ -86,14 +86,14 @@ export default function Home() {
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState('INVESTMENT');
 
-  //내역 통계 조회
+  // 내역 통계 조회
   const [totalExpense, setTotalExpense] = useState(1500000);
   const [totalInterest, setTotalInterest] = useState(50000);
   const [expenseCategories, setExpenseCategories] = useState(
     mockExpenseCategories
   );
 
-  //칼럼 목록 조회
+  // 칼럼 목록 조회
   const [articles, setArticles] = useState(mockArticles);
   const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
     useState<TRecommendCarouselColumnProps[]>([]);
@@ -205,7 +205,7 @@ export default function Home() {
           {data.name}님을 위한 추천 상품
         </div>
         <div>
-          <ShortCutBtn url={'/'} variant='product' />
+          <ShortCutBtn url={'/home/like'} variant='product' />
         </div>
       </div>
       <RecommendCarouselItem items={carouselItems} />;
