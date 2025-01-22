@@ -53,7 +53,10 @@ export default function ConnectBankItem({
   const displayBankName = bankNameMap[bankName];
 
   return (
-    <div className='w-full h-[3.75rem] flex items-center justify-between relative'>
+    <div
+      onClick={toggleMydata}
+      className='w-full h-[3.75rem] flex items-center justify-between relative cursor-pointer'
+    >
       <div className='flex items-center'>
         <Image
           className='w-5 h-[.95rem]'
@@ -73,7 +76,6 @@ export default function ConnectBankItem({
           alt={isMydataChecked ? 'Mydata Checked' : 'Mydata Not Checked'}
           width={20}
           height={20}
-          onClick={toggleMydata}
           className='cursor-pointer'
         />
       </div>
