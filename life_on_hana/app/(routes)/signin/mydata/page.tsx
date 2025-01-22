@@ -47,6 +47,7 @@ export default function Mydata() {
             <ConnectBankItem bankName='HANA' onToggle={handleToggle} />
             <ConnectBankItem bankName='NH' onToggle={handleToggle} />
             <ConnectBankItem bankName='SHINHAN' onToggle={handleToggle} />
+            <ConnectBankItem bankName='KB' onToggle={handleToggle} />
             <ConnectBankItem bankName='WOORI' onToggle={handleToggle} />
             <ConnectBankItem bankName='TOSS' onToggle={handleToggle} />
             <ConnectBankItem bankName='NAVER' onToggle={handleToggle} />
