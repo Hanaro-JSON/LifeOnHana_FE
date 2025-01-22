@@ -1,4 +1,5 @@
 'use server';
+
 import { AuthError } from 'next-auth';
 import { auth, signIn, signOut } from '@/lib/auth';
 export { signIn as mySignIn, signOut as mySignOut };
@@ -9,12 +10,15 @@ export async function getSession() {
 export async function authenticate(formData: FormData) {
   const id = formData.get('id');
   const pw = formData.get('pw');
+
   if (!id) {
     return { error: 'id' };
   }
+
   if (!pw) {
     return { error: 'pw' };
   }
+
   try {
     const result = await signIn('credentials', {
       redirect: false,

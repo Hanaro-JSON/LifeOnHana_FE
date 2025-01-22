@@ -1,15 +1,25 @@
 'use client';
+
 import { Session } from 'next-auth';
 import { useRouter } from 'next/navigation';
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+
 type LocalData = {
   email: string;
   name: string | undefined | null;
 };
+
 let DefaultData: LocalData = {
   email: '',
   name: '',
 };
+
 const contextInitValue = {
   data: DefaultData,
   getSession: async () => {
@@ -21,11 +31,14 @@ const contextInitValue = {
     return name;
   },
 };
+
 type ContextProps = Omit<typeof contextInitValue, 'getSession' | 'setName'> & {
   getSession: () => Promise<Session | null>;
   setName: (name: string) => void;
 };
+
 export const DataContext = createContext<ContextProps>(contextInitValue);
+
 export const DataProvider = ({
   children,
   getSession,
@@ -35,27 +48,35 @@ export const DataProvider = ({
   signOut: () => void;
 }) => {
   const [data, setData] = useState<LocalData>(DefaultData);
-  const setDataWithStorage = (newer: LocalData) => {
-    const { email } = newer;
-    if (!email) return;
-    localStorage.setItem(email, JSON.stringify(newer));
-    setData(newer);
-    DefaultData = data;
-  };
+
+  const setDataWithStorage = useCallback(
+    (newer: LocalData) => {
+      const { email } = newer;
+      if (!email) return;
+      localStorage.setItem(email, JSON.stringify(newer));
+      setData(newer);
+      DefaultData = data;
+    },
+    [data]
+  );
+
   const setName = (name: string) => {
     const updateData = { ...data, name };
     setDataWithStorage(updateData);
   };
+
   const router = useRouter();
+
   useEffect(() => {
     (async function () {
       const session = await getSession();
+
       if (!session?.user?.email) return;
       const { email, name } = session.user;
       const localData = JSON.parse(
         localStorage.getItem(email) || 'null'
       ) as LocalData;
-      console.log(localData);
+
       if (!localData) {
         setDataWithStorage({
           email,
@@ -68,10 +89,10 @@ export const DataProvider = ({
           router.push('/');
           return;
         }
-        setData(localData);
       }
     })();
-  }, [getSession, signOut, router]);
+  }, [getSession, signOut, router, setDataWithStorage]);
+
   return (
     <DataContext.Provider value={{ data, getSession, setName }}>
       {children}
