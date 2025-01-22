@@ -1,5 +1,14 @@
 import { type TArticleItemProps } from './types/componentTypes';
 
+// accessToken 추출
+const userData = localStorage.getItem('user');
+let NEXT_PUBLIC_API_TOKEN: string;
+if (userData) {
+  const userObject = JSON.parse(userData);
+  NEXT_PUBLIC_API_TOKEN = userObject.accessToken;
+  console.log('NEXT_PUBLIC_API_TOKEN: ', NEXT_PUBLIC_API_TOKEN);
+}
+
 // home/like 상품 불러오기
 export const fetchLikedProducts = async () => {
   const response = await fetch(

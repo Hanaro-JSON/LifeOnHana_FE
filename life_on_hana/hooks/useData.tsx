@@ -47,6 +47,7 @@ export const DataProvider = ({
   getSession: () => Promise<Session | null>;
   signOut: () => void;
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, setData] = useState<LocalData>(DefaultData);
 
   const setDataWithStorage = useCallback(
@@ -54,7 +55,7 @@ export const DataProvider = ({
       const { email } = newer;
       if (!email) return;
       localStorage.setItem(email, JSON.stringify(newer));
-      setData(newer);
+      // setData(newer);
       DefaultData = data;
     },
     [data]
