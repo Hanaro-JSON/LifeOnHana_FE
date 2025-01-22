@@ -14,3 +14,23 @@ export type THistoryMonthly = {
   currentBalance: number;
   monthlyExpenses: TVerticalBarGraphProps[];
 };
+
+export type THistoryHistories = {
+  historyId: number;
+  category: string;
+  amount: number;
+  description: string;
+  historyDateTime: string;
+  isFixed: boolean;
+  isExpense: boolean;
+};
+export type THistory = {
+  yearMonth: string;
+  totalIncome: number;
+  totalExpense: number;
+  histories: THistoryHistories[];
+  page: number;
+  size: number;
+  totalPages: number;
+  totalElements: number;
+};

@@ -1,7 +1,7 @@
 'use client';
 
 import { NavHeader } from '@/components/molecules/NavHeader';
-import { type THistoryMonthly } from '@/types/dataTypes';
+import { THistory, type THistoryMonthly } from '@/types/dataTypes';
 import { useState } from 'react';
 import Image from 'next/image';
 import monthLeft from '@/assets/month-left.svg';
@@ -9,6 +9,8 @@ import monthRight from '@/assets/month-right.svg';
 import shopingBag from '@/assets/shopingBag.svg';
 import Section from '@/components/atoms/Section';
 import { VerticalBarGraph } from '@/components/molecules/VerticalBarGraph';
+import HistoryItem from '@/components/molecules/HistoryItem';
+import { THistoryItemCategoryProps } from '@/types/componentTypes';
 
 const mockData: THistoryMonthly = {
   averageExpense: 250000,
@@ -36,7 +38,38 @@ const mockData: THistoryMonthly = {
     },
   ],
 };
+
+const historyMockData: THistory = {
+  yearMonth: '202401',
+  totalIncome: 5000000,
+  totalExpense: 1500000,
+  histories: [
+    {
+      historyId: 1,
+      category: '식비',
+      amount: 15000,
+      description: '점심식사',
+      historyDateTime: '2024-01-13T12:30:00',
+      isFixed: false,
+      isExpense: true,
+    },
+    {
+      historyId: 2,
+      category: '이자',
+      amount: 50000,
+      description: '지갑 이자',
+      historyDateTime: '2024-01-13T09:00:00',
+      isFixed: false,
+      isExpense: false,
+    },
+  ],
+  page: 1,
+  size: 20,
+  totalPages: 5,
+  totalElements: 100,
+};
 export default function History() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [monthlyData, setMonthlyData] = useState<THistoryMonthly>(mockData);
 
   const [year, setYear] = useState<number>(() => new Date().getFullYear());
@@ -91,6 +124,22 @@ export default function History() {
             </div>
           </div>
         </Section>
+        <div>
+          {historyMockData.histories.map((h, idx) => {
+            return (
+              <div key={idx} className='w-full'>
+                <HistoryItem
+                  historyId={h.historyId}
+                  category={h.category as THistoryItemCategoryProps}
+                  amount={h.amount}
+                  description={h.description}
+                  historyDatetime={h.historyDateTime}
+                  isExpense={h.isExpense}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

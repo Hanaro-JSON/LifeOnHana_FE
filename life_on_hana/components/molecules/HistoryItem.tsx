@@ -82,7 +82,7 @@ export default function HistoryItem({
             alt={getLabel(category)}
             width={40}
             height={40}
-            priority
+            // loading='eager'
           />
           <div className='flex flex-col py-2'>
             <div className='font-SCDream3 text-[.8025rem]'>
