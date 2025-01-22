@@ -107,7 +107,7 @@ export default function Detail() {
           {/* 상단 헤더 이미지 영역 */}
           <div className='relative w-full h-[150px]'>
             <Image
-              // src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}${article.data.thumbnailS3Key}`}
+              // src={`${article.data.thumbnailS3Key}`}
               src='https://hana1qm.com/dataFile/bbs/202421251121570801.jpg'
               alt={article.data.category}
               layout='fill'
@@ -198,7 +198,7 @@ export default function Detail() {
             <div className='flex gap-5'>
               <div className='w-[90%]'>
                 <ColumnRecommendItem
-                  variant='TRAVEL'
+                  variant={article.data.category}
                   name={article.data.relatedProducts[0].name}
                   isSelected={
                     selectedProduct?.productId ===

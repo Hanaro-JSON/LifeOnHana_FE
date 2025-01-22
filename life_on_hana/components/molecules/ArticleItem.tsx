@@ -40,7 +40,7 @@ export default function ArticleItem({
         <div className='flex gap-3'>
           <Image
             className='w-40 h-[4.5rem] rounded-[.625rem]'
-            src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}${thumbnailS3Key}`} //S3
+            src={`${thumbnailS3Key}`} //S3
             alt='Article Thumbnail'
             width={90}
             height={45}
