@@ -68,6 +68,25 @@ export default function Detail() {
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
   };
 
+  const getCategory = (variant: string): string => {
+    switch (variant) {
+      case 'REAL_ESTATE':
+        return '부동산';
+      case 'INVESTMENT':
+        return '투자';
+      case 'INHERITANCE_GIFT':
+        return '상속∙증여';
+      case 'TRAVEL':
+        return '여행';
+      case 'CULTURE':
+        return '문화';
+      case 'HOBBY':
+        return '취미';
+      default:
+        return '기타';
+    }
+  };
+
   if (!article || !article.data) {
     return <div>페이지 받아오는 중😚</div>;
   }
@@ -117,7 +136,7 @@ export default function Detail() {
             <div className='flex justify-center'>
               <div className='absolute w-[90%] h-full flex flex-col justify-center items-start'>
                 <div className='font-SCDream8 text-[22.4px] text-hanapurple font-bold'>
-                  {article.data.category}
+                  {getCategory(article.data.category)}
                 </div>
                 <div
                   className='font-SCDream8 text-[25px] text-white font-bold'
