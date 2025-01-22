@@ -7,7 +7,7 @@ const getBtnClasses = (variant: string) => {
   switch (variant) {
     // '하나지갑' 버튼들
     case 'hanaWallet':
-      return 'bg-hanalightpurple w-[20.625rem] h-[2.9375rem] text-hanapurple text-[1rem] font-SCDream8';
+      return 'bg-hanalightpurple w-full h-[2.9375rem] text-hanapurple text-[1rem] font-SCDream4';
     // '하나 월급통장' 출금계좌 선택 전
     case 'beforeChooseAccount':
       return 'bg-hanagray w-full h-[2.75rem] text-[.9375rem] text-white shadow-xl';

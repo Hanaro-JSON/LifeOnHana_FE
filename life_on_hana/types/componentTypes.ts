@@ -5,6 +5,20 @@ export type TVerticalBarGraphProps = {
   totalExpense: number;
 };
 
+export type TLineGraphProps = {
+  totalAsset: number;
+  walletAmount: number;
+  startDate: string;
+  endDate: string;
+  pensionStart: string;
+  balance: number;
+};
+export type TMicroMiniBtnProps = {
+  num?: number;
+  text?: string;
+  onClick?: () => void;
+};
+
 export type TRecommendCarouselColumnProps = {
   article_id: number;
   title: string;

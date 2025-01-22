@@ -13,11 +13,13 @@ import {
 type LocalData = {
   email: string;
   name: string | undefined | null;
+  birth: string | undefined | null;
 };
 
 let DefaultData: LocalData = {
   email: '',
   name: '',
+  birth: '',
 };
 
 const contextInitValue = {
@@ -30,11 +32,18 @@ const contextInitValue = {
     DefaultData = { ...DefaultData, name };
     return name;
   },
+  setBirth: async (birth: string) => {
+    DefaultData = { ...DefaultData, birth };
+    return birth;
+  },
 };
-
-type ContextProps = Omit<typeof contextInitValue, 'getSession' | 'setName'> & {
+type ContextProps = Omit<
+  typeof contextInitValue,
+  'getSession' | 'setName' | 'setBirth'
+> & {
   getSession: () => Promise<Session | null>;
   setName: (name: string) => void;
+  setBirth: (birth: string) => void;
 };
 
 export const DataContext = createContext<ContextProps>(contextInitValue);
@@ -65,7 +74,10 @@ export const DataProvider = ({
     const updateData = { ...data, name };
     setDataWithStorage(updateData);
   };
-
+  const setBirth = (birth: string) => {
+    const updateData = { ...data, birth };
+    setDataWithStorage(updateData);
+  };
   const router = useRouter();
 
   useEffect(() => {
@@ -82,6 +94,7 @@ export const DataProvider = ({
         setDataWithStorage({
           email,
           name,
+          birth: undefined,
         });
       } else {
         if (email && localData.email !== email) {
@@ -95,7 +108,7 @@ export const DataProvider = ({
   }, [getSession, signOut, router, setDataWithStorage]);
 
   return (
-    <DataContext.Provider value={{ data, getSession, setName }}>
+    <DataContext.Provider value={{ data, getSession, setName, setBirth }}>
       {children}
     </DataContext.Provider>
   );
