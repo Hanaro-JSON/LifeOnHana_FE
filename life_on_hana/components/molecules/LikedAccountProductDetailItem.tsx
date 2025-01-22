@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import Btn from '../atoms/Btn';
 import X from '../../assets/X.svg';
 import Image from 'next/image';
+import HeartNo from '../../assets/HeartNo.svg';
+import HeartYes from '../../assets/HeartYes.svg';
 import { type TLikedAccountProductDetailItemProps } from '@/types/componentTypes';
+import { likeProduct } from '@/api';
 
 export default function LikedAccountProductDetailItem({
   name,
@@ -10,14 +13,34 @@ export default function LikedAccountProductDetailItem({
   link,
   savingsInfo,
   closeBtn = true,
+  isLiked,
+  productId,
   onClose,
 }: TLikedAccountProductDetailItemProps) {
+  const [liked, setLiked] = useState({ isLiked });
+  const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState<string>('');
   const [years, setYears] = useState<string>('');
   const [interestRate, setInterestRate] = useState<number>(
     savingsInfo.basicInterestRate
   );
   const [calculatedAmount, setCalculatedAmount] = useState<string>('0');
+
+  const handleLikeToggle = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLoading) return;
+
+    setIsLoading(true);
+    try {
+      const newLikedState = !liked;
+      const response = await likeProduct(productId, newLikedState);
+      setLiked(response.isLiked);
+    } catch (error) {
+      console.error('좋아요 상태 변경 중 오류 발생:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === 'modal-background') {
@@ -83,7 +106,19 @@ export default function LikedAccountProductDetailItem({
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
-        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full'>
+        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full gap-2'>
+          <button
+            onClick={handleLikeToggle}
+            disabled={isLoading}
+            className='focus:outline-none'
+          >
+            <Image
+              src={liked ? HeartYes : HeartNo}
+              alt={liked ? 'Liked' : 'Not Liked'}
+              width={22}
+              height={22}
+            />
+          </button>
           {closeBtn && (
             <button onClick={handleCloseClick} className='p-1'>
               <Image src={X} alt='Close' width={15} height={15} />

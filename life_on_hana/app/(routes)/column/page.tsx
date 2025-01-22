@@ -198,6 +198,12 @@ export default function Column() {
         .overflow-x-auto {
           -ms-overflow-style: none;
         }
+        .overflow-y-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-y-auto {
+          -ms-overflow-style: none;
+        }
       `}</style>
     </div>
   );

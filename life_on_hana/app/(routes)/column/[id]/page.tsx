@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import column from '@/public/assets/column_color.svg';
 import Image from 'next/image';
 import IsLike from '@/components/molecules/IsLike';
@@ -17,8 +17,10 @@ import { LogoHeader } from '@/components/molecules/LogoHeader';
 import { useParams, useRouter } from 'next/navigation';
 import { type TArticleDetail } from '@/types/dataTypes';
 import { fetchArticleById } from '@/api';
+import { DataContext } from '@/hooks/useData';
 
 export default function Detail() {
+  const { data } = useContext(DataContext);
   const router = useRouter();
   const params = useParams();
   const [article, setArticle] = useState<TArticleDetail | null>(null);
@@ -243,7 +245,7 @@ export default function Detail() {
               </div>
             </div>
             <div className='font-SCDream5 text-[15px] my-3 mt-9'>
-              XXX님의 AI 맞춤 정보
+              {data.name}님의 AI 맞춤 정보
             </div>
             <div className='mb-20'>
               {selectedProduct ? (

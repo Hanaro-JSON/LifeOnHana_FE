@@ -15,7 +15,7 @@ const variantConfig = {
     class2: '',
   },
   product: {
-    text: '관심 있을 상품 보러가기',
+    text: '좋아요한 상품 보러가기',
     class1: 'text-[.75rem]',
     class2: '',
   },

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Btn from '../atoms/Btn';
 import X from '../../assets/X.svg';
 import Image from 'next/image';
+import HeartNo from '../../assets/HeartNo.svg';
+import HeartYes from '../../assets/HeartYes.svg';
 import { type TLikedLoanProductDetailItemProps } from '@/types/componentTypes';
+import { likeProduct } from '@/api';
 
 export default function LikedLoanProductDetailItem({
   name,
@@ -12,8 +15,13 @@ export default function LikedLoanProductDetailItem({
   link,
   loanInfo,
   closeBtn = true,
+  isLiked,
+  productId,
   onClose,
 }: TLikedLoanProductDetailItemProps) {
+  const [liked, setLiked] = useState({ isLiked });
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === 'modal-background') {
       onClose?.();
@@ -26,6 +34,22 @@ export default function LikedLoanProductDetailItem({
     }
   };
 
+  const handleLikeToggle = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLoading) return;
+
+    setIsLoading(true);
+    try {
+      const newLikedState = !liked;
+      const response = await likeProduct(productId, newLikedState);
+      setLiked(response.isLiked);
+    } catch (error) {
+      console.error('좋아요 상태 변경 중 오류 발생:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const formatAmountRange = () => {
     const { minAmount, maxAmount } = loanInfo;
     if (minAmount == null && maxAmount == null) return '한도 정보 없음';
@@ -34,7 +58,6 @@ export default function LikedLoanProductDetailItem({
     return `${minAmount.toLocaleString()}원 ~ ${maxAmount.toLocaleString()}원`;
   };
 
-  // 배경 CSS
   const bg = closeBtn
     ? 'fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50'
     : '';
@@ -46,7 +69,19 @@ export default function LikedLoanProductDetailItem({
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
-        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full'>
+        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full gap-2'>
+          <button
+            onClick={handleLikeToggle}
+            disabled={isLoading}
+            className='focus:outline-none'
+          >
+            <Image
+              src={liked ? HeartYes : HeartNo}
+              alt={liked ? 'Liked' : 'Not Liked'}
+              width={22}
+              height={22}
+            />
+          </button>
           {closeBtn && (
             <button onClick={handleCloseClick} className='p-1'>
               <Image src={X} alt='Close' width={15} height={15} />
@@ -54,7 +89,7 @@ export default function LikedLoanProductDetailItem({
           )}
         </div>
 
-        {/* 제목 */}
+        {/* 제목 및 좋아요 버튼 */}
         <div className='-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2'>
           {name}
         </div>
