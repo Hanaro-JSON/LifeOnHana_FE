@@ -5,8 +5,8 @@ import { DataProvider } from '@/hooks/useData';
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/lib/auth';
 import { Toaster } from '@/components/ui/toaster';
-import Nav from '@/components/molecules/Nav';
 import QueryWrapper from '@/utils/QueryWrapper';
+import ClientLayout from './clientLayout';
 
 export const metadata: Metadata = {
   title: 'LIFE on HANA',
@@ -35,8 +35,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <DataProvider getSession={getSession} signOut={signOut}>
             <QueryWrapper>
-              {children}
-              {session && <Nav />}
+              <ClientLayout session={session}>{children}</ClientLayout>
             </QueryWrapper>
           </DataProvider>
         </SessionProvider>
