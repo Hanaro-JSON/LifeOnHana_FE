@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Btn from '@/components/atoms/Btn';
 import X from '@/assets/X.svg';
 import Image from 'next/image';
 import { type TArticleAIRecommendDetailItemProps } from '@/types/componentTypes';
+import { fetchEffectAnalysis } from '@/api';
 
 export default function ArticleAIRecommendDetailItem({
+  articleId,
+  productId,
   name,
-  description,
   link,
   closeBtn = true,
 }: TArticleAIRecommendDetailItemProps) {
   const [visible, setVisible] = useState(true);
+  const [description, setDescription] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleClose = () => {
     if (closeBtn) {
@@ -23,6 +27,22 @@ export default function ArticleAIRecommendDetailItem({
       handleClose();
     }
   };
+
+  useEffect(() => {
+    const fetchAnalysis = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchEffectAnalysis(articleId!, productId!);
+        setDescription(data.data.analysisResult);
+      } catch (error) {
+        console.error('상품 분석 요청 중 오류 발생:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnalysis();
+  }, [articleId, productId]);
 
   if (!visible) return null;
 
@@ -37,7 +57,7 @@ export default function ArticleAIRecommendDetailItem({
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
-        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full'>
+        <div className='top-[-1rem] right-[-1rem] flex justify-end items-center w-full'>
           {closeBtn && (
             <button onClick={handleClose} className='p-1'>
               <Image src={X} alt='Close' width={13} height={13} priority />
@@ -52,11 +72,14 @@ export default function ArticleAIRecommendDetailItem({
 
         {/* 내용 */}
         <div className='w-full text-[1.1rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow'>
-          <p className='text-left'>{description}</p>
+          {loading ? (
+            <p>분석 결과를 불러오는 중입니다...</p>
+          ) : (
+            <p className='text-left'>{description}</p>
+          )}
         </div>
 
         {/* 버튼, url */}
-        {/* 현재 버튼은 Btn의 default 가져온 상태 */}
         <div className='mt-4 w-full flex justify-center'>
           <div className='w-full'>
             <Btn text={'상품정보 자세히보기'} url={link} />
