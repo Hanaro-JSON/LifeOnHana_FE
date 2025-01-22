@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Btn from '@/components/atoms/Btn';
 import X from '@/assets/X.svg';
 import Image from 'next/image';
+import HeartNo from '../../assets/HeartNo.svg';
+import HeartYes from '../../assets/HeartYes.svg';
 import { type TArticleAIRecommendDetailItemProps } from '@/types/componentTypes';
-import { fetchEffectAnalysis } from '@/api';
+import { fetchEffectAnalysis, likeProduct } from '@/api';
 
 export default function ArticleAIRecommendDetailItem({
   articleId,
@@ -12,9 +14,27 @@ export default function ArticleAIRecommendDetailItem({
   link,
   closeBtn = true,
 }: TArticleAIRecommendDetailItemProps) {
+  const [liked, setLiked] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(true);
   const [description, setDescription] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
+
+  const handleLikeToggle = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLoading) return;
+
+    setIsLoading(true);
+    try {
+      const newLikedState = !liked;
+      const response = await likeProduct(productId!, newLikedState);
+      setLiked(response.isLiked);
+    } catch (error) {
+      console.error('좋아요 상태 변경 중 오류 발생:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleClose = () => {
     if (closeBtn) {
@@ -34,6 +54,7 @@ export default function ArticleAIRecommendDetailItem({
       try {
         const data = await fetchEffectAnalysis(articleId!, productId!);
         setDescription(data.data.analysisResult);
+        setLiked(data.data.isLiked);
       } catch (error) {
         console.error('상품 분석 요청 중 오류 발생:', error);
       } finally {
@@ -66,7 +87,19 @@ export default function ArticleAIRecommendDetailItem({
         </div>
 
         {/* 제목 */}
-        <div className='-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start'>
+        <div className='-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start flex gap-2'>
+          <button
+            onClick={handleLikeToggle}
+            disabled={isLoading}
+            className='focus:outline-none'
+          >
+            <Image
+              src={liked ? HeartYes : HeartNo}
+              alt={liked ? 'Liked' : 'Not Liked'}
+              width={22}
+              height={22}
+            />
+          </button>
           {name}
         </div>
 

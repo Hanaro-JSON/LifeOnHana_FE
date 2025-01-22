@@ -162,7 +162,8 @@ export type THistoryItemProps = {
 
 export type TIsLikeProps = {
   likeCount: number;
-  isLiked?: boolean;
+  isLiked: boolean;
+  onClick?: () => void;
 };
 
 export type TLikedAccountProductDetailItemProps = {
