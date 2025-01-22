@@ -38,13 +38,15 @@ export default function ArticleItem({
     <div className='w-full h-full relative'>
       <Link href={`/column/${articleId}`}>
         <div className='flex gap-3'>
-          <Image
-            className='w-40 h-[4.5rem] rounded-[.625rem]'
-            src={`${thumbnailS3Key}`} //S3
-            alt='Article Thumbnail'
-            width={90}
-            height={45}
-          />
+          <div>
+            <Image
+              className='w-[13rem] h-[4.5rem] rounded-[.625rem]'
+              src={`${thumbnailS3Key}`}
+              alt='Article Thumbnail'
+              width={208}
+              height={72}
+            />
+          </div>
           <div className='flex flex-col justify-between w-full'>
             <div className='font-SCDream5'>{title}</div>
             <div className='text-xs font-SCDream3'>
