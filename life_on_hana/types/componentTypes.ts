@@ -95,11 +95,11 @@ export type TAccountDetailItemProps = {
 };
 
 export type TArticleAIRecommendDetailItemProps = {
+  articleId?: number;
   name: string;
-  description: string;
   link: string;
   closeBtn?: boolean;
-  product_id?: number; //추가
+  productId?: number; //추가
 };
 
 export type TArticleItemProps = {
