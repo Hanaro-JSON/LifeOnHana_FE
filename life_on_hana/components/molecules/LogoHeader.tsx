@@ -3,7 +3,7 @@ import signoutbtn from '@/assets/signoutBtn.svg';
 import { mySignOut } from '@/actions/myauth';
 
 export function LogoHeader({ isMain }: { isMain: boolean }) {
-  const handleSignout = () => {
+  const handleSignout = async () => {
     mySignOut();
   };
 

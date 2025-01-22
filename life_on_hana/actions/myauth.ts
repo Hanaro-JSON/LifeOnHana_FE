@@ -29,7 +29,7 @@ export async function authenticate(formData: FormData) {
       return { error: 'Invalid credentials!' };
     }
     return {};
-    // return { redirectUrl: "/" }; // 성공 시 리디렉션할 URL
+    // return { redirectUrl: '/' }; // 성공 시 리디렉션할 URL
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

@@ -2,7 +2,7 @@ import { type TArticleItemProps } from './types/componentTypes';
 
 // accessToken 추출
 const userData = localStorage.getItem('user');
-let NEXT_PUBLIC_API_TOKEN: string;
+export let NEXT_PUBLIC_API_TOKEN: string;
 if (userData) {
   const userObject = JSON.parse(userData);
   NEXT_PUBLIC_API_TOKEN = userObject.accessToken;
