@@ -12,7 +12,7 @@ export default function ArticleItem({
   title,
   category,
   publishedAt,
-  // thumbnailS3Key, S3설정하기
+  thumbnailS3Key,
   isLiked,
 }: TArticleItemProps) {
   const [liked, setLiked] = useState(isLiked);
@@ -40,7 +40,7 @@ export default function ArticleItem({
         <div className='flex gap-3'>
           <Image
             className='w-40 h-[4.5rem] rounded-[.625rem]'
-            src={`https://hana1qm.com/dataFile/bbs/202505070905150744.jpg`} //S3 설정하기
+            src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}${thumbnailS3Key}`} //S3
             alt='Article Thumbnail'
             width={90}
             height={45}

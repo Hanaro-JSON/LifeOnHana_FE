@@ -27,20 +27,20 @@ const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
 ];
 const mockArticles: TArticleItemProps[] = [
   {
-    article_id: 1,
+    articleId: 1,
     title: '새해 소망 여행 울산시 울주군',
     category: '여행',
-    thumbnail_s3_key: 'https://hana1qm.com/dataFile/bbs/202432011132520529.jpg',
-    published_at: '2025-01-01',
-    is_liked: true,
+    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202432011132520529.jpg',
+    publishedAt: '2025-01-01',
+    isLiked: true,
   },
   {
-    article_id: 2,
+    articleId: 2,
     title: '선착순 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력',
     category: '취미',
-    thumbnail_s3_key: 'https://hana1qm.com/dataFile/bbs/202432011132520529.jpg',
-    published_at: '2024-12-01',
-    is_liked: false,
+    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202432011132520529.jpg',
+    publishedAt: '2024-12-01',
+    isLiked: false,
   },
 ];
 
@@ -95,9 +95,9 @@ export default function Home() {
   useEffect(() => {
     const transfromedItems: TRecommendCarouselColumnProps[] = articles.map(
       (article) => ({
-        article_id: article.article_id || -1,
+        article_id: article.articleId || -1,
         title: article.title || 'untitled',
-        thumbnail_s3_key: article.thumbnail_s3_key || 'default',
+        thumbnail_s3_key: article.thumbnailS3Key || 'default',
       })
     );
     setRecommendCarouselColumnItems(transfromedItems);
