@@ -93,7 +93,7 @@ export default function Like() {
   return (
     <div className='flex flex-col h-screen'>
       <div className='pt-6 px-6'>
-        <NavHeader location='관심있을 만한 상품' beforePageUrl='.' />
+        <NavHeader location='관심있는 상품' beforePageUrl='.' />
       </div>
       <div className='flex-1 overflow-y-auto px-5 mb-32'>
         <div className='flex flex-col gap-4 pb-[10vh]'>

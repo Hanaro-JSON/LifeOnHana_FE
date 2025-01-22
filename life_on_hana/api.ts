@@ -286,3 +286,31 @@ export const fetchEffectAnalysis = async (
     throw new Error('상품 분석 요청 중 오류가 발생했습니다.');
   }
 };
+
+// 상품 좋아요
+export const likeProduct = async (productId: number, isLiked: boolean) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/users/${productId}/like`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
+        body: JSON.stringify({ isLiked }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      console.error('좋아요 요청 실패:', errorMessage);
+      throw new Error('좋아요 요청 실패');
+    }
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+};

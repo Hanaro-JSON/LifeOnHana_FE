@@ -170,6 +170,7 @@ export type TLikedAccountProductDetailItemProps = {
   name: string;
   description: string;
   link: string;
+  isLiked: boolean;
   savingsInfo: {
     basicInterestRate: number;
     maxInterestRate: number;
@@ -184,6 +185,7 @@ export type TLikedLifeProductDetailItemProps = {
   description: string;
   link: string;
   closeBtn?: boolean;
+  isLiked: boolean;
   onClose?: () => void;
 };
 
@@ -194,6 +196,7 @@ export type TLikedLoanProductDetailItemProps = {
   feature: string;
   target: string;
   link: string;
+  isLiked: boolean;
   loanInfo: {
     minAmount?: number;
     maxAmount?: number;
