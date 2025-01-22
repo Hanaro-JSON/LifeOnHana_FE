@@ -1,5 +1,13 @@
 import { ReactNode } from 'react';
 
+export type TLineGraphProps = {
+  totalAsset: number;
+  walletAmount: number;
+  startDate: string;
+  endDate: string;
+  pensionStart: string;
+  balance: number;
+};
 export type TMicroMiniBtnProps = {
   num?: number;
   text?: string;

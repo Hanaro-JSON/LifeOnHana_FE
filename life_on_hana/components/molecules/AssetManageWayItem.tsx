@@ -53,16 +53,16 @@ export default function AssetManageWayItem({
   variant: TAssetManageWayItemProps;
 }) {
   return (
-    <>
-      <div className='w-10 h-10 bg-hanalightpurple rounded-xl flex justify-center items-center mb-1'>
+    <div className='flex flex-col justify-center items-center'>
+      <div className='w-20 h-20 bg-hanalightpurple rounded-3xl flex justify-center items-center mb-1'>
         <Image
           src={getSrc(variant)}
           alt={getLabel(variant)}
-          width={30}
-          height={30}
+          width={35}
+          height={35}
         />
       </div>
-      <div className='font-SCDream5 text-[.625rem]'>{getLabel(variant)}</div>
-    </>
+      <div className='font-SCDream5 text-sm'>{getLabel(variant)}</div>
+    </div>
   );
 }
