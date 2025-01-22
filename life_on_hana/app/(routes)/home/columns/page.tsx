@@ -15,7 +15,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'TRAVEL',
     publishedAt: '2025-01-12',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 2,
@@ -23,7 +23,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'HOBBY',
     publishedAt: '2024-12-08',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 3,
@@ -31,7 +31,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'INVESTMENT',
     publishedAt: '2024-11-15',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 4,
@@ -39,7 +39,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'HOBBY',
     publishedAt: '2025-01-12',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 5,
@@ -47,7 +47,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'TRAVEL',
     publishedAt: '2025-01-12',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 6,
@@ -55,7 +55,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'TRAVEL',
     publishedAt: '2024-12-08',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 7,
@@ -63,7 +63,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'INVESTMENT',
     publishedAt: '2024-11-15',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 8,
@@ -71,7 +71,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'HOBBY',
     publishedAt: '2025-01-12',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 9,
@@ -79,7 +79,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'TRAVEL',
     publishedAt: '2025-01-12',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 10,
@@ -87,7 +87,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'HOBBY',
     publishedAt: '2024-12-08',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 11,
@@ -95,7 +95,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'INVESTMENT',
     publishedAt: '2024-11-15',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
   {
     articleId: 12,
@@ -103,7 +103,7 @@ const mockArticles: TArticlesLiked[] = [
     category: 'HOBBY',
     publishedAt: '2025-01-12',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    is_liked: true,
+    isLiked: true,
   },
 ];
 
@@ -120,15 +120,15 @@ export default function Columns() {
     <>
       {articles.map(
         (article, index) =>
-          article.is_liked && (
+          article.isLiked && (
             <ArticleItem
               key={index}
-              article_id={article.articleId}
+              articleId={article.articleId}
               title={article.title}
               category={getCategory(article.category)}
-              published_at={article.publishedAt ?? ''}
-              thumbnail_s3_key={article.thumbnailS3Key ?? ''}
-              is_liked={article.is_liked}
+              publishedAt={article.publishedAt ?? ''}
+              thumbnailS3Key={article.thumbnailS3Key ?? ''}
+              isLiked={article.isLiked}
             />
           )
       )}

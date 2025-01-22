@@ -15,11 +15,10 @@ import OpenDescriptionItem from '@/components/atoms/OpenDescriptionItem';
 import { formatDate } from '@/utils/formatDate';
 import { LogoHeader } from '@/components/molecules/LogoHeader';
 const mockData = {
-  article_id: 1,
+  articleId: 1,
   title: '새해 소망 여행 울산시 울주군',
   category: '여행',
-  thumbnail_s3_key:
-    'https://www.hana1qm.com/dataFile/bbs/202513070213460420.jpg',
+  thumbnailS3Key: 'https://www.hana1qm.com/dataFile/bbs/202513070213460420.jpg',
   content: [
     {
       type: 'TEXT',
@@ -58,7 +57,7 @@ const mockData = {
     },
   ],
   published_at: '2025-01-01',
-  is_liked: true,
+  isLiked: true,
   likeCount: 15,
   related_products: [
     {
@@ -148,7 +147,7 @@ export default function Detail() {
           {/* 상단 헤더 이미지 영역 */}
           <div className='relative w-full h-[150px]'>
             <Image
-              src={article.thumbnail_s3_key}
+              src={article.thumbnailS3Key}
               alt={article.category}
               layout='fill'
               objectFit='cover'
@@ -173,7 +172,7 @@ export default function Detail() {
 
           {/* 좋아요, 공유 영역 */}
           <div className='flex justify-end items-center m-4'>
-            <IsLike likeCount={article.likeCount} isLiked={article.is_liked} />
+            <IsLike likeCount={article.likeCount} isLiked={article.isLiked} />
             <div className='mb-2'>
               <CopyClipboardBtn />
             </div>

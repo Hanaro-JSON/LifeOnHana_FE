@@ -4,7 +4,7 @@ export type TArticlesLiked = {
   category: string;
   thumbnailS3Key?: string;
   publishedAt?: string;
-  is_liked?: true;
+  isLiked?: true;
 };
 
 export type THomeLikeProduct = {
