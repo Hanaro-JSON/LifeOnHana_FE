@@ -33,14 +33,10 @@ const contextInitValue = {
     return birth;
   },
 };
-<<<<<<< HEAD
 type ContextProps = Omit<
   typeof contextInitValue,
   'getSession' | 'setName' | 'setBirth'
 > & {
-=======
-type ContextProps = Omit<typeof contextInitValue, 'getSession' | 'setName'> & {
->>>>>>> 03b2a3f ([fix] 🐿️ next-auth로 인한 로그인 성공 후 /home으로 이동 안 되는 오류 해결)
   getSession: () => Promise<Session | null>;
   setName: (name: string) => void;
   setBirth: (birth: string) => void;

@@ -78,12 +78,7 @@ const carouselItems: TRecommendCarouselItemProps[] = [
 ];
 
 export default function Home() {
-<<<<<<< HEAD
   const { data, setName, setBirth } = useContext(DataContext);
-=======
-  const { data, setName } = useContext(DataContext);
-
->>>>>>> 03b2a3f ([fix] 🐿️ next-auth로 인한 로그인 성공 후 /home으로 이동 안 되는 오류 해결)
   useEffect(() => {
     setName('장다연');
     setBirth('19500101');
