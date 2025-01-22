@@ -48,3 +48,39 @@ export type THistory = {
   totalPages: number;
   totalElements: number;
 };
+
+export type TArticle = {
+  articleId: number;
+  title: string;
+  category: string;
+  thumbnailS3Key: string;
+  content: TArticleContent[];
+  publishedAt: string;
+  isLiked: boolean;
+  likeCount: number;
+  relatedProducts: TArticleRelatedProduct[];
+};
+
+// TArticleContent 타입 정의
+export type TArticleContent = {
+  type: 'text' | 'word' | 'image';
+  content: string;
+  description?: string;
+};
+
+// TArticleRelatedProduct 타입 정의
+export type TArticleRelatedProduct = {
+  productId: number;
+  name: string;
+  category: string;
+  link: string;
+  description: string; // 새로 추가
+};
+
+// API 응답 타입 정의
+export type TArticleDetail = {
+  code: number;
+  status: string;
+  message: string;
+  data: TArticle; // 'data' 속성 안에 실제 article 데이터가 있음
+};

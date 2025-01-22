@@ -217,3 +217,63 @@ export const transferFunds = async (
     throw new Error('이체 요청 중 오류가 발생했습니다.');
   }
 };
+
+// column/id
+export const fetchArticleById = async (id: number) => {
+  try {
+    const response = await fetch(
+      // `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/${id}`, // [돈 주석]
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`기사 조회 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    data.data.content = JSON.parse(data.data.content);
+
+    return data;
+  } catch (error) {
+    console.error('기사 조회 요청 오류:', error);
+    throw new Error('기사 조회 요청 중 오류가 발생했습니다.');
+  }
+};
+
+// column/id의 상품 분석
+export const fetchEffectAnalysis = async (
+  articleId: number,
+  productId: number
+) => {
+  try {
+    const response = await fetch(
+      // `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/anthropic/effect`, // [돈 주석]
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
+        body: JSON.stringify({ articleId, productId }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('응답 오류:', errorText);
+      throw new Error(`상품 분석 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('상품 분석 요청 오류:', error);
+    throw new Error('상품 분석 요청 중 오류가 발생했습니다.');
+  }
+};

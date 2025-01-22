@@ -11,6 +11,7 @@ module.exports = {
       'www.hana1qm.com',
       'hana1qm.com',
       'lifeonhanabucket.s3.ap-northeast-2.amazonaws.com', //S3 연결
+      'd1g084wcjwihe3.cloudfront.net',
     ],
   },
 };
