@@ -4,37 +4,81 @@ import Image from 'next/image';
 import Btn from '@/components/atoms/Btn';
 import logo from '@/assets/logo.svg';
 import logoText from '@/assets/logoText.svg';
-import { authenticate } from '@/actions/myauth';
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import LoginLabelInput from '@/components/molecules/LoginLabelInput';
+import { useToast } from '@/hooks/use-toast';
+
+type TDataProps = {
+  accessTocken: string;
+  refreshToken: string;
+  userId: string;
+  isFirst: boolean;
+};
 
 export default function SigninPage() {
   const router = useRouter();
+  const { toast } = useToast();
+
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const idInputRef = useRef<HTMLInputElement | null>(null); // ID 입력 필드 참조
-  const passwordInputRef = useRef<HTMLInputElement | null>(null); // PW 입력 필드 참조
+  const idInputRef = useRef<HTMLInputElement | null>(null);
+  const passwordInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setErrorMsg(null);
+  const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    const formData = new FormData(event.currentTarget as HTMLFormElement);
-    const result = await authenticate(formData);
+    const authId = idInputRef.current?.value || '';
+    const password = passwordInputRef.current?.value || '';
 
-    if (result.error) {
-      setErrorMsg(result.error);
+    if (!authId || !password) {
+      setErrorMsg('id');
+      toast({
+        title: '아이디와 비밀번호를 입력해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+      });
+    } else {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/auth/signin`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ authId, password }),
+          }
+        );
 
-      // 특정 필드로 포커스 이동
-      if (result.error === 'id' && idInputRef.current) {
-        idInputRef.current.focus();
-      } else if (result.error === 'pw' && passwordInputRef.current) {
-        passwordInputRef.current.focus();
+        const data: {
+          code: number;
+          status: string;
+          message: string;
+          data: TDataProps;
+        } = await response.json();
+
+        // isFirst 아닐 때
+        if (data.code === 200 && !data.data.isFirst) {
+          localStorage.setItem('user', JSON.stringify(data.data));
+          router.replace('/home');
+        }
+        // isFirst 일 때
+        else if (data.code === 200 && data.data.isFirst) {
+          localStorage.setItem('user', JSON.stringify(data.data));
+          router.replace('/signin/mydata');
+        }
+        // id 틀림
+        else if (data.code === 401) {
+          setErrorMsg('pw');
+        }
+        // 전부 틀림
+        else if (data.code === 404) {
+          setErrorMsg('id');
+        }
+      } catch (error) {
+        console.error('로그인 서버 에러: ', error);
       }
-    }
-    // is_first 여부에 따라 "/signin/mydata" , "/home" 으로 분리할 것
-    else {
-      router.replace('/signin/mydata');
     }
   };
 
@@ -50,7 +94,7 @@ export default function SigninPage() {
             </div>
           </div>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleLoginSubmit}
             className='w-full max-w-72 flex flex-col pt-5'
           >
             <div className='mb-10 space-y-4'>

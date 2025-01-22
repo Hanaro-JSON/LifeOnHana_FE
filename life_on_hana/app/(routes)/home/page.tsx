@@ -18,6 +18,7 @@ import { FullImgCarousel } from '@/components/molecules/FullImgCarousel';
 import { RecommendCarouselItem } from '@/components/molecules/RecommendCarouselItem';
 import ShortCutBtn from '@/components/molecules/ShortCutBtn';
 import { DataContext } from '@/hooks/useData';
+
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: 'FOOD', amount: 500000, percentage: 10 },
   { category: 'SNACK', amount: 200000, percentage: 10 },
@@ -25,6 +26,7 @@ const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: 'HOBBY', amount: 150000, percentage: 10 },
   { category: 'HEALTH', amount: 250000, percentage: 50 },
 ];
+
 const mockArticles: TArticleItemProps[] = [
   {
     articleId: 1,
@@ -80,18 +82,22 @@ export default function Home() {
   useEffect(() => {
     setName('장다연');
   });
+
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState('INVESTMENT');
-  //내역 통계 조회
+
+  // 내역 통계 조회
   const [totalExpense, setTotalExpense] = useState(1500000);
   const [totalInterest, setTotalInterest] = useState(50000);
   const [expenseCategories, setExpenseCategories] = useState(
     mockExpenseCategories
   );
-  //칼럼 목록 조회
+
+  // 칼럼 목록 조회
   const [articles, setArticles] = useState(mockArticles);
   const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
     useState<TRecommendCarouselColumnProps[]>([]);
+
   useEffect(() => {
     const transfromedItems: TRecommendCarouselColumnProps[] = articles.map(
       (article) => ({
@@ -109,42 +115,42 @@ export default function Home() {
         return (
           <div>
             <span className='text-hanapurple'>부동산</span>에 관심이 많은
-            <span className='text-hanapurple'> 마음부자 🏢</span>
+            <span className='text-hanapurple'>마음부자 🏢</span>
           </div>
         );
       case 'INVESTMENT':
         return (
           <div>
             <span className='text-hanapurple'>투자</span>에 관심이 많은
-            <span className='text-hanapurple'> 멋진</span> 중년 🎩
+            <span className='text-hanapurple'>멋진</span> 중년 🎩
           </div>
         );
       case 'INHERITANCE_GIFT':
         return (
           <div>
             <span className='text-hanapurple'>상속</span>에 관심이 많은
-            <span className='text-hanapurple'> 간지나는</span> 중년 🎩
+            <span className='text-hanapurple'>간지나는</span> 중년 🎩
           </div>
         );
       case 'TRAVEL':
         return (
           <div>
             <span className='text-hanapurple'>여행</span>을 좋아하는
-            <span className='text-hanapurple'> 건강미</span> 중년 💪
+            <span className='text-hanapurple'>건강미</span> 중년 💪
           </div>
         );
       case 'CULTURE':
         return (
           <div>
             <span className='text-hanapurple'>문화</span>에 관심이 많은
-            <span className='text-hanapurple'> 감성적인</span> 중년 🎨
+            <span className='text-hanapurple'>감성적인</span> 중년 🎨
           </div>
         );
       case 'HOBBY':
         return (
           <div>
             <span className='text-hanapurple'>취미</span>에 관심이 많은
-            <span className='text-hanapurple'> 열정 가득한</span> 중년 ⛳
+            <span className='text-hanapurple'>열정 가득한</span> 중년 ⛳
           </div>
         );
     }
@@ -199,7 +205,7 @@ export default function Home() {
           {data.name}님을 위한 추천 상품
         </div>
         <div>
-          <ShortCutBtn url={'/'} variant='product' />
+          <ShortCutBtn url={'/home/like'} variant='product' />
         </div>
       </div>
       <RecommendCarouselItem items={carouselItems} />;

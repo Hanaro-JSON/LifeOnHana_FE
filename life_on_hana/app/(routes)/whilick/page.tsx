@@ -32,7 +32,7 @@ export default function Whilick() {
       articleId: 1,
       text: [
         {
-          paragraphId: 21,
+          paragraphId: 1,
           content: '아트 애호가들의 심장을 뛰게 만드는 전시가 찾아왔다.',
           startTime: 0.0,
           endTime: 4.2,
@@ -62,7 +62,7 @@ export default function Whilick() {
       articleId: 2,
       text: [
         {
-          paragraphId: 13,
+          paragraphId: 1,
           content: '누구나 마음속에 새해 이루고 싶은 소망이 있을 것이다.',
           startTime: 0.0,
           endTime: 4.2,
