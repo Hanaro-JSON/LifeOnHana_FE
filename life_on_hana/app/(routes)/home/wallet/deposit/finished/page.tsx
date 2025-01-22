@@ -108,13 +108,13 @@ export default function Finished() {
             <span>입금계좌</span>
             <span>
               <div className='flex items-center'>
-                <Image
+                {/* <Image
                   className='w-10 h-10'
                   src={getBankLogo(toAccount.bank)}
                   alt={`${toAccount.bank} Logo`}
                   width={60}
                   height={60}
-                />
+                /> */}
                 <div>
                   <div className='font-SCDream3 text-[1rem] text-right'>
                     {toAccount.accountName}
@@ -129,7 +129,7 @@ export default function Finished() {
               </div>
               <div className='text-right mt-1 mr-2'>
                 <span className='font-SCDream4 text-[1rem]'>
-                  잔액 {toAccount.balance.toLocaleString()} 원
+                  {/* 잔액 {toAccount.balance.toLocaleString()} 원 */}
                 </span>
               </div>
             </span>
@@ -148,7 +148,7 @@ export default function Finished() {
 
           <div className='flex items-center gap-2 ml-2'>
             <Image
-              className='w-9 h-9'
+              className='w-9 h-9 mb-2'
               src={getBankLogo(fromAccount.bank)}
               alt={`${fromAccount.bank} Logo`}
               width={50}
@@ -167,7 +167,7 @@ export default function Finished() {
             </div>
           </div>
           <div className='text-right font-SCDream4 text-[1rem] mt-1 mr-2'>
-            잔액 {fromAccount.balance.toLocaleString()} 원
+            {fromAccount.balance.toLocaleString()} 원
           </div>
         </div>
       </div>
