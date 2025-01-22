@@ -46,7 +46,7 @@ const historyMockData: THistory = {
   histories: [
     {
       historyId: 1,
-      category: '식비',
+      category: 'FOOD',
       amount: 15000,
       description: '점심식사',
       historyDateTime: '2024-01-13T12:30:00',
@@ -55,10 +55,28 @@ const historyMockData: THistory = {
     },
     {
       historyId: 2,
-      category: '이자',
+      category: 'DEPOSIT',
       amount: 50000,
       description: '지갑 이자',
       historyDateTime: '2024-01-13T09:00:00',
+      isFixed: false,
+      isExpense: false,
+    },
+    {
+      historyId: 3,
+      category: 'FOOD',
+      amount: 15000,
+      description: '점심식사',
+      historyDateTime: '2024-01-14T12:30:00',
+      isFixed: false,
+      isExpense: true,
+    },
+    {
+      historyId: 4,
+      category: 'DEPOSIT',
+      amount: 50000,
+      description: '지갑 이자',
+      historyDateTime: '2024-01-15T09:00:00',
       isFixed: false,
       isExpense: false,
     },
@@ -68,6 +86,7 @@ const historyMockData: THistory = {
   totalPages: 5,
   totalElements: 100,
 };
+
 export default function History() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [monthlyData, setMonthlyData] = useState<THistoryMonthly>(mockData);
@@ -75,6 +94,7 @@ export default function History() {
   const [year, setYear] = useState<number>(() => new Date().getFullYear());
   const [month, setMonth] = useState<number>(() => new Date().getMonth() + 1);
 
+  let lastPrintedDate = '';
   const minusDate = () => {
     if (month === 1) {
       setMonth(12);
@@ -91,6 +111,7 @@ export default function History() {
       setMonth(month + 1);
     }
   };
+
   return (
     <div className='p-6 space-y-4 mb-16'>
       <NavHeader location={'이번달 입출금 내역'} beforePageUrl={'/home'} />
@@ -124,10 +145,27 @@ export default function History() {
             </div>
           </div>
         </Section>
-        <div>
+        <div className='w-full'>
           {historyMockData.histories.map((h, idx) => {
+            let currentDate = h.historyDateTime.split('T')[0]; // 날짜만 추출
+            currentDate =
+              Number(currentDate.split('-')[1]) +
+              '월' +
+              Number(currentDate.split('-')[2]) +
+              ' 일';
+            let dateHeader = null;
+
+            if (currentDate !== lastPrintedDate) {
+              dateHeader = (
+                <div className='font-SCDream3 text-[0.7rem] mt-3'>
+                  {currentDate}
+                </div>
+              );
+              lastPrintedDate = currentDate;
+            }
             return (
-              <div key={idx} className='w-full'>
+              <div key={idx}>
+                {dateHeader}
                 <HistoryItem
                   historyId={h.historyId}
                   category={h.category as THistoryItemCategoryProps}
