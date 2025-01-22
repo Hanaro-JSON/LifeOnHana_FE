@@ -82,12 +82,12 @@ export type TArticleAIRecommendDetailItemProps = {
 };
 
 export type TArticleItemProps = {
-  article_id?: number;
+  articleId: number;
   title: string;
   category: string;
-  published_at: string;
-  thumbnail_s3_key: string;
-  is_liked: boolean;
+  publishedAt: string;
+  thumbnailS3Key: string;
+  isLiked: boolean;
 };
 
 export type TAssetManageWayItemProps =

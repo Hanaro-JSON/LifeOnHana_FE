@@ -5,42 +5,56 @@ import { formatDate } from '@/utils/formatDate';
 import { type TArticleItemProps } from '@/types/componentTypes';
 import { useState } from 'react';
 import Link from 'next/link';
+import { likeArticle } from '@/api';
 
 export default function ArticleItem({
-  article_id,
+  articleId,
   title,
   category,
-  published_at,
-  thumbnail_s3_key,
-  is_liked,
+  publishedAt,
+  thumbnailS3Key,
+  isLiked,
 }: TArticleItemProps) {
-  const [liked, setLiked] = useState(is_liked);
+  const [liked, setLiked] = useState(isLiked);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLikeToggle = () => {
-    setLiked((prevLiked) => !prevLiked);
+  const handleLikeToggle = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLoading) return;
+
+    setIsLoading(true);
+    try {
+      const newLikedState = !liked;
+      const response = await likeArticle(articleId, newLikedState);
+      setLiked(response.isLiked);
+    } catch (error) {
+      console.error('Error toggling like status:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className='w-full h-full relative'>
-      <Link href={`/column/${article_id}`}>
+      <Link href={`/column/${articleId}`}>
         <div className='flex gap-3'>
           <Image
             className='w-40 h-[4.5rem] rounded-[.625rem]'
-            src={thumbnail_s3_key}
-            alt='Image'
+            src={`${process.env.NEXT_PUBLIC_S3_BASE_URL}${thumbnailS3Key}`} //S3
+            alt='Article Thumbnail'
             width={90}
             height={45}
           />
           <div className='flex flex-col justify-between w-full'>
             <div className='font-SCDream5'>{title}</div>
             <div className='text-xs font-SCDream3'>
-              {category} / {formatDate(published_at)}
+              {category} / {formatDate(publishedAt)}
             </div>
           </div>
         </div>
       </Link>
       <div
-        className='absolute right-[1rem] bottom-2'
+        className='absolute right-[1rem] bottom-2 cursor-pointer'
         onClick={handleLikeToggle}
       >
         <Image
