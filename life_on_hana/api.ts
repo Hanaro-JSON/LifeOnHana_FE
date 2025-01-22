@@ -79,3 +79,24 @@ export const fetchLifeProductDetails = async (productId: number) => {
 
   return await response.json();
 };
+
+// home/wallet/deposit
+export const fetchAccountData = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/account`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('계좌 불러오기 실패');
+  }
+
+  const data = await response.json();
+  return data.data;
+};

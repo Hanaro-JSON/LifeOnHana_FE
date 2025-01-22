@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import AccountCheckNo from '../../assets/MydataCheckNo.svg';
-import AccountCheckYes from '../../assets/MydataCheckYes.svg';
-import HanaBankLogo from '../../assets/HanaBankLogo.svg';
-import NonghyupBankLogo from '../../assets/NonghyupBankLogo.svg';
-import ShinhanBankLogo from '../../assets/ShinhanBankLogo.svg';
-import WooriBankLogo from '../../assets/WooriBankLogo.svg';
-import TossBankLogo from '../../assets/TossBankLogo.svg';
-import NaverBankLogo from '../../assets/NaverBankLogo.svg';
-import KakaoBankLogo from '../../assets/KakaoBankLogo.svg';
+import AccountCheckNo from '@/assets/MydataCheckNo.svg';
+import AccountCheckYes from '@/assets/MydataCheckYes.svg';
+import HanaBankLogo from '@/assets/HanaBankLogo.svg';
+import NonghyupBankLogo from '@/assets/NonghyupBankLogo.svg';
+import ShinhanBankLogo from '@/assets/ShinhanBankLogo.svg';
+import WooriBankLogo from '@/assets/WooriBankLogo.svg';
+import TossBankLogo from '@/assets/TossBankLogo.svg';
+import NaverBankLogo from '@/assets/NaverBankLogo.svg';
+import KakaoBankLogo from '@/assets/KakaoBankLogo.svg';
+import KBBankLogo from '@/assets/KBBankLogo.svg';
 import { type TAccountDetailItemProps } from '@/types/componentTypes';
 
 export default function AccountDetailItem({
@@ -67,7 +68,25 @@ export default function AccountDetailItem({
     TOSS: TossBankLogo,
     NAVER: NaverBankLogo,
     KAKAO: KakaoBankLogo,
+    KB: KBBankLogo,
   };
+
+  const accountFormatMap: Record<string, (account: string) => string> = {
+    HANA: (account) => account.replace(/(\d{6})(\d{2})(\d{5})/, '$1-$2-$3'),
+    NH: (account) => account.replace(/(\d{3})(\d{6})(\d{3})/, '$1-$2-$3'),
+    SHINHAN: (account) => account.replace(/(\d{3})(\d{3})(\d{6})/, '$1-$2-$3'),
+    WOORI: (account) => account.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3'),
+    TOSS: (account) => account.replace(/(\d{3})(\d{3})(\d{6})/, '$1-$2-$3'),
+    NAVER: (account) => account.replace(/(\d{3})(\d{6})(\d{3})/, '$1-$2-$3'),
+    KAKAO: (account) => account.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3'),
+    KB: (account) =>
+      account.length === 12
+        ? account.replace(/(\d{3})(\d{3})(\d{6})/, '$1-$2-$3')
+        : account.replace(/(\d{3})(\d{2})(\d{6})/, '$1-$2-$3'),
+  };
+
+  const formattedAccountNumber =
+    accountFormatMap[bank]?.(accountNumber) || accountNumber;
 
   const bankLogo = bankLogoMap[bank] || HanaBankLogo;
 
@@ -83,7 +102,9 @@ export default function AccountDetailItem({
         />
         <div className='flex flex-col ml-2'>
           <div className='text-[1.1rem] font-SCDream3'>{accountName}</div>
-          <div className='text-[1rem] font-SCDream3'>{accountNumber}</div>
+          <div className='text-[1rem] font-SCDream3'>
+            {formattedAccountNumber}
+          </div>
         </div>
       </div>
       <div className='flex justify-between mb-3 text-[.8rem] mt-1'>

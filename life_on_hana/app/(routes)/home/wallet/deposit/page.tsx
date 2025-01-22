@@ -8,76 +8,7 @@ import { type TAccountDetailItemProps } from '@/types/componentTypes';
 import HanaBankLogo from '@/assets/HanaBankLogo.svg';
 import { useRouter } from 'next/navigation';
 import { NavHeader } from '@/components/molecules/NavHeader';
-
-const mockAccountList = {
-  code: 200,
-  status: 'OK',
-  message: '계좌 목록 조회 성공',
-  data: {
-    mainAccount: {
-      bank: 'HANA',
-      accountNumber: '11111111111111',
-      accountName: '하나 월급통장',
-      balance: 1000000.0,
-    },
-    otherAccounts: [
-      {
-        bank: 'HANA',
-        accountNumber: '123123123123',
-        accountName: '하나월셋통장',
-        balance: 7000000.0,
-      },
-      {
-        bank: 'NH',
-        accountNumber: '123123123123',
-        accountName: 'NH모임리통장',
-        balance: 0.0,
-      },
-      {
-        bank: 'KAKAO',
-        accountNumber: '456456789123',
-        accountName: '카카오페이통장',
-        balance: 300000.0,
-      },
-      {
-        bank: 'SHINHAN',
-        accountNumber: '999999999999',
-        accountName: '신한적금통장',
-        balance: 2500000.0,
-      },
-      {
-        bank: 'SHINHAN',
-        accountNumber: '999999999999',
-        accountName: '신한적금통장',
-        balance: 2500000.0,
-      },
-      {
-        bank: 'SHINHAN',
-        accountNumber: '999999999999',
-        accountName: '신한적금통장',
-        balance: 2500000.0,
-      },
-      {
-        bank: 'SHINHAN',
-        accountNumber: '999999999999',
-        accountName: '신한적금통장',
-        balance: 2500000.0,
-      },
-      {
-        bank: 'SHINHAN',
-        accountNumber: '999999999999',
-        accountName: '신한적금통장',
-        balance: 2500000.0,
-      },
-      {
-        bank: 'KAKAO',
-        accountNumber: '456456789123',
-        accountName: '카카오페이통장',
-        balance: 300000.0,
-      },
-    ],
-  },
-};
+import { fetchAccountData } from '@/api';
 
 export default function Deposit() {
   const router = useRouter();
@@ -90,10 +21,21 @@ export default function Deposit() {
   const [withdrawalAmount, setWithdrawalAmount] = useState<string>('');
 
   useEffect(() => {
-    const main = mockAccountList.data.mainAccount;
-    const others = mockAccountList.data.otherAccounts;
-    setMainAccount(main);
-    setOtherAccounts(others);
+    const loadAccountData = async () => {
+      try {
+        const data = await fetchAccountData();
+        setMainAccount(data.mainAccount);
+        setOtherAccounts(data.otherAccounts);
+      } catch (error) {
+        console.error('Error fetching account data:', error);
+      }
+    };
+
+    loadAccountData();
+  }, []);
+
+  useEffect(() => {
+    fetchAccountData();
   }, []);
 
   const handleSelectAccount = (index: number, checked: boolean) => {
@@ -152,7 +94,10 @@ export default function Deposit() {
                     {mainAccount.accountName}
                   </div>
                   <div className='font-SCDream3 text-[.8125rem]'>
-                    {mainAccount.accountNumber}
+                    {mainAccount.accountNumber.replace(
+                      /(\d{6})(\d{2})(\d{5})/,
+                      '$1-$2-$3'
+                    )}
                   </div>
                 </div>
               </div>
@@ -167,7 +112,6 @@ export default function Deposit() {
         </div>
       </div>
 
-      {/* 스크롤 영역: 출금계좌들 */}
       <div className='flex-1 overflow-y-auto px-2 mb-32'>
         <div className='flex flex-col gap-5 pb-[10vh]'>
           <div className='p-2 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1 items-center'>
@@ -192,7 +136,6 @@ export default function Deposit() {
         </div>
       </div>
 
-      {/* 하단 버튼 (채우기 완료) */}
       <div className='fixed bottom-5 left-0 w-full flex justify-center mb-32'>
         <div className='w-[85%] flex justify-center'>
           <Btn
@@ -202,6 +145,16 @@ export default function Deposit() {
           />
         </div>
       </div>
+
+      {/* y축 스크롤 안보이게 */}
+      <style jsx global>{`
+        .overflow-y-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-y-auto {
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+      `}</style>
     </div>
   );
 }
