@@ -10,7 +10,7 @@ import shopingBag from '@/assets/shopingBag.svg';
 import Section from '@/components/atoms/Section';
 import { VerticalBarGraph } from '@/components/molecules/VerticalBarGraph';
 import HistoryItem from '@/components/molecules/HistoryItem';
-import { THistoryItemCategoryProps } from '@/types/componentTypes';
+import { type THistoryItemCategoryProps } from '@/types/componentTypes';
 
 const mockData: THistoryMonthly = {
   averageExpense: 250000,
@@ -150,9 +150,9 @@ export default function History() {
             let currentDate = h.historyDateTime.split('T')[0]; // 날짜만 추출
             currentDate =
               Number(currentDate.split('-')[1]) +
-              '월' +
+              '월 ' +
               Number(currentDate.split('-')[2]) +
-              ' 일';
+              '일';
             let dateHeader = null;
 
             if (currentDate !== lastPrintedDate) {
