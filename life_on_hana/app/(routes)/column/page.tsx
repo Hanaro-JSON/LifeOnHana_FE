@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -9,6 +11,7 @@ import SearchInput from '@/components/molecules/SearchInput';
 import ArticleItem from '@/components/molecules/ArticleItem';
 import column from '../../../public/assets/column_color.svg';
 import { type TArticleItemProps } from '@/types/componentTypes';
+import { TArticle } from '@/types/dataTypes';
 
 const CATEGORY_MAP: Record<string, string> = {
   전체보기: '전체보기',
@@ -29,12 +32,15 @@ export default function Column() {
   const [articles, setArticles] = useState<TArticleItemProps[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('전체보기');
   const underlineRef = useRef<HTMLDivElement>(null);
-  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isFiltering, setIsFiltering] = useState(false);
 
   const fetchAllArticles = useCallback(async () => {
     let page = 1;
     let allArticles: TArticleItemProps[] = [];
     let hasNext = true;
+    setIsLoading(true);
 
     while (hasNext) {
       try {
@@ -44,7 +50,8 @@ export default function Column() {
         page += 1;
       } catch (error) {
         console.error('Failed to fetch articles:', error);
-        break;
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -57,37 +64,58 @@ export default function Column() {
   }, [fetchAllArticles]);
 
   useEffect(() => {
-    if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current);
-    }
+    const timeout = setTimeout(async () => {
+      setIsSearching(true);
 
-    searchTimeoutRef.current = setTimeout(async () => {
       let result = articles;
 
+      // 카테고리와 검색값 모두 적용
       if (searchValue) {
         try {
-          result = await searchArticles(searchValue);
+          const searchResults = await searchArticles(searchValue);
+
+          if (selectedCategory !== '전체보기') {
+            result = searchResults.filter(
+              (article: TArticle) =>
+                CATEGORY_MAP[article.category] === selectedCategory
+            );
+          } else {
+            result = searchResults;
+          }
         } catch (error) {
           console.error('Failed to search articles:', error);
+          setIsSearching(false);
           return;
         }
-      }
-
-      if (selectedCategory !== '전체보기') {
-        result = result.filter(
+      } else if (selectedCategory !== '전체보기') {
+        result = articles.filter(
           (article) => CATEGORY_MAP[article.category] === selectedCategory
         );
       }
 
       setFilteredArticles(result);
+      setIsSearching(false);
     }, 500);
 
-    return () => {
-      if (searchTimeoutRef.current) {
-        clearTimeout(searchTimeoutRef.current);
-      }
-    };
+    return () => clearTimeout(timeout);
   }, [searchValue, selectedCategory, articles]);
+
+  const handleCategoryChange = (category: string) => {
+    setIsFiltering(true); // 필터링 로딩 활성화
+    setSelectedCategory(category);
+
+    setTimeout(() => {
+      if (category === '전체보기') {
+        setFilteredArticles(articles);
+      } else {
+        const filtered = articles.filter(
+          (article) => CATEGORY_MAP[article.category] === category
+        );
+        setFilteredArticles(filtered);
+      }
+      setIsFiltering(false);
+    }, 300);
+  };
 
   useEffect(() => {
     const activeCategory = document.querySelector(
@@ -143,7 +171,7 @@ export default function Column() {
                 className={`${
                   selectedCategory === category ? 'font-bold' : 'opacity-45'
                 } mr-6 last:mr-0 text-[1.2rem] font-SCDream5 relative`}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryChange(category)}
               >
                 {category}
               </button>
@@ -160,7 +188,24 @@ export default function Column() {
           </div>
 
           <div className='bg-white p-4 w-full px-[2rem] h-[calc(100vh-18rem)] overflow-y-auto'>
-            {filteredArticles.length > 0 ? (
+            {isLoading || isSearching || isFiltering ? ( // 로딩 중일 때 스켈레톤 표시
+              <div className='w-full flex flex-col items-center gap-4'>
+                {[...Array(10)].map(
+                  (
+                    _,
+                    index // 초기 로딩으로 인한 10 설정 filteredArticles.length
+                  ) => (
+                    <Skeleton
+                      key={index}
+                      style={{ width: 'calc(100vw - 3rem)' }}
+                      height={65}
+                      baseColor='#f7f7f7' //'#F4EBFB'
+                      highlightColor='#eaeaea' //'#e7ddee'
+                    />
+                  )
+                )}
+              </div>
+            ) : filteredArticles.length > 0 ? (
               <div className='w-full flex flex-col items-center gap-4'>
                 {filteredArticles.map((article, index) => (
                   <motion.div
