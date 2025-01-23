@@ -53,18 +53,23 @@ export default function Columns() {
 
   const ArticleList = ({ articles }: { articles: TArticlesLiked[] }) => (
     <>
-      {articles.map((article, index) => (
-        <div key={index} className='py-3'>
-          <ArticleItem
-            articleId={article.articleId}
-            title={article.title}
-            category={getCategory(article.category)}
-            publishedAt={article.publishedAt ?? ''}
-            thumbnailS3Key={article.thumbnailS3Key ?? ''}
-            isLiked={true}
-          />
-        </div>
-      ))}
+      {articles.map(
+        (
+          { articleId, title, category, publishedAt, thumbnailS3Key },
+          index
+        ) => (
+          <div key={index} className='py-3'>
+            <ArticleItem
+              articleId={articleId}
+              title={title}
+              category={getCategory(category)}
+              publishedAt={publishedAt}
+              thumbnailS3Key={thumbnailS3Key}
+              isLiked={true}
+            />
+          </div>
+        )
+      )}
     </>
   );
   return (
