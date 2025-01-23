@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { getApiToken } from '@/api';
 import { useContext } from 'react';
 import { DataContext } from '@/hooks/useData';
-import { getApiToken } from '@/api';
 
 export function LogoHeader({ isMain }: { isMain: boolean }) {
   const { data } = useContext(DataContext);
