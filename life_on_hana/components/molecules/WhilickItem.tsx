@@ -129,6 +129,22 @@ export default function WhilickItem({
     };
   }, [top, idx, globalAudioState]);
 
+  // 오디오 처음 부분일 때 최상단으로 이동
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.currentTime === 0) {
+      const container = textRef.current;
+      if (container) {
+        container.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [currentTime]);
+
   // 글씨 크기 조절
   const handleFontSizeChange = (value: number) => {
     setGlobalFontSize(value);
