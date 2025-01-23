@@ -350,3 +350,7 @@ export type TWhilickItemProps = {
   setGlobalFontSize: React.Dispatch<React.SetStateAction<number>>;
   onContentChange?: () => void;
 };
+
+export type TLoadingIconProps = {
+  bgColor?: string; // 배경 색상을 위한 props
+};
