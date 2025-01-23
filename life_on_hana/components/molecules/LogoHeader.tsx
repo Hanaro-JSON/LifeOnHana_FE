@@ -6,8 +6,6 @@ import { getApiToken } from '@/api';
 import { useContext } from 'react';
 import { DataContext } from '@/hooks/useData';
 import { getApiToken } from '@/api';
-import { useContext } from 'react';
-import { DataContext } from '@/hooks/useData';
 
 export function LogoHeader({ isMain }: { isMain: boolean }) {
   const { data } = useContext(DataContext);
