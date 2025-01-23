@@ -2,9 +2,11 @@
 
 import MicroMiniBtn from '@/components/atoms/MicroMiniBtn';
 import ConnectBankItem from '@/components/molecules/ConnectBankItem';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import loadingIcon from '@/assets/loadingIcon.svg';
 
 export default function Mydata() {
   const router = useRouter();
@@ -13,12 +15,15 @@ export default function Mydata() {
   const handleToggle = (isChecked: boolean) => {
     setClickedNum((prev) => (isChecked ? prev + 1 : prev - 1));
   };
+  const [isLoading, setIsLoading] = useState(false);
 
   const moveToHomeEvent = () => {
-    if (clickedNum !== 0) {
-      router.replace('/home');
-    }
-    return;
+    setIsLoading(true);
+    setTimeout(() => {
+      if (clickedNum !== 0) {
+        router.replace('/home');
+      }
+    }, 300);
   };
 
   return (
@@ -64,6 +69,18 @@ export default function Mydata() {
         >
           마이데이터 서비스 연결
         </button>
+
+        {isLoading && (
+          <div className='fixed inset-0 bg-gray-500 bg-opacity-20 z-40 flex justify-center items-center'>
+            <Image
+              src={loadingIcon}
+              alt='로딩중'
+              style={{ width: 50, height: 'auto' }}
+              priority
+              className='z-50 absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] spin-animation'
+            />
+          </div>
+        )}
       </div>
     </>
   );
