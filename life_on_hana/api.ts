@@ -2,25 +2,29 @@ import { type TArticleItemProps } from './types/componentTypes';
 import { type TArticlesLiked } from './types/dataTypes';
 
 // accessToken 추출
-const userData = localStorage.getItem('user');
+export let NEXT_PUBLIC_URL: string;
 export let NEXT_PUBLIC_API_TOKEN: string;
-if (userData) {
-  const userObject = JSON.parse(userData);
-  NEXT_PUBLIC_API_TOKEN = userObject.accessToken;
-}
+export const getApiToken = () => {
+  if (typeof window !== 'undefined') {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const userObject = JSON.parse(userData);
+      return userObject.accessToken;
+    }
+  }
+  return null;
+};
 
 // home/like 상품 불러오기
 export const fetchLikedProducts = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/users/liked/products`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    }
-  );
+  const token = getApiToken();
+  const response = await fetch(`${NEXT_PUBLIC_URL}/api/users/liked/products`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   if (!response.ok) {
     throw new Error('상품 불러오기 실패');
@@ -32,12 +36,12 @@ export const fetchLikedProducts = async () => {
 // home/like 대출 상품 자세히보기
 export const fetchLoanProductDetails = async (productId: number) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/products/loans/${productId}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/products/loans/${productId}`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${getApiToken()}`,
       },
     }
   );
@@ -52,12 +56,12 @@ export const fetchLoanProductDetails = async (productId: number) => {
 // home/like 적금 상품 자세히보기
 export const fetchAccountProductDetails = async (productId: number) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/products/savings/${productId}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/products/savings/${productId}`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${getApiToken()}`,
       },
     }
   );
@@ -72,12 +76,12 @@ export const fetchAccountProductDetails = async (productId: number) => {
 // home/like 보험 상품 자세히보기
 export const fetchLifeProductDetails = async (productId: number) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/products/life/${productId}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/products/life/${productId}`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${getApiToken()}`,
       },
     }
   );
@@ -97,12 +101,12 @@ export const fetchArticles = async (page: number = 1) => {
   try {
     while (hasNext) {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles?page=${page}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/articles?page=${page}`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+            Authorization: `Bearer ${getApiToken()}`,
           },
         }
       );
@@ -127,14 +131,14 @@ export const fetchArticles = async (page: number = 1) => {
 // column 검색
 export const searchArticles = async (query: string) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/search?query=${encodeURIComponent(
+    `${process.env.NEXT_PUBLIC_URL}/api/articles/search?query=${encodeURIComponent(
       query
     )}`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${getApiToken()}`,
       },
     }
   );
@@ -150,12 +154,12 @@ export const searchArticles = async (query: string) => {
 // ArticleItem 좋아요
 export const likeArticle = async (articleId: number, isLiked: boolean) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/${articleId}/like`,
+    `${process.env.NEXT_PUBLIC_URL}/api/articles/${articleId}/like`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        Authorization: `Bearer ${getApiToken()}`,
       },
       body: JSON.stringify({ isLiked }),
     }
@@ -171,16 +175,13 @@ export const likeArticle = async (articleId: number, isLiked: boolean) => {
 
 // home/wallet/deposit
 export const fetchAccountData = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/account`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    }
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/account`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getApiToken()}`,
+    },
+  });
 
   if (!response.ok) {
     throw new Error('계좌 불러오기 실패');
@@ -198,12 +199,12 @@ export const transferFunds = async (
 ) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/account/transfer`,
+      `${process.env.NEXT_PUBLIC_URL}/api/account/transfer`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          Authorization: `Bearer ${getApiToken()}`,
         },
         body: JSON.stringify({
           fromAccountId: fromAccountId,
@@ -231,12 +232,12 @@ export const transferFunds = async (
 export const fetchArticleById = async (id: number) => {
   try {
     const response = await fetch(
-      // `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/${id}`, // [돈 주석]
+      // `${process.env.NEXT_PUBLIC_URL}/api/articles/${id}`, // [돈 주석]
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          Authorization: `Bearer ${getApiToken()}`,
         },
       }
     );
@@ -262,12 +263,12 @@ export const fetchEffectAnalysis = async (
 ) => {
   try {
     const response = await fetch(
-      // `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/anthropic/effect`, // [돈 주석]
+      // `${process.env.NEXT_PUBLIC_URL}/api/anthropic/effect`, // [돈 주석]
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          Authorization: `Bearer ${getApiToken()}`,
         },
         body: JSON.stringify({ articleId, productId }),
       }
@@ -291,12 +292,12 @@ export const fetchEffectAnalysis = async (
 export const likeProduct = async (productId: number, isLiked: boolean) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/users/${productId}/like`,
+      `${process.env.NEXT_PUBLIC_URL}/api/users/${productId}/like`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          Authorization: `Bearer ${getApiToken()}`,
         },
         body: JSON.stringify({ isLiked }),
       }
@@ -325,12 +326,12 @@ export const fetchArticlesLiked = async (page: number = 1) => {
   try {
     while (hasNext) {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/liked?page=${page}&size=10`,
+        `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?page=${page}&size=10`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+            Authorization: `Bearer ${getApiToken()}`,
           },
         }
       );

@@ -56,7 +56,7 @@ export default function SigninPage() {
     } else {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/auth/signin`,
+          `${process.env.NEXT_PUBLIC_URL}/api/auth/signin`,
           {
             method: 'POST',
             headers: {

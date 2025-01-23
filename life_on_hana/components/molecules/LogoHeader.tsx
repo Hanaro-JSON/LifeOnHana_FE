@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import signoutbtn from '@/assets/signoutBtn.svg';
 import { mySignOut } from '@/actions/myauth';
-import { NEXT_PUBLIC_API_TOKEN } from '@/api';
 import { useRouter } from 'next/navigation';
+import { getApiToken } from '@/api';
 
 export function LogoHeader({ isMain }: { isMain: boolean }) {
   const router = useRouter();
@@ -13,12 +13,12 @@ export function LogoHeader({ isMain }: { isMain: boolean }) {
     // 일반 로그아웃
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/auth/signout`,
+        `${process.env.NEXT_PUBLIC_URL}/api/auth/signout`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            authorization: `Bearer ${NEXT_PUBLIC_API_TOKEN}`,
+            authorization: `Bearer ${getApiToken()}`,
           },
           credentials: 'include',
         }
