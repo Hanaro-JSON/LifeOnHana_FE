@@ -43,15 +43,22 @@ export default function WhilickItem({
     }));
   }, [setGlobalAudioState]);
 
+  const [currentTime, setCurrentTime] = useState(0);
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
+    // 오디오를 처음으로 되감기
+    audio.currentTime = 0;
+    setCurrentTime(0);
 
     const isVisible = Math.floor(top / window.innerHeight) === idx;
 
     if (isVisible) {
       // 오디오를 처음으로 되감기
       audio.currentTime = 0;
+
       if (globalAudioState.isPlaying && !globalAudioState.isMute) {
         audio.play().catch(console.error);
         audio.loop = true;
@@ -62,6 +69,15 @@ export default function WhilickItem({
       setOpenedAdjustBtn(null);
     }
 
+    let intervalId: NodeJS.Timeout | null = null;
+
+    // 오디오 진행 시점 파악 (startTime, endTime과의 비교 위함)
+    if (isVisible && globalAudioState.isPlaying) {
+      intervalId = setInterval(() => {
+        setCurrentTime(audio.currentTime);
+      }, 10);
+    }
+
     // 스크롤 중
     if (Math.floor(top % window.innerHeight) != 0) {
       audio.pause();
@@ -69,6 +85,9 @@ export default function WhilickItem({
     }
 
     return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
       audio.pause();
     };
   }, [top, idx, globalAudioState]);
@@ -151,10 +170,13 @@ export default function WhilickItem({
               fontSize: `calc(2rem * ${globalFontSize})`,
             }}
           >
-            {text.map((elem) => {
+            {text.map(({ paragraphId, content, startTime, endTime }) => {
               return (
-                <div key={elem.paragraphId} className=''>
-                  {elem.content}
+                <div
+                  key={paragraphId}
+                  className={`${currentTime >= startTime && currentTime < endTime ? 'text-hanapurple' : ''}`}
+                >
+                  {content}
                 </div>
               );
             })}

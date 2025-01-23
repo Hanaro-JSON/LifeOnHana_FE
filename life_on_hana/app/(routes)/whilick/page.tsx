@@ -34,28 +34,27 @@ export default function Whilick() {
         {
           paragraphId: 1,
           content: '아트 애호가들의 심장을 뛰게 만드는 전시가 찾아왔다.',
-          startTime: 0.0,
-          endTime: 4.2,
+          startTime: 1.4,
+          endTime: 6.2,
         },
         {
           paragraphId: 2,
           content:
             '용산 국립중앙박물관에서 열리는 오스트리아 레오폴트 미술관컬렉션이 바로 그것.',
-          startTime: 4.2,
-          endTime: 10.5,
+          startTime: 6.2,
+          endTime: 12.5,
         },
         {
           paragraphId: 3,
           content:
             '우리가 몰랐던 1900년대 비엔나에 불어온 미술 사조의 변화를 엿볼 수 있는 좋은 기회다.',
-          startTime: 10.5,
-          endTime: 15,
+          startTime: 12.5,
+          endTime: 17,
         },
       ],
       likeCount: 5,
       isLiked: false,
-      ttsUrl:
-        'https://d1g084wcjwihe3.cloudfront.net/tts/영화관에서_미리_메리_크리스마스_20250121_140209.mp3',
+      ttsUrl: '/assets/audio/audio1.mp3',
     },
     {
       title: '새해 소망 여행 울산시 울주군',
@@ -64,15 +63,15 @@ export default function Whilick() {
         {
           paragraphId: 1,
           content: '누구나 마음속에 새해 이루고 싶은 소망이 있을 것이다.',
-          startTime: 0.0,
-          endTime: 4.2,
+          startTime: 2.0,
+          endTime: 6.2,
         },
         {
           paragraphId: 2,
           content:
             '2025년 새해 가장 먼저 해가 떠오르는 간절곶에서, 예부터 소망이 이뤄진다고 여겨진 영험한 곳 파래소폭포에서 마음 깊은 곳에 간직한 소망을 펼쳐 보여도 좋겠다.',
-          startTime: 4.2,
-          endTime: 10.5,
+          startTime: 6.2,
+          endTime: 12.5,
         },
       ],
       likeCount: 15,
@@ -87,15 +86,15 @@ export default function Whilick() {
           paragraphId: 1,
           content:
             '넷플릭스 요리 경연 프로그램 ‘흑백요리사’ 열풍이 불면서 출연한 셰프들의 레스토랑들도 덩달아 인기를 얻고 있다.',
-          startTime: 0.0,
-          endTime: 4.2,
+          startTime: 2.0,
+          endTime: 6.2,
         },
         {
           paragraphId: 2,
           content:
             '지금 가장 핫한 곳은 어느 곳이고, 예약 없이 갈 수 있는 레스토랑은 과연 어디일까?',
-          startTime: 4.2,
-          endTime: 10.5,
+          startTime: 6.2,
+          endTime: 12.5,
         },
       ],
       likeCount: 10,
