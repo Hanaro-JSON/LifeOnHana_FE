@@ -225,14 +225,25 @@ export default function WhilickItem({
             ref={textRef}
           >
             {text.map(({ paragraphId, content, startTime, endTime }) => {
+              // 오디오 속도 조절에 따른 startTime, endTime 조정
+              let adjustedStartTime = startTime;
+              let adjustedEndTime = endTime;
+
+              if (globalAudioSpeed === 0.75) {
+                adjustedStartTime += 0.25;
+                adjustedEndTime += 0.25;
+              } else if (globalAudioSpeed === 1.25) {
+                adjustedStartTime -= 0.25;
+                adjustedEndTime -= 0.25;
+              }
+
               return (
                 <div
                   key={paragraphId}
                   ref={(el) => {
                     paragraphRefs.current[paragraphId] = el;
                   }}
-                  // ref={paragraphScrollRef}
-                  className={`${currentTime >= startTime && currentTime < endTime ? 'text-hanapurple' : ''}`}
+                  className={`${currentTime >= adjustedStartTime && currentTime < adjustedEndTime ? 'text-hanapurple' : ''}`}
                 >
                   {content}
                 </div>
