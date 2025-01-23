@@ -1,5 +1,5 @@
 import { type TArticleItemProps } from './types/componentTypes';
-import { TArticlesLiked } from './types/dataTypes';
+import { type TArticlesLiked } from './types/dataTypes';
 
 // accessToken 추출
 const userData = localStorage.getItem('user');
