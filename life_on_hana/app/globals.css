@@ -198,6 +198,7 @@ input[type='radio']:checked {
   /* box-shadow: 0 0 0 1.6px var(--hanapurple); */
 }
 
+/* 휘릭 하단 스크롤 유도 */
 @-webkit-keyframes animate-svg-fill-1 {
   0% {
     fill: transparent;
@@ -350,4 +351,18 @@ input[type='radio']:checked {
     0s infinite;
   animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
     infinite;
+}
+
+/* 로딩 스피너 */
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
 }

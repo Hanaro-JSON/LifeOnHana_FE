@@ -3,12 +3,17 @@ import signoutbtn from '@/assets/signoutBtn.svg';
 import { mySignOut } from '@/actions/myauth';
 import { useRouter } from 'next/navigation';
 import { getApiToken } from '@/api';
+import { useContext } from 'react';
+import { DataContext } from '@/hooks/useData';
 
 export function LogoHeader({ isMain }: { isMain: boolean }) {
+  const { data } = useContext(DataContext);
+
   const router = useRouter();
   const handleSignout = async () => {
     // next-auth
     mySignOut();
+    localStorage.removeItem(data.email);
 
     // 일반 로그아웃
     try {

@@ -8,7 +8,7 @@ export default function MicroMiniBtn({
   if (num) {
     return (
       <>
-        <div className='flex justify-center items-center border border-hanapurple bg-hanalightpurple rounded-xl w-[2rem] h-[1.25rem] text-xs'>
+        <div className='flex justify-center items-center border border-hanapurple bg-hanalightpurple text-hanapurple rounded-xl w-[2rem] h-[1.25rem] text-xs pt-0.5'>
           {num}
         </div>
       </>
@@ -17,7 +17,7 @@ export default function MicroMiniBtn({
     return (
       <button
         onClick={onClick}
-        className='font-SCDream3 text-hanapurple flex justify-center items-center bg-hanalightpurple rounded-xl text-xs px-2 py-1 '
+        className='font-SCDream3 text-hanapurple flex justify-center items-center bg-hanalightpurple rounded-xl text-xs px-2 py-1'
       >
         {text}
       </button>

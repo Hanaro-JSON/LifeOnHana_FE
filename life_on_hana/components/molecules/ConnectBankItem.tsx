@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import MydataCheckNo from '../../assets/MydataCheckNo.svg';
-import MydataCheckYes from '../../assets/MydataCheckYes.svg';
-import HanaBankLogo from '../../assets/HanaBankLogo.svg';
-import NonghyupBankLogo from '../../assets/NonghyupBankLogo.svg';
-import ShinhanBankLogo from '../../assets/ShinhanBankLogo.svg';
-import WooriBankLogo from '../../assets/WooriBankLogo.svg';
-import TossBankLogo from '../../assets/TossBankLogo.svg';
-import NaverBankLogo from '../../assets/NaverBankLogo.svg';
-import KakaoBankLogo from '../../assets/KakaoBankLogo.svg';
+import MydataCheckNo from '@/assets/MydataCheckNo.svg';
+import MydataCheckYes from '@/assets/MydataCheckYes.svg';
+import HanaBankLogo from '@/assets/HanaBankLogo.svg';
+import NonghyupBankLogo from '@/assets/NonghyupBankLogo.svg';
+import ShinhanBankLogo from '@/assets/ShinhanBankLogo.svg';
+import WooriBankLogo from '@/assets/WooriBankLogo.svg';
+import TossBankLogo from '@/assets/TossBankLogo.svg';
+import NaverBankLogo from '@/assets/NaverBankLogo.svg';
+import KakaoBankLogo from '@/assets/KakaoBankLogo.svg';
+import KBBankLogo from '@/assets/KBBankLogo.svg';
 import { type TConnectBankItemProps } from '@/types/componentTypes';
 
 export default function ConnectBankItem({
@@ -30,6 +31,7 @@ export default function ConnectBankItem({
     HANA: HanaBankLogo,
     NH: NonghyupBankLogo,
     SHINHAN: ShinhanBankLogo,
+    KB: KBBankLogo,
     WOORI: WooriBankLogo,
     TOSS: TossBankLogo,
     NAVER: NaverBankLogo,
@@ -40,6 +42,7 @@ export default function ConnectBankItem({
     HANA: '하나은행',
     NH: '농협은행',
     SHINHAN: '신한은행',
+    KB: '국민은행',
     WOORI: '우리은행',
     TOSS: '토스뱅크',
     NAVER: '네이버뱅크',
@@ -50,7 +53,10 @@ export default function ConnectBankItem({
   const displayBankName = bankNameMap[bankName];
 
   return (
-    <div className='w-full h-[3.75rem] flex items-center justify-between relative'>
+    <div
+      onClick={toggleMydata}
+      className='w-full h-[3.75rem] flex items-center justify-between relative cursor-pointer'
+    >
       <div className='flex items-center'>
         <Image
           className='w-5 h-[.95rem]'
@@ -70,7 +76,6 @@ export default function ConnectBankItem({
           alt={isMydataChecked ? 'Mydata Checked' : 'Mydata Not Checked'}
           width={20}
           height={20}
-          onClick={toggleMydata}
           className='cursor-pointer'
         />
       </div>

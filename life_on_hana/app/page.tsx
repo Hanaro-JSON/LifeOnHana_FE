@@ -1,6 +1,22 @@
-import Image from 'next/image';
+'use client';
 
-export default function page() {
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
+export default function Page() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace('/signin');
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [router]);
+
   return (
     <>
       <div className='relative bg-hanapurple min-h-screen flex flex-col items-center justify-center'>
@@ -20,7 +36,7 @@ export default function page() {
             height={1000}
             priority
           />
-          <div className='font-SCDream5 text-[.8125rem] text-white'>
+          <div className='font-SCDream5 text-[1rem] text-white'>
             소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
           </div>
         </div>
@@ -36,3 +52,5 @@ export default function page() {
     </>
   );
 }
+
+// text-[.8125rem]

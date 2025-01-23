@@ -5,6 +5,7 @@ import ConnectBankItem from '@/components/molecules/ConnectBankItem';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 
 export default function Mydata() {
   const router = useRouter();
@@ -13,12 +14,15 @@ export default function Mydata() {
   const handleToggle = (isChecked: boolean) => {
     setClickedNum((prev) => (isChecked ? prev + 1 : prev - 1));
   };
+  const [isLoading, setIsLoading] = useState(false);
 
   const moveToHomeEvent = () => {
-    if (clickedNum !== 0) {
-      router.replace('/home');
-    }
-    return;
+    setIsLoading(true);
+    setTimeout(() => {
+      if (clickedNum !== 0) {
+        router.replace('/home');
+      }
+    }, 300);
   };
 
   return (
@@ -47,6 +51,7 @@ export default function Mydata() {
             <ConnectBankItem bankName='HANA' onToggle={handleToggle} />
             <ConnectBankItem bankName='NH' onToggle={handleToggle} />
             <ConnectBankItem bankName='SHINHAN' onToggle={handleToggle} />
+            <ConnectBankItem bankName='KB' onToggle={handleToggle} />
             <ConnectBankItem bankName='WOORI' onToggle={handleToggle} />
             <ConnectBankItem bankName='TOSS' onToggle={handleToggle} />
             <ConnectBankItem bankName='NAVER' onToggle={handleToggle} />
@@ -63,6 +68,9 @@ export default function Mydata() {
         >
           마이데이터 서비스 연결
         </button>
+
+        {/* Home으로 이동 전 300ms 로딩 */}
+        {isLoading && <LoadingIcon />}
       </div>
     </>
   );
