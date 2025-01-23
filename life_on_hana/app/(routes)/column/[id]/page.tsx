@@ -51,7 +51,7 @@ export default function Detail() {
         setTitleParts(splitTitle(data.data.title));
       } catch (error) {
         console.error('Error fetching article:', error);
-        router.push('.'); // 오류 발생 시, 뒤로 이동
+        // router.push('.'); // 오류 발생 시, 뒤로 이동
       }
     };
 
