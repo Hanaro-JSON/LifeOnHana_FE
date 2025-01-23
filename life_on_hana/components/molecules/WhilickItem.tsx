@@ -33,17 +33,54 @@ export default function WhilickItem({
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
   };
 
-  // audio
+  // ----------------- audio -----------------
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const paragraphRefs = useRef<{ [key: string]: HTMLDivElement | null }>({}); // 각 paragraph의 ref
+  const textRef = useRef<HTMLDivElement | null>(null); // text가 담긴 div의 ref
 
+  // 현재 paragraph가 contentScrollRef의 중앙에 위치하도록 이동
+  useEffect(() => {
+    const currentParagraph = text.find(
+      ({ startTime, endTime }) =>
+        currentTime >= startTime && currentTime < endTime
+    );
+
+    if (
+      currentParagraph &&
+      paragraphRefs.current[currentParagraph.paragraphId]
+    ) {
+      const container = textRef.current;
+      const paragraphElement =
+        paragraphRefs.current[currentParagraph.paragraphId];
+
+      const paragraphRect = paragraphElement?.getBoundingClientRect();
+      const containerRect = container?.getBoundingClientRect();
+
+      if (paragraphRect && containerRect && container) {
+        const scrollOffset =
+          paragraphRect.top -
+          containerRect.top +
+          container.scrollTop -
+          container.clientHeight / 2 +
+          paragraphRect.height / 2 +
+          4;
+
+        container.scrollTo({
+          top: scrollOffset,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [currentTime, text]);
+
+  // 오디오 중지/재생
   const toggleAudio = useCallback(() => {
     setGlobalAudioState((prevState) => ({
       isPlaying: !prevState.isPlaying,
       isMute: prevState.isPlaying,
     }));
   }, [setGlobalAudioState]);
-
-  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -164,16 +201,21 @@ export default function WhilickItem({
           <div
             className='gap-5 px-[1.5rem] flex flex-col text-center items-center w-full font-SCDream8 text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
             style={{
-              maxHeight: 'calc(100vh - 400px)',
+              maxHeight: 'calc(100vh - 470px)',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               fontSize: `calc(2rem * ${globalFontSize})`,
             }}
+            ref={textRef}
           >
             {text.map(({ paragraphId, content, startTime, endTime }) => {
               return (
                 <div
                   key={paragraphId}
+                  ref={(el) => {
+                    paragraphRefs.current[paragraphId] = el;
+                  }}
+                  // ref={paragraphScrollRef}
                   className={`${currentTime >= startTime && currentTime < endTime ? 'text-hanapurple' : ''}`}
                 >
                   {content}

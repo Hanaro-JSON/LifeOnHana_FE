@@ -51,6 +51,31 @@ export default function Whilick() {
           startTime: 12.5,
           endTime: 17,
         },
+        {
+          paragraphId: 4,
+          content:
+            '지금 가장 핫한 곳은 어느 곳이고, 예약 없이 갈 수 있는 레스토랑은 과연 어디일까?',
+          startTime: 17,
+          endTime: 22,
+        },
+        {
+          paragraphId: 5,
+          content: '마지막에서 세번째 문장',
+          startTime: 22,
+          endTime: 28,
+        },
+        {
+          paragraphId: 6,
+          content: '마지막에서 두번째 문장',
+          startTime: 28,
+          endTime: 35,
+        },
+        {
+          paragraphId: 7,
+          content: '마지막 문장',
+          startTime: 35,
+          endTime: 40,
+        },
       ],
       likeCount: 5,
       isLiked: false,
