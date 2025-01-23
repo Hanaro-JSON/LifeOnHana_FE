@@ -1,4 +1,5 @@
 import { type TArticleItemProps } from './types/componentTypes';
+import { TArticlesLiked } from './types/dataTypes';
 
 // accessToken 추출
 const userData = localStorage.getItem('user');
@@ -310,6 +311,43 @@ export const likeProduct = async (productId: number, isLiked: boolean) => {
     const data = await response.json();
     return data.data;
   } catch (error) {
+    throw error;
+  }
+};
+
+//
+// home/columns
+//
+export const fetchArticlesLiked = async (page: number = 1) => {
+  let allArticles: TArticlesLiked[] = [];
+  let hasNext = true;
+
+  try {
+    while (hasNext) {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}/api/articles/liked?page=${page}&size=10`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`${page}페이지 불러오기 실패`);
+      }
+
+      const data = await response.json();
+      allArticles = [...allArticles, ...data.data.articles];
+      hasNext = data.data.hasNext;
+      page += 1; // hasNext처리
+    }
+
+    return { articles: allArticles, hasNext: false };
+  } catch (error) {
+    console.error('칼럼 목록 불러오기 실패', error);
     throw error;
   }
 };
