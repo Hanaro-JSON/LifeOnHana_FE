@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent, ChangeEvent } from 'react';
 import Btn from '../atoms/Btn';
 import X from '../../assets/X.svg';
 import Image from 'next/image';
@@ -26,7 +26,7 @@ export default function LikedAccountProductDetailItem({
   );
   const [calculatedAmount, setCalculatedAmount] = useState<string>('0');
 
-  const handleLikeToggle = async (e: React.MouseEvent) => {
+  const handleLikeToggle = async (e: MouseEvent) => {
     e.stopPropagation();
     if (isLoading) return;
 
@@ -42,7 +42,7 @@ export default function LikedAccountProductDetailItem({
     }
   };
 
-  const handleBackgroundClick = (e: React.MouseEvent) => {
+  const handleBackgroundClick = (e: MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === 'modal-background') {
       onClose?.();
     }
@@ -54,7 +54,7 @@ export default function LikedAccountProductDetailItem({
     }
   };
 
-  const handleInterestRateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInterestRateChange = (e: ChangeEvent<HTMLInputElement>) => {
     const rate = parseFloat(e.target.value);
     if (
       rate >= savingsInfo.basicInterestRate &&
@@ -65,13 +65,13 @@ export default function LikedAccountProductDetailItem({
     }
   };
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     const amountToNumber = e.target.value;
     setAmount(amountToNumber);
     calculateAmount(amountToNumber, years, interestRate);
   };
 
-  const handleYearsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleYearsChange = (e: ChangeEvent<HTMLInputElement>) => {
     const yearsToNumber = e.target.value;
     setYears(yearsToNumber);
     calculateAmount(amount, yearsToNumber, interestRate);

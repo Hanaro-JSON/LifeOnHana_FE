@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEvent } from 'react';
 import Btn from '@/components/atoms/Btn';
 import X from '@/assets/X.svg';
 import Image from 'next/image';
@@ -20,7 +20,7 @@ export default function ArticleAIRecommendDetailItem({
   const [description, setDescription] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
-  const handleLikeToggle = async (e: React.MouseEvent) => {
+  const handleLikeToggle = async (e: MouseEvent) => {
     e.stopPropagation();
     if (isLoading) return;
 
@@ -42,7 +42,7 @@ export default function ArticleAIRecommendDetailItem({
     }
   };
 
-  const handleBackgroundClick = (e: React.MouseEvent) => {
+  const handleBackgroundClick = (e: MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === 'modal-background') {
       handleClose();
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import Btn from '../atoms/Btn';
 import X from '../../assets/X.svg';
 import Image from 'next/image';
@@ -22,7 +22,7 @@ export default function LikedLoanProductDetailItem({
   const [liked, setLiked] = useState({ isLiked });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleBackgroundClick = (e: React.MouseEvent) => {
+  const handleBackgroundClick = (e: MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === 'modal-background') {
       onClose?.();
     }
@@ -34,7 +34,7 @@ export default function LikedLoanProductDetailItem({
     }
   };
 
-  const handleLikeToggle = async (e: React.MouseEvent) => {
+  const handleLikeToggle = async (e: MouseEvent) => {
     e.stopPropagation();
     if (isLoading) return;
 

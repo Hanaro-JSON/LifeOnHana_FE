@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import Image from 'next/image';
 import AccountCheckNo from '@/assets/MydataCheckNo.svg';
 import AccountCheckYes from '@/assets/MydataCheckYes.svg';
@@ -45,7 +45,7 @@ export default function AccountDetailItem({
     return Number(numericValue).toLocaleString('en-US');
   };
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/,/g, '');
     const formattedValue = formatNumber(rawValue);
 
