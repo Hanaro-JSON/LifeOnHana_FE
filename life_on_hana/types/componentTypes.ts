@@ -106,8 +106,8 @@ export type TArticleItemProps = {
   articleId: number;
   title: string;
   category: string;
-  publishedAt: string;
-  thumbnailS3Key: string;
+  publishedAt?: string;
+  thumbnailS3Key?: string;
   isLiked: boolean;
 };
 

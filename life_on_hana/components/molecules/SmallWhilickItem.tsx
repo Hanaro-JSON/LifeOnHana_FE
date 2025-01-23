@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { type TSmallWhilickItemProps } from '@/types/componentTypes';
 import { getCategory } from '@/utils/convertEnumtoString';
 export default function SmallWhilickItem({
-  article_id,
+  // article_id, //나중에 whilick id값 넘겨주기
   variant,
   title,
 }: TSmallWhilickItemProps) {
@@ -31,7 +31,7 @@ export default function SmallWhilickItem({
 
   return (
     <>
-      <Link href={`/column/${article_id}`}>
+      <Link href={`/whilick`}>
         <button
           className='bg-cover bg-center w-[10rem] h-[14.1875rem] flex flex-col items-center justify-center p-5 relative'
           style={{ backgroundImage: `url(${getSrc(variant)})` }}

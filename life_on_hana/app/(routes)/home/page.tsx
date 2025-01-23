@@ -195,7 +195,7 @@ export default function Home() {
           {categoryToNickname(category)}
         </div>
         <div>
-          <ShortCutBtn url={'/'} variant='column' />
+          <ShortCutBtn url={'/home/columns'} variant='column' />
         </div>
       </div>
       {/* <RecommendCarouselColumn items={RecommendCarouselColumnItems} /> */}

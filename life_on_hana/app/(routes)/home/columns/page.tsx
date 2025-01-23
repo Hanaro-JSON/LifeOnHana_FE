@@ -1,152 +1,110 @@
 'use client';
 
+import { fetchArticlesLiked } from '@/api';
 import ArticleItem from '@/components/molecules/ArticleItem';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { WhilickCarousel } from '@/components/molecules/WhilickCarousel';
 import { type TArticlesLiked } from '@/types/dataTypes';
 import { getCategory } from '@/utils/convertEnumtoString';
-import { useState } from 'react';
-
-const mockArticles: TArticlesLiked[] = [
-  {
-    articleId: 1,
-    title: '제주도로 여행을 떠나볼까요???',
-    category: 'TRAVEL',
-    publishedAt: '2025-01-12',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 2,
-    title: '요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?',
-    category: 'HOBBY',
-    publishedAt: '2024-12-08',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 3,
-    title: '투자를 해요',
-    category: 'INVESTMENT',
-    publishedAt: '2024-11-15',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 4,
-    title: '취미를 찾아볼까요?',
-    category: 'HOBBY',
-    publishedAt: '2025-01-12',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 5,
-    title: '제주도로 여행을 떠나볼까요???',
-    category: 'TRAVEL',
-    publishedAt: '2025-01-12',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 6,
-    title: '요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?',
-    category: 'TRAVEL',
-    publishedAt: '2024-12-08',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 7,
-    title: '투자를 해요',
-    category: 'INVESTMENT',
-    publishedAt: '2024-11-15',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 8,
-    title: '취미를 찾아볼까요?',
-    category: 'HOBBY',
-    publishedAt: '2025-01-12',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 9,
-    title: '제주도로 여행을 떠나볼까요???',
-    category: 'TRAVEL',
-    publishedAt: '2025-01-12',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 10,
-    title: '요즘 취미로는 러닝이 대세죠! 어떤 러닝화를 사야할까요?',
-    category: 'HOBBY',
-    publishedAt: '2024-12-08',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 11,
-    title: '투자를 해요',
-    category: 'INVESTMENT',
-    publishedAt: '2024-11-15',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-  {
-    articleId: 12,
-    title: '취미를 찾아볼까요?',
-    category: 'HOBBY',
-    publishedAt: '2025-01-12',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202421251121570801.jpg',
-    isLiked: true,
-  },
-];
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function Columns() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [likedArticles, setLikeArticles] =
-    useState<TArticlesLiked[]>(mockArticles);
-  // setLikeArticles(mockArticles);
+  const underlineRef = useRef<HTMLDivElement>(null);
+  const [likedArticles, setLikedArticles] = useState<TArticlesLiked[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [startIdx, setStartIdx] = useState(0);
+  const [page, setPage] = useState(0); // 현재 페이지 번호
+  const [hasNext, setHasNext] = useState(true); // 다음 페이지 여부
+  const [isFetching, setIsFetching] = useState(false); // 데이터 로드 중 여부
+
+  const fetchAllArticles = useCallback(async () => {
+    if (!hasNext || isFetching) return; // 다음 데이터가 없거나 이미 로딩 중이면 무시
+    setIsFetching(true);
+
+    try {
+      const data = await fetchArticlesLiked(page);
+      setLikedArticles((prev) => [...prev, ...data.articles]);
+      setHasNext(data.hasNext);
+      setPage((prev) => prev + 1);
+    } catch (error) {
+      console.error('Failed to fetch articles:', error);
+    } finally {
+      setIsFetching(false);
+    }
+  }, [hasNext, isFetching, page]);
+
+  const handleScroll = useCallback(() => {
+    if (isFetching || !hasNext) return;
+
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      fetchAllArticles(); // 화면이 거의 맨 아래로 스크롤되었을 때 추가 데이터 요청
+    }
+  }, [fetchAllArticles, hasNext, isFetching]);
+  useEffect(() => {
+    fetchAllArticles(); // 초기 데이터 로드
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   const ArticleList = ({ articles }: { articles: TArticlesLiked[] }) => (
     <>
       {articles.map(
-        (article, index) =>
-          article.isLiked && (
+        (
+          { articleId, title, category, publishedAt, thumbnailS3Key },
+          index
+        ) => (
+          <div key={index} className='py-3'>
             <ArticleItem
-              key={index}
-              articleId={article.articleId}
-              title={article.title}
-              category={getCategory(article.category)}
-              publishedAt={article.publishedAt ?? ''}
-              thumbnailS3Key={article.thumbnailS3Key ?? ''}
-              isLiked={article.isLiked}
+              articleId={articleId}
+              title={title}
+              category={getCategory(category)}
+              publishedAt={publishedAt}
+              thumbnailS3Key={thumbnailS3Key}
+              isLiked={true}
             />
-          )
+          </div>
+        )
       )}
     </>
   );
   return (
     <div className='p-6 space-y-4 mb-16'>
       <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
-      <div className='w-full h-full flex flex-col items-center gap-4'>
+      <div className='w-full h-full flex flex-col items-center'>
         {likedArticles.length > 0 ? (
           <>
-            <ArticleList
-              articles={likedArticles.slice(startIdx, startIdx + 5)}
-            />
-            <WhilickCarousel
-              items={likedArticles.slice(startIdx, startIdx + 10)}
-            />
-            <ArticleList
-              articles={likedArticles.slice(startIdx + 5, startIdx + 10)}
-            />
+            {likedArticles.map((_, index) => {
+              if (index % 10 === 0) {
+                const pageArticles = likedArticles.slice(index, index + 10);
+                return (
+                  <div key={index} className='w-full'>
+                    <ArticleList articles={pageArticles.slice(0, 5)} />
+                    <WhilickCarousel items={pageArticles} />
+                    <ArticleList articles={pageArticles.slice(5, 10)} />
+                  </div>
+                );
+              }
+              return null;
+            })}
+            <div
+              ref={underlineRef}
+              className='absolute bottom-0 h-1 bg-black transition-all duration-300 ease-in-out'
+              style={{
+                position: 'absolute',
+                left: 0,
+                width: '0px',
+              }}
+            ></div>
+            {isFetching && (
+              <div className='w-full h-12 flex items-center justify-center'>
+                로딩 중...
+              </div>
+            )}
           </>
         ) : (
           <div className='w-full h-52 flex items-center justify-center'>
@@ -154,6 +112,14 @@ export default function Columns() {
           </div>
         )}
       </div>
+      <style jsx global>{`
+        .overflow-x-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-x-auto {
+          -ms-overflow-style: none;
+        }
+      `}</style>
     </div>
   );
 }

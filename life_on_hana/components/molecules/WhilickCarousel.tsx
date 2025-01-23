@@ -14,8 +14,8 @@ export function WhilickCarousel({ items }: { items: TArticlesLiked[] }) {
     );
   }
   return (
-    <>
-      <div className='flex flex-row w-full gap-2 font-SCDream5 text-lg'>
+    <div className='my-3'>
+      <div className='flex flex-row w-full gap-2 font-SCDream5 text-lg mb-5'>
         <Image src={whilickIcon} alt={'whilickIcon'} />
         휘릭으로 보기
       </div>
@@ -33,6 +33,6 @@ export function WhilickCarousel({ items }: { items: TArticlesLiked[] }) {
           />
         ))}
       </Carousel>
-    </>
+    </div>
   );
 }
