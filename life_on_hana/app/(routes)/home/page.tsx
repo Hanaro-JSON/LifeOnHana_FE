@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Btn from '@/components/atoms/Btn';
@@ -18,6 +17,7 @@ import { FullImgCarousel } from '@/components/molecules/FullImgCarousel';
 import { RecommendCarouselItem } from '@/components/molecules/RecommendCarouselItem';
 import ShortCutBtn from '@/components/molecules/ShortCutBtn';
 import { DataContext } from '@/hooks/useData';
+import { fetchUsersInfo } from '@/api';
 
 const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
   { category: 'FOOD', amount: 500000, percentage: 10 },
@@ -78,12 +78,20 @@ const carouselItems: TRecommendCarouselItemProps[] = [
 ];
 
 export default function Home() {
-  const { data, setName, setBirth } = useContext(DataContext);
-  useEffect(() => {
-    setName('장다연');
-    setBirth('19500101');
-  });
+  const { data, setInfo } = useContext(DataContext);
 
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const fetchData = await fetchUsersInfo();
+        console.log(fetchData);
+        setInfo({ name: fetchData.name, birth: fetchData.birth });
+      } catch (error) {
+        console.error('Error fetching article:', error);
+      }
+    };
+    getInfo();
+  }, []);
   const [walletAmount, setWalletAmount] = useState(100);
   const [category, setCategory] = useState('INVESTMENT');
 
@@ -158,7 +166,7 @@ export default function Home() {
   }
 
   return (
-    <div className='p-6 space-y-4'>
+    <div className='p-6 space-y-4 mb-20'>
       {/* 헤더 */}
       <LogoHeader isMain={true} />
       {/* 하나월급 카드 */}

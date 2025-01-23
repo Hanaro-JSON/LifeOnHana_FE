@@ -352,3 +352,31 @@ export const fetchArticlesLiked = async (page: number = 1) => {
     throw error;
   }
 };
+// users/info
+export const fetchUsersInfo = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/users/info`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`유저 조회 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    data.name = data.data.name;
+    data.birth = data.data.birth;
+
+    return data;
+  } catch (error) {
+    console.error('유저 조회 요청 오류:', error);
+    throw new Error('유저 조회 요청 중 오류가 발생했습니다.');
+  }
+};

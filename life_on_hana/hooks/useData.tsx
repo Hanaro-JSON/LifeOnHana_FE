@@ -24,22 +24,14 @@ const contextInitValue = {
     const sess: Session | null = { user: { email: '', name: '' }, expires: '' };
     return Promise.resolve(sess);
   },
-  setName: async (name: string) => {
-    DefaultData = { ...DefaultData, name };
+  setInfo: async ({ birth, name }: { birth: string; name: string }) => {
+    DefaultData = { ...DefaultData, name, birth };
     return name;
   },
-  setBirth: async (birth: string) => {
-    DefaultData = { ...DefaultData, birth };
-    return birth;
-  },
 };
-type ContextProps = Omit<
-  typeof contextInitValue,
-  'getSession' | 'setName' | 'setBirth'
-> & {
+type ContextProps = Omit<typeof contextInitValue, 'getSession' | 'setInfo'> & {
   getSession: () => Promise<Session | null>;
-  setName: (name: string) => void;
-  setBirth: (birth: string) => void;
+  setInfo: ({ name, birth }: { name: string; birth: string }) => void;
 };
 export const DataContext = createContext<ContextProps>(contextInitValue);
 export const DataProvider = ({
@@ -57,20 +49,15 @@ export const DataProvider = ({
       const { email } = newer;
       if (!email) return;
       localStorage.setItem(email, JSON.stringify(newer));
-      if (JSON.stringify(data) !== JSON.stringify(newer)) {
-        setData(newer);
-      }
+      setData(newer);
       DefaultData = data;
     },
     [data]
   );
 
-  const setName = (name: string) => {
-    const updateData = { ...data, name };
-    setDataWithStorage(updateData);
-  };
-  const setBirth = (birth: string) => {
-    const updateData = { ...data, birth };
+  const setInfo = ({ name, birth }: { name: string; birth: string }) => {
+    const updateData = { ...data, name, birth };
+    console.log(updateData);
     setDataWithStorage(updateData);
   };
 
@@ -80,7 +67,7 @@ export const DataProvider = ({
     (async function () {
       const session = await getSession();
       if (!session?.user?.email) return;
-      const { email, name } = session.user;
+      const { email } = session.user;
       const localData = JSON.parse(
         localStorage.getItem(email) || 'null'
       ) as LocalData;
@@ -88,8 +75,8 @@ export const DataProvider = ({
       if (!localData) {
         setDataWithStorage({
           email,
-          name,
-          birth: undefined,
+          name: null,
+          birth: null,
         });
       } else {
         if (email && localData.email !== email) {
@@ -103,7 +90,7 @@ export const DataProvider = ({
     })();
   }, [getSession, signOut, router, setDataWithStorage, data]);
   return (
-    <DataContext.Provider value={{ data, getSession, setName, setBirth }}>
+    <DataContext.Provider value={{ data, getSession, setInfo }}>
       {children}
     </DataContext.Provider>
   );
