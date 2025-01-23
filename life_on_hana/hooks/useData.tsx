@@ -73,6 +73,7 @@ export const DataProvider = ({
     const updateData = { ...data, birth };
     setDataWithStorage(updateData);
   };
+
   const router = useRouter();
 
   useEffect(() => {
@@ -93,8 +94,6 @@ export const DataProvider = ({
       } else {
         if (email && localData.email !== email) {
           await signOut();
-          localStorage.removeItem(email);
-          router.push('/');
           return;
         }
         if (JSON.stringify(data) !== JSON.stringify(localData)) {
