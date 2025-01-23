@@ -20,6 +20,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { type TArticleDetail } from '@/types/dataTypes';
 import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 
 const MOCK_DATA = {
   code: 200,
@@ -208,11 +209,13 @@ export default function Detail() {
           {/* 상단 헤더 이미지 영역 */}
           <div className='relative w-full h-[150px]'>
             {isLoading || !article ? (
-              <Skeleton
-                style={{ width: '100%', height: '100%' }}
-                baseColor='#F4EBFB'
-                highlightColor='#e7ddee'
-              />
+              <>
+                <Skeleton
+                  style={{ width: '100%', height: '100%' }}
+                  baseColor='#F4EBFB'
+                  highlightColor='#e7ddee'
+                />
+              </>
             ) : (
               <Image
                 src={`${article.data.thumbnailS3Key}`}
@@ -277,6 +280,7 @@ export default function Detail() {
                   baseColor='#F4EBFB'
                   highlightColor='#e7ddee'
                 />
+                <LoadingIcon bgColor='gray-200' />
               </>
             ) : (
               <>
