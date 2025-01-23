@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import searchBtn from '@/assets/searchBtn.svg';
 import removeAllBtn from '@/assets/removeAllBtn.svg';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { type TSearchInput } from '@/types/componentTypes';
 
 export default function SearchInput({
@@ -11,7 +11,7 @@ export default function SearchInput({
 }: TSearchInput) {
   const [inputValue, setInputValue] = useState(value);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
     onChange?.(newValue); // 부모 컴포넌트로 검색값 전달

@@ -1,5 +1,5 @@
 import { type TAdjustBtnProps } from '@/types/componentTypes';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, ChangeEvent } from 'react';
 
 export default function AdjustBtn({
   id,
@@ -41,7 +41,7 @@ export default function AdjustBtn({
     setIsOpen(!isOpenedBtn);
   };
 
-  const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFontSizeChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     if (onChange) onChange(value);
   };

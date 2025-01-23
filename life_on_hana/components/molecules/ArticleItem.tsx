@@ -3,7 +3,7 @@ import HeartNo from '../../assets/HeartNo.svg';
 import HeartYes from '../../assets/HeartYes.svg';
 import { formatDate } from '@/utils/formatDate';
 import { type TArticleItemProps } from '@/types/componentTypes';
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import Link from 'next/link';
 import { likeArticle } from '@/api';
 
@@ -18,7 +18,7 @@ export default function ArticleItem({
   const [liked, setLiked] = useState(isLiked);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLikeToggle = async (e: React.MouseEvent) => {
+  const handleLikeToggle = async (e: MouseEvent) => {
     e.stopPropagation();
     if (isLoading) return;
 

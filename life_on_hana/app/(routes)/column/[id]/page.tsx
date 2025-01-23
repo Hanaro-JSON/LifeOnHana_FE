@@ -16,7 +16,7 @@ import { formatDate } from '@/utils/formatDate';
 import { LogoHeader } from '@/components/molecules/LogoHeader';
 import { useParams, useRouter } from 'next/navigation';
 import { type TArticleDetail } from '@/types/dataTypes';
-import { fetchArticleById } from '@/api';
+import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
 
 export default function Detail() {
@@ -29,13 +29,20 @@ export default function Detail() {
     useState<TArticleAIRecommendDetailItemProps | null>(null);
 
   const [titleParts, setTitleParts] = useState<string[]>([]);
+  const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
+  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const loadArticle = async () => {
       try {
         const data = await fetchArticleById(Number(params.id));
         setArticle(data);
-
+        setIsLiked(data.data.isLiked); // 초기 좋아요 상태 설정
+        setLikeCount(data.data.likeCount); // 초기 좋아요 수 설정
         const splitTitle = (title: string) => {
           const middleIndex = Math.ceil(title.length / 2);
           return [title.slice(0, middleIndex), title.slice(middleIndex)];
@@ -51,6 +58,21 @@ export default function Detail() {
     loadArticle();
   }, [params.id, router]);
 
+  const handleLikeToggle = async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
+    try {
+      const response = await likeArticle(Number(params.id), !isLiked);
+      setIsLiked(response.isLiked); // 서버 응답에 따라 좋아요 상태 업데이트
+      setLikeCount(response.likeCount); // 서버 응답에 따라 좋아요 수 업데이트
+    } catch (error) {
+      console.error('좋아요 상태 변경 중 오류:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleProductClick = (product: TArticleAIRecommendDetailItemProps) => {
     if (selectedProduct?.productId === product.productId) {
       setSelectedProduct(null);
@@ -59,12 +81,9 @@ export default function Detail() {
     }
   };
 
-  const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
-
   const handleFontSizeChange = (value: number) => {
     setFontSizeMultiplier(value);
   };
-  const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
 
   const handleAdjustBtnToggle = (id: string) => {
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
@@ -100,9 +119,9 @@ export default function Detail() {
         onToggle={handleAdjustBtnToggle}
         typeCeilTxt='글씨'
         typeBottomTxt='크기'
-        first='보통'
-        second='크게'
-        third='왕큼'
+        first='작게'
+        second='보통'
+        third='크게'
         mX={90}
         mY={75}
         onChange={(value) => {
@@ -128,8 +147,7 @@ export default function Detail() {
           {/* 상단 헤더 이미지 영역 */}
           <div className='relative w-full h-[150px]'>
             <Image
-              // src={`${article.data.thumbnailS3Key}`}
-              src='https://hana1qm.com/dataFile/bbs/202421251121570801.jpg'
+              src={`${article.data.thumbnailS3Key}`}
               alt={article.data.category}
               layout='fill'
               objectFit='cover'
@@ -155,8 +173,9 @@ export default function Detail() {
           {/* 좋아요, 공유 영역 */}
           <div className='flex justify-end items-center m-4'>
             <IsLike
-              likeCount={article.data.likeCount}
-              isLiked={article.data.isLiked}
+              likeCount={likeCount}
+              isLiked={isLiked}
+              onClick={handleLikeToggle} // 좋아요 상태 변경 핸들러 전달
             />
             <div className='mb-2'>
               <CopyClipboardBtn />
