@@ -81,16 +81,30 @@ export default function ArticleAIRecommendDetailItem({
         onClick={(e) => e.stopPropagation()}
       >
         {loading ? (
-          <>
+          <div className='rounded-2xl'>
+            {/* 제목 스켈레톤 */}
             <Skeleton
               style={{
-                width: '100%',
-                height: '100%',
+                width: '80vw', // 제목 크기에 맞게 조정
+                height: '3rem', // 제목 높이
+                borderRadius: '0.5rem',
+                marginBottom: '1rem', // 내용과 간격 조정
               }}
               baseColor='#F4EBFB'
               highlightColor='#e7ddee'
             />
-          </>
+
+            {/* 내용 스켈레톤 */}
+            <Skeleton
+              style={{
+                width: '80vw', // 내용 크기에 맞게 조정
+                height: '38vh', // 내용 높이
+                borderRadius: '1rem',
+              }}
+              baseColor='#F4EBFB'
+              highlightColor='#e7ddee'
+            />
+          </div>
         ) : (
           <>
             {/* X 버튼 */}

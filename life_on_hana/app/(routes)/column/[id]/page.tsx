@@ -21,12 +21,64 @@ import { type TArticleDetail } from '@/types/dataTypes';
 import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
 
+const MOCK_DATA = {
+  code: 200,
+  status: 'OK',
+  message: '기사 상세 조회 성공',
+  data: {
+    articleId: 1,
+    title: '새해 소망 여행 울산시 울주군',
+    category: '여행',
+    thumbnailS3Key:
+      'https://d1g084wcjwihe3.cloudfront.net/images/web/images/articles/2410/invest05_img01.jpg',
+    content: [
+      { type: 'text', content: '첫 번째 문단입니다.' },
+      {
+        type: 'word',
+        content: '어려운용어',
+        description: '어려운용어에 대한 설명입니다.',
+      },
+      { type: 'text', content: '가 포함된 문장입니다.' },
+      {
+        type: 'image',
+        content:
+          'https://d1g084wcjwihe3.cloudfront.net/images/web/images/articles/2410/invest05_img01.jpg',
+        caption: '이미지 설명',
+      },
+      { type: 'text', content: '두 번째 문단에는 ' },
+      {
+        type: 'word',
+        content: '전문용어',
+        description: '전문용어에 대한 설명입니다.',
+      },
+      { type: 'text', content: '가 있습니다.' },
+    ],
+    publishedAt: '2025-01-01',
+    isLiked: true,
+    likeCount: 15,
+    relatedProducts: [
+      {
+        productId: 101,
+        name: '[서울 출발] 울산 2박 3일 여행 패키지',
+        category: 'Life',
+        link: 'path/to/product1',
+      },
+      {
+        productId: 102,
+        name: '[서울 출발] 울산 당일치기 자유여행 상품',
+        category: 'Life',
+        link: 'path/to/product2',
+      },
+    ],
+  },
+};
+
 export default function Detail() {
   const { data } = useContext(DataContext);
   const router = useRouter();
   const params = useParams();
   const [article, setArticle] = useState<TArticleDetail | null>(null);
-
+  // const [article, setArticle] = useState(MOCK_DATA); // 목 데이터 용
   const [selectedProduct, setSelectedProduct] =
     useState<TArticleAIRecommendDetailItemProps | null>(null);
 
@@ -115,7 +167,7 @@ export default function Detail() {
       {isLoading || !article ? (
         <></>
       ) : (
-        <>
+        <span className='relative z-50'>
           <AdjustBtn
             id='font-size'
             isOpen={openedAdjustBtn === 'font-size'}
@@ -135,12 +187,12 @@ export default function Detail() {
           />
           <MoveToTopBtn />
           <MoveToBackBtn />
-        </>
+        </span>
       )}
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center '>
         <div
           className={`w-[90%] flex items-center  ${
-            isLoading || !article ? 'mt-7' : '-mt-8'
+            isLoading || !article ? 'mt-8' : '-mt-8'
           }`}
         >
           <LogoHeader isMain={false} />
@@ -213,7 +265,7 @@ export default function Detail() {
           </div>
 
           {/* 본문, 관련 상품 영역 */}
-          <div className=' w-[90%] flex flex-col mx-auto'>
+          <div className=' w-[90%] flex flex-col mx-auto -z-50'>
             {isLoading || !article ? (
               <>
                 <Skeleton
