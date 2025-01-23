@@ -100,6 +100,7 @@ export type TArticleAIRecommendDetailItemProps = {
   link: string;
   closeBtn?: boolean;
   productId?: number; //추가
+  ai?: string; // storybook 용도 (AI 받아옴)
 };
 
 export type TArticleItemProps = {

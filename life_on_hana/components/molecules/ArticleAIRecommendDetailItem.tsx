@@ -6,12 +6,15 @@ import HeartNo from '../../assets/HeartNo.svg';
 import HeartYes from '../../assets/HeartYes.svg';
 import { type TArticleAIRecommendDetailItemProps } from '@/types/componentTypes';
 import { fetchEffectAnalysis, likeProduct } from '@/api';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function ArticleAIRecommendDetailItem({
   articleId,
   productId,
   name,
   link,
+  ai,
   closeBtn = true,
 }: TArticleAIRecommendDetailItemProps) {
   const [liked, setLiked] = useState<boolean>();
@@ -77,47 +80,58 @@ export default function ArticleAIRecommendDetailItem({
         className='w-full h-[30.9375rem] bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-center justify-between p-6'
         onClick={(e) => e.stopPropagation()}
       >
-        {/* X 버튼 */}
-        <div className='top-[-1rem] right-[-1rem] flex justify-end items-center w-full'>
-          {closeBtn && (
-            <button onClick={handleClose} className='p-1'>
-              <Image src={X} alt='Close' width={13} height={13} priority />
-            </button>
-          )}
-        </div>
-
-        {/* 제목 */}
-        <div className='-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start flex gap-2'>
-          <button
-            onClick={handleLikeToggle}
-            disabled={isLoading}
-            className='focus:outline-none'
-          >
-            <Image
-              src={liked ? HeartYes : HeartNo}
-              alt={liked ? 'Liked' : 'Not Liked'}
-              width={22}
-              height={22}
+        {loading ? (
+          <>
+            <Skeleton
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+              baseColor='#F4EBFB'
+              highlightColor='#e7ddee'
             />
-          </button>
-          {name}
-        </div>
+          </>
+        ) : (
+          <>
+            {/* X 버튼 */}
+            <div className='top-[-1rem] right-[-1rem] flex justify-end items-center w-full'>
+              {closeBtn && (
+                <button onClick={handleClose} className='p-1'>
+                  <Image src={X} alt='Close' width={13} height={13} priority />
+                </button>
+              )}
+            </div>
 
-        {/* 내용 */}
-        <div className='w-full text-[1.1rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow'>
-          {loading ? (
-            <p>분석 결과를 불러오는 중입니다...</p>
-          ) : (
-            <p className='text-left'>{description}</p>
-          )}
-        </div>
+            {/* 제목 */}
+            <div className='-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start flex gap-2'>
+              <button
+                onClick={handleLikeToggle}
+                disabled={isLoading}
+                className='focus:outline-none'
+              >
+                <Image
+                  src={liked ? HeartYes : HeartNo}
+                  alt={liked ? 'Liked' : 'Not Liked'}
+                  width={22}
+                  height={22}
+                />
+              </button>
+              {name}
+            </div>
 
-        {/* 버튼, url */}
-        <div className='mt-4 w-full flex justify-center'>
-          <div className='w-full'>
-            <Btn text={'상품정보 자세히보기'} url={link} />
-          </div>
-        </div>
+            {/* 내용 */}
+            <div className='w-full text-[1.1rem] font-SCDream3 leading-normal text-left self-start overflow-y-auto max-h-[20rem] flex-grow'>
+              <p className='text-left'>{description || ai}</p>
+            </div>
+
+            {/* 버튼, url */}
+            <div className='mt-4 w-full flex justify-center'>
+              <div className='w-full'>
+                <Btn text={'상품정보 자세히보기'} url={link} />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
