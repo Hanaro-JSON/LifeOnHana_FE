@@ -11,7 +11,7 @@ export function RecommendCarouselItem({
     switch (item.productType) {
       case 'LOAN':
         return (
-          <div className='flex flex-col items-end'>
+          <div className='flex flex-col items-end '>
             <div className='font-SCDream8 text-sm'>최대</div>
             <div className='font-SCDream8 text-sm text-[#4D00B5]'>
               {item.maxAmount}
@@ -38,10 +38,14 @@ export function RecommendCarouselItem({
       className='w-full h-full items-center flex flex-row justify-between'
     >
       <div className='flex flex-col'>
-        <div className='font-SCDream8 text-[1rem]'>{item.name}</div>
-        <div className='font-SCDream3 text-[0.8rem]'>{item.description}</div>
+        <div className='font-SCDream8 text-[1rem]  line-clamp-1 overflow-hidden text-ellipsis'>
+          {item.name}
+        </div>
+        <div className='font-SCDream3 text-[0.8rem]  line-clamp-2 overflow-hidden text-ellipsis'>
+          {item.description}
+        </div>
       </div>
-      <div className='flex flex-col'>{renderProductDetails(item)}</div>
+      <div className='flex flex-col '>{renderProductDetails(item)}</div>
     </div>
   ));
 

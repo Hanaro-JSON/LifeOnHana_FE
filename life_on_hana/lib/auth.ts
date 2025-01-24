@@ -24,8 +24,6 @@ export const {
         // Spring API로 사용자 검증 요청
         const user = {
           email: credentials.id,
-          name: 'Guest',
-          id: 'xxx',
         } as User;
         return user;
       },
@@ -42,7 +40,6 @@ export const {
       session.user = {
         ...session.user,
         email: token.email || '',
-        name: token.name || '',
       };
 
       // 커스텀 필드 추가

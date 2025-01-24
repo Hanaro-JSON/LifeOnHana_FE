@@ -15,16 +15,40 @@ export const getApiToken = () => {
   return null;
 };
 
-// home/like 상품 불러오기
-export const fetchLikedProducts = async () => {
+//getLikedProducts
+export const fetchLikedProducts = async (page: number | undefined) => {
+  if (page === undefined) {
+    //home에서 호출하는 api
+    const token = getApiToken();
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/users/liked/products?limit=10`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error('상품 불러오기 실패');
+    }
+
+    const fetchData = await response.json();
+    return fetchData.data.products;
+  }
+  //home/like에서 호출하는 api
   const token = getApiToken();
-  const response = await fetch(`${NEXT_PUBLIC_URL}/api/users/liked/products`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/users/liked/products`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error('상품 불러오기 실패');
@@ -319,9 +343,39 @@ export const likeProduct = async (productId: number, isLiked: boolean) => {
 //
 // home/columns
 //
-export const fetchArticlesLiked = async (page: number = 1) => {
+export const fetchArticlesLiked = async (
+  page: number = 0,
+  category: string | undefined
+) => {
   let allArticles: TArticlesLiked[] = [];
   let hasNext = true;
+
+  if (category !== undefined) {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?page=0&size=100&category=${category}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getApiToken()}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`조회 요청 실패: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      return {
+        articles: data.data.articles,
+      };
+    } catch (error) {
+      console.error('조회 요청 오류:', error);
+      throw new Error('조회 요청 중 오류가 발생했습니다.');
+    }
+  }
 
   try {
     while (hasNext) {
@@ -350,5 +404,129 @@ export const fetchArticlesLiked = async (page: number = 1) => {
   } catch (error) {
     console.error('칼럼 목록 불러오기 실패', error);
     throw error;
+  }
+};
+// users/info
+export const fetchUsersInfo = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/users/info`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`유저 조회 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    data.name = data.data.name;
+    data.birth = data.data.birth;
+
+    return data;
+  } catch (error) {
+    console.error('유저 조회 요청 오류:', error);
+    throw new Error('유저 조회 요청 중 오류가 발생했습니다.');
+  }
+};
+//get wallet
+export const fetchWallet = async () => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wallet`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getApiToken()}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`지갑정보 조회 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    return {
+      walletId: data.data.walletId,
+      walletAmount: data.data.walletAmount,
+      paymentDay: data.data.paymentDay,
+      startDate: data.data.startDate,
+      endDate: data.data.endDate,
+    };
+  } catch (error) {
+    console.error('지갑정보 조회 요청 오류:', error);
+    throw new Error('지갑정보 조회 요청 중 오류가 발생했습니다.');
+  }
+};
+
+//getHistoryStatistics
+export const fetchHistoryStatistics = async () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/history/statistics?yearMonth=${year}${month}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`지출정보 조회 요청 실패: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return {
+      yearMonth: data.data.yearMonth,
+      totalExpense: data.data.totalExpense,
+      totalInterest: data.data.totalInterest,
+      expenseCategories: data.data.expenseCategories,
+    };
+  } catch (error) {
+    console.error('지출정보 조회 요청 오류:', error);
+    throw new Error('지출정보 조회 요청 중 오류가 발생했습니다.');
+  }
+};
+//getUsersNickname
+export const fetchUsersNickname = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/users/nickname`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`유저 닉네임 조회 요청 실패: ${response.statusText}`);
+    }
+    const data = await response.json();
+
+    if (!data.nickname) {
+      return {
+        nickname: '',
+        category: 'NONE',
+      };
+    }
+
+    return {
+      nickname: data.data.nickname,
+      category: data.data.category,
+    };
+  } catch (error) {
+    console.error('유저 닉네임 조회 요청 오류:', error);
+    throw new Error('유저 닉네임임 조회 요청 중 오류가 발생했습니다.');
   }
 };
