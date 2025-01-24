@@ -1,5 +1,5 @@
 import { type TArticleItemProps } from './types/componentTypes';
-import { type TArticlesLiked } from './types/dataTypes';
+import { THomeLikeProduct, type TArticlesLiked } from './types/dataTypes';
 
 // accessToken 추출
 export let NEXT_PUBLIC_URL: string;
@@ -38,23 +38,37 @@ export const fetchLikedProducts = async (page: number | undefined) => {
     return fetchData.data.products;
   }
   //home/like에서 호출하는 api
-  const token = getApiToken();
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/users/liked/products`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+  let allLikedProducts: THomeLikeProduct[] = [];
+  let hasNext = true;
+  try {
+    while (hasNext) {
+      const token = getApiToken();
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/users/liked/products?page=${page}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`페이지 ${page} 상품 불러오기 실패`);
+      }
+
+      const data = await response.json();
+      allLikedProducts = [...allLikedProducts, ...data.data.products];
+      hasNext = data.data.hasNext;
+      page += 1;
     }
-  );
 
-  if (!response.ok) {
-    throw new Error('상품 불러오기 실패');
+    return { products: allLikedProducts, hasNext: false };
+  } catch (error) {
+    console.error('좋아요한 상품 목록 불러오기 실패:', error);
+    throw error;
   }
-
-  return await response.json();
 };
 
 // home/like 대출 상품 자세히보기
