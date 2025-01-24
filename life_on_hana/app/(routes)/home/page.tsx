@@ -12,100 +12,92 @@ import {
   type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
 } from '@/types/componentTypes';
-// import { RecommendCarouselColumn } from "@/components/molecules/RecommendCarouselColumn";
+import { RecommendCarouselColumn } from '@/components/molecules/RecommendCarouselColumn';
 import { FullImgCarousel } from '@/components/molecules/FullImgCarousel';
 import { RecommendCarouselItem } from '@/components/molecules/RecommendCarouselItem';
 import ShortCutBtn from '@/components/molecules/ShortCutBtn';
 import { DataContext } from '@/hooks/useData';
-import { fetchUsersInfo } from '@/api';
-
-const mockExpenseCategories: TGraphExpenseCategoriesProps[] = [
-  { category: 'FOOD', amount: 500000, percentage: 10 },
-  { category: 'SNACK', amount: 200000, percentage: 10 },
-  { category: 'EDUCATION', amount: 300000, percentage: 20 },
-  { category: 'HOBBY', amount: 150000, percentage: 10 },
-  { category: 'HEALTH', amount: 250000, percentage: 50 },
-];
-
-const mockArticles: TArticleItemProps[] = [
-  {
-    articleId: 1,
-    title: '새해 소망 여행 울산시 울주군',
-    category: '여행',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202432011132520529.jpg',
-    publishedAt: '2025-01-01',
-    isLiked: true,
-  },
-  {
-    articleId: 2,
-    title: '선착순 경쟁까지 뛰어들게 만드는 프리미엄 술의 매력',
-    category: '취미',
-    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202432011132520529.jpg',
-    publishedAt: '2024-12-01',
-    isLiked: false,
-  },
-];
-
-const carouselItems: TRecommendCarouselItemProps[] = [
-  {
-    productId: '1',
-    name: '상품 1',
-    description: '설명 1',
-    maxAmount: '1000만원',
-    productType: 'LOAN',
-  },
-  {
-    productId: '2',
-    name: '상품 2',
-    description: '설명 2',
-    maxInterest_rate: 3.5,
-    productType: 'SAVINGS',
-  },
-  {
-    productId: '2',
-    name: '상품 2',
-    description: '설명 2',
-    maxInterest_rate: 3.5,
-    productType: 'LIFE',
-  },
-  {
-    productId: '2',
-    name: '상품 2',
-    description: '설명 2',
-    maxInterest_rate: 3.5,
-    productType: 'SAVINGS',
-  },
-];
+import {
+  fetchArticlesLiked,
+  fetchHistoryStatistics,
+  fetchLikedProducts,
+  fetchUsersInfo,
+  fetchUsersNickname,
+  fetchWallet,
+} from '@/api';
 
 export default function Home() {
   const { data, setInfo } = useContext(DataContext);
-
+  const [walletAmount, setWalletAmount] = useState<number>(0);
+  const [category, setCategory] = useState<string>();
+  const [totalExpense, setTotalExpense] = useState(0);
+  const [totalInterest, setTotalInterest] = useState(0);
+  const [expenseCategories, setExpenseCategories] = useState([]);
+  // 칼럼 목록 조회
+  const [articles, setArticles] = useState<TArticleItemProps[]>([]);
+  const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
+    useState<TRecommendCarouselColumnProps[]>([]);
+  const [carouselItems, setCarouselItems] = useState<
+    TRecommendCarouselItemProps[]
+  >([]);
   useEffect(() => {
     const getInfo = async () => {
       try {
         const fetchData = await fetchUsersInfo();
-        console.log(fetchData);
         setInfo({ name: fetchData.name, birth: fetchData.birth });
       } catch (error) {
-        console.error('Error fetching article:', error);
+        console.error('Error fetching:', error);
+      }
+    };
+    const getWallet = async () => {
+      try {
+        const fetchData = await fetchWallet();
+        setWalletAmount(fetchData.walletAmount);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    const getHistoryStatistics = async () => {
+      try {
+        const fetchData = await fetchHistoryStatistics();
+        setTotalExpense(fetchData.totalExpense);
+        setTotalInterest(fetchData.totalInterest);
+        setExpenseCategories(fetchData.expenseCategories);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    const getUsersNickname = async () => {
+      try {
+        const fetchData = await fetchUsersNickname();
+        setCategory(fetchData.category);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    const getArticlesLiked = async () => {
+      try {
+        const fetchData = await fetchArticlesLiked(undefined, category);
+        setArticles(fetchData.articles);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    const getLikedProducts = async () => {
+      try {
+        const fetchData = await fetchLikedProducts(undefined);
+        setCarouselItems(fetchData);
+      } catch (error) {
+        console.error('Error fetching:', error);
       }
     };
     getInfo();
+    getWallet();
+    getHistoryStatistics();
+    getUsersNickname();
+    getArticlesLiked();
+    getLikedProducts();
   }, []);
-  const [walletAmount, setWalletAmount] = useState(100);
-  const [category, setCategory] = useState('INVESTMENT');
-
-  // 내역 통계 조회
-  const [totalExpense, setTotalExpense] = useState(1500000);
-  const [totalInterest, setTotalInterest] = useState(50000);
-  const [expenseCategories, setExpenseCategories] = useState(
-    mockExpenseCategories
-  );
-
-  // 칼럼 목록 조회
-  const [articles, setArticles] = useState(mockArticles);
-  const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
-    useState<TRecommendCarouselColumnProps[]>([]);
 
   useEffect(() => {
     const transfromedItems: TRecommendCarouselColumnProps[] = articles.map(
@@ -118,7 +110,7 @@ export default function Home() {
     setRecommendCarouselColumnItems(transfromedItems);
   }, [articles]);
 
-  function categoryToNickname(category: string) {
+  function categoryToNickname(category: string | undefined) {
     switch (category) {
       case 'REAL_ESTATE':
         return (
@@ -162,6 +154,14 @@ export default function Home() {
             <span className='text-hanapurple'>열정 가득한</span> 중년 ⛳
           </div>
         );
+      default:
+        return (
+          <div>
+            아직<span className='text-hanapurple'>&nbsp;좋아요</span>하신 칼럼이
+            없어요!
+            <div>이런 칼럼은 어떠세요? 😊</div>
+          </div>
+        );
     }
   }
 
@@ -170,7 +170,7 @@ export default function Home() {
       {/* 헤더 */}
       <LogoHeader isMain={true} />
       {/* 하나월급 카드 */}
-      <MainSection name={data.name} walletAmount={walletAmount} />
+      <MainSection name={data.name} walletAmount={walletAmount / 10000} />
       {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
       {/* 이번 달 지출 카드 */}
@@ -179,7 +179,7 @@ export default function Home() {
           <div className='font-SCDream2'>
             이번 달 지출은 &nbsp;
             <span className='font-SCDream5 underline-offset-1 underline text-xl text-hanapurple'>
-              {totalExpense / 10000}만원
+              {Math.round(totalExpense / 10000)}만원
             </span>
             &nbsp;입니다.
           </div>
@@ -187,12 +187,12 @@ export default function Home() {
           <div className='font-SCDream2 text-xs'>
             이번 달 받은 이자는 총 &nbsp;
             <span className='font-SCDream4 underline-offset-1 underline text-sm text-hanapurple'>
-              {totalInterest}만원
+              {totalInterest.toLocaleString()}원
             </span>
             &nbsp;입니다.
           </div>
           <div className='border-t-2 flex justify-center items-center h-[2rem]'>
-            <ShortCutBtn url={'/'} variant='spend' />
+            <ShortCutBtn url={'/home/history'} variant='spend' />
           </div>
         </div>
       </Section>
@@ -217,7 +217,7 @@ export default function Home() {
           <ShortCutBtn url={'/home/like'} variant='product' />
         </div>
       </div>
-      <RecommendCarouselItem items={carouselItems} />;
+      <RecommendCarouselItem items={carouselItems} />
     </div>
   );
 }
