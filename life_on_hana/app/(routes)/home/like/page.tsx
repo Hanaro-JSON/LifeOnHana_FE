@@ -44,8 +44,8 @@ export default function Like() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const result = await fetchLikedProducts();
-        const newProducts = result.data.products.map(
+        const result = await fetchLikedProducts(1);
+        const newProducts = result.products.map(
           (product: THomeLikeProduct) => ({
             productId: product.productId,
             name: product.name,
@@ -124,6 +124,20 @@ export default function Like() {
           onClose={() => setSelectedProductProps(null)}
         />
       )}
+      <style jsx global>{`
+        .overflow-x-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-x-auto {
+          -ms-overflow-style: none;
+        }
+        .overflow-y-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-y-auto {
+          -ms-overflow-style: none;
+        }
+      `}</style>
     </div>
   );
 }
