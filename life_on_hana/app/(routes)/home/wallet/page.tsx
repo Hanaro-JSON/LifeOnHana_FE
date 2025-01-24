@@ -206,7 +206,7 @@ export default function Wallet() {
           <Btn
             variant={'hanaWallet'}
             text={'하나 월급통장 더 채우기'}
-            url={'home/wallet/deposit'}
+            url={'/home/wallet/deposit'}
           />
           <div className='font-SCDream2 text-sm'>
             다음과 같은 방안도 고려해볼 수 있어요.
@@ -325,7 +325,6 @@ export default function Wallet() {
             <div>월평균 고정지출</div>
             <div>
               <span className='font-extrabold'>
-                {/* 🌟 고정지출 연결 필요 */}
                 {averageExpense.toLocaleString()}
               </span>
               원
