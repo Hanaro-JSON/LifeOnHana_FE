@@ -546,6 +546,32 @@ export const fetchUsersNickname = async () => {
     throw new Error('유저 닉네임임 조회 요청 중 오류가 발생했습니다.');
   }
 };
+
+export const fetchLumpsum = async (data: {
+  amount: number;
+  source: string;
+  reason: string;
+  reasonDetail: string | null;
+  accountId: number;
+}) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/lumpsum`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getApiToken()}`, // 토큰 추가
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error('API 요청 실패');
+  }
+
+  const responseData = await response.json();
+  console.log('🚀  responseData:', responseData);
+  return responseData;
+};
+
 //getMydata
 export const fetchUsersMydata = async () => {
   try {

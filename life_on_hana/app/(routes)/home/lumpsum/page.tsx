@@ -84,8 +84,11 @@ export default function Lumpsum() {
           setLoading(false); // 로딩 종료
         }, 10);
         break;
+      case 'otherAccounts':
+        router.replace(`/home/lumpsum/otherAccount?amount=${amount}`); // 금액 자동으로 넘어가게
+        break;
       default:
-        router.replace('/home/wallet/deposit');
+        router.replace(`/home/wallet/deposit?amount=${amount}`); // 금액 자동으로 넘어가게
     }
   };
   const handleProductClick = async (productId: string) => {
