@@ -57,7 +57,6 @@ export const DataProvider = ({
 
   const setInfo = ({ name, birth }: { name: string; birth: string }) => {
     const updateData = { ...data, name, birth };
-    console.log(updateData);
     setDataWithStorage(updateData);
   };
 
