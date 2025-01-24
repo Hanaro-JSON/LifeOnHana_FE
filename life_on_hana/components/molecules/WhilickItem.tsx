@@ -8,6 +8,7 @@ import Image from 'next/image';
 import soundOn from '@/assets/sound-on.svg';
 import soundOff from '@/assets/sound-off.svg';
 import useDebounce from '@/hooks/useDebounce';
+import WhilickDownSvg from '../atoms/WhilickDownSvg';
 
 export default function WhilickItem({
   idx,
@@ -33,9 +34,48 @@ export default function WhilickItem({
     setOpenedAdjustBtn((prev) => (prev === id ? null : id));
   };
 
-  // audio
+  // ----------------- audio -----------------
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const paragraphRefs = useRef<{ [key: string]: HTMLDivElement | null }>({}); // 각 paragraph의 ref
+  const textRef = useRef<HTMLDivElement | null>(null); // text가 담긴 div의 ref
 
+  // 현재 paragraph가 contentScrollRef의 중앙에 위치하도록 이동
+  useEffect(() => {
+    const currentParagraph = text.find(
+      ({ startTime, endTime }) =>
+        currentTime >= startTime && currentTime < endTime
+    );
+
+    if (
+      currentParagraph &&
+      paragraphRefs.current[currentParagraph.paragraphId]
+    ) {
+      const container = textRef.current;
+      const paragraphElement =
+        paragraphRefs.current[currentParagraph.paragraphId];
+
+      const paragraphRect = paragraphElement?.getBoundingClientRect();
+      const containerRect = container?.getBoundingClientRect();
+
+      if (paragraphRect && containerRect && container) {
+        const scrollOffset =
+          paragraphRect.top -
+          containerRect.top +
+          container.scrollTop -
+          container.clientHeight / 2 +
+          paragraphRect.height / 2 +
+          4;
+
+        container.scrollTo({
+          top: scrollOffset,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [currentTime, text]);
+
+  // 오디오 중지/재생
   const toggleAudio = useCallback(() => {
     setGlobalAudioState((prevState) => ({
       isPlaying: !prevState.isPlaying,
@@ -47,11 +87,16 @@ export default function WhilickItem({
     const audio = audioRef.current;
     if (!audio) return;
 
+    // 오디오를 처음으로 되감기
+    audio.currentTime = 0;
+    setCurrentTime(0);
+
     const isVisible = Math.floor(top / window.innerHeight) === idx;
 
     if (isVisible) {
       // 오디오를 처음으로 되감기
       audio.currentTime = 0;
+
       if (globalAudioState.isPlaying && !globalAudioState.isMute) {
         audio.play().catch(console.error);
         audio.loop = true;
@@ -62,6 +107,15 @@ export default function WhilickItem({
       setOpenedAdjustBtn(null);
     }
 
+    let intervalId: NodeJS.Timeout | null = null;
+
+    // 오디오 진행 시점 파악 (startTime, endTime과의 비교 위함)
+    if (isVisible && globalAudioState.isPlaying) {
+      intervalId = setInterval(() => {
+        setCurrentTime(audio.currentTime);
+      }, 10);
+    }
+
     // 스크롤 중
     if (Math.floor(top % window.innerHeight) != 0) {
       audio.pause();
@@ -69,9 +123,28 @@ export default function WhilickItem({
     }
 
     return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
       audio.pause();
     };
   }, [top, idx, globalAudioState]);
+
+  // 오디오 처음 부분일 때 최상단으로 이동
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.currentTime === 0) {
+      const container = textRef.current;
+      if (container) {
+        container.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [currentTime]);
 
   // 글씨 크기 조절
   const handleFontSizeChange = (value: number) => {
@@ -145,16 +218,35 @@ export default function WhilickItem({
           <div
             className='gap-5 px-[1.5rem] flex flex-col text-center items-center w-full font-SCDream8 text-[#D3BCED] overflow-y-auto [&::-webkit-scrollbar]:hidden'
             style={{
-              maxHeight: 'calc(100vh - 400px)',
+              maxHeight: 'calc(100vh - 470px)',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               fontSize: `calc(2rem * ${globalFontSize})`,
             }}
+            ref={textRef}
           >
-            {text.map((elem) => {
+            {text.map(({ paragraphId, content, startTime, endTime }) => {
+              // 오디오 속도 조절에 따른 startTime, endTime 조정
+              let adjustedStartTime = startTime;
+              let adjustedEndTime = endTime;
+
+              if (globalAudioSpeed === 0.75) {
+                adjustedStartTime += 0.25;
+                adjustedEndTime += 0.25;
+              } else if (globalAudioSpeed === 1.25) {
+                adjustedStartTime -= 0.25;
+                adjustedEndTime -= 0.25;
+              }
+
               return (
-                <div key={elem.paragraphId} className=''>
-                  {elem.content}
+                <div
+                  key={paragraphId}
+                  ref={(el) => {
+                    paragraphRefs.current[paragraphId] = el;
+                  }}
+                  className={`${currentTime >= adjustedStartTime && currentTime < adjustedEndTime ? 'text-hanapurple' : ''}`}
+                >
+                  {content}
                 </div>
               );
             })}
@@ -171,26 +263,7 @@ export default function WhilickItem({
         </div>
 
         {/* 하단 스크롤 */}
-        <div className='absolute bottom-28 z-50'>
-          <svg
-            width='20'
-            height='20'
-            viewBox='0 0 45 33'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M45 3.26318L39.7125 0L22.5 10.5995L5.2875 0L0 3.26318L22.5 17.1491L45 3.26318Z'
-              fill='white'
-              className='whilick-down-1'
-            ></path>
-            <path
-              d='M45 18.5132L39.7125 15.25L22.5 25.8495L5.2875 15.25L0 18.5132L22.5 32.3991L45 18.5132Z'
-              fill='white'
-              className='whilick-down-2'
-            ></path>
-          </svg>
-        </div>
+        <WhilickDownSvg />
 
         {/* 클립보드복사, 좋아요 */}
         <div className='absolute right-10 bottom-48 z-50 flex items-center gap-4'>

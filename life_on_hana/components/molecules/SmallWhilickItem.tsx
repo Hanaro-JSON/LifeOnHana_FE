@@ -2,11 +2,12 @@
 
 import Image from 'next/image';
 import smallWhilick_title from '@/assets/smallWhilick_title.svg';
-import Link from 'next/link';
 import { type TSmallWhilickItemProps } from '@/types/componentTypes';
 import { getCategory } from '@/utils/convertEnumtoString';
+import { useRouter } from 'next/navigation';
+
 export default function SmallWhilickItem({
-  // article_id, //나중에 whilick id값 넘겨주기
+  article_id,
   variant,
   title,
 }: TSmallWhilickItemProps) {
@@ -29,32 +30,37 @@ export default function SmallWhilickItem({
     }
   };
 
+  const router = useRouter();
+  const moveToWhilickEvent = () => {
+    router.push('/whilick');
+    localStorage.setItem('article_id', String(article_id));
+  };
+
   return (
     <>
-      <Link href={`/whilick`}>
-        <button
-          className='bg-cover bg-center w-[10rem] h-[14.1875rem] flex flex-col items-center justify-center p-5 relative'
-          style={{ backgroundImage: `url(${getSrc(variant)})` }}
-          title={title}
-        >
-          <Image
-            src={smallWhilick_title}
-            alt='큰따옴표'
-            width={20}
-            height={20}
-            className='absolute top-10'
-            priority
-          />
-          <div className='w-full h-1/2  flex justify-center items-center'>
-            <div className='line-clamp text-white font-SCDream6 text-[.8125rem]'>
-              {title}
-            </div>
+      <button
+        onClick={moveToWhilickEvent}
+        className='bg-cover bg-center w-[10rem] h-[14.1875rem] flex flex-col items-center justify-center p-5 relative'
+        style={{ backgroundImage: `url(${getSrc(variant)})` }}
+        title={title}
+      >
+        <Image
+          src={smallWhilick_title}
+          alt='큰따옴표'
+          width={20}
+          height={20}
+          className='absolute top-10'
+          priority
+        />
+        <div className='w-full h-1/2  flex justify-center items-center'>
+          <div className='line-clamp text-white font-SCDream6 text-[.8125rem]'>
+            {title}
           </div>
-          <div className='text-white font-SCDream5 text-[15px] absolute bottom-5 left-5'>
-            {getCategory(variant)}
-          </div>
-        </button>
-      </Link>
+        </div>
+        <div className='text-white font-SCDream5 text-[15px] absolute bottom-5 left-5'>
+          {getCategory(variant)}
+        </div>
+      </button>
       <style jsx>{`
         .line-clamp {
           display: -webkit-box;

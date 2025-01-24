@@ -4,7 +4,7 @@ import MicroMiniBtn from '@/components/atoms/MicroMiniBtn';
 import Section from '@/components/atoms/Section';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { DataContext } from '@/hooks/useData';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { type TGetWallet, type TGetUsersMydata } from '@/types/dataTypes';
 import GraphToggle from '@/components/atoms/GraphToggle';
 import { BarGraph } from '@/components/molecules/BarGraph';
@@ -15,35 +15,41 @@ import { useToast } from '@/hooks/use-toast';
 import Btn from '@/components/atoms/Btn';
 import AssetManageWayItem from '@/components/molecules/AssetManageWayItem';
 import { LineGraph } from '@/components/molecules/LineGraph';
+import {
+  fetchHistoryMonthly,
+  fetchPutWallet,
+  fetchUsersMydata,
+  fetchWallet,
+} from '@/api';
 
 const mockMyData: TGetUsersMydata = {
-  pensionStart: '2035',
-  totalAsset: 100000000,
-  netAsset: 70000000,
-  depositAmount: 50000000,
-  depositPercentage: 10,
-  savingsAmount: 20000000,
-  savingsPercentage: 10,
-  loanAmount: 30000000,
-  loanPercentage: 10,
-  stockAmount: 10000000,
-  stockPercentage: 10,
-  realEstateAmount: 20000000,
-  realEstatePercentage: 60,
-  lastUpdatedAt: '2024-01-13T12:00:00',
+  pensionStart: '0000',
+  totalAsset: 0,
+  netAsset: 0,
+  depositAmount: 0,
+  depositPercentage: 0,
+  savingsAmount: 0,
+  savingsPercentage: 0,
+  loanAmount: 0,
+  loanPercentage: 0,
+  stockAmount: 0,
+  stockPercentage: 0,
+  realEstateAmount: 0,
+  realEstatePercentage: 0,
+  lastUpdatedAt: '',
   salaryAccount: {
-    accountNumber: '123-456-789',
-    balance: 5000000,
+    accountNumber: '',
+    balance: 0,
     bank: 'HANA',
   },
 };
 
 const mockWalletData: TGetWallet = {
-  walletId: 1,
-  walletAmount: 50,
-  paymentDay: '1',
-  startDate: '2024-01',
-  endDate: '2050-01',
+  walletId: 0,
+  walletAmount: 0,
+  paymentDay: '15',
+  startDate: '0000-00',
+  endDate: '0000-00',
 };
 
 export default function Wallet() {
@@ -51,27 +57,54 @@ export default function Wallet() {
 
   const { data } = useContext(DataContext);
   //api/users/mydata
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [mydata, setMyData] = useState<TGetUsersMydata>(mockMyData);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [oneHundredDefaultText, setOneHundredDefaultText] = useState(
     <div className='font-SCDream2 text-xs text-hanapurple'>
       초기 지급 기간은 100세까지를 기준으로 정보를 제공합니다.
     </div>
   );
-  //setMyData할 때 endDate가 null이면 생일에서 년도월 추출해서 넣기
-  //setMyData할 때 null이면 setOneHundredDefaultText 넣기
-  //api/wallet
-  const [wallet, setWallet] = useState(mockWalletData);
-
+  const [wallet, setWallet] = useState<TGetWallet>(mockWalletData);
   const [hideAmount, setHideAmount] = useState(false);
 
   //하나 지갑 수정 관련
   const [isEditing, setIsEditing] = useState(false);
-  const [editWallet, setEditWallet] = useState({ ...mockWalletData });
-  const [editSalary, setEditSalary] = useState<string>(
-    wallet.walletAmount.toLocaleString()
-  );
+  const [editWallet, setEditWallet] = useState(wallet);
+  const [editSalary, setEditSalary] = useState<string>();
+  const [averageExpense, setAverageExpense] = useState(0);
+  useEffect(() => {
+    const getMydata = async () => {
+      try {
+        const fetchData = (await fetchUsersMydata()) as TGetUsersMydata;
+        setMyData(fetchData);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    const getWallet = async () => {
+      try {
+        const fetchData = await fetchWallet();
+        setWallet(fetchData);
+        setEditWallet(fetchData);
+        setEditSalary(fetchData.walletAmount.toLocaleString());
+        if (fetchData.endDate !== null) setOneHundredDefaultText(<></>);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    const getHistoryMonthly = async () => {
+      try {
+        const fetchData = await fetchHistoryMonthly();
+        setAverageExpense(fetchData.averageExpense);
+        if (fetchData.endDate !== null) setOneHundredDefaultText(<></>);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    getMydata();
+    getWallet();
+    getHistoryMonthly();
+  }, []);
+
   const handleSave = () => {
     if (
       editWallet.walletAmount > mydata.salaryAccount.balance ||
@@ -86,6 +119,7 @@ export default function Wallet() {
       return;
     }
     setWallet(editWallet);
+    fetchPutWallet(editWallet);
     setIsEditing(false);
   };
   const handleCancel = () => {
@@ -172,7 +206,7 @@ export default function Wallet() {
           <Btn
             variant={'hanaWallet'}
             text={'하나 월급통장 더 채우기'}
-            url={'home/wallet/deposit'}
+            url={'/home/wallet/deposit'}
           />
           <div className='font-SCDream2 text-sm'>
             다음과 같은 방안도 고려해볼 수 있어요.
@@ -239,6 +273,7 @@ export default function Wallet() {
       );
     }
   };
+
   return (
     <div className='p-6 space-y-4 mb-20'>
       <NavHeader location={'하나 지갑 관리하기'} beforePageUrl={'/home'} />
@@ -290,8 +325,7 @@ export default function Wallet() {
             <div>월평균 고정지출</div>
             <div>
               <span className='font-extrabold'>
-                {/* 🌟 고정지출 연결 필요 */}
-                {(1000000).toLocaleString()}
+                {averageExpense.toLocaleString()}
               </span>
               원
             </div>
@@ -339,7 +373,7 @@ export default function Wallet() {
                 {getConvertedStartDate()} - &nbsp;
                 <input
                   type='month'
-                  value={wallet.endDate}
+                  value={editWallet.endDate}
                   className='border p-1 rounded border-hanapurple outline-none'
                   onChange={(e) => {
                     const newEndDate = e.target.value.trim();

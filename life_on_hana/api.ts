@@ -544,8 +544,6 @@ export const fetchUsersNickname = async () => {
   }
 };
 
-//
-
 export const fetchLumpsum = async (data: {
   amount: number;
   source: string;
@@ -569,4 +567,81 @@ export const fetchLumpsum = async (data: {
   const responseData = await response.json();
   console.log('🚀  responseData:', responseData);
   return responseData;
+};
+
+//getMydata
+export const fetchUsersMydata = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/users/mydata`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`유저 자산 조회 요청 실패: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('유저 자산 조회 요청 오류:', error);
+    throw new Error('유저 자산 조회 요청 중 오류가 발생했습니다.');
+  }
+};
+//put wallet
+export const fetchPutWallet = async (props: {
+  walletId: number;
+  walletAmount: number;
+  paymentDay: string;
+  startDate: string;
+  endDate: string;
+}) => {
+  const newWallet = { ...props }; // 객체 복사
+  delete (newWallet as { walletId?: number }).walletId;
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wallet`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getApiToken()}`,
+      },
+      body: JSON.stringify(newWallet),
+    });
+    if (!response.ok) {
+      throw new Error(`지갑 정보 수정 요청 실패: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('지갑 정보 수정 요청 오류:', error);
+    throw new Error('지갑 정보 수정 요청 중 오류가 발생했습니다.');
+  }
+};
+
+//getMydata
+export const fetchHistoryMonthly = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/history/monthly`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`히스토리 조회 요청 실패: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('히스토리 조회 요청 오류:', error);
+    throw new Error('히스토리 조회 요청 중 오류가 발생했습니다.');
+  }
 };

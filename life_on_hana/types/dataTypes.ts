@@ -120,3 +120,17 @@ export type TArticleDetail = {
   message: string;
   data: TArticle; // 'data' 속성 안에 실제 article 데이터가 있음
 };
+
+export type TWhilickContents = {
+  articleId: number;
+  title: string;
+  isLiked: boolean;
+  likeCount: number;
+  text: {
+    paragraphId: number;
+    content: string;
+    startTime: number;
+    endTime: number;
+  }[];
+  ttsUrl: string;
+};
