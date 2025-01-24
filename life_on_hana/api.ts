@@ -1,5 +1,5 @@
 import { type TArticleItemProps } from './types/componentTypes';
-import { THomeLikeProduct, type TArticlesLiked } from './types/dataTypes';
+import { type THomeLikeProduct, type TArticlesLiked } from './types/dataTypes';
 
 // accessToken 추출
 export let NEXT_PUBLIC_URL: string;
