@@ -66,7 +66,6 @@ export const fetchLikedProducts = async (page: number | undefined) => {
 
     return { products: allLikedProducts, hasNext: false };
   } catch (error) {
-    console.error('좋아요한 상품 목록 불러오기 실패:', error);
     throw error;
   }
 };

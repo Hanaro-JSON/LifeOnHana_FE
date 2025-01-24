@@ -45,7 +45,6 @@ export default function Like() {
     const fetchProducts = async () => {
       try {
         const result = await fetchLikedProducts(1);
-        console.log('🚀  fetchProducts  result:', result);
         const newProducts = result.products.map(
           (product: THomeLikeProduct) => ({
             productId: product.productId,
