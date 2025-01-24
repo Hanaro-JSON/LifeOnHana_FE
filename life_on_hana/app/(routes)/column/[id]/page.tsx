@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import column from '@/public/assets/column_color.svg';
@@ -30,8 +30,7 @@ const MOCK_DATA = {
     articleId: 1,
     title: '새해 소망 여행 울산시 울주군',
     category: '여행',
-    thumbnailS3Key:
-      'https://d1g084wcjwihe3.cloudfront.net/images/web/images/articles/2410/invest05_img01.jpg',
+    thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202513070213460420.jpg',
     content: [
       { type: 'text', content: '첫 번째 문단입니다.' },
       {
@@ -61,13 +60,13 @@ const MOCK_DATA = {
       {
         productId: 101,
         name: '[서울 출발] 울산 2박 3일 여행 패키지',
-        category: 'Life',
+        category: 'TRAVEL',
         link: 'path/to/product1',
       },
       {
         productId: 102,
-        name: '[서울 출발] 울산 당일치기 자유여행 상품',
-        category: 'Life',
+        name: '러닝의 취미',
+        category: 'HOBBY',
         link: 'path/to/product2',
       },
     ],
@@ -83,7 +82,6 @@ export default function Detail() {
   const [selectedProduct, setSelectedProduct] =
     useState<TArticleAIRecommendDetailItemProps | null>(null);
 
-  const [titleParts, setTitleParts] = useState<string[]>([]);
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
   const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1.0);
 
@@ -91,19 +89,15 @@ export default function Detail() {
   const [likeCount, setLikeCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
+  const aiRecommendRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const loadArticle = async () => {
       try {
         const data = await fetchArticleById(Number(params.id));
         setArticle(data);
-        setIsLiked(data.data.isLiked); // 초기 좋아요 상태 설정
-        setLikeCount(data.data.likeCount); // 초기 좋아요 수 설정
-        const splitTitle = (title: string) => {
-          const middleIndex = Math.ceil(title.length / 2);
-          return [title.slice(0, middleIndex), title.slice(middleIndex)];
-        };
-
-        setTitleParts(splitTitle(data.data.title));
+        setIsLiked(data.data.isLiked);
+        setLikeCount(data.data.likeCount);
       } catch (error) {
         console.error('Error fetching article:', error);
         // router.push('.'); // 오류 발생 시, 뒤로 이동
@@ -119,8 +113,8 @@ export default function Detail() {
     setIsLoading(true);
     try {
       const response = await likeArticle(Number(params.id), !isLiked);
-      setIsLiked(response.isLiked); // 서버 응답에 따라 좋아요 상태 업데이트
-      setLikeCount(response.likeCount); // 서버 응답에 따라 좋아요 수 업데이트
+      setIsLiked(response.isLiked);
+      setLikeCount(response.likeCount);
     } catch (error) {
       console.error('좋아요 상태 변경 중 오류:', error);
     } finally {
@@ -134,6 +128,10 @@ export default function Detail() {
     } else {
       setSelectedProduct(product);
     }
+
+    setTimeout(() => {
+      aiRecommendRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   const handleFontSizeChange = (value: number) => {
@@ -239,9 +237,11 @@ export default function Detail() {
                       className='font-SCDream8 text-[25px] text-white font-bold'
                       style={{ textShadow: '0 0 1px black, 0 0 3px black' }}
                     >
-                      {titleParts[0]}
-                      {titleParts[1] && <br />}
-                      {titleParts[1]}
+                      <div className='flex flex-col items-start w-full overflow-hidden'>
+                        <div className='font-SCDream8 font-bold text-[1.8rem] leading-[1.2] break-words line-clamp-3 overflow-hidden text-ellipsis sm:text-[1.4rem]'>
+                          {article.data.title}
+                        </div>
+                      </div>
                     </div>
                   </>
                 )}
@@ -258,7 +258,7 @@ export default function Detail() {
                 <IsLike
                   likeCount={likeCount}
                   isLiked={isLiked}
-                  onClick={handleLikeToggle} // 좋아요 상태 변경 핸들러 전달
+                  onClick={handleLikeToggle}
                 />
                 <div className='mb-2'>
                   <CopyClipboardBtn />
@@ -342,7 +342,7 @@ export default function Detail() {
                 <div className='flex gap-5'>
                   <div className='w-[90%]'>
                     <ColumnRecommendItem
-                      variant={article.data.category}
+                      variant={article.data.relatedProducts[0].category}
                       name={article.data.relatedProducts[0].name}
                       isSelected={
                         selectedProduct?.productId ===
@@ -355,7 +355,7 @@ export default function Detail() {
                   </div>
                   <div className='w-[90%]'>
                     <ColumnRecommendItem
-                      variant='TRAVEL'
+                      variant={article.data.relatedProducts[1].category}
                       name={article.data.relatedProducts[1].name}
                       isSelected={
                         selectedProduct?.productId ===
@@ -370,7 +370,7 @@ export default function Detail() {
                 <div className='font-SCDream5 text-[15px] my-3 mt-9'>
                   {data.name}님의 AI 맞춤 정보
                 </div>
-                <div className='mb-20'>
+                <div className='mb-20 ' ref={aiRecommendRef}>
                   {selectedProduct ? (
                     <ArticleAIRecommendDetailItem
                       articleId={article.data.articleId}
