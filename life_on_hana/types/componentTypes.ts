@@ -198,7 +198,7 @@ export type TLikedLoanProductDetailItemProps = {
   feature: string;
   target: string;
   link: string;
-  isLiked: boolean;
+  isLiked?: boolean;
   loanInfo: {
     minAmount?: number;
     maxAmount?: number;
