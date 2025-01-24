@@ -1,8 +1,8 @@
 import {
-  TRecommendItemProps,
+  type TRecommendItemProps,
   type TArticleItemProps,
-} from './types/componentTypes';
-import { type THomeLikeProduct, type TArticlesLiked } from './types/dataTypes';
+} from '@/types/componentTypes';
+import { type THomeLikeProduct, type TArticlesLiked } from '@/types/dataTypes';
 
 // accessToken 추출
 export let NEXT_PUBLIC_URL: string;

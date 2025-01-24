@@ -8,7 +8,7 @@ import { DataContext } from '@/hooks/useData';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
 import {
-  TLikedLoanProductDetailItemProps,
+  type TLikedLoanProductDetailItemProps,
   type TRecommendItemProps,
 } from '@/types/componentTypes';
 import { RecommendItem } from '@/components/molecules/RecommendItem';
