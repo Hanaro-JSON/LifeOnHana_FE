@@ -21,11 +21,12 @@ export default function AccountDetailItem({
   isAccountChecked = false,
   onSelect,
   onAmountChange,
-  initialAmount,
+  defaultAmount,
 }: TAccountDetailItemProps) {
   const [checked, setChecked] = useState<boolean>(isAccountChecked);
   const [withdrawalAmount, setWithdrawalAmount] = useState<string>(
-    initialAmount || ''
+    defaultAmount || ''
+    // ''
   );
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -131,6 +132,7 @@ export default function AccountDetailItem({
             <input
               type='text'
               value={withdrawalAmount}
+              defaultValue={defaultAmount}
               onChange={handleAmountChange}
               placeholder={`${balance.toLocaleString()}`}
               className='mt-2 w-[95%] h-[2.3rem] p-2 border border-hanapurple rounded-md text-right text-[1rem] font-SCDream8 focus:outline-none focus:border-hanapurple focus:border-2'

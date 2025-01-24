@@ -91,7 +91,7 @@ export type TAccountDetailItemProps = {
   isAccountChecked?: boolean;
   onSelect?: (checked: boolean) => void;
   onAmountChange?: (isExceeding: boolean, amount?: string) => void; // amount 추가
-  initialAmount?: string;
+  defaultAmount?: string;
 };
 
 export type TArticleAIRecommendDetailItemProps = {

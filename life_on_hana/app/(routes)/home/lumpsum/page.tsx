@@ -82,8 +82,11 @@ export default function Lumpsum() {
       case 'loanProducts':
         setLoanItems(mockLoanItems);
         break;
+      case 'otherAccounts':
+        router.replace(`/home/lumpsum/otherAccount?amount=${amount}`); // 금액 자동으로 넘어가게
+        break;
       default:
-        router.replace('/home/wallet/deposit');
+        router.replace(`/home/wallet/deposit?amount=${amount}`); // 금액 자동으로 넘어가게
     }
   };
 

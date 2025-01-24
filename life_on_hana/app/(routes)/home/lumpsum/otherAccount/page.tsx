@@ -6,33 +6,44 @@ import AccountDetailItem from '@/components/molecules/AccountDetailItem';
 import Btn from '@/components/atoms/Btn';
 import { type TAccountDetailItemProps } from '@/types/componentTypes';
 import HanaBankLogo from '@/assets/HanaBankLogo.svg';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { NavHeader } from '@/components/molecules/NavHeader';
-import { fetchAccountData, transferFunds } from '@/api';
+import { fetchAccountData, fetchWallet, fetchLumpsum } from '@/api';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function Deposit() {
+export default function OtherAccount() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const [mainAccount, setMainAccount] = useState<TAccountDetailItemProps>();
   const [otherAccounts, setOtherAccounts] = useState<TAccountDetailItemProps[]>(
     []
   );
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [amounts, setAmounts] = useState<{ [key: number]: string }>({});
   const [isExceeding, setIsExceeding] = useState<boolean>(false);
-  const searchParams = useSearchParams();
+  const [walletAmount, setWalletAmount] = useState<number>(0);
+
   const initialAmount = searchParams.get('amount') || '';
+
+  useEffect(() => {
+    const getWallet = async () => {
+      try {
+        const fetchData = await fetchWallet();
+        setWalletAmount(fetchData.walletAmount);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    getWallet();
+  }, []);
 
   useEffect(() => {
     const loadAccountData = async () => {
       try {
         const data = await fetchAccountData();
-        setMainAccount(data.mainAccount);
         setOtherAccounts(data.otherAccounts);
       } catch (error) {
         console.error('계좌 목록 불러오기 오류:', error);
       }
     };
-
     loadAccountData();
   }, []);
 
@@ -62,25 +73,45 @@ export default function Deposit() {
   };
 
   const handleComplete = async () => {
-    if (selectedIndex === null || !mainAccount) {
+    if (selectedIndex === null || !amounts[selectedIndex]) {
+      alert('계좌와 금액을 선택해주세요.');
       return;
     }
 
-    const amount = parseFloat(amounts[selectedIndex]?.replace(/,/g, '') || '0');
+    const account = otherAccounts[selectedIndex];
+    const amount = parseFloat(amounts[selectedIndex].replace(/,/g, '')) || 0;
 
     try {
-      const fromAccount = otherAccounts[selectedIndex];
-      const response = await transferFunds(
-        Number(fromAccount.accountId),
-        Number(mainAccount.accountId),
-        amount
-      );
+      const requestData = {
+        amount,
+        source: 'OTHER', // 없으면 호출 안됨
+        reason: 'OTHER', // 없으면 호출 안됨
+        reasonDetail: null, // 상세 이유
+        accountId: Number(account.accountId),
+      };
+      const response = await fetchLumpsum(requestData);
 
-      router.push(
-        `/home/wallet/deposit/finished?transferData=${encodeURIComponent(JSON.stringify(response.data))}`
-      );
+      if (response.code === 200) {
+        const { balance } = response.data; // 응답에서 balance 추출
+        router.push(
+          `/home/lumpsum/otherAccount/otherAccountFinished?transferData=${encodeURIComponent(
+            JSON.stringify({
+              fromAccount: account,
+              toAccount: {
+                bank: 'HANA',
+                accountName: '하나 지갑',
+              },
+              amount,
+              balance,
+            })
+          )}`
+        );
+      } else {
+        alert(response.message || '이체 요청이 실패했습니다.');
+      }
     } catch (error) {
-      console.error('이체 실패:', error);
+      console.error('API 요청 오류:', error);
+      alert('요청 처리 중 오류가 발생했습니다.');
     }
   };
 
@@ -96,39 +127,34 @@ export default function Deposit() {
     <div className='flex flex-col h-screen px-3'>
       <div className='sticky top-0 z-10'>
         <div className='pt-6'>
-          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'..'} />
+          <NavHeader
+            location={'타계좌에서 하나 지갑으로 입금하기'}
+            beforePageUrl={'..'}
+          />
         </div>
 
         <div className='mb-2 px-2'>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
 
-          {mainAccount && (
-            <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
-              <div className='h-8 flex gap-2 mt-1 ml-1'>
-                <Image
-                  className='w-11 h-11'
-                  src={HanaBankLogo}
-                  alt='Hana Logo'
-                  width={50}
-                  height={50}
-                />
-                <div className='ml-1'>
-                  <div className='font-SCDream5 text-[1.1rem] mb-1'>
-                    {mainAccount.accountName}
-                  </div>
-                  <div className='font-SCDream3 text-[0.9rem]'>
-                    {mainAccount.accountNumber.replace(
-                      /(\d{6})(\d{2})(\d{5})/,
-                      '$1-$2-$3'
-                    )}
-                  </div>
+          <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
+            <div className='h-8 flex gap-2 mt-1 ml-1'>
+              <Image
+                className='w-9 h-9'
+                src={HanaBankLogo}
+                alt='Hana Logo'
+                width={50}
+                height={50}
+              />
+              <div className='ml-1'>
+                <div className='font-SCDream5 text-[1.1rem] mb-1'>
+                  하나 지갑
                 </div>
               </div>
-              <div className='text-right font-SCDream8 text-[1rem] mr-4 mb-2'>
-                {mainAccount.balance.toLocaleString()} 원
-              </div>
             </div>
-          )}
+            <div className='text-right font-SCDream8 text-[1rem] mr-4 mb-2'>
+              {walletAmount.toLocaleString()} 원
+            </div>
+          </div>
         </div>
         <div className='mb-2 mt-5 px-2'>
           <div className='text-[1.25rem] font-SCDream5'>출금계좌 선택</div>
@@ -167,15 +193,6 @@ export default function Deposit() {
           />
         </div>
       </div>
-
-      <style jsx global>{`
-        .overflow-y-auto::-webkit-scrollbar {
-          display: none;
-        }
-        .overflow-y-auto {
-          -ms-overflow-style: none; /* Internet Explorer 10+ */
-        }
-      `}</style>
     </div>
   );
 }
