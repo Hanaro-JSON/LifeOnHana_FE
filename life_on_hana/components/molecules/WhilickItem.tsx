@@ -8,6 +8,7 @@ import Image from 'next/image';
 import soundOn from '@/assets/sound-on.svg';
 import soundOff from '@/assets/sound-off.svg';
 import useDebounce from '@/hooks/useDebounce';
+import WhilickDownSvg from '../atoms/WhilickDownSvg';
 
 export default function WhilickItem({
   idx,
@@ -262,26 +263,7 @@ export default function WhilickItem({
         </div>
 
         {/* 하단 스크롤 */}
-        <div className='absolute bottom-28 z-50'>
-          <svg
-            width='20'
-            height='20'
-            viewBox='0 0 45 33'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M45 3.26318L39.7125 0L22.5 10.5995L5.2875 0L0 3.26318L22.5 17.1491L45 3.26318Z'
-              fill='white'
-              className='whilick-down-1'
-            ></path>
-            <path
-              d='M45 18.5132L39.7125 15.25L22.5 25.8495L5.2875 15.25L0 18.5132L22.5 32.3991L45 18.5132Z'
-              fill='white'
-              className='whilick-down-2'
-            ></path>
-          </svg>
-        </div>
+        <WhilickDownSvg />
 
         {/* 클립보드복사, 좋아요 */}
         <div className='absolute right-10 bottom-48 z-50 flex items-center gap-4'>
