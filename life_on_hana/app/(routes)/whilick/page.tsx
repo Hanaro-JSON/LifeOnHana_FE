@@ -68,11 +68,9 @@ export default function Whilick() {
       const getChangableApi = (page: number) => {
         if (articleIdData) {
           const articleId = JSON.parse(articleIdData);
-          if (articleId) {
-            return `/api/articles/shorts/${articleId}`;
-          } else {
-            return `/api/articles/shorts?page=${page}&size=10`;
-          }
+          return `/api/articles/shorts/${articleId}`;
+        } else {
+          return `/api/articles/shorts?page=${page}&size=10`;
         }
       };
       const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
