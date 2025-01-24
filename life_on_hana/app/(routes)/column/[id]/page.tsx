@@ -17,7 +17,7 @@ import OpenDescriptionItem from '@/components/atoms/OpenDescriptionItem';
 import { formatDate } from '@/utils/formatDate';
 import { LogoHeader } from '@/components/molecules/LogoHeader';
 import { useParams, useRouter } from 'next/navigation';
-import { type TArticleDetail } from '@/types/dataTypes';
+// import { type TArticleDetail } from '@/types/dataTypes';
 import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
 import LoadingIcon from '@/components/atoms/LoadingIcon';
@@ -77,8 +77,8 @@ export default function Detail() {
   const { data } = useContext(DataContext);
   const router = useRouter();
   const params = useParams();
-  const [article, setArticle] = useState<TArticleDetail | null>(null);
-  // const [article, setArticle] = useState(MOCK_DATA); // 목 데이터 용
+  // const [article, setArticle] = useState<TArticleDetail | null>(null);
+  const [article, setArticle] = useState(MOCK_DATA); // 목 데이터 용
   const [selectedProduct, setSelectedProduct] =
     useState<TArticleAIRecommendDetailItemProps | null>(null);
 
