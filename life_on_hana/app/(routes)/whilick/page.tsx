@@ -1,17 +1,34 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Image from 'next/image';
 import whilick_purple from '@/assets/whilick_purple.svg';
 import WhilickItem from '@/components/molecules/WhilickItem';
-import { useCallback, useRef, useState } from 'react';
-import { type TMockWhilickProps } from '@/types/componentTypes';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
+import { getApiToken, NEXT_PUBLIC_URL } from '@/api';
+import { type TWhilickContents } from '@/types/dataTypes';
+
+type TWhilickData = {
+  contents: TWhilickContents[];
+  pageable: {
+    first: boolean;
+    last: boolean;
+    pageNumber: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
 
 export default function Whilick() {
+  // home/columns > WhilickCarousel > SmallWhilickItem 통해 설정된 localStorage의 article_id 값
+  // localStorage.setItem('article_id', '20');
+
   const [globalAudioState, setGlobalAudioState] = useState({
-    isPlaying: true,
-    isMute: false,
+    isPlaying: false,
+    isMute: true,
   });
   const [globalAudioSpeed, setGlobalAudioSpeed] = useState(1.0);
   const [globalFontSize, setGlobalFontSize] = useState(1.0);
@@ -26,130 +43,164 @@ export default function Whilick() {
     }
   }, []);
 
-  const mockWhilick: TMockWhilickProps[] = [
-    {
-      title: '알아 두면 쓸데 많은 1900년대 비엔나 미술 속으로',
-      articleId: 1,
-      text: [
-        {
-          paragraphId: 1,
-          content: '아트 애호가들의 심장을 뛰게 만드는 전시가 찾아왔다.',
-          startTime: 0.0,
-          endTime: 4.2,
-        },
-        {
-          paragraphId: 2,
-          content:
-            '용산 국립중앙박물관에서 열리는 오스트리아 레오폴트 미술관컬렉션이 바로 그것.',
-          startTime: 4.2,
-          endTime: 10.5,
-        },
-        {
-          paragraphId: 3,
-          content:
-            '우리가 몰랐던 1900년대 비엔나에 불어온 미술 사조의 변화를 엿볼 수 있는 좋은 기회다.',
-          startTime: 10.5,
-          endTime: 15,
-        },
-      ],
-      likeCount: 5,
-      isLiked: false,
-      ttsUrl:
-        'https://d1g084wcjwihe3.cloudfront.net/tts/영화관에서_미리_메리_크리스마스_20250121_140209.mp3',
-    },
-    {
-      title: '새해 소망 여행 울산시 울주군',
-      articleId: 2,
-      text: [
-        {
-          paragraphId: 1,
-          content: '누구나 마음속에 새해 이루고 싶은 소망이 있을 것이다.',
-          startTime: 0.0,
-          endTime: 4.2,
-        },
-        {
-          paragraphId: 2,
-          content:
-            '2025년 새해 가장 먼저 해가 떠오르는 간절곶에서, 예부터 소망이 이뤄진다고 여겨진 영험한 곳 파래소폭포에서 마음 깊은 곳에 간직한 소망을 펼쳐 보여도 좋겠다.',
-          startTime: 4.2,
-          endTime: 10.5,
-        },
-      ],
-      likeCount: 15,
-      isLiked: false,
-      ttsUrl: '/assets/audio/audio2.mp3',
-    },
-    {
-      title: '‘흑백요리사’ 속 셰프의 레스토랑 가이드',
-      articleId: 35,
-      text: [
-        {
-          paragraphId: 1,
-          content:
-            '넷플릭스 요리 경연 프로그램 ‘흑백요리사’ 열풍이 불면서 출연한 셰프들의 레스토랑들도 덩달아 인기를 얻고 있다.',
-          startTime: 0.0,
-          endTime: 4.2,
-        },
-        {
-          paragraphId: 2,
-          content:
-            '지금 가장 핫한 곳은 어느 곳이고, 예약 없이 갈 수 있는 레스토랑은 과연 어디일까?',
-          startTime: 4.2,
-          endTime: 10.5,
-        },
-      ],
-      likeCount: 10,
-      isLiked: true,
-      ttsUrl: '/assets/audio/audio3.mp3',
-    },
-  ];
+  const whilickItemTop = Math.floor(debouncedTop / window.innerHeight);
+
+  // ----------------------- api 통신 --------------------------------
+
+  const [fetchData, setFetchData] = useState([]);
+  const [whilickData, setWhilickData] = useState<TWhilickData>();
+  const [whilickContents, setWhilickContens] = useState<TWhilickContents[]>([]);
+
+  const token = getApiToken();
+
+  const articleIdData = localStorage.getItem('article_id');
+
+  // useEffect(() => {
+  //   if (fetchData) {
+  //     console.log('whilickData>>>', whilickData);
+  //     console.log('whilickContents>>>', whilickContents);
+  //     console.log('휘릭아이템 탑:>>>', whilickItemTop);
+  //   }
+  // }, [fetchData, whilickData, whilickContents, whilickItemTop]);
+
+  useEffect(() => {
+    const fetchWhilickList = async (page = 0) => {
+      const getChangableApi = (page: number) => {
+        if (articleIdData) {
+          const articleId = JSON.parse(articleIdData);
+          return `/api/articles/shorts/${articleId}`;
+        } else {
+          return `/api/articles/shorts?page=${page}&size=10`;
+        }
+      };
+      const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
+      console.log('apiUrl: ', apiUrl);
+      try {
+        let currentToken = token;
+
+        const response = await fetch(`${apiUrl}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${currentToken}`,
+            credentials: 'include',
+          },
+        });
+
+        // 토큰 갱신 실패
+        if (response.status === 401) {
+          currentToken = await refreshToken();
+          const retryResponse = await fetch(`${apiUrl}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${currentToken}`,
+              credentials: 'include',
+            },
+          });
+          if (!retryResponse.ok)
+            throw new Error(`Error: ${retryResponse.status}`);
+          const data = await retryResponse.json();
+          setFetchData(data);
+        } else if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        // 성공!!!!!
+        else {
+          const data = await response.json();
+          setFetchData(data);
+          setWhilickData(data.data);
+          setWhilickContens(data.data.contents);
+
+          // articleIdData가 있었을 경우, fetch 후에 해당 데이터 삭제
+          if (articleIdData) {
+            localStorage.removeItem('article_id');
+          }
+        }
+      } catch (error) {
+        console.error('휘릭 불러오기 실패', error);
+      }
+    };
+
+    fetchWhilickList();
+
+    if (whilickItemTop === 5 && !whilickData?.pageable.last) {
+      const nextPage = (whilickData?.pageable.pageNumber ?? 0) + 1;
+      fetchWhilickList(nextPage);
+    }
+  }, [
+    token,
+    whilickItemTop,
+    whilickData?.pageable.last,
+    whilickData?.pageable.pageNumber,
+    articleIdData,
+  ]);
+
+  // 토큰 갱신
+  const refreshToken = async () => {
+    try {
+      const response = await fetch(`${NEXT_PUBLIC_URL}/api/auth/refresh`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+      if (!response.ok) throw new Error('Failed to refresh token');
+      const data = await response.json();
+      return data.refreshToken;
+    } catch (error) {
+      console.error('Failed to refresh token:', error);
+      throw error;
+    }
+  };
 
   return (
     <>
-      <div className='relative min-h-screen flex flex-col items-center justify-center'>
-        {/* 최상단 */}
-        <div className='fixed z-50 px-[1.5rem] w-full top-6 h-10 flex justify-start items-center'>
-          <div className='flex items-center gap-4'>
-            <Image
-              src={whilick_purple}
-              alt='whilick_icon'
-              style={{ width: 20, height: 'auto' }}
-              priority
-            />
-            <div className='text-[1.5rem] font-Hana2bold'>휘릭</div>
+      {!whilickData ? (
+        <WhilickItemLoading />
+      ) : (
+        <div className='relative min-h-screen flex flex-col items-center justify-center'>
+          {/* 최상단 */}
+          <div className='fixed z-50 px-[1.5rem] w-full top-6 h-10 flex justify-start items-center'>
+            <div className='flex items-center gap-4'>
+              <Image
+                src={whilick_purple}
+                alt='whilick_icon'
+                style={{ width: 20, height: 'auto' }}
+                priority
+              />
+              <div className='text-[1.5rem] font-Hana2bold'>휘릭</div>
+            </div>
+          </div>
+
+          {/* 상하 스크롤 영역 */}
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className='snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full'
+          >
+            {whilickContents?.map(
+              ({ articleId, title, text, isLiked, likeCount, ttsUrl }, idx) => (
+                <WhilickItem
+                  idx={idx}
+                  key={articleId}
+                  title={title}
+                  text={text}
+                  articleId={articleId}
+                  isLiked={isLiked}
+                  likeCount={likeCount}
+                  ttsUrl={ttsUrl}
+                  top={debouncedTop}
+                  globalAudioState={globalAudioState}
+                  setGlobalAudioState={setGlobalAudioState}
+                  globalAudioSpeed={globalAudioSpeed}
+                  setGlobalAudioSpeed={setGlobalAudioSpeed}
+                  globalFontSize={globalFontSize}
+                  setGlobalFontSize={setGlobalFontSize}
+                />
+              )
+            )}
           </div>
         </div>
-
-        {/* 상하 스크롤 영역 */}
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className='snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full'
-        >
-          {mockWhilick.map(
-            ({ articleId, title, text, isLiked, likeCount, ttsUrl }, idx) => (
-              <WhilickItem
-                idx={idx}
-                key={articleId}
-                title={title}
-                text={text}
-                articleId={articleId}
-                isLiked={isLiked}
-                likeCount={likeCount}
-                ttsUrl={ttsUrl}
-                top={debouncedTop}
-                globalAudioState={globalAudioState}
-                setGlobalAudioState={setGlobalAudioState}
-                globalAudioSpeed={globalAudioSpeed}
-                setGlobalAudioSpeed={setGlobalAudioSpeed}
-                globalFontSize={globalFontSize}
-                setGlobalFontSize={setGlobalFontSize}
-              />
-            )
-          )}
-          <WhilickItemLoading />
-        </div>
-      </div>
+      )}
     </>
   );
 }

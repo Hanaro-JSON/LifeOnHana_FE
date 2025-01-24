@@ -11,8 +11,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 export default function Columns() {
   const underlineRef = useRef<HTMLDivElement>(null);
   const [likedArticles, setLikedArticles] = useState<TArticlesLiked[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [startIdx, setStartIdx] = useState(0);
   const [page, setPage] = useState(0); // 현재 페이지 번호
   const [hasNext, setHasNext] = useState(true); // 다음 페이지 여부
   const [isFetching, setIsFetching] = useState(false); // 데이터 로드 중 여부
@@ -22,9 +20,9 @@ export default function Columns() {
     setIsFetching(true);
 
     try {
-      const data = await fetchArticlesLiked(page);
+      const data = await fetchArticlesLiked(page, undefined);
       setLikedArticles((prev) => [...prev, ...data.articles]);
-      setHasNext(data.hasNext);
+      setHasNext(data.hasNext ?? true);
       setPage((prev) => prev + 1);
     } catch (error) {
       console.error('Failed to fetch articles:', error);

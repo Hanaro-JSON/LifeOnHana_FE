@@ -5,7 +5,10 @@ import Image from 'next/image';
 import HeartNo from '../../assets/HeartNo.svg';
 import HeartYes from '../../assets/HeartYes.svg';
 import { type TArticleAIRecommendDetailItemProps } from '@/types/componentTypes';
-import { fetchEffectAnalysis, likeProduct } from '@/api';
+import {
+  // fetchEffectAnalysis,
+  likeProduct,
+} from '@/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -51,13 +54,44 @@ export default function ArticleAIRecommendDetailItem({
     }
   };
 
+  // useEffect(() => {
+  //   const fetchAnalysis = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const data = await fetchEffectAnalysis(articleId!, productId!);
+  //       setDescription(data.data.analysisResult);
+  //       setLiked(data.data.isLiked);
+  //     } catch (error) {
+  //       console.error('상품 분석 요청 중 오류 발생:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchAnalysis();
+  // }, [articleId, productId]);
+
+  const mockData = {
+    code: 200,
+    status: 'OK',
+    message: '상품 분석 성공',
+    data: {
+      analysisResult:
+        '오십에 읽는 주역은 균형 잡힌 삶을 위한 좋은 선택입니다. 건강과 학습에 투자하는 당신에게 유연한 사고력과 자기 성찰의 기회를 제공할 것입니다. 바쁜 일상 속에서 잠시 숨 돌릴 수 있는 힐링 타임도 될 수 있죠. 지혜로운 조언으로 새로운 영감을 얻고, 삶의 여정을 더욱 풍부하게 만드는 선물이 될 거예요.',
+      productLink: 'https://product.kyobobook.co.kr/detail/S000210694912',
+      productName: '오십에 읽는 주역',
+      isLiked: true,
+    },
+  };
+
   useEffect(() => {
     const fetchAnalysis = async () => {
       setLoading(true);
       try {
-        const data = await fetchEffectAnalysis(articleId!, productId!);
-        setDescription(data.data.analysisResult);
-        setLiked(data.data.isLiked);
+        // 실제 API 호출을 목업 데이터로 대체
+        const data = mockData.data;
+        setDescription(data.analysisResult);
+        setLiked(data.isLiked);
       } catch (error) {
         console.error('상품 분석 요청 중 오류 발생:', error);
       } finally {
@@ -66,7 +100,7 @@ export default function ArticleAIRecommendDetailItem({
     };
 
     fetchAnalysis();
-  }, [articleId, productId]);
+  }, [articleId, productId, mockData.data]);
 
   if (!visible) return null;
 
