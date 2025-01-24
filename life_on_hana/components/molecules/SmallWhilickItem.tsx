@@ -31,16 +31,15 @@ export default function SmallWhilickItem({
   };
 
   const router = useRouter();
-  const handleClick = () => {
-    router.push('/whilick', undefined);
+  const moveToWhilickEvent = () => {
+    router.push('/whilick');
     localStorage.setItem('article_id', String(article_id));
   };
 
   return (
     <>
-      {/* <Link href={`/whilick`} state={}> */}
       <button
-        onClick={handleClick}
+        onClick={moveToWhilickEvent}
         className='bg-cover bg-center w-[10rem] h-[14.1875rem] flex flex-col items-center justify-center p-5 relative'
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={title}
@@ -62,7 +61,6 @@ export default function SmallWhilickItem({
           {getCategory(variant)}
         </div>
       </button>
-      {/* </Link> */}
       <style jsx>{`
         .line-clamp {
           display: -webkit-box;

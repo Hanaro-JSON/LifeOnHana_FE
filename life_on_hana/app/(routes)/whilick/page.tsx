@@ -24,7 +24,7 @@ type TWhilickData = {
 
 export default function Whilick() {
   // home/columns > WhilickCarousel > SmallWhilickItem 통해 설정된 localStorage의 article_id 값
-  localStorage.setItem('article_id', '20');
+  // localStorage.setItem('article_id', '20');
 
   const [globalAudioState, setGlobalAudioState] = useState({
     isPlaying: false,
