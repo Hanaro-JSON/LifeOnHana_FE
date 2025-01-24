@@ -1,5 +1,5 @@
 'use client';
-
+import Skeleton from 'react-loading-skeleton';
 import Btn from '@/components/atoms/Btn';
 import Section from '@/components/atoms/Section';
 import LumpSumBtn from '@/components/molecules/LumpSumBtn';
@@ -7,25 +7,18 @@ import { NavHeader } from '@/components/molecules/NavHeader';
 import { DataContext } from '@/hooks/useData';
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
-import { type TRecommendItemProps } from '@/types/componentTypes';
+import {
+  type TLikedLoanProductDetailItemProps,
+  type TRecommendItemProps,
+} from '@/types/componentTypes';
 import { RecommendItem } from '@/components/molecules/RecommendItem';
+import { fetchAntropicLoans, fetchLoanProductDetails } from '@/api';
+import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
 
-const mockLoanItems: TRecommendItemProps[] = [
-  {
-    productId: '1',
-    name: '상품 1',
-    description: '설명 1',
-    maxAmount: '1000만원',
-    productType: 'LOAN',
-  },
-  {
-    productId: '2',
-    name: '상품 2',
-    description: '설명 2',
-    maxAmount: '20만원',
-    productType: 'LOAN',
-  },
-];
+type TSelectedProductProps = {
+  type: 'LOAN';
+  data: TLikedLoanProductDetailItemProps;
+} | null;
 
 export default function Lumpsum() {
   const router = useRouter();
@@ -45,8 +38,11 @@ export default function Lumpsum() {
     '기타',
   ];
   ///api/anthropic/loans
-  const [loanItems, setLoanItems] = useState<TRecommendItemProps[]>();
-
+  const [loanItems, setLoanItems] = useState<TRecommendItemProps[]>([]);
+  const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedProduct, setSelectedProductProps] =
+    useState<TSelectedProductProps>(null);
   const handleBtnClick = (variant: string) => {
     setSelectedBtn(variant);
   };
@@ -61,7 +57,7 @@ export default function Lumpsum() {
     setAmount(formatNumber(rawValue));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!amount) {
       alert('금액을 입력해주세요.');
       return;
@@ -80,16 +76,36 @@ export default function Lumpsum() {
     }
     switch (selectedBtn) {
       case 'loanProducts':
-        setLoanItems(mockLoanItems);
+        setLoading(true); // 로딩 시작
+        setLoanItems(await fetchAntropicLoans(reason, amount));
+        setClicked(true);
+        setTimeout(() => {
+          console.log('10초가 지났습니다!');
+          setLoading(false); // 로딩 종료
+        }, 10);
         break;
       default:
         router.replace('/home/wallet/deposit');
     }
   };
-
+  const handleProductClick = async (productId: string) => {
+    try {
+      const data = await fetchLoanProductDetails(Number(productId));
+      setSelectedProductProps({ type: 'LOAN', data: data.data });
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+    }
+  };
   return (
-    <div className='p-6 space-y-4'>
+    <div className='p-6 space-y-4 mb-28'>
       <NavHeader location={'목돈 가져오기'} beforePageUrl={'/home'} />
+      {selectedProduct?.type === 'LOAN' && (
+        <LikedLoanProductDetailItem
+          {...selectedProduct.data}
+          closeBtn
+          onClose={() => setSelectedProductProps(null)}
+        />
+      )}
       <Section height='300'>
         <div className='w-full'>
           <div className='space-y-6'>
@@ -185,22 +201,34 @@ export default function Lumpsum() {
         }`}
         onClick={handleSubmit}
       />
-      {selectedBtn === 'loanProducts' && loanItems ? (
+      {clicked && selectedBtn === 'loanProducts' && loanItems ? (
         <div className='space-y-4'>
           <div className='font-SCDream5 text-xl mt-5'>
             {data.name}님을 위한 추천 대출 상품
           </div>
-          {loanItems.map((loanItem, index) => (
-            <RecommendItem
-              key={index}
-              name={loanItem.name}
-              description={loanItem.description}
-              maxAmount={loanItem.maxAmount}
-              maxInterest_rate={loanItem.maxInterest_rate}
-              productType={loanItem.productType}
-              productId={loanItem.productId}
-            />
-          ))}
+          {loading === true ? (
+            <Section height='100'>
+              <Skeleton
+                style={{ width: 'calc(100vw - 3rem)' }}
+                height={100}
+                baseColor='#f7f7f7' //'#F4EBFB'
+                highlightColor='#eaeaea' //'#e7ddee'
+              />
+            </Section>
+          ) : (
+            loanItems.map((loanItem, index) => (
+              <RecommendItem
+                key={index}
+                name={loanItem.name}
+                description={loanItem.description}
+                maxAmount={loanItem.maxAmount}
+                maxInterest_rate={loanItem.maxInterest_rate}
+                productType={loanItem.productType}
+                productId={loanItem.productId}
+                onClick={() => handleProductClick(loanItem.productId)}
+              />
+            ))
+          )}
         </div>
       ) : (
         <></>
