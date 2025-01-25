@@ -720,3 +720,22 @@ export const fetchAntropicLoans = async (reason: string, amount: string) => {
     throw new Error('조회 요청 중 오류가 발생했습니다.');
   }
 };
+
+// 토큰 갱신
+export const fetchRefreshToken = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/auth/refresh`,
+      {
+        method: 'POST',
+        credentials: 'include',
+      }
+    );
+    if (!response.ok) throw new Error('refresh token 발급 실패');
+    const data = await response.json();
+    return data.refreshToken;
+  } catch (error) {
+    console.error('refresh token 발급 중 오류가 발생했습니다.', error);
+    throw error;
+  }
+};

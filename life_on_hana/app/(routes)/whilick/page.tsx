@@ -6,7 +6,7 @@ import WhilickItem from '@/components/molecules/WhilickItem';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
-import { getApiToken, NEXT_PUBLIC_URL } from '@/api';
+import { getApiToken, fetchRefreshToken } from '@/api';
 import { type TWhilickContents } from '@/types/dataTypes';
 
 type TWhilickData = {
@@ -78,7 +78,7 @@ export default function Whilick() {
 
         // 토큰 갱신 실패
         if (response.status === 401) {
-          currentToken = await refreshToken();
+          currentToken = await fetchRefreshToken();
           const retryResponse = await fetch(`${apiUrl}`, {
             method: 'GET',
             headers: {
@@ -124,22 +124,6 @@ export default function Whilick() {
     whilickData?.pageable.pageNumber,
     articleIdData,
   ]);
-
-  // 토큰 갱신
-  const refreshToken = async () => {
-    try {
-      const response = await fetch(`${NEXT_PUBLIC_URL}/api/auth/refresh`, {
-        method: 'POST',
-        credentials: 'include',
-      });
-      if (!response.ok) throw new Error('Failed to refresh token');
-      const data = await response.json();
-      return data.refreshToken;
-    } catch (error) {
-      console.error('Failed to refresh token:', error);
-      throw error;
-    }
-  };
 
   return (
     <>
