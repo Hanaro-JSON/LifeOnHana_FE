@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Image from 'next/image';
@@ -47,21 +46,10 @@ export default function Whilick() {
 
   // ----------------------- api 통신 --------------------------------
 
-  const [fetchData, setFetchData] = useState([]);
+  const token = getApiToken();
   const [whilickData, setWhilickData] = useState<TWhilickData>();
   const [whilickContents, setWhilickContens] = useState<TWhilickContents[]>([]);
-
-  const token = getApiToken();
-
   const articleIdData = localStorage.getItem('article_id');
-
-  // useEffect(() => {
-  //   if (fetchData) {
-  //     console.log('whilickData>>>', whilickData);
-  //     console.log('whilickContents>>>', whilickContents);
-  //     console.log('휘릭아이템 탑:>>>', whilickItemTop);
-  //   }
-  // }, [fetchData, whilickData, whilickContents, whilickItemTop]);
 
   useEffect(() => {
     const fetchWhilickList = async (page = 0) => {
@@ -75,6 +63,7 @@ export default function Whilick() {
       };
       const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
       console.log('apiUrl: ', apiUrl);
+
       try {
         let currentToken = token;
 
@@ -101,14 +90,14 @@ export default function Whilick() {
           if (!retryResponse.ok)
             throw new Error(`Error: ${retryResponse.status}`);
           const data = await retryResponse.json();
-          setFetchData(data);
+          setWhilickData(data.data);
+          setWhilickContens(data.data.contents);
         } else if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-        // 성공!!!!!
+        // 성공
         else {
           const data = await response.json();
-          setFetchData(data);
           setWhilickData(data.data);
           setWhilickContens(data.data.contents);
 
