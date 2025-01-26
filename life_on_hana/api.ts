@@ -5,11 +5,9 @@ import {
 import {
   type THomeLikeProduct,
   type TArticlesLiked,
-  TWhilickContents,
-  TWhilickData,
+  type TWhilickContents,
+  type TWhilickData,
 } from '@/types/dataTypes';
-import { useToast } from '@/hooks/use-toast';
-import { resolve } from 'path';
 import { Dispatch, SetStateAction } from 'react';
 
 // accessToken 추출
