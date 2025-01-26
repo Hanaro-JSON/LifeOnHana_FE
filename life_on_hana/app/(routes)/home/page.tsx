@@ -272,21 +272,21 @@ export default function Home() {
         <FullImgCarousel items={RecommendCarouselColumnItems} />
       </div>
 
-      {/* 추천 상품 카드 */}
-      <div className='flex flex-row justify-between items-end'>
-        <div className='font-SCDream4 tracking-wide'>
+      {/* 좋아요한 칼럼 카드 */}
+      <div className='flex flex-col space-y-3'>
+        <div className='font-SCDream4 text-[1.25rem]'>
           {data.name}님을 위한 추천 상품
         </div>
-        <div>
+        <div className='flex flex-col items-end gap-3'>
           <ShortCutBtn url={'/home/like'} variant='product' />
         </div>
+        <RecommendCarouselItem
+          items={carouselItems}
+          onClick={(productId, category) =>
+            handleProductClick(Number(productId), category)
+          }
+        />
       </div>
-      <RecommendCarouselItem
-        items={carouselItems}
-        onClick={(productId, category) =>
-          handleProductClick(Number(productId), category)
-        }
-      />
 
       {selectedProduct?.type === 'LOAN' && (
         <LikedLoanProductDetailItem

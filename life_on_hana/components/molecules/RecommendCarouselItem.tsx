@@ -26,7 +26,7 @@ export function RecommendCarouselItem({
           <div className='flex flex-col items-end'>
             <div className='font-SCDream3 text-[.75rem]'>연(세전,1년)</div>
             <div className='font-SCDream8 text-[1rem] text-[#4D00B5]'>
-              최고 ~{item.maxInterest_rate}%
+              최고 ~ {item.maxInterest_rate}%
             </div>
           </div>
         );
