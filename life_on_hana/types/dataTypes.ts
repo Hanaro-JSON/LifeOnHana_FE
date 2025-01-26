@@ -16,6 +16,7 @@ export type THistoryHistories = {
   isExpense: boolean;
 };
 export type THistory = {
+  data: unknown;
   yearMonth: string;
   totalIncome: number;
   totalExpense: number;

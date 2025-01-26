@@ -369,36 +369,13 @@ export const fetchArticlesLiked = async (
   page: number = 0,
   category: string | undefined
 ) => {
-  if (category !== undefined) {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?page=0&size=100&category=${category}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${getApiToken()}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error(`조회 요청 실패: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      return {
-        articles: data.data.articles,
-      };
-    } catch (error) {
-      console.error('조회 요청 오류:', error);
-      throw new Error('조회 요청 중 오류가 발생했습니다.');
-    }
-  }
+  const query = category
+    ? `page=0&size=100&category=${category}`
+    : `page=${page}&size=10`;
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?page=${page}&size=10`,
+      `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?${query}`,
       {
         method: 'GET',
         headers: {
@@ -407,19 +384,19 @@ export const fetchArticlesLiked = async (
         },
       }
     );
-    console.log('🚀 ~ response:', response);
 
     if (!response.ok) {
       throw new Error(`${page}페이지 불러오기 실패`);
     }
+
     const data = await response.json();
-    console.log('🚀 ~ data:', data);
     return { articles: data.data.articles, hasNext: data.data.hasNext };
   } catch (error) {
     console.error('칼럼 목록 불러오기 실패', error);
     throw error;
   }
 };
+
 // users/info
 export const fetchUsersInfo = async () => {
   try {

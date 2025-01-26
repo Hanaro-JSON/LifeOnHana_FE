@@ -11,19 +11,31 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 export default function Columns() {
   const underlineRef = useRef<HTMLDivElement>(null);
   const [likedArticles, setLikedArticles] = useState<TArticlesLiked[]>([]);
-  const [page, setPage] = useState(0); // 현재 페이지 번호
-  const [hasNext, setHasNext] = useState(true); // 다음 페이지 여부
-  const [isFetching, setIsFetching] = useState(false); // 데이터 로드 중 여부
+  const [page, setPage] = useState(0);
+  const [hasNext, setHasNext] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
+  const articleIdsSet = useRef(new Set());
 
   const fetchAllArticles = useCallback(async () => {
-    if (!hasNext || isFetching) return; // 다음 데이터가 없거나 이미 로딩 중이면 무시
+    if (!hasNext || isFetching) return;
     setIsFetching(true);
 
     try {
       const data = await fetchArticlesLiked(page, undefined);
-      setLikedArticles((prev) => [...prev, ...data.articles]);
-      setHasNext(data.hasNext ?? true);
-      setPage((prev) => prev + 1);
+      const newArticles = data.articles.filter(
+        (article: { articleId: unknown }) =>
+          !articleIdsSet.current.has(article.articleId)
+      );
+
+      if (newArticles.length > 0) {
+        setLikedArticles((prev) => [...prev, ...newArticles]);
+        newArticles.forEach((article: { articleId: unknown }) =>
+          articleIdsSet.current.add(article.articleId)
+        );
+        setPage((prev) => prev + 1);
+      }
+
+      setHasNext(data.hasNext ?? false);
     } catch (error) {
       console.error('Failed to fetch articles:', error);
     } finally {
@@ -32,31 +44,26 @@ export default function Columns() {
   }, [hasNext, isFetching, page]);
 
   const handleScroll = useCallback(() => {
-    if (isFetching || !hasNext) return;
-
-    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
-
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
-      fetchAllArticles();
-    }
-  }, [fetchAllArticles, hasNext, isFetching]);
-  useEffect(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      isFetching
+    )
+      return;
     fetchAllArticles();
-  }, []);
+  }, [fetchAllArticles, isFetching]);
 
   useEffect(() => {
+    fetchAllArticles(); // 초기 데이터 로드
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+  }, [fetchAllArticles, handleScroll]);
 
   const ArticleList = ({ articles }: { articles: TArticlesLiked[] }) => (
     <>
       {articles.map(
-        (
-          { articleId, title, category, publishedAt, thumbnailS3Key },
-          index
-        ) => (
-          <div key={index} className='py-3'>
+        ({ articleId, title, category, publishedAt, thumbnailS3Key }) => (
+          <div key={articleId} className='py-3'>
             <ArticleItem
               articleId={articleId}
               title={title}
@@ -70,25 +77,29 @@ export default function Columns() {
       )}
     </>
   );
+
   return (
-    <div className='p-6 space-y-4 mb-16 h-[100vh-4rem]'>
+    <div className='p-6 space-y-4 mb-16'>
       <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
       <div className='w-full h-full flex flex-col items-center'>
         {likedArticles.length > 0 ? (
           <>
-            {likedArticles.map((_, index) => {
-              if (index % 10 === 0) {
-                const pageArticles = likedArticles.slice(index, index + 10);
-                return (
-                  <div key={index} className='w-full'>
-                    <ArticleList articles={pageArticles.slice(0, 5)} />
-                    <WhilickCarousel items={pageArticles} />
-                    <ArticleList articles={pageArticles.slice(5, 10)} />
-                  </div>
-                );
-              }
-              return null;
-            })}
+            {Array.from(
+              { length: Math.ceil(likedArticles.length / 10) },
+              (_, i) => (
+                <div key={i} className='w-full'>
+                  <ArticleList
+                    articles={likedArticles.slice(i * 10, i * 10 + 5)}
+                  />
+                  <WhilickCarousel
+                    items={likedArticles.slice(i * 10, (i + 1) * 10)}
+                  />
+                  <ArticleList
+                    articles={likedArticles.slice(i * 10 + 5, (i + 1) * 10)}
+                  />
+                </div>
+              )
+            )}
             <div
               ref={underlineRef}
               className='absolute bottom-0 h-1 bg-black transition-all duration-300 ease-in-out'
