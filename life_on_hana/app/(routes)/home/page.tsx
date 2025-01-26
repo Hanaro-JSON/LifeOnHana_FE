@@ -272,15 +272,9 @@ export default function Home() {
         <FullImgCarousel items={RecommendCarouselColumnItems} />
       </div>
 
-<<<<<<< HEAD
-      {/* 좋아요한 추천 상품 */}
-      <div className='flex flex-col space-y-3'>
-        <div className='font-SCDream4 text-[1.25rem]'>
-=======
       {/* 추천 상품 카드 */}
       <div className='flex flex-row justify-between items-end'>
         <div className='font-SCDream4 tracking-wide'>
->>>>>>> ce0fdc7 ([style] 🐿️ /home 내 좋아요한 칼럼 카드 부분 수정)
           {data.name}님을 위한 추천 상품
         </div>
         <div className='flex flex-col items-end gap-3'>
