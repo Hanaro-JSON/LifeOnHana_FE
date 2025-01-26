@@ -272,7 +272,7 @@ export default function Home() {
         <FullImgCarousel items={RecommendCarouselColumnItems} />
       </div>
 
-      {/* 좋아요한 칼럼 카드 */}
+      {/* 좋아요한 추천 상품 */}
       <div className='flex flex-col space-y-3'>
         <div className='font-SCDream4 text-[1.25rem]'>
           {data.name}님을 위한 추천 상품
