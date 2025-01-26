@@ -646,6 +646,7 @@ export const fetchHistoryMonthly = async () => {
       throw new Error(`히스토리 조회 요청 실패: ${response.statusText}`);
     }
     const data = await response.json();
+    console.log('🚀 ~ fetchHistoryMonthly ~ data:', data);
     return data.data;
   } catch (error) {
     console.error('히스토리 조회 요청 오류:', error);
