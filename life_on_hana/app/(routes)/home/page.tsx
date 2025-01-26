@@ -75,6 +75,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     const getWallet = async () => {
       try {
         const fetchData = await fetchWallet();
@@ -83,6 +84,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     const getHistoryStatistics = async () => {
       try {
         const fetchData = await fetchHistoryStatistics();
@@ -93,6 +95,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     const getUsersNickname = async () => {
       try {
         const fetchData = await fetchUsersNickname();
@@ -110,6 +113,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     getInfo();
     getWallet();
     getHistoryStatistics();
@@ -117,6 +121,7 @@ export default function Home() {
     getLikedProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     const getArticlesLiked = async () => {
       try {
