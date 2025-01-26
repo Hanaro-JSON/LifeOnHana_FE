@@ -79,9 +79,10 @@ export default function Columns() {
   );
 
   return (
-    <div className='p-6 space-y-4 mb-16'>
+    <div className='p-6 space-y-4 mb-28'>
       <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
-      <div className='w-full h-full flex flex-col items-center'>
+
+      <div className='w-full h-full flex flex-col items-center mt-5'>
         {likedArticles.length > 0 ? (
           <>
             {Array.from(
