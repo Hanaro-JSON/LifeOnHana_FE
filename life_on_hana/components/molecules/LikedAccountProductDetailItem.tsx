@@ -1,9 +1,9 @@
 import React, { useState, MouseEvent, ChangeEvent } from 'react';
-import Btn from '../atoms/Btn';
-import X from '../../assets/X.svg';
+import Btn from '@/components/atoms/Btn';
+import X from '@/assets/X.svg';
 import Image from 'next/image';
-import HeartNo from '../../assets/HeartNo.svg';
-import HeartYes from '../../assets/HeartYes.svg';
+import HeartNo from '@/assets/HeartNo.svg';
+import HeartYes from '@/assets/HeartYes.svg';
 import { type TLikedAccountProductDetailItemProps } from '@/types/componentTypes';
 import { likeProduct } from '@/api';
 
@@ -106,7 +106,16 @@ export default function LikedAccountProductDetailItem({
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
-        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full gap-2'>
+        <div className='absolute top-3 right-3 flex justify-end items-center w-full gap-2'>
+          {closeBtn && (
+            <button onClick={handleCloseClick} className='p-1'>
+              <Image src={X} alt='Close' width={15} height={15} />
+            </button>
+          )}
+        </div>
+
+        {/* 제목 */}
+        <div className='flex items-center gap-3 -mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2'>
           <button
             onClick={handleLikeToggle}
             disabled={isLoading}
@@ -119,48 +128,41 @@ export default function LikedAccountProductDetailItem({
               height={22}
             />
           </button>
-          {closeBtn && (
-            <button onClick={handleCloseClick} className='p-1'>
-              <Image src={X} alt='Close' width={15} height={15} />
-            </button>
-          )}
-        </div>
-
-        {/* 제목 */}
-        <div className='-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2'>
           {name}
         </div>
 
         {/* 내용 */}
-        <div className='w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-center overflow-y-auto max-h-[6rem] flex-grow mb-2'>
+        <div className='w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-center overflow-y-auto min-h-fit max-h-[6rem] mb-2'>
           <p className='text-left'>{description}</p>
         </div>
 
-        <div className='text-[1.3rem] font-SCDream8 text-left self-start mb-2'>
-          나의 예상 혜택
-        </div>
+        <div className='w-full gap-2'>
+          <div className='text-[1.3rem] font-SCDream8 text-left self-start'>
+            나의 예상 혜택
+          </div>
 
-        <div className='w-full h-[20%] relative mb-3'>
-          <div className='w-full h-[100%] left-0 top-0 bg-[#f4ebfb] rounded-[18px]'>
-            <div className='p-4 m-2'>
-              <div className='flex justify-between mt-2'>
-                <div className='text-black text-[1rem] font-SCDream3'>
-                  만기금액(세전)
+          <div className='w-full h-3/4 relative mb-3'>
+            <div className='w-full h-[100%] left-0 top-0 bg-hanalightpurple rounded-[1.125rem]'>
+              <div className='p-4 m-2'>
+                <div className='flex justify-between mt-2'>
+                  <div className='text-black text-[1rem] font-SCDream3'>
+                    만기금액(세전)
+                  </div>
+                  <div className='text-right text-black text-[1rem] font-SCDream5'>
+                    {calculatedAmount
+                      ? `${parseInt(calculatedAmount).toLocaleString()}원`
+                      : '금액을 입력해주세요'}
+                  </div>
                 </div>
-                <div className='text-right text-black text-[1rem] font-SCDream5'>
-                  {calculatedAmount
-                    ? `${parseInt(calculatedAmount).toLocaleString()}원`
-                    : '금액을 입력해주세요'}
-                </div>
-              </div>
-              <div className='flex justify-between mt-2'>
-                <div className='text-black text-[1rem] font-SCDream3'>
-                  적용금리
-                </div>
-                <div className='text-right text-black text-[1rem] font-SCDream5'>
-                  {calculatedAmount === '0'
-                    ? `${savingsInfo.basicInterestRate}% ~ ${savingsInfo.maxInterestRate}%`
-                    : `연 ${interestRate}%`}
+                <div className='flex justify-between mt-2'>
+                  <div className='text-black text-[1rem] font-SCDream3'>
+                    적용금리
+                  </div>
+                  <div className='text-right text-black text-[1rem] font-SCDream5'>
+                    {calculatedAmount === '0'
+                      ? `${savingsInfo.basicInterestRate}% ~ ${savingsInfo.maxInterestRate}%`
+                      : `연 ${interestRate}%`}
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,7 +181,7 @@ export default function LikedAccountProductDetailItem({
               placeholder='금액'
               maxLength={12}
             />
-            <span className='ml-2'>원을</span>
+            <span className='ml-2 font-SCDream3'>원을</span>
           </div>
 
           <div className='flex items-center'>
@@ -191,7 +193,7 @@ export default function LikedAccountProductDetailItem({
               placeholder='년'
               maxLength={3}
             />
-            <span className='ml-2'>년 동안</span>
+            <span className='ml-2 font-SCDream3'>년 동안</span>
           </div>
           <div className='flex items-center gap-2'>
             <div className='relative'>
@@ -246,7 +248,7 @@ export default function LikedAccountProductDetailItem({
                 </div>
               </div>
             </div>
-            <span>로 저축하기</span>
+            <span className='font-SCDream3'>로 저축하기</span>
           </div>
         </div>
 
