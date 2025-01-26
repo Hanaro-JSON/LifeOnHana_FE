@@ -273,8 +273,8 @@ export default function Home() {
       </div>
 
       {/* 추천 상품 카드 */}
-      <div className='flex flex-row justify-between items-end'>
-        <div className='font-SCDream4 tracking-wide'>
+      <div className='flex flex-col space-y-3'>
+        <div className='font-SCDream4 text-[1.25rem]'>
           {data.name}님을 위한 추천 상품
         </div>
         <div className='flex flex-col items-end gap-3'>
