@@ -5,8 +5,8 @@ import { ChartConfig, ChartContainer } from '@/components/ui/chart';
 import { type TVerticalBarGraphProps } from '@/types/componentTypes';
 
 export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
+  if (!items) return;
   const chartData = [];
-
   for (let i = items.items.length - 1; i >= 0; i--) {
     const one = items.items[i];
     chartData.push({

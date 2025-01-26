@@ -2,7 +2,7 @@
 
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { THistory, type THistoryMonthly } from '@/types/dataTypes';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import monthLeft from '@/assets/month-left.svg';
 import monthRight from '@/assets/month-right.svg';
@@ -11,32 +11,17 @@ import Section from '@/components/atoms/Section';
 import { VerticalBarGraph } from '@/components/molecules/VerticalBarGraph';
 import HistoryItem from '@/components/molecules/HistoryItem';
 import { type THistoryItemCategoryProps } from '@/types/componentTypes';
-import { fetchHistoryMonthly } from '@/api';
+import { fetchHistory, fetchHistoryMonthly } from '@/api';
 
 const mockData: THistoryMonthly = {
   averageExpense: 250000,
   currentBalance: 150000,
   monthlyExpenses: [
-    {
-      month: '2024-01',
-      totalExpense: 0,
-    },
-    {
-      month: '2023-12',
-      totalExpense: 0,
-    },
-    {
-      month: '2023-11',
-      totalExpense: 0,
-    },
-    {
-      month: '2023-10',
-      totalExpense: 0,
-    },
-    {
-      month: '2023-09',
-      totalExpense: 0,
-    },
+    { month: '2024-01', totalExpense: 0 },
+    { month: '2023-12', totalExpense: 0 },
+    { month: '2023-11', totalExpense: 0 },
+    { month: '2023-10', totalExpense: 0 },
+    { month: '2023-09', totalExpense: 0 },
   ],
 };
 
@@ -86,10 +71,18 @@ const historyMockData: THistory = {
   size: 20,
   totalPages: 5,
   totalElements: 100,
+  data: undefined,
 };
 
 export default function History() {
   const [monthlyData, setMonthlyData] = useState<THistoryMonthly>(mockData);
+  const [historyData, setHistoryData] = useState<THistory>(historyMockData);
+  const [year, setYear] = useState<number>(() => new Date().getFullYear());
+  const [month, setMonth] = useState<number>(() => new Date().getMonth() + 1);
+  const [page, setPage] = useState(1); // 현재 페이지 번호
+  const [hasNext, setHasNext] = useState(true); // 다음 페이지 여부
+  const [isFetching, setIsFetching] = useState(false); // 데이터 로드 중 여부
+
   useEffect(() => {
     const getHistoryMonthly = async () => {
       setMonthlyData(await fetchHistoryMonthly());
@@ -97,10 +90,6 @@ export default function History() {
     getHistoryMonthly();
   }, []);
 
-  const [year, setYear] = useState<number>(() => new Date().getFullYear());
-  const [month, setMonth] = useState<number>(() => new Date().getMonth() + 1);
-
-  let lastPrintedDate = '';
   const minusDate = () => {
     if (month === 1) {
       setMonth(12);
@@ -118,6 +107,82 @@ export default function History() {
     }
   };
 
+  // 스크롤을 내려서 데이터를 로드하는 함수
+  useCallback(() => {
+    if (isFetching || !hasNext) return;
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      // 스크롤이 맨 아래에 도달하면 페이지를 증가시키고 데이터를 요청
+      setPage((prev) => prev + 1);
+    }
+  }, [isFetching, hasNext]);
+  useEffect(() => {
+    // year나 month가 변경될 때마다 histories를 초기화하고 page를 1로 설정
+    setHistoryData((prevData) => ({
+      ...prevData,
+      histories: [],
+    }));
+    setPage(1); // 페이지를 1로 초기화
+    setHasNext(true); // 새로운 달의 데이터를 가져오기 위해 리셋
+  }, [year, month]);
+
+  useEffect(() => {
+    const getHistory = async () => {
+      if (!hasNext || isFetching) return;
+
+      setIsFetching(true);
+
+      const tempY = year.toString().padStart(4, '0');
+      const tempM = month.toString().padStart(2, '0');
+
+      try {
+        const fetchData = await fetchHistory({
+          yearMonth: `${tempY}-${tempM}`,
+          page: page,
+          size: 20,
+        });
+
+        setHistoryData((prevData) => {
+          const existingIds = new Set(
+            prevData.histories.map((h) => h.historyId)
+          );
+          const newHistories = fetchData.histories.filter(
+            (h) => !existingIds.has(h.historyId)
+          );
+
+          return {
+            ...fetchData,
+            histories: [...prevData.histories, ...newHistories],
+          };
+        });
+
+        setHasNext(fetchData.page < fetchData.totalPages);
+      } catch (error) {
+        console.error('Error fetching history:', error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    getHistory();
+  }, [year, month, page, hasNext, isFetching]);
+
+  // 스크롤 이벤트 등록
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isFetching || !hasNext) return;
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 100) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isFetching, hasNext]);
+
+  let lastPrintedDate = '';
   return (
     <div className='p-6 space-y-4 mb-16'>
       <NavHeader location={'이번달 입출금 내역'} beforePageUrl={'/home'} />
@@ -129,7 +194,7 @@ export default function History() {
             <Image src={monthRight} alt={'monthRight'} onClick={plusDate} />
           </div>
           <div className='font-SCDream8 text-xl'>
-            {monthlyData.currentBalance.toLocaleString()}원
+            {historyData.totalExpense.toLocaleString()}원
           </div>
         </div>
         <Section height='20rem'>
@@ -148,12 +213,12 @@ export default function History() {
               <Image src={shopingBag} alt='shopingBag' />
             </div>
             <div className='w-[90%]'>
-              <VerticalBarGraph items={mockData.monthlyExpenses} />
+              <VerticalBarGraph items={monthlyData.monthlyExpenses} />
             </div>
           </div>
         </Section>
         <div className='w-full'>
-          {historyMockData.histories.map((h, idx) => {
+          {historyData.histories.map((h, idx) => {
             let currentDate = h.historyDateTime.split('T')[0]; // 날짜만 추출
             currentDate =
               Number(currentDate.split('-')[1]) +
@@ -185,6 +250,11 @@ export default function History() {
             );
           })}
         </div>
+        {isFetching && (
+          <div className='w-full h-12 flex items-center justify-center'>
+            로딩 중...
+          </div>
+        )}
       </div>
     </div>
   );
