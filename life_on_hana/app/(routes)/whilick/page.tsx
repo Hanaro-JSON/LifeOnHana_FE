@@ -7,19 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
 import { fetchWhilickList } from '@/api';
-import { type TWhilickContents } from '@/types/dataTypes';
-
-type TWhilickData = {
-  contents: TWhilickContents[];
-  pageable: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    pageSize: number;
-    totalElements: number;
-    totalPages: number;
-  };
-};
+import { TWhilickData, type TWhilickContents } from '@/types/dataTypes';
 
 export default function Whilick() {
   const [globalAudioState, setGlobalAudioState] = useState({
@@ -31,7 +19,7 @@ export default function Whilick() {
 
   const [top, setTop] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const debouncedTop = useDebounce(top, 100);
+  const debouncedTop = useDebounce(top, 50);
 
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
@@ -47,87 +35,61 @@ export default function Whilick() {
   // ----------------------- api 통신 --------------------------------
 
   const [whilickData, setWhilickData] = useState<TWhilickData>();
-
   const articleIdData = localStorage.getItem('article_id');
+  const [wholeData, setWholeData] = useState<TWhilickContents[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    if (articleIdData) {
-      // console.log('articleIdData: ', articleIdData);
-    }
-  }, [articleIdData]);
-
-  // 무한스크롤
-  const [wholeData, setWholeData] = useState<any[]>([]); // 불러온 모든 데이터 보관용
-  const [id, setId] = useState<number>(0); // wholeData 안의 데이터의 id
-  const [viewings, setViewings] = useState(wholeData.slice(0, 10)); // whilick 컴포넌트가 가지고 있을 데이터 (무조건 10개 유지)
-
-  useEffect(() => {
-    // console.log('whilickData: ', whilickData);
     console.log('wholeData: ', wholeData);
-    console.log('viewings: ', viewings);
-    // }, [whilickData, wholeData, viewings]);
-    // }, [whilickData, wholeData, viewings]);
-    // }, [whilickData]);
-  }, [wholeData, viewings]);
+    // console.log('viewings: ', viewings);
+  }, [wholeData]);
 
-  const updateViewings = useCallback(() => {
-    if (
-      whilickItemTop === viewings?.length - 2 &&
-      !whilickData?.pageable?.last
-    ) {
-      fetchWhilickList(
-        whilickData?.pageable?.pageNumber + 1 || 0,
-        articleIdData,
-        wholeData,
-        (newData) => {
-          setWholeData((prev) => [...prev, ...newData.contents]); // 기존 데이터와 병합
-        },
-        setWhilickData
-      );
-    }
-  }, [wholeData, whilickData, articleIdData, whilickItemTop, viewings?.length]);
-
+  // first fetch ----------------------------
   useEffect(() => {
     fetchWhilickList(
-      0,
+      currentPage,
       articleIdData,
       wholeData,
       (newData) => {
-        setWholeData(newData.contents); // 전체 데이터 저장
-        setId(wholeData.indexOf(viewings[whilickItemTop])); // 초기 id 설정
+        const updatedWholeData = [...wholeData, ...newData?.contents]; // 기존 데이터에 새 데이터 추가
+        setWholeData(updatedWholeData);
       },
       setWhilickData
     );
-  }, [articleIdData, whilickItemTop, viewings]);
+  }, [articleIdData]);
+
+  const loadMoreData = useCallback(() => {
+    setIsLoading(true);
+    fetchWhilickList(
+      currentPage + 1,
+      articleIdData,
+      wholeData,
+      (newData) => {
+        const updatedWholeData = [...wholeData, ...newData?.contents];
+        setWholeData(updatedWholeData);
+
+        if (newData?.contents.length === 0) {
+          setHasMore(false);
+        }
+        setCurrentPage((prev) => prev + 1);
+      },
+      setWhilickData
+    ).finally(() => {
+      setIsLoading(false);
+    });
+  }, [currentPage, articleIdData, wholeData, setWhilickData]);
 
   useEffect(() => {
-    // if (wholeData.length === 0) return; // 데이터가 없으면 실행하지 않음
-    console.log('wholeData 안에서의 id >>>', id);
-
-    const startIdx = Math.max(0, id - 5); // 시작 인덱스
-    const endIdx = Math.min(wholeData.length, id + 5); // 끝 인덱스
-
-    // slice 결과가 10개가 되도록 보장
-    const newViewings = wholeData.slice(startIdx, endIdx);
-    // console.log('newViewings: ', newViewings);
-
-    setViewings(newViewings); // viewings 업데이트
-
-    if (Array.isArray(wholeData) && whilickItemTop === viewings?.length - 2) {
-      updateViewings();
-      // console.log('재 fetch 됨!!!!!!!!!!!!!!!!!');
+    if (whilickItemTop % 7 === 0 && hasMore && !isLoading) {
+      loadMoreData();
     }
-  }, [whilickItemTop, id, viewings?.length]);
-
-  // useEffect(() => {
-  //   console.log('1>>>>>>>>>', viewings[whilickItemTop]);
-  //   console.log('2>>>>>>>>>>', wholeData.indexOf(viewings[whilickItemTop]));
-  //   // console.log('***************', wholeData.indexOf(viewings[whilickItemTop]));
-  // }, [whilickItemTop, viewings, wholeData]);
+  }, [whilickItemTop]);
 
   return (
     <>
-      {!whilickData ? (
+      {whilickData?.contents?.length === 0 ? (
         <WhilickItemLoading />
       ) : (
         <div className='relative min-h-screen flex flex-col items-center justify-center'>
@@ -149,9 +111,12 @@ export default function Whilick() {
             ref={scrollRef}
             onScroll={handleScroll}
             className='snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full'
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
           >
-            {/* {(viewings.length > 0 ? viewings : whilickData.contents)?.map( */}
-            {viewings?.map(
+            {wholeData?.map(
               ({ articleId, title, text, isLiked, likeCount, ttsUrl }, idx) => (
                 <WhilickItem
                   idx={idx}

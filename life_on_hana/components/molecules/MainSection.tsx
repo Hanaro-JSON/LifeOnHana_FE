@@ -70,7 +70,6 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
                 width={100}
                 height={100}
                 priority
-                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
           </div>

@@ -203,7 +203,6 @@ export default function Detail() {
             width={20}
             height={20}
             priority
-            style={{ width: 'auto', height: 'auto' }}
           />
           <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>
         </div>
@@ -308,7 +307,6 @@ export default function Detail() {
                               height={255}
                               className='w-full'
                               priority
-                              style={{ width: 'auto', height: 'auto' }}
                             />
                           </div>
                         </div>

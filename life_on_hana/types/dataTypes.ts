@@ -121,6 +121,18 @@ export type TArticleDetail = {
   data: TArticle; // 'data' 속성 안에 실제 article 데이터가 있음
 };
 
+export type TWhilickData = {
+  contents: TWhilickContents[];
+  pageable: {
+    first: boolean;
+    last: boolean;
+    pageNumber: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
+  };
+};
+
 export type TWhilickContents = {
   articleId: number;
   title: string;

@@ -2,7 +2,15 @@ import {
   type TRecommendItemProps,
   type TArticleItemProps,
 } from '@/types/componentTypes';
-import { type THomeLikeProduct, type TArticlesLiked } from '@/types/dataTypes';
+import {
+  type THomeLikeProduct,
+  type TArticlesLiked,
+  TWhilickContents,
+  TWhilickData,
+} from '@/types/dataTypes';
+import { useToast } from '@/hooks/use-toast';
+import { resolve } from 'path';
+import { Dispatch, SetStateAction } from 'react';
 
 // accessToken 추출
 export let NEXT_PUBLIC_URL: string;
@@ -744,9 +752,9 @@ export const fetchRefreshToken = async () => {
 export async function fetchWhilickList(
   page: number = 0,
   articleIdData: string | null,
-  wholeData: any[],
-  setWhilickData: (data: any) => void,
-  setWholeData: (data: any[]) => void
+  wholeData: TWhilickContents[],
+  setWhilickData: Dispatch<SetStateAction<TWhilickData | undefined>>,
+  setWholeData: Dispatch<SetStateAction<TWhilickContents[]>>
 ) {
   const getChangableApi = (page: number) => {
     if (articleIdData) {
@@ -785,5 +793,6 @@ export async function fetchWhilickList(
     }
   } catch (error) {
     console.error('휘릭 불러오기 실패', error);
+    // alert(`더이상 콘텐츠가 존재하지 않습니다.${error}`);
   }
 }
