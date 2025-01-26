@@ -16,7 +16,7 @@ const getBtnClasses = (variant: string) => {
       return 'w-[19.1875rem] h-[2.9375rem] bg-hanapurple text-[1.25rem] text-white font-bold';
     // "급하게 목돈이 필요하세요?"
     case 'needLumpSum':
-      return 'bg-hanapurple w-full h-[3.2rem] text-[1rem] text-white';
+      return 'bg-hanapurple w-full text-[1.25rem] text-white py-6';
     default:
       return 'bg-hanapurple w-full h-[2.75rem] text-[.9375rem] text-white';
   }
