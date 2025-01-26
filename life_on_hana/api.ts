@@ -493,7 +493,7 @@ export const fetchHistoryStatistics = async () => {
   const month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/history/statistics?yearMonth=${year}${month}`,
+      `${process.env.NEXT_PUBLIC_URL}/api/history/statistics?yearMonth=${year}-${month}`,
       {
         method: 'GET',
         headers: {

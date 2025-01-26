@@ -9,15 +9,14 @@ import { BarGraph } from '@/components/molecules/BarGraph';
 import {
   type TRecommendCarouselItemProps,
   type TArticleItemProps,
-  type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
 } from '@/types/componentTypes';
-import { RecommendCarouselColumn } from '@/components/molecules/RecommendCarouselColumn';
 import { FullImgCarousel } from '@/components/molecules/FullImgCarousel';
 import { RecommendCarouselItem } from '@/components/molecules/RecommendCarouselItem';
 import ShortCutBtn from '@/components/molecules/ShortCutBtn';
 import { DataContext } from '@/hooks/useData';
 import {
+  fetchArticles,
   fetchArticlesLiked,
   fetchHistoryStatistics,
   fetchLikedProducts,
@@ -77,7 +76,12 @@ export default function Home() {
     };
     const getArticlesLiked = async () => {
       try {
-        const fetchData = await fetchArticlesLiked(undefined, category);
+        let fetchData;
+        if (category) {
+          fetchData = await fetchArticlesLiked(undefined, category);
+        } else {
+          fetchData = await fetchArticles();
+        }
         setArticles(fetchData.articles);
       } catch (error) {
         console.error('Error fetching:', error);
