@@ -109,15 +109,17 @@ export default function AccountDetailItem({
           height={15}
         />
         <div className='flex flex-col ml-2'>
-          <div className='text-[1.1rem] font-SCDream4'>{accountName}</div>
-          <div className='text-[1rem] font-SCDream3'>
+          <div className='text-[1.25rem] font-SCDream4'>{accountName}</div>
+          <div className='text-[1.0625rem] font-SCDream3'>
             {formattedAccountNumber}
           </div>
         </div>
       </div>
       <div className='flex justify-between mb-2 text-[.9rem]'>
         <div className='font-SCDream3 ml-9'></div>
-        <div className='font-SCDream8'>{balance.toLocaleString()} 원</div>
+        <div className='font-SCDream8 text-[1.25rem]'>
+          {balance.toLocaleString()} 원
+        </div>
       </div>
 
       {checked && (
@@ -134,14 +136,14 @@ export default function AccountDetailItem({
               defaultValue={defaultAmount}
               onChange={handleAmountChange}
               placeholder={`${balance.toLocaleString()}`}
-              className='mt-2 w-[95%] h-[2.3rem] p-2 border border-hanapurple rounded-md text-right text-[1rem] font-SCDream8 focus:outline-none focus:border-hanapurple focus:border-2'
+              className='mt-2 w-[95%] h-[2.3rem] p-2 border border-hanapurple rounded-md text-right text-[1.25rem] font-SCDream8 focus:outline-none focus:border-hanapurple focus:border-2'
             />
             <div className='ml-2 text-[1.1rem] font-SCDream5 mt-2'>원</div>
           </div>
         </div>
       )}
 
-      <div className='absolute top-4 right-[0.1rem] w-[1.7rem] h-[1.7rem]'>
+      <div className='absolute top-3 right-[0.1rem] w-[1.7rem] h-[1.7rem]'>
         <Image
           src={checked ? AccountCheckYes : AccountCheckNo}
           alt={checked ? 'Account Checked' : 'Account Not Checked'}
