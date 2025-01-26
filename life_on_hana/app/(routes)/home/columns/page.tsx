@@ -21,17 +21,7 @@ export default function Columns() {
 
     try {
       const data = await fetchArticlesLiked(page, undefined);
-      setLikedArticles((prev) => {
-        const newArticles = data.articles;
-
-        const allArticles = [...prev, ...newArticles];
-        const uniqueArticles = allArticles.filter(
-          (value, index, self) =>
-            index === self.findIndex((t) => t.articleId === value.articleId)
-        );
-
-        return uniqueArticles;
-      });
+      setLikedArticles((prev) => [...prev, ...data.articles]);
       setHasNext(data.hasNext ?? true);
       setPage((prev) => prev + 1);
     } catch (error) {

@@ -11,7 +11,7 @@ export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
     const one = items.items[i];
     chartData.push({
       month:
-        i == 0 ? '이번 달' : Number(one.month.toString().slice(4, 6)) + '월',
+        i == 0 ? '이번 달' : Number(one.month.toString().slice(5, 7)) + '월',
       totalExpense: one.totalExpense,
       formattedExpense: Math.round(one.totalExpense / 10000) + '만원',
     });
