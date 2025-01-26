@@ -15,7 +15,7 @@ export function FullImgCarousel({
   }: TRecommendCarouselColumnProps) {
     return (
       <div className='w-48 h-64 flex-shrink-0 mx-1 ' key={article_id}>
-        <Link href={`/column/detail/${article_id}`}>
+        <Link href={`/column/${article_id}`}>
           <div className='relative h-full rounded-[.9375rem] overflow-hidden'>
             <Image
               src={thumbnail_s3_key || logo_white}

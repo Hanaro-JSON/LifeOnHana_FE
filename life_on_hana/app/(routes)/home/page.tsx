@@ -169,49 +169,49 @@ export default function Home() {
     switch (category) {
       case 'REAL_ESTATE':
         return (
-          <div>
-            <span className='text-hanapurple'>부동산</span>에 관심이 많은
-            <span className='text-hanapurple'>마음부자 🏢</span>
+          <div className=''>
+            <span className=' text-hanapurple'>부동산</span>에 관심이 많은&nbsp;
+            <span className=' text-hanapurple'>마음부자 🏢</span>
           </div>
         );
       case 'INVESTMENT':
         return (
-          <div>
-            <span className='text-hanapurple'>투자</span>에 관심이 많은
-            <span className='text-hanapurple'>멋진</span> 중년 🎩
+          <div className=''>
+            <span className=' text-hanapurple'>투자</span>에 관심이 많은&nbsp;
+            <span className=' text-hanapurple'>멋진</span> 중년 🎩
           </div>
         );
       case 'INHERITANCE_GIFT':
         return (
           <div>
             <span className='text-hanapurple'>상속</span>에 관심이 많은
-            <span className='text-hanapurple'>간지나는</span> 중년 🎩
+            <span className='text-hanapurple'>&nbsp;간지나는</span> 중년 🎩
           </div>
         );
       case 'TRAVEL':
         return (
-          <div>
+          <div className=''>
             <span className='text-hanapurple'>여행</span>을 좋아하는
-            <span className='text-hanapurple'>건강미</span> 중년 💪
+            <span className='text-hanapurple'>&nbsp;건강미</span> 중년 💪
           </div>
         );
       case 'CULTURE':
         return (
-          <div>
+          <div className=''>
             <span className='text-hanapurple'>문화</span>에 관심이 많은
-            <span className='text-hanapurple'>감성적인</span> 중년 🎨
+            <span className='text-hanapurple'>&nbsp;감성적인</span> 중년 🎨
           </div>
         );
       case 'HOBBY':
         return (
-          <div>
+          <div className=''>
             <span className='text-hanapurple'>취미</span>에 관심이 많은
-            <span className='text-hanapurple'>열정 가득한</span> 중년 ⛳
+            <span className='text-hanapurple'>&nbsp;열정 가득한</span> 중년 ⛳
           </div>
         );
       default:
         return (
-          <div>
+          <div className=''>
             아직<span className='text-hanapurple'>&nbsp;좋아요</span>하신 칼럼이
             없어요!
             <div>이런 칼럼은 어떠세요? 😊</div>
@@ -262,17 +262,16 @@ export default function Home() {
       </Section>
 
       {/* 좋아요한 칼럼 카드 */}
-      <div className='flex flex-row justify-between items-end'>
-        <div className='font-SCDream4 tracking-wide'>
-          <div>{data.name}님은</div>
-          {categoryToNickname(category)}
+      <div className='flex flex-col space-y-3'>
+        <div className='font-SCDream4 text-[1.25rem]'>
+          {data.name}님은 {categoryToNickname(category)}
         </div>
-        <div>
+        <div className='flex flex-col items-end gap-3'>
           <ShortCutBtn url={'/home/columns'} variant='column' />
         </div>
+        <FullImgCarousel items={RecommendCarouselColumnItems} />
       </div>
-      {/* <RecommendCarouselColumn items={RecommendCarouselColumnItems} /> */}
-      <FullImgCarousel items={RecommendCarouselColumnItems} />
+
       {/* 추천 상품 카드 */}
       <div className='flex flex-row justify-between items-end'>
         <div className='font-SCDream4 tracking-wide'>
