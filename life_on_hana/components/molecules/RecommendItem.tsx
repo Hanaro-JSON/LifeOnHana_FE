@@ -1,5 +1,5 @@
 import { type TRecommendItemProps } from '@/types/componentTypes';
-import Section from '../atoms/Section';
+import Section from '@/components/atoms/Section';
 
 export function RecommendItem({
   name,
@@ -18,7 +18,7 @@ export function RecommendItem({
               <>
                 <div className='font-SCDream8 text-[1.1rem]'>최대</div>
                 <div className='font-SCDream8 text-[1rem] text-hanapurple whitespace-nowrap'>
-                  {maxAmount.toLocaleString()}원
+                  {maxAmount.toLocaleString()}
                 </div>
               </>
             )}
@@ -48,11 +48,13 @@ export function RecommendItem({
             {/* [{productType}] 무슨 카테고리인지  */}
             {name}
           </div>
-          <div className='font-SCDream3 text-[.9rem] max-w-[90%] line-clamp-2 overflow-hidden text-ellipsis'>
+          <div className='font-SCDream3 text-[1rem] max-w-[90%] line-clamp-2 overflow-hidden text-ellipsis'>
             {description}
           </div>
         </div>
-        <div className='flex flex-col'>{renderProductDetails()}</div>
+        <div className='flex flex-col text-[1rem]'>
+          {renderProductDetails()}
+        </div>
       </div>
     </Section>
   );

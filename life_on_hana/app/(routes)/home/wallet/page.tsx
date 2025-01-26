@@ -54,7 +54,6 @@ const mockWalletData: TGetWallet = {
 
 export default function Wallet() {
   const { toast } = useToast();
-
   const { data } = useContext(DataContext);
   //api/users/mydata
   const [mydata, setMyData] = useState<TGetUsersMydata>(mockMyData);
@@ -71,6 +70,7 @@ export default function Wallet() {
   const [editWallet, setEditWallet] = useState(wallet);
   const [editSalary, setEditSalary] = useState<string>();
   const [averageExpense, setAverageExpense] = useState(0);
+
   useEffect(() => {
     const getMydata = async () => {
       try {
@@ -80,6 +80,7 @@ export default function Wallet() {
         console.error('Error fetching:', error);
       }
     };
+
     const getWallet = async () => {
       try {
         const fetchData = await fetchWallet();
@@ -91,6 +92,7 @@ export default function Wallet() {
         console.error('Error fetching:', error);
       }
     };
+
     const getHistoryMonthly = async () => {
       try {
         const fetchData = await fetchHistoryMonthly();
@@ -122,10 +124,12 @@ export default function Wallet() {
     fetchPutWallet(editWallet);
     setIsEditing(false);
   };
+
   const handleCancel = () => {
     setEditWallet(wallet);
     setIsEditing(false);
   };
+
   const formatNumber = (value: string) => {
     if (!value || isNaN(Number(value.replaceAll(',', '')))) return '';
     return Number(value.replaceAll(',', '')).toLocaleString('en-US');
@@ -150,21 +154,24 @@ export default function Wallet() {
     const tempStartD = wallet.startDate.split('-');
     return tempStartD[0] + '년 ' + tempStartD[1] + '월';
   };
+
   const getConvertedEndDate = () => {
     const tempEndD = wallet.endDate.split('-');
     return tempEndD[0] + '년 ' + tempEndD[1] + '월';
   };
+
   const getSalary = () => {
     const tempStartD = wallet.startDate.split('-');
-    const convertStartD = tempStartD[0] + '년 ' + tempStartD[1] + '월';
+    const convertStartD = tempStartD[0] + '/' + tempStartD[1];
     const tempEndD = wallet.endDate.split('-');
-    const convertEndD = tempEndD[0] + '년 ' + tempEndD[1] + '월';
+    const convertEndD = tempEndD[0] + '/' + tempEndD[1];
     const months =
       Number(tempEndD[0]) * 12 +
       Number(tempEndD[1]) -
       (Number(tempStartD[0]) * 12 + Number(tempStartD[1]));
     return convertStartD + ' - ' + convertEndD + ' (총 ' + months + '개월)';
   };
+
   const getMonths = () => {
     const tempStartD = wallet.startDate.split('-');
     const tempEndD = wallet.endDate.split('-');
@@ -174,41 +181,47 @@ export default function Wallet() {
       (Number(tempStartD[0]) * 12 + Number(tempStartD[1]))
     );
   };
+
   const AnalyzeData = () => {
     const getKookmin =
       Number(wallet.endDate.split('-')[0]) * 12 +
       Number(wallet.endDate.split('-')[0]) -
       (Number(mydata.pensionStart) + 1);
+
     const need = getMonths() * wallet.walletAmount - getKookmin;
+
     if (need > mydata.totalAsset) {
-      //돈 부족
+      // 돈 부족
       return (
-        <div className='flex flex-col gap-y-5'>
-          <div className='font-SCDream2 text-sm mt-4'>
-            매달 &nbsp;
-            <span className='font-SCDream3 font-extrabold'>
+        <div className='flex flex-col gap-y-8'>
+          <div className='font-SCDream3 text-[1rem] mt-4'>
+            매달&nbsp;
+            <span className='font-SCDream5 text-[1.0625rem]'>
               {wallet.walletAmount.toLocaleString()}원
             </span>
-            을&nbsp;
-            <span className='font-SCDream3 font-extrabold'>
+            을<br />
+            <span className='font-SCDream5 text-[1.0625rem]'>
               설정하신 지급 기간 ({getMonths()}개월)
             </span>
-            &nbsp;동안 수령하기 위해 하나 월급통장에 필요한 금액은&nbsp;
-            <span className='font-SCDream3 font-extrabold'>
+            &nbsp;동안 수령하기 위해 <br />
+            하나 월급통장에 필요한 금액은 <br />
+            <span className='font-SCDream5 text-[1.0625rem]'>
               {need.toLocaleString()}원
             </span>
             입니다. <br />
-            <span className='font-SCDream3 font-extrabold'>
+            <span className='font-SCDream5 text-[1.0625rem]'>
               &nbsp;{Math.floor(need / mydata.totalAsset)}개월 이후
             </span>
             부터 잔액이 부족하게 됩니다.
           </div>
+
           <Btn
             variant={'hanaWallet'}
             text={'하나 월급통장 더 채우기'}
             url={'/home/wallet/deposit'}
           />
-          <div className='font-SCDream2 text-sm'>
+
+          <div className='font-SCDream3 text-[1rem]'>
             다음과 같은 방안도 고려해볼 수 있어요.
           </div>
           <div className='flex flex-row justify-center gap-x-2'>
@@ -275,18 +288,22 @@ export default function Wallet() {
   };
 
   return (
-    <div className='p-6 space-y-4 mb-20'>
+    <div className='p-6 space-y-8 mb-28'>
       <NavHeader location={'하나 지갑 관리하기'} beforePageUrl={'/home'} />
       <Section>
-        <div className='w-full space-y-2'>
+        <div className='w-full space-y-3'>
           <div className='pb-4 w-full flex flex-row justify-between items-center'>
-            <div className='font-SCDream8 text-xl'>{data.name}님의 자산</div>
+            <div className='font-SCDream7 text-[1.5625rem]'>
+              {data.name}님의 자산
+            </div>
             <MicroMiniBtn
               text={hideAmount ? '금액 보기' : '금액 숨김'}
               onClick={() => setHideAmount((prev) => !prev)}
             />
           </div>
-          <div className='w-full font-SCDream3 text-[0.9rem]'>나의 총 자산</div>
+          <div className='w-full font-SCDream3 text-[1.25rem]'>
+            나의 총 자산
+          </div>
           <div className='w-full flex flex-row justify-between items-center'>
             {hideAmount ? (
               <div className='font-SCDream8 text-3xl text-gray-400'>
@@ -321,38 +338,45 @@ export default function Wallet() {
               />
             )}
           </div>
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[0.9rem]'>
+          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
             <div>월평균 고정지출</div>
             <div>
-              <span className='font-extrabold'>
+              <span className='font-SCDream5 text-[1.0625rem]'>
                 {averageExpense.toLocaleString()}
               </span>
               원
             </div>
           </div>
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[0.9rem]'>
+          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
             <div>나의 국민연금 수령 연도</div>
             <div>
-              <span className='font-extrabold'>{mydata.pensionStart}</span>년
+              <span className='font-SCDream5 text-[1.0625rem]'>
+                {mydata.pensionStart}
+              </span>
+              년
             </div>
           </div>
         </div>
       </Section>
+
       <Section bgColor='hanalightpurple' height='10rem'>
-        <div className='w-full flex flex-row justify-between'>
+        <div className='w-full flex justify-between'>
           <Image src={snake} alt={'snake'} />
           <div className='flex flex-col justify-center items-end gap-y-2'>
-            <div className='font-SCDream5 text-lg'>하나 월급통장 잔액</div>
-            <div className='font-SCDream8 text-3xl'>
+            <div className='font-SCDream5 text-[1.3125rem]'>
+              하나 월급통장 잔액
+            </div>
+            <div className='font-SCDream7 text-[1.6rem]'>
               {mydata.salaryAccount.balance.toLocaleString()}원
             </div>
           </div>
         </div>
       </Section>
+
       <Section>
         <div className='w-full space-y-2'>
           <div className='pb-4 w-full flex flex-row justify-between items-center'>
-            <div className='font-SCDream8 text-xl'>
+            <div className='font-SCDream8 text-[1.25rem]'>
               <span className='text-hanagreen'>하나 지갑</span> 정보
             </div>
             {isEditing ? (
@@ -366,7 +390,7 @@ export default function Wallet() {
           </div>
 
           {/* 지급 기간 */}
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[0.9rem]'>
+          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1rem]'>
             <div>지급 기간</div>
             {isEditing ? (
               <div className='font-extrabold'>
@@ -386,13 +410,15 @@ export default function Wallet() {
                 />
               </div>
             ) : (
-              <div className='font-extrabold'>{getSalary()}</div>
+              <div className='font-SCDream5 text-[1.0625rem]'>
+                {getSalary()}
+              </div>
             )}
           </div>
           {oneHundredDefaultText}
 
           {/* 하나 급여일 */}
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[0.9rem]'>
+          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1rem]'>
             <div>하나 급여일</div>
             {isEditing ? (
               <div className='flex flex-row gap-x-1'>
@@ -428,12 +454,14 @@ export default function Wallet() {
                 </div>
               </div>
             ) : (
-              <div className='font-extrabold'>매달 {wallet.paymentDay}일</div>
+              <div className='font-SCDream5 text-[1.0625rem]'>
+                매달 {wallet.paymentDay}일
+              </div>
             )}
           </div>
 
           {/* 지급 금액 */}
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[0.9rem]'>
+          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1rem]'>
             <div>지급 금액</div>
             {isEditing ? (
               <div>
@@ -447,22 +475,24 @@ export default function Wallet() {
                 원
               </div>
             ) : (
-              <div className='font-extrabold'>
+              <div className='font-SCDream5 text-[1.0625rem]'>
                 {wallet.walletAmount.toLocaleString()}원 / 월
               </div>
             )}
           </div>
         </div>
       </Section>
+
       <Section>
-        <div className='w-full space-y-2'>
+        <div className='w-full space-y-8'>
           <div className='pb-4 w-full items-center'>
             <div className='font-SCDream8 text-xl'>나의 예상 자산 흐름</div>
           </div>
-          <div className='font-SCDream2 text-sm'>
+          <div className='font-SCDream3 text-[1.0625rem]'>
             <span className='font-bold'>{getConvertedEndDate()}</span>까지의{' '}
             {data.name}님의 자산 변동을 그래프로 보여드릴게요.
           </div>
+
           <LineGraph
             totalAsset={mydata.totalAsset}
             walletAmount={wallet.walletAmount}
@@ -471,6 +501,7 @@ export default function Wallet() {
             pensionStart={mydata.pensionStart}
             balance={mydata.salaryAccount.balance}
           />
+
           <AnalyzeData />
         </div>
       </Section>

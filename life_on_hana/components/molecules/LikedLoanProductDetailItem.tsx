@@ -65,11 +65,20 @@ export default function LikedLoanProductDetailItem({
   return (
     <div id='modal-background' onClick={handleBackgroundClick} className={bg}>
       <div
-        className='w-[90%] min-h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6'
+        className='w-[90%] min-h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-around p-6'
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
-        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full gap-2'>
+        <div className='absolute top-3 right-3 flex justify-end items-center w-full gap-2'>
+          {closeBtn && (
+            <button onClick={handleCloseClick} className='p-1'>
+              <Image src={X} alt='Close' width={15} height={15} />
+            </button>
+          )}
+        </div>
+
+        {/* 제목 및 좋아요 버튼 */}
+        <div className='flex items-center gap-3 -mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start'>
           <button
             onClick={handleLikeToggle}
             disabled={isLoading}
@@ -82,25 +91,16 @@ export default function LikedLoanProductDetailItem({
               height={22}
             />
           </button>
-          {closeBtn && (
-            <button onClick={handleCloseClick} className='p-1'>
-              <Image src={X} alt='Close' width={15} height={15} />
-            </button>
-          )}
-        </div>
-
-        {/* 제목 및 좋아요 버튼 */}
-        <div className='-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2'>
           {name}
         </div>
 
         {/* 내용 */}
-        <div className='w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[7rem] flex-grow'>
-          <p>{description}</p>
+        <div className='w-[100%] text-[1.2rem] font-SCDream3 overflow-y-auto'>
+          {description}
         </div>
 
         {/* 상세정보: 특징/대상/한도/기간 */}
-        <div className='space-y-4 mt-8'>
+        <div className='space-y-4 mt-2'>
           {[
             { label: '특징', content: feature },
             { label: '대상', content: target },
@@ -117,7 +117,7 @@ export default function LikedLoanProductDetailItem({
           ].map(({ label, content }) => (
             <div key={label} className='flex items-center'>
               <div className='flex-none'>
-                <div className='bg-hanalightpurple rounded-[.9375rem] text-[1.1rem] font-SCDream5 px-3 py-1 mr-2 flex items-center justify-center'>
+                <div className='bg-hanalightpurple rounded-[.9375rem] text-[1.1rem] font-SCDream5 px-3 py-1 mr-4 flex items-center justify-center'>
                   {label}
                 </div>
               </div>

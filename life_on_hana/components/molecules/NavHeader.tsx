@@ -9,7 +9,7 @@ export function NavHeader({
   beforePageUrl: string;
 }) {
   return (
-    <div className='flex flex-row items-center mb-6'>
+    <div className='relative flex flex-row items-center mb-6'>
       <Link href={beforePageUrl}>
         <Image src={arrowLeft} alt='before' width={10} height={10} />
       </Link>

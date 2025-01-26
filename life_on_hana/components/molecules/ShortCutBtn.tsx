@@ -6,22 +6,22 @@ import { type TShortCutBtnProps } from '@/types/componentTypes';
 const variantConfig = {
   column: {
     text: '좋아요한 칼럼 보러가기',
-    class1: 'text-[.75rem]',
+    class1: 'text-[1rem]',
     class2: '',
   },
   spend: {
     text: '내 지출내역 구체적으로 보기',
-    class1: 'text-[.75rem]',
+    class1: 'text-[1rem]',
     class2: '',
   },
   product: {
     text: '좋아요한 상품 보러가기',
-    class1: 'text-[.75rem]',
+    class1: 'text-[1rem]',
     class2: '',
   },
   default: {
     text: '좋아요한 칼럼 보러가기',
-    class1: 'text-[.75rem]',
+    class1: 'text-[1rem]',
     class2: '',
   },
 };
@@ -38,7 +38,7 @@ export default function ShortCutBtn({
 
   return (
     <div
-      className={`${variantClass2} h-[.9375rem] inline-flex items-center justify-center`}
+      className={`${variantClass2} h-fit inline-flex items-center justify-center`}
     >
       <Link href={url} className='flex items-center justify-center'>
         <div

@@ -75,6 +75,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     const getWallet = async () => {
       try {
         const fetchData = await fetchWallet();
@@ -83,6 +84,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     const getHistoryStatistics = async () => {
       try {
         const fetchData = await fetchHistoryStatistics();
@@ -93,6 +95,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     const getUsersNickname = async () => {
       try {
         const fetchData = await fetchUsersNickname();
@@ -110,6 +113,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
     getInfo();
     getWallet();
     getHistoryStatistics();
@@ -117,6 +121,7 @@ export default function Home() {
     getLikedProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     const getArticlesLiked = async () => {
       try {
@@ -169,49 +174,49 @@ export default function Home() {
     switch (category) {
       case 'REAL_ESTATE':
         return (
-          <div>
-            <span className='text-hanapurple'>부동산</span>에 관심이 많은
-            <span className='text-hanapurple'>마음부자 🏢</span>
+          <div className=''>
+            <span className=' text-hanapurple'>부동산</span>에 관심이 많은&nbsp;
+            <span className=' text-hanapurple'>마음부자 🏢</span>
           </div>
         );
       case 'INVESTMENT':
         return (
-          <div>
-            <span className='text-hanapurple'>투자</span>에 관심이 많은
-            <span className='text-hanapurple'>멋진</span> 중년 🎩
+          <div className=''>
+            <span className=' text-hanapurple'>투자</span>에 관심이 많은&nbsp;
+            <span className=' text-hanapurple'>멋진</span> 중년 🎩
           </div>
         );
       case 'INHERITANCE_GIFT':
         return (
           <div>
             <span className='text-hanapurple'>상속</span>에 관심이 많은
-            <span className='text-hanapurple'>간지나는</span> 중년 🎩
+            <span className='text-hanapurple'>&nbsp;간지나는</span> 중년 🎩
           </div>
         );
       case 'TRAVEL':
         return (
-          <div>
+          <div className=''>
             <span className='text-hanapurple'>여행</span>을 좋아하는
-            <span className='text-hanapurple'>건강미</span> 중년 💪
+            <span className='text-hanapurple'>&nbsp;건강미</span> 중년 💪
           </div>
         );
       case 'CULTURE':
         return (
-          <div>
+          <div className=''>
             <span className='text-hanapurple'>문화</span>에 관심이 많은
-            <span className='text-hanapurple'>감성적인</span> 중년 🎨
+            <span className='text-hanapurple'>&nbsp;감성적인</span> 중년 🎨
           </div>
         );
       case 'HOBBY':
         return (
-          <div>
+          <div className=''>
             <span className='text-hanapurple'>취미</span>에 관심이 많은
-            <span className='text-hanapurple'>열정 가득한</span> 중년 ⛳
+            <span className='text-hanapurple'>&nbsp;열정 가득한</span> 중년 ⛳
           </div>
         );
       default:
         return (
-          <div>
+          <div className=''>
             아직<span className='text-hanapurple'>&nbsp;좋아요</span>하신 칼럼이
             없어요!
             <div>이런 칼럼은 어떠세요? 😊</div>
@@ -221,66 +226,72 @@ export default function Home() {
   }
 
   return (
-    <div className='p-6 space-y-4 mb-28'>
+    <div className='p-6 space-y-8 mb-28'>
       {/* 헤더 */}
       <LogoHeader isMain={true} />
+
       {/* 하나월급 카드 */}
       <MainSection
         name={data.name}
         walletAmount={Math.round(walletAmount / 10000)}
       />
+
       {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
+
       {/* 이번 달 지출 카드 */}
-      <Section height='15rem'>
-        <div className='w-full max-w-full space-y-3'>
-          <div className='font-SCDream2'>
-            이번 달 지출은 &nbsp;
-            <span className='font-SCDream5 underline-offset-1 underline text-xl text-hanapurple'>
+      <Section height='19rem'>
+        <div className='w-full max-w-full space-y-6 my-3'>
+          <div className='font-SCDream3 text-[1.25rem]'>
+            이번 달 지출은&nbsp;
+            <span className='font-SCDream5 text-[1.25rem] text-hanapurple'>
               {Math.round(totalExpense / 10000)}만원
             </span>
             &nbsp;입니다.
           </div>
+
           <BarGraph type={'mydata'} expenseCategories={expenseCategories} />
-          <div className='font-SCDream2 text-xs'>
-            이번 달 받은 이자는 총 &nbsp;
-            <span className='font-SCDream4 underline-offset-1 underline text-sm text-hanapurple'>
+
+          <div className='font-SCDream3 text-[1.0625rem] mt-8'>
+            이번 달 받은 이자는 총&nbsp;
+            <span className='font-SCDream4 text-[1.0625rem] text-hanapurple'>
               {totalInterest.toLocaleString()}원
             </span>
             &nbsp;입니다.
           </div>
-          <div className='border-t-2 flex justify-center items-center h-[2rem]'>
+
+          <div className='border-t-2 flex justify-center items-center h-[2rem] pt-5'>
             <ShortCutBtn url={'/home/history'} variant='spend' />
           </div>
         </div>
       </Section>
+
       {/* 좋아요한 칼럼 카드 */}
-      <div className='flex flex-row justify-between items-end'>
-        <div className='font-SCDream4 tracking-wide'>
-          <div>{data.name}님은</div>
-          {categoryToNickname(category)}
+      <div className='flex flex-col space-y-3'>
+        <div className='font-SCDream4 text-[1.25rem]'>
+          {data.name}님은 {categoryToNickname(category)}
         </div>
-        <div>
+        <div className='flex flex-col items-end gap-3'>
           <ShortCutBtn url={'/home/columns'} variant='column' />
         </div>
+        <FullImgCarousel items={RecommendCarouselColumnItems} />
       </div>
-      {/* <RecommendCarouselColumn items={RecommendCarouselColumnItems} /> */}
-      <FullImgCarousel items={RecommendCarouselColumnItems} />
+
       {/* 추천 상품 카드 */}
-      <div className='flex flex-row justify-between items-end'>
-        <div className='font-SCDream4 tracking-wide'>
+      <div className='flex flex-col space-y-3'>
+        <div className='font-SCDream4 text-[1.25rem]'>
           {data.name}님을 위한 추천 상품
         </div>
-        <div>
+        <div className='flex flex-col items-end gap-3'>
           <ShortCutBtn url={'/home/like'} variant='product' />
         </div>
+        <RecommendCarouselItem
+          items={carouselItems}
+          onClick={(productId, category) =>
+            handleProductClick(Number(productId), category)
+          }
+        />
       </div>
-      <RecommendCarouselItem
-        items={carouselItems}
-        onClick={(productId, category) =>
-          handleProductClick(Number(productId), category)
-        }
-      />
 
       {selectedProduct?.type === 'LOAN' && (
         <LikedLoanProductDetailItem

@@ -79,21 +79,21 @@ export default function HistoryItem({
         <Image
           src={getSrc(category)}
           alt={getLabel(category)}
-          width={40}
-          height={40}
+          width={50}
+          height={50}
         />
         <div className='flex flex-col py-2'>
-          <div className='font-SCDream3 text-[.8025rem]'>
+          <div className='font-SCDream3 text-[.9375rem]'>
             {getLabel(category)}
           </div>
-          <div className='font-SCDream5 text-[.9rem]'>{description}</div>
-          <div className='font-SCDream2 text-[.625rem]'>
+          <div className='font-SCDream5 text-[1.25rem]'>{description}</div>
+          <div className='font-SCDream2 text-[.9375rem]'>
             {extractTimeWithRegex(historyDatetime)}
           </div>
         </div>
       </div>
-      <div className='font-SCDream5'>
-        {isExpense ? '+' : '-'}
+      <div className='font-SCDream5 text-[1.25rem]'>
+        {isExpense ? '+' : '-'}&nbsp;
         {amount.toLocaleString()} 원
       </div>
     </div>

@@ -15,8 +15,8 @@ export function RecommendCarouselItem({
       case 'LOAN':
         return (
           <div className='flex flex-col items-end '>
-            <div className='font-SCDream8 text-sm'>최대</div>
-            <div className='font-SCDream8 text-sm text-[#4D00B5]'>
+            <div className='font-SCDream8 text-[1rem]'>최대</div>
+            <div className='font-SCDream8 text-[1.2rem] text-[#4D00B5]'>
               {Math.round(Number(item.maxAmount) / 10000)}만원
             </div>
           </div>
@@ -24,9 +24,9 @@ export function RecommendCarouselItem({
       case 'SAVINGS':
         return (
           <div className='flex flex-col items-end'>
-            <div className='font-SCDream3 text-[.75rem]'>연(세전,1년)</div>
+            <div className='font-SCDream3 text-[1rem]'>연(세전,1년)</div>
             <div className='font-SCDream8 text-[1rem] text-[#4D00B5]'>
-              최고 ~{item.maxInterest_rate}%
+              최고 ~ {item.maxInterest_rate}%
             </div>
           </div>
         );
@@ -42,19 +42,21 @@ export function RecommendCarouselItem({
       className='w-full h-full items-center flex flex-row justify-between'
     >
       <div className='flex flex-col flex-[2]'>
-        <div className='font-SCDream8 text-[1rem] line-clamp-1 overflow-hidden text-ellipsis'>
+        <div className='font-SCDream6 text-[1.5rem] line-clamp-1 overflow-hidden text-ellipsis'>
           {item.name}
         </div>
-        <div className='font-SCDream3 text-[0.8rem] line-clamp-2 overflow-hidden text-ellipsis'>
+        <div className='font-SCDream3 text-[1rem] line-clamp-2 overflow-hidden text-ellipsis'>
           {item.description}
         </div>
       </div>
       {renderProductDetails(item) !== null ? (
-        <div className='flex flex-col flex-[1]'>
+        <div className='flex flex-col flex-[1] text-[1rem]'>
           {renderProductDetails(item)}
         </div>
       ) : (
-        <div className='flex flex-col'>{renderProductDetails(item)}</div>
+        <div className='flex flex-col text-[1rem]'>
+          {renderProductDetails(item)}
+        </div>
       )}
     </div>
   ));

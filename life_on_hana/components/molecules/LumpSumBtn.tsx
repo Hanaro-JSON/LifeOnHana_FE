@@ -39,7 +39,7 @@ export default function LumpSumBtn({
   onClick: () => void;
 }) {
   const commonClassNames =
-    'flex flex-col justify-center items-center w-[6rem] h-[6rem] rounded-xl';
+    'flex flex-col justify-center items-center w-[6.6rem] h-[6.6rem] rounded-xl';
 
   return (
     <button
@@ -65,7 +65,7 @@ export default function LumpSumBtn({
         width={50}
         height={50}
       />
-      <div className='font-SCDream5 text-[0.7rem]'>{getLabel(variant)}</div>
+      <div className='font-SCDream4 text-[1.0rem]'>{getLabel(variant)}</div>
     </button>
   );
 }

@@ -133,7 +133,7 @@ export default function OtherAccount() {
           beforePageUrl={'..'}
         />
 
-        <div className='mb-2 px-2'>
+        {/* <div className='mb-2 px-2'>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
 
           <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
@@ -156,11 +156,35 @@ export default function OtherAccount() {
             </div>
           </div>
         </div>
+        
         <div className='mb-2 mt-5 px-2'>
           <div className='text-[1.25rem] font-SCDream5'>출금계좌 선택</div>
+        </div> */}
+      </div>
+
+      <div className='mb-8 px-2'>
+        <div className='text-[1.25rem] font-SCDream5 mb-4'>입금계좌</div>
+
+        <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
+          <div className='h-8 flex items-center gap-2 mt-1 ml-1'>
+            <Image
+              className='w-9 h-9'
+              src={HanaBankLogo}
+              alt='Hana Logo'
+              width={50}
+              height={50}
+            />
+            <div className='font-SCDream5 text-[1.25rem]'>하나 지갑</div>
+          </div>
+          <div className='text-right font-SCDream8 text-[1.375rem] mr-4 mb-2'>
+            {walletAmount.toLocaleString()} 원
+          </div>
         </div>
       </div>
 
+      <div className='mb-2 mt-5 px-2'>
+        <div className='text-[1.25rem] font-SCDream5 mb-4'>출금계좌 선택</div>
+      </div>
       <div className='flex-1 overflow-y-auto px-2 mb-32'>
         <div className='flex flex-col gap-5 pb-[10vh]'>
           <div className='p-2 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1 items-center'>
@@ -184,7 +208,7 @@ export default function OtherAccount() {
         </div>
       </div>
 
-      <div className='fixed bottom-5 left-0 w-full flex justify-center mb-32'>
+      <div className='fixed bottom-3 left-0 w-full flex justify-center mb-32'>
         <div className='w-[85%] flex justify-center'>
           <Btn
             text='채우기 완료'

@@ -142,9 +142,7 @@ export function BarGraph({
             cursor={false}
             content={<ChartTooltipContent hideLabel />}
           />
-          <ChartLegend
-            content={<ChartLegendContent className='pl-[60px] ' />}
-          />
+          <ChartLegend content={<ChartLegendContent className='pl-[60px]' />} />
 
           {filteredChartData.map(([category], filteredIndex) => {
             return (

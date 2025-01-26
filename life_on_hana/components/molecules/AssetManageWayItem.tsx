@@ -54,7 +54,7 @@ export default function AssetManageWayItem({
 }) {
   return (
     <div className='flex flex-col justify-center items-center'>
-      <div className='w-20 h-20 bg-hanalightpurple rounded-3xl flex justify-center items-center mb-1'>
+      <div className='w-20 h-20 bg-hanalightpurple rounded-3xl flex justify-center items-center mb-3'>
         <Image
           src={getSrc(variant)}
           alt={getLabel(variant)}
@@ -62,7 +62,7 @@ export default function AssetManageWayItem({
           height={35}
         />
       </div>
-      <div className='font-SCDream5 text-sm'>{getLabel(variant)}</div>
+      <div className='font-SCDream4 text-[.875rem]'>{getLabel(variant)}</div>
     </div>
   );
 }

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
+
 import Skeleton from 'react-loading-skeleton';
 import Btn from '@/components/atoms/Btn';
 import Section from '@/components/atoms/Section';
@@ -22,12 +24,12 @@ import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductD
 import { useToast } from '@/hooks/use-toast';
 
 export enum Reason {
-  CHILDREN = '자녀 지원(결혼비용, 학비, 자취/독립 지원 등)',
-  MEDICAL = '의료비 지원(본인 및 가족의 의료비 등)',
-  HOUSING = '주거 및 생활비(주거 관련, 생활비 부족 등)',
-  BUSINESS_INVESTMENT = '사업 및 투자 자금(사업 투자, 창업 자금 등)',
+  CHILDREN = '자녀 지원 (결혼, 학비, 독립 지원 등)',
+  MEDICAL = '의료비 지원 (본인 및 가족 의료비 등)',
+  HOUSING = '주거 및 생활비 (주거, 생활비 부족 등)',
+  BUSINESS_INVESTMENT = '사업 및 투자 자금 (투자, 창업 자금 등)',
   VEHICLE_TRANSPORT = '차량 및 교통',
-  LEISURE = '여가(여행, 취미, 교육 등)',
+  LEISURE = '여가 (여행, 취미, 교육 등)',
   DEBT_REPAYMENT = '채무 상환',
   OTHER = '기타',
 }
@@ -53,6 +55,7 @@ export default function Lumpsum() {
   const [loading, setLoading] = useState(false);
   const [selectedProduct, setSelectedProductProps] =
     useState<TSelectedProductProps>(null);
+
   const handleBtnClick = (variant: string) => {
     setSelectedBtn(variant);
   };
@@ -137,6 +140,7 @@ export default function Lumpsum() {
         }
     }
   };
+
   const handleProductClick = async (productId: string) => {
     try {
       const data = await fetchLoanProductDetails(Number(productId));
@@ -145,9 +149,11 @@ export default function Lumpsum() {
       console.error('Error fetching product details:', error);
     }
   };
+
   return (
-    <div className='p-6 space-y-4 mb-28'>
+    <div className='p-6 space-y-8 mb-28'>
       <NavHeader location={'목돈 가져오기'} beforePageUrl={'/home'} />
+
       {selectedProduct?.type === 'LOAN' && (
         <LikedLoanProductDetailItem
           {...selectedProduct.data}
@@ -155,37 +161,41 @@ export default function Lumpsum() {
           onClose={() => setSelectedProductProps(null)}
         />
       )}
-      <Section height='300'>
+
+      <Section height='55rem'>
         <div className='w-full'>
-          <div className='space-y-6'>
-            <div className='flex flex-row gap-2 items-end'>
+          <div className='space-y-8'>
+            <div className='my-3 flex gap-2 font-SCDream3 text-[1.25rem] items-end'>
               <input
                 type='text'
                 value={amount}
-                className='font-SCDream7 text-hanapurple border-b-2 border-hanapurple w-full text-xl text-right outline-none'
+                className='font-SCDream7 text-hanapurple border-b-2 border-hanapurple w-full text-[1.5625rem] text-right outline-none'
                 placeholder='금액입력'
                 onChange={handleChange}
               />
               을
             </div>
-            <div className='flex flex-row gap-2 items-end justify-end'>
-              <LumpSumBtn
-                variant={'hanaSalaryBank'}
-                isSelected={selectedBtn === 'hanaSalaryBank'}
-                onClick={() => handleBtnClick('hanaSalaryBank')}
-              />
-              <LumpSumBtn
-                variant={'otherAccounts'}
-                isSelected={selectedBtn === 'otherAccounts'}
-                onClick={() => handleBtnClick('otherAccounts')}
-              />
-              <LumpSumBtn
-                variant={'loanProducts'}
-                isSelected={selectedBtn === 'loanProducts'}
-                onClick={() => handleBtnClick('loanProducts')}
-              />
+            <div className='flex gap-1 font-SCDream3 text-[1.25rem] items-end justify-between'>
+              <div className='flex justify-between gap-3'>
+                <LumpSumBtn
+                  variant={'hanaSalaryBank'}
+                  isSelected={selectedBtn === 'hanaSalaryBank'}
+                  onClick={() => handleBtnClick('hanaSalaryBank')}
+                />
+                <LumpSumBtn
+                  variant={'otherAccounts'}
+                  isSelected={selectedBtn === 'otherAccounts'}
+                  onClick={() => handleBtnClick('otherAccounts')}
+                />
+                <LumpSumBtn
+                  variant={'loanProducts'}
+                  isSelected={selectedBtn === 'loanProducts'}
+                  onClick={() => handleBtnClick('loanProducts')}
+                />
+              </div>
               에서
             </div>
+
             <Section
               height='300'
               bgColor='hanalightpurple'
@@ -199,7 +209,7 @@ export default function Lumpsum() {
                     className='space-y-4 flex flex-col cursor-pointer'
                     onClick={() => setReason(item)}
                   >
-                    <div className='space-x-3 flex flex-row items-center'>
+                    <div className='space-x-3 flex items-center'>
                       <input
                         type='radio'
                         id={`reason-${index}`}
@@ -215,7 +225,7 @@ export default function Lumpsum() {
                       />
                       <label
                         htmlFor={`reason-${index}`}
-                        className={`text-sm ${
+                        className={`font-SCDream3 text-[1.125rem] ${
                           reason === item ? 'text-purple-500' : 'text-gray-800'
                         }`}
                       >
@@ -232,16 +242,20 @@ export default function Lumpsum() {
                     type='text'
                     placeholder='기타 선택 시, 필수 작성'
                     value={customReason}
+                    maxLength={30}
                     onChange={(e) => setCustomReason(e.target.value)}
-                    className='w-full p-2 border border-hanalightpurple rounded-lg focus:border-hanapurple outline-none'
+                    className='font-SCDream3 text-[1rem] w-full p-2 border border-hanalightpurple rounded-lg focus:border-hanapurple outline-none'
                   />
                 )}
               </div>
             </Section>
-            <div className='w-full flex justify-end'>의 이유로</div>
+            <div className='w-full flex justify-end font-SCDream3 text-[1.25rem]'>
+              의 이유로
+            </div>
           </div>
         </div>
       </Section>
+
       <Btn
         text={`${
           selectedBtn === 'loanProducts'
@@ -250,11 +264,13 @@ export default function Lumpsum() {
         }`}
         onClick={handleSubmit}
       />
+
       {clicked && selectedBtn === 'loanProducts' && loanItems ? (
         <div className='space-y-4'>
-          <div className='font-SCDream5 text-xl mt-5'>
+          <div className='font-SCDream5 text-xl'>
             {data.name}님을 위한 추천 대출 상품
           </div>
+
           {loading === true ? (
             <Section height='100'>
               <Skeleton

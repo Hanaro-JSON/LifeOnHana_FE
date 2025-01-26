@@ -7,6 +7,7 @@ import { type TVerticalBarGraphProps } from '@/types/componentTypes';
 export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
   if (!items) return;
   const chartData = [];
+
   for (let i = items.items.length - 1; i >= 0; i--) {
     const one = items.items[i];
     chartData.push({
@@ -16,6 +17,7 @@ export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
       formattedExpense: Math.round(one.totalExpense / 10000) + '만원',
     });
   }
+
   function createChartConfig(
     data: { month: string; totalExpense: number }[]
   ): ChartConfig {
@@ -32,8 +34,9 @@ export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
   }
 
   const chartConfig = createChartConfig(chartData) satisfies ChartConfig;
+
   return (
-    <ChartContainer config={chartConfig} className='h-[10rem] w-full'>
+    <ChartContainer config={chartConfig} className='h-[12rem] w-full'>
       <BarChart
         accessibilityLayer
         data={chartData}
@@ -47,7 +50,7 @@ export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
           tickLine={false}
           tickMargin={10}
           axisLine={false}
-          className='font-SCDream3 font-bold'
+          className='font-SCDream4 text-[.9rem]'
         />
         <Bar dataKey='totalExpense' radius={8}>
           {chartData.map((entry, index) => (
@@ -59,6 +62,7 @@ export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
             style={{ fill: 'black' }}
             offset={12}
             fontSize={10}
+            className='font-SCDream4 text-[.9375rem]'
           />
         </Bar>
       </BarChart>
