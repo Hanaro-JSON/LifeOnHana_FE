@@ -1,9 +1,9 @@
 import React, { useState, MouseEvent } from 'react';
-import Btn from '../atoms/Btn';
-import X from '../../assets/X.svg';
+import Btn from '@/components/atoms/Btn';
+import X from '@/assets/X.svg';
 import Image from 'next/image';
-import HeartNo from '../../assets/HeartNo.svg';
-import HeartYes from '../../assets/HeartYes.svg';
+import HeartNo from '@/assets/HeartNo.svg';
+import HeartYes from '@/assets/HeartYes.svg';
 import { type TLikedLifeProductDetailItemProps } from '@/types/componentTypes';
 import { likeProduct } from '@/api';
 
@@ -57,19 +57,7 @@ export default function LikedLifeProductDetailItem({
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}
-        <div className=' top-[-1rem] right-[-1rem] flex justify-end items-center w-full gap-2'>
-          <button
-            onClick={handleLikeToggle}
-            disabled={isLoading}
-            className='focus:outline-none'
-          >
-            <Image
-              src={liked ? HeartYes : HeartNo}
-              alt={liked ? 'Liked' : 'Not Liked'}
-              width={22}
-              height={22}
-            />
-          </button>
+        <div className='absolute top-3 right-3 flex justify-end items-center w-full gap-2'>
           {closeBtn && (
             <button onClick={handleCloseClick} className='p-1'>
               <Image src={X} alt='Close' width={15} height={15} />
@@ -78,9 +66,20 @@ export default function LikedLifeProductDetailItem({
         </div>
 
         {/* 제목 */}
-
-        <div className='-mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-3'>
-          {name}
+        <div className='flex gap-3 -mt-[0.5rem] justify-start mb-2 w-full'>
+          <button
+            onClick={handleLikeToggle}
+            disabled={isLoading}
+            className='w-1/8 focus:outline-none'
+          >
+            <Image
+              src={liked ? HeartYes : HeartNo}
+              alt={liked ? 'Liked' : 'Not Liked'}
+              width={22}
+              height={22}
+            />
+          </button>
+          <div className='w-5/6 text-[1.5rem] font-SCDream8'>{name}</div>
         </div>
 
         {/* 내용 */}
