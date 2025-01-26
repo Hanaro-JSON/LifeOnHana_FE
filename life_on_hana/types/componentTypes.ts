@@ -247,6 +247,8 @@ export type TRecommendCarouselItemProps = {
   maxInterest_rate?: number;
   maxPeriod?: string;
   productType: 'LOAN' | 'SAVINGS' | 'LIFE';
+  onClick?: () => void;
+  category?: 'LOAN' | 'SAVINGS' | 'LIFE';
 };
 
 export type TRecommendItemProps = {
