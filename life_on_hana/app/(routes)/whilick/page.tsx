@@ -43,7 +43,6 @@ export default function Whilick() {
 
   useEffect(() => {
     console.log('wholeData: ', wholeData);
-    // console.log('viewings: ', viewings);
   }, [wholeData]);
 
   // first fetch ----------------------------
