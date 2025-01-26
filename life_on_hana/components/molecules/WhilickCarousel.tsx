@@ -6,15 +6,17 @@ import whilickIcon from '@/assets/whilickIcon.svg';
 
 export function WhilickCarousel({ items }: { items: TArticlesLiked[] }) {
   return (
-    <div className='my-3'>
+    <div className='my-3 h-full mb-10'>
       <div className='flex flex-row w-full gap-2 font-SCDream5 text-lg mb-5'>
         <Image src={whilickIcon} alt={'whilickIcon'} />
         휘릭으로 보기
       </div>
       <Carousel
+        autoplay={true}
         wrapMode='wrap'
-        className='relative w-full'
-        scrollDistance='slide'
+        className='relative h-64'
+        autoplayInterval={10000}
+        scrollDistance='screen'
       >
         {items.map(({ articleId, title, category }) => (
           <SmallWhilickItem

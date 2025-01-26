@@ -37,10 +37,10 @@ export default function SmallWhilickItem({
   };
 
   return (
-    <>
+    <div className='w-full h-full pr-1'>
       <button
         onClick={moveToWhilickEvent}
-        className='bg-cover bg-center w-[10rem] h-[14.1875rem] flex flex-col items-center justify-center p-5 relative'
+        className='bg-cover bg-center w-48 h-72 flex flex-col items-center justify-center p-5 relative'
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={title}
       >
@@ -53,7 +53,7 @@ export default function SmallWhilickItem({
           priority
         />
         <div className='w-full h-1/2  flex justify-center items-center'>
-          <div className='line-clamp text-white font-SCDream6 text-[.8125rem]'>
+          <div className='line-clamp text-white font-SCDream6 text-[1.5rem]'>
             {title}
           </div>
         </div>
@@ -70,6 +70,6 @@ export default function SmallWhilickItem({
           text-overflow: ellipsis;
         }
       `}</style>
-    </>
+    </div>
   );
 }

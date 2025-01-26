@@ -4,11 +4,11 @@ import {
 } from '@/types/componentTypes';
 import {
   type THomeLikeProduct,
-  type TArticlesLiked,
   type TWhilickContents,
   type TWhilickData,
 } from '@/types/dataTypes';
 import { Dispatch, SetStateAction } from 'react';
+import { type THistory } from '@/types/dataTypes';
 
 // accessToken 추출
 export let NEXT_PUBLIC_URL: string;
@@ -369,65 +369,34 @@ export const fetchArticlesLiked = async (
   page: number = 0,
   category: string | undefined
 ) => {
-  let allArticles: TArticlesLiked[] = [];
-  let hasNext = true;
-
-  if (category !== undefined) {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?page=0&size=100&category=${category}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${getApiToken()}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error(`조회 요청 실패: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      return {
-        articles: data.data.articles,
-      };
-    } catch (error) {
-      console.error('조회 요청 오류:', error);
-      throw new Error('조회 요청 중 오류가 발생했습니다.');
-    }
-  }
+  const query = category
+    ? `page=0&size=100&category=${category}`
+    : `page=${page}&size=10`;
 
   try {
-    while (hasNext) {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?page=${page}&size=10`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${getApiToken()}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`${page}페이지 불러오기 실패`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/articles/liked?${query}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
       }
+    );
 
-      const data = await response.json();
-      allArticles = [...allArticles, ...data.data.articles];
-      hasNext = data.data.hasNext;
-      page += 1; // hasNext처리
+    if (!response.ok) {
+      throw new Error(`${page}페이지 불러오기 실패`);
     }
 
-    return { articles: allArticles, hasNext: false };
+    const data = await response.json();
+    return { articles: data.data.articles, hasNext: data.data.hasNext };
   } catch (error) {
     console.error('칼럼 목록 불러오기 실패', error);
     throw error;
   }
 };
+
 // users/info
 export const fetchUsersInfo = async () => {
   try {
@@ -646,7 +615,6 @@ export const fetchHistoryMonthly = async () => {
       throw new Error(`히스토리 조회 요청 실패: ${response.statusText}`);
     }
     const data = await response.json();
-    console.log('🚀 ~ fetchHistoryMonthly ~ data:', data);
     return data.data;
   } catch (error) {
     console.error('히스토리 조회 요청 오류:', error);
@@ -793,3 +761,37 @@ export async function fetchWhilickList(
     // alert(`더이상 콘텐츠가 존재하지 않습니다.${error}`);
   }
 }
+// 입출금 목록
+export const fetchHistory = async ({
+  yearMonth,
+  page = 1,
+  size = 1,
+}: {
+  yearMonth: string;
+  page: number;
+  size: number;
+}) => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/history?yearMonth=${yearMonth}&page=${page}&size=${size}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+    console.log('🚀 ~ response:', response);
+
+    if (!response.ok) {
+      throw new Error(`${page}페이지 불러오기 실패`);
+    }
+
+    const data = await response.json();
+    return data.data as THistory;
+  } catch (error) {
+    console.error('입출금 목록 불러오기 실패', error);
+    throw error;
+  }
+};
