@@ -739,3 +739,51 @@ export const fetchRefreshToken = async () => {
     throw error;
   }
 };
+
+// 휘릭 가져오기
+export async function fetchWhilickList(
+  page: number = 0,
+  articleIdData: string | null,
+  wholeData: any[],
+  setWhilickData: (data: any) => void,
+  setWholeData: (data: any[]) => void
+) {
+  const getChangableApi = (page: number) => {
+    if (articleIdData) {
+      const articleId = JSON.parse(articleIdData);
+      return `/api/articles/shorts/${articleId}`;
+    } else {
+      return `/api/articles/shorts?page=${page}&size=10`;
+    }
+  };
+  const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
+  console.log('apiUrl: ', apiUrl);
+
+  try {
+    const currentToken = getApiToken();
+
+    const response = await fetch(`${apiUrl}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${currentToken}`,
+        credentials: 'include',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    } else {
+      const data = await response.json();
+      setWhilickData(data.data);
+      setWholeData([...wholeData, ...data.data.contents]);
+
+      // articleIdData가 있었을 경우, fetch 후에 해당 데이터 삭제
+      if (articleIdData) {
+        localStorage.removeItem('article_id');
+      }
+    }
+  } catch (error) {
+    console.error('휘릭 불러오기 실패', error);
+  }
+}

@@ -6,7 +6,7 @@ import WhilickItem from '@/components/molecules/WhilickItem';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
-import { getApiToken, fetchRefreshToken } from '@/api';
+import { fetchWhilickList } from '@/api';
 import { type TWhilickContents } from '@/types/dataTypes';
 
 type TWhilickData = {
@@ -22,9 +22,6 @@ type TWhilickData = {
 };
 
 export default function Whilick() {
-  // home/columns > WhilickCarousel > SmallWhilickItem 통해 설정된 localStorage의 article_id 값
-  // localStorage.setItem('article_id', '20');
-
   const [globalAudioState, setGlobalAudioState] = useState({
     isPlaying: false,
     isMute: true,
@@ -43,87 +40,90 @@ export default function Whilick() {
   }, []);
 
   const whilickItemTop = Math.floor(debouncedTop / window.innerHeight);
+  useEffect(() => {
+    console.log('whilickItemTop', whilickItemTop);
+  }, [whilickItemTop]);
 
   // ----------------------- api 통신 --------------------------------
 
-  const token = getApiToken();
   const [whilickData, setWhilickData] = useState<TWhilickData>();
-  const [whilickContents, setWhilickContens] = useState<TWhilickContents[]>([]);
+
   const articleIdData = localStorage.getItem('article_id');
 
   useEffect(() => {
-    const fetchWhilickList = async (page = 0) => {
-      const getChangableApi = (page: number) => {
-        if (articleIdData) {
-          const articleId = JSON.parse(articleIdData);
-          return `/api/articles/shorts/${articleId}`;
-        } else {
-          return `/api/articles/shorts?page=${page}&size=10`;
-        }
-      };
-      const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
-      console.log('apiUrl: ', apiUrl);
-
-      try {
-        let currentToken = token;
-
-        const response = await fetch(`${apiUrl}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${currentToken}`,
-            credentials: 'include',
-          },
-        });
-
-        // 토큰 갱신 실패
-        if (response.status === 401) {
-          currentToken = await fetchRefreshToken();
-          const retryResponse = await fetch(`${apiUrl}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${currentToken}`,
-              credentials: 'include',
-            },
-          });
-          if (!retryResponse.ok)
-            throw new Error(`Error: ${retryResponse.status}`);
-          const data = await retryResponse.json();
-          setWhilickData(data.data);
-          setWhilickContens(data.data.contents);
-        } else if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        // 성공
-        else {
-          const data = await response.json();
-          setWhilickData(data.data);
-          setWhilickContens(data.data.contents);
-
-          // articleIdData가 있었을 경우, fetch 후에 해당 데이터 삭제
-          if (articleIdData) {
-            localStorage.removeItem('article_id');
-          }
-        }
-      } catch (error) {
-        console.error('휘릭 불러오기 실패', error);
-      }
-    };
-
-    fetchWhilickList();
-
-    if (whilickItemTop === 5 && !whilickData?.pageable.last) {
-      const nextPage = (whilickData?.pageable.pageNumber ?? 0) + 1;
-      fetchWhilickList(nextPage);
+    if (articleIdData) {
+      // console.log('articleIdData: ', articleIdData);
     }
-  }, [
-    token,
-    whilickItemTop,
-    whilickData?.pageable.last,
-    whilickData?.pageable.pageNumber,
-    articleIdData,
-  ]);
+  }, [articleIdData]);
+
+  // 무한스크롤
+  const [wholeData, setWholeData] = useState<any[]>([]); // 불러온 모든 데이터 보관용
+  const [id, setId] = useState<number>(0); // wholeData 안의 데이터의 id
+  const [viewings, setViewings] = useState(wholeData.slice(0, 10)); // whilick 컴포넌트가 가지고 있을 데이터 (무조건 10개 유지)
+
+  useEffect(() => {
+    // console.log('whilickData: ', whilickData);
+    console.log('wholeData: ', wholeData);
+    console.log('viewings: ', viewings);
+    // }, [whilickData, wholeData, viewings]);
+    // }, [whilickData, wholeData, viewings]);
+    // }, [whilickData]);
+  }, [wholeData, viewings]);
+
+  const updateViewings = useCallback(() => {
+    if (
+      whilickItemTop === viewings?.length - 2 &&
+      !whilickData?.pageable?.last
+    ) {
+      fetchWhilickList(
+        whilickData?.pageable?.pageNumber + 1 || 0,
+        articleIdData,
+        wholeData,
+        (newData) => {
+          setWholeData((prev) => [...prev, ...newData.contents]); // 기존 데이터와 병합
+        },
+        setWhilickData
+      );
+    }
+  }, [wholeData, whilickData, articleIdData, whilickItemTop, viewings?.length]);
+
+  useEffect(() => {
+    fetchWhilickList(
+      0,
+      articleIdData,
+      wholeData,
+      (newData) => {
+        setWholeData(newData.contents); // 전체 데이터 저장
+        setId(wholeData.indexOf(viewings[whilickItemTop])); // 초기 id 설정
+      },
+      setWhilickData
+    );
+  }, [articleIdData, whilickItemTop, viewings]);
+
+  useEffect(() => {
+    // if (wholeData.length === 0) return; // 데이터가 없으면 실행하지 않음
+    console.log('wholeData 안에서의 id >>>', id);
+
+    const startIdx = Math.max(0, id - 5); // 시작 인덱스
+    const endIdx = Math.min(wholeData.length, id + 5); // 끝 인덱스
+
+    // slice 결과가 10개가 되도록 보장
+    const newViewings = wholeData.slice(startIdx, endIdx);
+    // console.log('newViewings: ', newViewings);
+
+    setViewings(newViewings); // viewings 업데이트
+
+    if (Array.isArray(wholeData) && whilickItemTop === viewings?.length - 2) {
+      updateViewings();
+      // console.log('재 fetch 됨!!!!!!!!!!!!!!!!!');
+    }
+  }, [whilickItemTop, id, viewings?.length]);
+
+  // useEffect(() => {
+  //   console.log('1>>>>>>>>>', viewings[whilickItemTop]);
+  //   console.log('2>>>>>>>>>>', wholeData.indexOf(viewings[whilickItemTop]));
+  //   // console.log('***************', wholeData.indexOf(viewings[whilickItemTop]));
+  // }, [whilickItemTop, viewings, wholeData]);
 
   return (
     <>
@@ -150,7 +150,8 @@ export default function Whilick() {
             onScroll={handleScroll}
             className='snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full'
           >
-            {whilickContents?.map(
+            {/* {(viewings.length > 0 ? viewings : whilickData.contents)?.map( */}
+            {viewings?.map(
               ({ articleId, title, text, isLiked, likeCount, ttsUrl }, idx) => (
                 <WhilickItem
                   idx={idx}

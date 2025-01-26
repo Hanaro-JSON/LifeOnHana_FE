@@ -49,6 +49,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
                 className='w-[80%]'
                 width={300}
                 height={300}
+                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
             <div className='w-full flex justify-between items-center'>
@@ -68,6 +69,8 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
                 alt='mainSectionImg'
                 width={100}
                 height={100}
+                priority
+                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
           </div>
@@ -75,7 +78,12 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
             <Link href={'/home/wallet'}>
               <button className='font-SCDream3 text-[.75rem] flex items-center '>
                 <span className='text-hanapurple'>월급&nbsp;</span>설정하러 가기
-                <Image src={arrowRight} alt='Right Arrow' className='ml-2' />
+                <Image
+                  src={arrowRight}
+                  alt='Right Arrow'
+                  className='ml-2'
+                  style={{ width: 'auto', height: 'auto' }}
+                />
               </button>
             </Link>
           </div>
