@@ -1,7 +1,7 @@
 'use client';
 
 import { NavHeader } from '@/components/molecules/NavHeader';
-import { THistory, type THistoryMonthly } from '@/types/dataTypes';
+import { type THistory, type THistoryMonthly } from '@/types/dataTypes';
 import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import monthLeft from '@/assets/month-left.svg';

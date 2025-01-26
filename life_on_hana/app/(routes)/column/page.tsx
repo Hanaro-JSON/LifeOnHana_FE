@@ -11,7 +11,7 @@ import SearchInput from '@/components/molecules/SearchInput';
 import ArticleItem from '@/components/molecules/ArticleItem';
 import column from '../../../public/assets/column_color.svg';
 import { type TArticleItemProps } from '@/types/componentTypes';
-import { TArticle } from '@/types/dataTypes';
+import { type TArticle } from '@/types/dataTypes';
 
 const CATEGORY_MAP: Record<string, string> = {
   전체보기: '전체보기',

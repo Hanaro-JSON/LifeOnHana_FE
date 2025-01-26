@@ -10,9 +10,9 @@ import {
   type TRecommendCarouselItemProps,
   type TArticleItemProps,
   type TRecommendCarouselColumnProps,
-  TLikedLoanProductDetailItemProps,
-  TLikedAccountProductDetailItemProps,
-  TLikedLifeProductDetailItemProps,
+  type TLikedLoanProductDetailItemProps,
+  type TLikedAccountProductDetailItemProps,
+  type TLikedLifeProductDetailItemProps,
 } from '@/types/componentTypes';
 import { FullImgCarousel } from '@/components/molecules/FullImgCarousel';
 import { RecommendCarouselItem } from '@/components/molecules/RecommendCarouselItem';

@@ -19,7 +19,7 @@ import {
 import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
 import LikedAccountProductDetailItem from '@/components/molecules/LikedAccountProductDetailItem';
 import LikedLifeProductDetailItem from '@/components/molecules/LikedLifeProductDetail';
-import { THomeLikeProduct } from '@/types/dataTypes';
+import { type THomeLikeProduct } from '@/types/dataTypes';
 
 type TSelectedProductProps =
   | {
