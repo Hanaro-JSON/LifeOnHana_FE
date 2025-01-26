@@ -2,7 +2,13 @@ import {
   type TRecommendItemProps,
   type TArticleItemProps,
 } from '@/types/componentTypes';
-import { type THomeLikeProduct, type TArticlesLiked } from '@/types/dataTypes';
+import {
+  type THomeLikeProduct,
+  type TArticlesLiked,
+  type TWhilickContents,
+  type TWhilickData,
+} from '@/types/dataTypes';
+import { Dispatch, SetStateAction } from 'react';
 
 // accessToken 추출
 export let NEXT_PUBLIC_URL: string;
@@ -720,3 +726,71 @@ export const fetchAntropicLoans = async (reason: string, amount: string) => {
     throw new Error('조회 요청 중 오류가 발생했습니다.');
   }
 };
+
+// 토큰 갱신
+export const fetchRefreshToken = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/auth/refresh`,
+      {
+        method: 'POST',
+        credentials: 'include',
+      }
+    );
+    if (!response.ok) throw new Error('refresh token 발급 실패');
+    const data = await response.json();
+    return data.refreshToken;
+  } catch (error) {
+    console.error('refresh token 발급 중 오류가 발생했습니다.', error);
+    throw error;
+  }
+};
+
+// 휘릭 가져오기
+export async function fetchWhilickList(
+  page: number = 0,
+  articleIdData: string | null,
+  wholeData: TWhilickContents[],
+  setWhilickData: Dispatch<SetStateAction<TWhilickData | undefined>>,
+  setWholeData: Dispatch<SetStateAction<TWhilickContents[]>>
+) {
+  const getChangableApi = (page: number) => {
+    if (articleIdData) {
+      const articleId = JSON.parse(articleIdData);
+      return `/api/articles/shorts/${articleId}`;
+    } else {
+      return `/api/articles/shorts?page=${page}&size=10`;
+    }
+  };
+  const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
+  console.log('apiUrl: ', apiUrl);
+
+  try {
+    const currentToken = getApiToken();
+
+    const response = await fetch(`${apiUrl}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${currentToken}`,
+        credentials: 'include',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    } else {
+      const data = await response.json();
+      setWhilickData(data.data);
+      setWholeData([...wholeData, ...data.data.contents]);
+
+      // articleIdData가 있었을 경우, fetch 후에 해당 데이터 삭제
+      if (articleIdData) {
+        localStorage.removeItem('article_id');
+      }
+    }
+  } catch (error) {
+    console.error('휘릭 불러오기 실패', error);
+    // alert(`더이상 콘텐츠가 존재하지 않습니다.${error}`);
+  }
+}

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Image from 'next/image';
@@ -7,25 +6,10 @@ import WhilickItem from '@/components/molecules/WhilickItem';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
 import useDebounce from '@/hooks/useDebounce';
-import { getApiToken, NEXT_PUBLIC_URL } from '@/api';
-import { type TWhilickContents } from '@/types/dataTypes';
-
-type TWhilickData = {
-  contents: TWhilickContents[];
-  pageable: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    pageSize: number;
-    totalElements: number;
-    totalPages: number;
-  };
-};
+import { fetchWhilickList } from '@/api';
+import { TWhilickData, type TWhilickContents } from '@/types/dataTypes';
 
 export default function Whilick() {
-  // home/columns > WhilickCarousel > SmallWhilickItem 통해 설정된 localStorage의 article_id 값
-  // localStorage.setItem('article_id', '20');
-
   const [globalAudioState, setGlobalAudioState] = useState({
     isPlaying: false,
     isMute: true,
@@ -35,7 +19,7 @@ export default function Whilick() {
 
   const [top, setTop] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const debouncedTop = useDebounce(top, 100);
+  const debouncedTop = useDebounce(top, 50);
 
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
@@ -44,117 +28,67 @@ export default function Whilick() {
   }, []);
 
   const whilickItemTop = Math.floor(debouncedTop / window.innerHeight);
+  useEffect(() => {
+    console.log('whilickItemTop', whilickItemTop);
+  }, [whilickItemTop]);
 
   // ----------------------- api 통신 --------------------------------
 
-  const [fetchData, setFetchData] = useState([]);
   const [whilickData, setWhilickData] = useState<TWhilickData>();
-  const [whilickContents, setWhilickContens] = useState<TWhilickContents[]>([]);
-
-  const token = getApiToken();
-
   const articleIdData = localStorage.getItem('article_id');
-
-  // useEffect(() => {
-  //   if (fetchData) {
-  //     console.log('whilickData>>>', whilickData);
-  //     console.log('whilickContents>>>', whilickContents);
-  //     console.log('휘릭아이템 탑:>>>', whilickItemTop);
-  //   }
-  // }, [fetchData, whilickData, whilickContents, whilickItemTop]);
+  const [wholeData, setWholeData] = useState<TWhilickContents[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    const fetchWhilickList = async (page = 0) => {
-      const getChangableApi = (page: number) => {
-        if (articleIdData) {
-          const articleId = JSON.parse(articleIdData);
-          return `/api/articles/shorts/${articleId}`;
-        } else {
-          return `/api/articles/shorts?page=${page}&size=10`;
+    console.log('wholeData: ', wholeData);
+  }, [wholeData]);
+
+  // first fetch ----------------------------
+  useEffect(() => {
+    fetchWhilickList(
+      currentPage,
+      articleIdData,
+      wholeData,
+      (newData) => {
+        const updatedWholeData = [...wholeData, ...newData?.contents]; // 기존 데이터에 새 데이터 추가
+        setWholeData(updatedWholeData);
+      },
+      setWhilickData
+    );
+  }, [articleIdData]);
+
+  const loadMoreData = useCallback(() => {
+    setIsLoading(true);
+    fetchWhilickList(
+      currentPage + 1,
+      articleIdData,
+      wholeData,
+      (newData) => {
+        const updatedWholeData = [...wholeData, ...newData?.contents];
+        setWholeData(updatedWholeData);
+
+        if (newData?.contents.length === 0) {
+          setHasMore(false);
         }
-      };
-      const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
-      console.log('apiUrl: ', apiUrl);
-      try {
-        let currentToken = token;
+        setCurrentPage((prev) => prev + 1);
+      },
+      setWhilickData
+    ).finally(() => {
+      setIsLoading(false);
+    });
+  }, [currentPage, articleIdData, wholeData, setWhilickData]);
 
-        const response = await fetch(`${apiUrl}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${currentToken}`,
-            credentials: 'include',
-          },
-        });
-
-        // 토큰 갱신 실패
-        if (response.status === 401) {
-          currentToken = await refreshToken();
-          const retryResponse = await fetch(`${apiUrl}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${currentToken}`,
-              credentials: 'include',
-            },
-          });
-          if (!retryResponse.ok)
-            throw new Error(`Error: ${retryResponse.status}`);
-          const data = await retryResponse.json();
-          setFetchData(data);
-        } else if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        // 성공!!!!!
-        else {
-          const data = await response.json();
-          setFetchData(data);
-          setWhilickData(data.data);
-          setWhilickContens(data.data.contents);
-
-          // articleIdData가 있었을 경우, fetch 후에 해당 데이터 삭제
-          if (articleIdData) {
-            localStorage.removeItem('article_id');
-          }
-        }
-      } catch (error) {
-        console.error('휘릭 불러오기 실패', error);
-      }
-    };
-
-    fetchWhilickList();
-
-    if (whilickItemTop === 5 && !whilickData?.pageable.last) {
-      const nextPage = (whilickData?.pageable.pageNumber ?? 0) + 1;
-      fetchWhilickList(nextPage);
+  useEffect(() => {
+    if (whilickItemTop % 7 === 0 && hasMore && !isLoading) {
+      loadMoreData();
     }
-  }, [
-    token,
-    whilickItemTop,
-    whilickData?.pageable.last,
-    whilickData?.pageable.pageNumber,
-    articleIdData,
-  ]);
-
-  // 토큰 갱신
-  const refreshToken = async () => {
-    try {
-      const response = await fetch(`${NEXT_PUBLIC_URL}/api/auth/refresh`, {
-        method: 'POST',
-        credentials: 'include',
-      });
-      if (!response.ok) throw new Error('Failed to refresh token');
-      const data = await response.json();
-      return data.refreshToken;
-    } catch (error) {
-      console.error('Failed to refresh token:', error);
-      throw error;
-    }
-  };
+  }, [whilickItemTop]);
 
   return (
     <>
-      {!whilickData ? (
+      {whilickData?.contents?.length === 0 ? (
         <WhilickItemLoading />
       ) : (
         <div className='relative min-h-screen flex flex-col items-center justify-center'>
@@ -176,8 +110,12 @@ export default function Whilick() {
             ref={scrollRef}
             onScroll={handleScroll}
             className='snap-y snap-mandatory flex flex-col overflow-y-scroll max-h-[100vh] w-full'
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}
           >
-            {whilickContents?.map(
+            {wholeData?.map(
               ({ articleId, title, text, isLiked, likeCount, ttsUrl }, idx) => (
                 <WhilickItem
                   idx={idx}

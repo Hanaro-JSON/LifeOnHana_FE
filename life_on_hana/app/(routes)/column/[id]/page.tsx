@@ -197,7 +197,13 @@ export default function Detail() {
           <LogoHeader isMain={false} />
         </div>
         <div className='w-[90%] flex items-center gap-3 mt-2 mb-4'>
-          <Image src={column} alt='column icon' width={20} height={20} />
+          <Image
+            src={column}
+            alt='column icon'
+            width={20}
+            height={20}
+            priority
+          />
           <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>
         </div>
       </div>
@@ -221,6 +227,7 @@ export default function Detail() {
                 layout='fill'
                 objectFit='cover'
                 className='opacity-70'
+                priority
               />
             )}
 
@@ -299,6 +306,7 @@ export default function Detail() {
                               width={340}
                               height={255}
                               className='w-full'
+                              priority
                             />
                           </div>
                         </div>

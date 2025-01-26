@@ -26,6 +26,7 @@ export default function Page() {
             alt='로고'
             width={90}
             height={90}
+            style={{ width: 'auto', height: 'auto' }}
             priority
           />
           <Image
@@ -34,6 +35,7 @@ export default function Page() {
             className='my-2'
             width={1000}
             height={1000}
+            style={{ width: 'auto', height: 'auto' }}
             priority
           />
           <div className='font-SCDream5 text-[1rem] text-white'>
@@ -45,6 +47,7 @@ export default function Page() {
           alt='팀로고'
           width={100}
           height={100}
+          style={{ width: 'auto', height: 'auto' }}
           className='absolute bottom-10'
           priority
         />
