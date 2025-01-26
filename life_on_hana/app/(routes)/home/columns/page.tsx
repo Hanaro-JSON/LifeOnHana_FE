@@ -21,7 +21,17 @@ export default function Columns() {
 
     try {
       const data = await fetchArticlesLiked(page, undefined);
-      setLikedArticles((prev) => [...prev, ...data.articles]);
+      setLikedArticles((prev) => {
+        const newArticles = data.articles;
+
+        const allArticles = [...prev, ...newArticles];
+        const uniqueArticles = allArticles.filter(
+          (value, index, self) =>
+            index === self.findIndex((t) => t.articleId === value.articleId)
+        );
+
+        return uniqueArticles;
+      });
       setHasNext(data.hasNext ?? true);
       setPage((prev) => prev + 1);
     } catch (error) {
@@ -37,11 +47,11 @@ export default function Columns() {
     const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
 
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-      fetchAllArticles(); // 화면이 거의 맨 아래로 스크롤되었을 때 추가 데이터 요청
+      fetchAllArticles();
     }
   }, [fetchAllArticles, hasNext, isFetching]);
   useEffect(() => {
-    fetchAllArticles(); // 초기 데이터 로드
+    fetchAllArticles();
   }, []);
 
   useEffect(() => {
@@ -71,7 +81,7 @@ export default function Columns() {
     </>
   );
   return (
-    <div className='p-6 space-y-4 mb-16'>
+    <div className='p-6 space-y-4 mb-16 h-[100vh-4rem]'>
       <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
       <div className='w-full h-full flex flex-col items-center'>
         {likedArticles.length > 0 ? (

@@ -101,6 +101,23 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
+
+    const getLikedProducts = async () => {
+      try {
+        const fetchData = await fetchLikedProducts(undefined);
+        setCarouselItems(fetchData);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+    getInfo();
+    getWallet();
+    getHistoryStatistics();
+    getUsersNickname();
+    getLikedProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
     const getArticlesLiked = async () => {
       try {
         let fetchData;
@@ -114,21 +131,11 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
-    const getLikedProducts = async () => {
-      try {
-        const fetchData = await fetchLikedProducts(undefined);
-        setCarouselItems(fetchData);
-      } catch (error) {
-        console.error('Error fetching:', error);
-      }
-    };
-    getInfo();
-    getWallet();
-    getHistoryStatistics();
-    getUsersNickname();
-    getArticlesLiked();
-    getLikedProducts();
-  }, []);
+
+    if (category) {
+      getArticlesLiked();
+    }
+  }, [category]);
 
   useEffect(() => {
     const transfromedItems: TRecommendCarouselColumnProps[] = articles.map(
@@ -142,7 +149,6 @@ export default function Home() {
   }, [articles]);
 
   const handleProductClick = async (productId: number, category: string) => {
-    console.log('🚀 ~ handleProductClick ~ category:', productId, category);
     try {
       if (category === 'LOAN') {
         const data = await fetchLoanProductDetails(productId);

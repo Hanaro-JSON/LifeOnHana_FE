@@ -535,8 +535,7 @@ export const fetchUsersNickname = async () => {
       throw new Error(`유저 닉네임 조회 요청 실패: ${response.statusText}`);
     }
     const data = await response.json();
-
-    if (!data.nickname) {
+    if (!data.data.nickname) {
       return {
         nickname: '',
         category: 'NONE',
@@ -574,7 +573,6 @@ export const fetchLumpsum = async (data: {
   }
 
   const responseData = await response.json();
-  console.log('🚀  responseData:', responseData);
   return responseData;
 };
 

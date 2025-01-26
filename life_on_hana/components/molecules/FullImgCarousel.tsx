@@ -14,7 +14,7 @@ export function FullImgCarousel({
     thumbnail_s3_key,
   }: TRecommendCarouselColumnProps) {
     return (
-      <div className='w-48 h-64 flex-shrink-0 mx-1' key={article_id}>
+      <div className='w-48 h-64 flex-shrink-0 mx-1 ' key={article_id}>
         <Link href={`/column/detail/${article_id}`}>
           <div className='relative h-full rounded-[.9375rem] overflow-hidden'>
             <Image
@@ -38,7 +38,7 @@ export function FullImgCarousel({
     <Carousel
       autoplay={true}
       wrapMode='wrap'
-      className='relative h-64 shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] rounded-[.9375rem]'
+      className='relative h-64'
       autoplayInterval={10000}
       scrollDistance='screen'
     >
