@@ -493,7 +493,7 @@ export const fetchHistoryStatistics = async () => {
   const month = String(now.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/history/statistics?yearMonth=${year}${month}`,
+      `${process.env.NEXT_PUBLIC_URL}/api/history/statistics?yearMonth=${year}-${month}`,
       {
         method: 'GET',
         headers: {
@@ -535,8 +535,7 @@ export const fetchUsersNickname = async () => {
       throw new Error(`유저 닉네임 조회 요청 실패: ${response.statusText}`);
     }
     const data = await response.json();
-
-    if (!data.nickname) {
+    if (!data.data.nickname) {
       return {
         nickname: '',
         category: 'NONE',
@@ -574,7 +573,6 @@ export const fetchLumpsum = async (data: {
   }
 
   const responseData = await response.json();
-  console.log('🚀  responseData:', responseData);
   return responseData;
 };
 
@@ -648,6 +646,7 @@ export const fetchHistoryMonthly = async () => {
       throw new Error(`히스토리 조회 요청 실패: ${response.statusText}`);
     }
     const data = await response.json();
+    console.log('🚀 ~ fetchHistoryMonthly ~ data:', data);
     return data.data;
   } catch (error) {
     console.error('히스토리 조회 요청 오류:', error);

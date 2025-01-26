@@ -2,7 +2,7 @@
 
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { THistory, type THistoryMonthly } from '@/types/dataTypes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import monthLeft from '@/assets/month-left.svg';
 import monthRight from '@/assets/month-right.svg';
@@ -11,30 +11,31 @@ import Section from '@/components/atoms/Section';
 import { VerticalBarGraph } from '@/components/molecules/VerticalBarGraph';
 import HistoryItem from '@/components/molecules/HistoryItem';
 import { type THistoryItemCategoryProps } from '@/types/componentTypes';
+import { fetchHistoryMonthly } from '@/api';
 
 const mockData: THistoryMonthly = {
   averageExpense: 250000,
   currentBalance: 150000,
   monthlyExpenses: [
     {
-      month: '202401',
-      totalExpense: 250000,
+      month: '2024-01',
+      totalExpense: 0,
     },
     {
-      month: '202312',
-      totalExpense: 250000,
+      month: '2023-12',
+      totalExpense: 0,
     },
     {
-      month: '202311',
-      totalExpense: 270000,
+      month: '2023-11',
+      totalExpense: 0,
     },
     {
-      month: '202310',
-      totalExpense: 250000,
+      month: '2023-10',
+      totalExpense: 0,
     },
     {
-      month: '202309',
-      totalExpense: 230000,
+      month: '2023-09',
+      totalExpense: 0,
     },
   ],
 };
@@ -88,8 +89,13 @@ const historyMockData: THistory = {
 };
 
 export default function History() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [monthlyData, setMonthlyData] = useState<THistoryMonthly>(mockData);
+  useEffect(() => {
+    const getHistoryMonthly = async () => {
+      setMonthlyData(await fetchHistoryMonthly());
+    };
+    getHistoryMonthly();
+  }, []);
 
   const [year, setYear] = useState<number>(() => new Date().getFullYear());
   const [month, setMonth] = useState<number>(() => new Date().getMonth() + 1);
@@ -131,7 +137,8 @@ export default function History() {
             <div className='w-[90%] flex flex-row justify-between'>
               <div className='flex flex-col gap-y-2'>
                 <div className='font-SCDream5 text-lg'>
-                  한 달에 평균 {monthlyData.averageExpense / 10000}만원을 써요
+                  한 달에 평균 {Math.round(monthlyData.averageExpense / 10000)}
+                  만원을 써요
                 </div>
                 <div className='font-SCDream3'>
                   하나지갑에 {monthlyData.currentBalance.toLocaleString()}원

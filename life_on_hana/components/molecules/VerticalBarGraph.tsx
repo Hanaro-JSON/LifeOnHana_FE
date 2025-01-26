@@ -7,15 +7,13 @@ import { type TVerticalBarGraphProps } from '@/types/componentTypes';
 export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
   const chartData = [];
 
-  for (let i = 0; i < items.items.length; i++) {
+  for (let i = items.items.length - 1; i >= 0; i--) {
     const one = items.items[i];
     chartData.push({
       month:
-        i == items.items.length - 1
-          ? '이번 달'
-          : Number(one.month.toString().slice(4, 6)) + '월',
+        i == 0 ? '이번 달' : Number(one.month.toString().slice(5, 7)) + '월',
       totalExpense: one.totalExpense,
-      formattedExpense: one.totalExpense / 10000 + '만원',
+      formattedExpense: Math.round(one.totalExpense / 10000) + '만원',
     });
   }
   function createChartConfig(

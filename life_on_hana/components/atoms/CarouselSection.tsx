@@ -16,9 +16,9 @@ const getCarouselSectionStyles = (variant: string) => {
       };
     case 'product':
       return {
-        sectionClass: 'h-[5rem]',
-        boxStyles: 'bg-white h-[5rem]',
-        innerStyles: 'w-full mx-10',
+        sectionClass: 'h-[8rem]',
+        boxStyles: 'bg-white h-[8rem]',
+        innerStyles: 'w-full mx-3',
       };
     default:
       return {
@@ -53,10 +53,10 @@ export default function CarouselSection({
   return (
     <div className={sectionClass}>
       <div
-        className={`flex flex-row justify-between items-center rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] ${boxStyles}`}
+        className={`flex flex-row h-32 w-full justify-between items-center rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] ${boxStyles}`}
       >
-        <div className='cursor-pointer pl-5' onClick={handlePrev}>
-          <Image src={arrowLeft} alt='Left Arrow' priority />
+        <div className='cursor-pointer pl-3' onClick={handlePrev}>
+          <Image src={arrowLeft} width={10} alt='Left Arrow' priority />
         </div>
         <div className={`${innerStyles} h-full overflow-hidden`}>
           <div
@@ -70,8 +70,8 @@ export default function CarouselSection({
             ))}
           </div>
         </div>
-        <div className='cursor-pointer pr-5' onClick={handleNext}>
-          <Image src={arrowRight} alt='Right Arrow' priority />
+        <div className='cursor-pointer pr-3' onClick={handleNext}>
+          <Image src={arrowRight} width={10} alt='Right Arrow' priority />
         </div>
       </div>
     </div>

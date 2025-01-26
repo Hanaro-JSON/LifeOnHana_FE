@@ -9,22 +9,45 @@ import { BarGraph } from '@/components/molecules/BarGraph';
 import {
   type TRecommendCarouselItemProps,
   type TArticleItemProps,
-  type TGraphExpenseCategoriesProps,
   type TRecommendCarouselColumnProps,
+  TLikedLoanProductDetailItemProps,
+  TLikedAccountProductDetailItemProps,
+  TLikedLifeProductDetailItemProps,
 } from '@/types/componentTypes';
-import { RecommendCarouselColumn } from '@/components/molecules/RecommendCarouselColumn';
 import { FullImgCarousel } from '@/components/molecules/FullImgCarousel';
 import { RecommendCarouselItem } from '@/components/molecules/RecommendCarouselItem';
 import ShortCutBtn from '@/components/molecules/ShortCutBtn';
 import { DataContext } from '@/hooks/useData';
 import {
+  fetchAccountProductDetails,
+  fetchArticles,
   fetchArticlesLiked,
   fetchHistoryStatistics,
+  fetchLifeProductDetails,
   fetchLikedProducts,
+  fetchLoanProductDetails,
   fetchUsersInfo,
   fetchUsersNickname,
   fetchWallet,
 } from '@/api';
+import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
+import LikedAccountProductDetailItem from '@/components/molecules/LikedAccountProductDetailItem';
+import LikedLifeProductDetailItem from '@/components/molecules/LikedLifeProductDetail';
+
+type TSelectedProductProps =
+  | {
+      type: 'LOAN';
+      data: TLikedLoanProductDetailItemProps;
+    }
+  | {
+      type: 'SAVINGS';
+      data: TLikedAccountProductDetailItemProps;
+    }
+  | {
+      type: 'LIFE';
+      data: TLikedLifeProductDetailItemProps;
+    }
+  | null;
 
 export default function Home() {
   const { data, setInfo } = useContext(DataContext);
@@ -40,6 +63,9 @@ export default function Home() {
   const [carouselItems, setCarouselItems] = useState<
     TRecommendCarouselItemProps[]
   >([]);
+  const [selectedProduct, setSelectedProductProps] =
+    useState<TSelectedProductProps>(null);
+
   useEffect(() => {
     const getInfo = async () => {
       try {
@@ -75,14 +101,7 @@ export default function Home() {
         console.error('Error fetching:', error);
       }
     };
-    const getArticlesLiked = async () => {
-      try {
-        const fetchData = await fetchArticlesLiked(undefined, category);
-        setArticles(fetchData.articles);
-      } catch (error) {
-        console.error('Error fetching:', error);
-      }
-    };
+
     const getLikedProducts = async () => {
       try {
         const fetchData = await fetchLikedProducts(undefined);
@@ -95,9 +114,28 @@ export default function Home() {
     getWallet();
     getHistoryStatistics();
     getUsersNickname();
-    getArticlesLiked();
     getLikedProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    const getArticlesLiked = async () => {
+      try {
+        let fetchData;
+        if (category) {
+          fetchData = await fetchArticlesLiked(undefined, category);
+        } else {
+          fetchData = await fetchArticles();
+        }
+        setArticles(fetchData.articles);
+      } catch (error) {
+        console.error('Error fetching:', error);
+      }
+    };
+
+    if (category) {
+      getArticlesLiked();
+    }
+  }, [category]);
 
   useEffect(() => {
     const transfromedItems: TRecommendCarouselColumnProps[] = articles.map(
@@ -109,6 +147,23 @@ export default function Home() {
     );
     setRecommendCarouselColumnItems(transfromedItems);
   }, [articles]);
+
+  const handleProductClick = async (productId: number, category: string) => {
+    try {
+      if (category === 'LOAN') {
+        const data = await fetchLoanProductDetails(productId);
+        setSelectedProductProps({ type: 'LOAN', data: data.data });
+      } else if (category === 'SAVINGS') {
+        const data = await fetchAccountProductDetails(productId);
+        setSelectedProductProps({ type: 'SAVINGS', data: data.data });
+      } else if (category === 'LIFE') {
+        const data = await fetchLifeProductDetails(productId);
+        setSelectedProductProps({ type: 'LIFE', data: data.data });
+      }
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+    }
+  };
 
   function categoryToNickname(category: string | undefined) {
     switch (category) {
@@ -166,11 +221,14 @@ export default function Home() {
   }
 
   return (
-    <div className='p-6 space-y-4 mb-20'>
+    <div className='p-6 space-y-4 mb-28'>
       {/* 헤더 */}
       <LogoHeader isMain={true} />
       {/* 하나월급 카드 */}
-      <MainSection name={data.name} walletAmount={walletAmount / 10000} />
+      <MainSection
+        name={data.name}
+        walletAmount={Math.round(walletAmount / 10000)}
+      />
       {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
       {/* 이번 달 지출 카드 */}
@@ -217,7 +275,48 @@ export default function Home() {
           <ShortCutBtn url={'/home/like'} variant='product' />
         </div>
       </div>
-      <RecommendCarouselItem items={carouselItems} />
+      <RecommendCarouselItem
+        items={carouselItems}
+        onClick={(productId, category) =>
+          handleProductClick(Number(productId), category)
+        }
+      />
+
+      {selectedProduct?.type === 'LOAN' && (
+        <LikedLoanProductDetailItem
+          {...selectedProduct.data}
+          closeBtn
+          onClose={() => setSelectedProductProps(null)}
+        />
+      )}
+      {selectedProduct?.type === 'SAVINGS' && (
+        <LikedAccountProductDetailItem
+          {...selectedProduct.data}
+          closeBtn
+          onClose={() => setSelectedProductProps(null)}
+        />
+      )}
+      {selectedProduct?.type === 'LIFE' && (
+        <LikedLifeProductDetailItem
+          {...selectedProduct.data}
+          closeBtn
+          onClose={() => setSelectedProductProps(null)}
+        />
+      )}
+      <style jsx global>{`
+        .overflow-x-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-x-auto {
+          -ms-overflow-style: none;
+        }
+        .overflow-y-auto::-webkit-scrollbar {
+          display: none;
+        }
+        .overflow-y-auto {
+          -ms-overflow-style: none;
+        }
+      `}</style>
     </div>
   );
 }
