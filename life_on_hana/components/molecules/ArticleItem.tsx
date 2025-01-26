@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import HeartNo from '../../assets/HeartNo.svg';
-import HeartYes from '../../assets/HeartYes.svg';
+import HeartNo from '@/assets/HeartNo.svg';
+import HeartYes from '@/assets/HeartYes.svg';
 import { formatDate } from '@/utils/formatDate';
 import { type TArticleItemProps } from '@/types/componentTypes';
 import { useState, MouseEvent } from 'react';
@@ -47,14 +47,15 @@ export default function ArticleItem({
               height={72}
             />
           </div>
-          <div className='flex flex-col justify-between w-full'>
-            <div className='font-SCDream5'>{title}</div>
-            <div className='text-xs font-SCDream3'>
+          <div className='flex flex-col space-y-4 w-full'>
+            <div className='font-SCDream5 text-[1.25rem]'>{title}</div>
+            <div className='font-SCDream3 text-[.9375rem]'>
               {category} / {formatDate(publishedAt)}
             </div>
           </div>
         </div>
       </Link>
+
       <div
         className='absolute right-[1rem] bottom-2 cursor-pointer'
         onClick={handleLikeToggle}
