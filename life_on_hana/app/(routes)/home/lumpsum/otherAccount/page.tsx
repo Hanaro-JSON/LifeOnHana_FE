@@ -22,6 +22,8 @@ export default function OtherAccount() {
   const [walletAmount, setWalletAmount] = useState<number>(0);
 
   const initialAmount = searchParams.get('amount') || '';
+  const initialReason = searchParams.get('reason') || '';
+  const initialReasonDetail = searchParams.get('reasonDetail') || '';
 
   useEffect(() => {
     const getWallet = async () => {
@@ -85,8 +87,8 @@ export default function OtherAccount() {
       const requestData = {
         amount,
         source: 'OTHER', // 없으면 호출 안됨
-        reason: 'OTHER', // 없으면 호출 안됨
-        reasonDetail: null, // 상세 이유
+        reason: initialReason, // 없으면 호출 안됨
+        reasonDetail: initialReasonDetail, // 상세 이유
         accountId: Number(account.accountId),
       };
       const response = await fetchLumpsum(requestData);

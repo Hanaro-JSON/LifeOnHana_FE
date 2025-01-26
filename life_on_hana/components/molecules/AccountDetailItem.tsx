@@ -131,7 +131,6 @@ export default function AccountDetailItem({
           <div className='flex items-center justify-start mb-4'>
             <input
               type='text'
-              value={withdrawalAmount}
               defaultValue={defaultAmount}
               onChange={handleAmountChange}
               placeholder={`${balance.toLocaleString()}`}

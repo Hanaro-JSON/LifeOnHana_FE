@@ -542,6 +542,8 @@ export const fetchLumpsum = async (data: {
   }
 
   const responseData = await response.json();
+  console.log('🚀 ~ responseData:', responseData);
+  console.log('🚀 ~ response:', data);
   return responseData;
 };
 
@@ -793,5 +795,29 @@ export const fetchHistory = async ({
   } catch (error) {
     console.error('입출금 목록 불러오기 실패', error);
     throw error;
+  }
+};
+
+// /api/account / salary;
+export const fetchAccountSalary = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/account/salary`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`월급통장 조회 요청 실패: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('월급통장 조회 요청 오류:', error);
+    throw new Error('월급통장 조회 요청 중 오류가 발생했습니다.');
   }
 };

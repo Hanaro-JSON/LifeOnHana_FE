@@ -12,8 +12,25 @@ import {
   type TRecommendItemProps,
 } from '@/types/componentTypes';
 import { RecommendItem } from '@/components/molecules/RecommendItem';
-import { fetchAntropicLoans, fetchLoanProductDetails } from '@/api';
+import {
+  fetchAccountSalary,
+  fetchAntropicLoans,
+  fetchLoanProductDetails,
+  fetchLumpsum,
+} from '@/api';
 import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
+import { useToast } from '@/hooks/use-toast';
+
+export enum Reason {
+  CHILDREN = '자녀 지원(결혼비용, 학비, 자취/독립 지원 등)',
+  MEDICAL = '의료비 지원(본인 및 가족의 의료비 등)',
+  HOUSING = '주거 및 생활비(주거 관련, 생활비 부족 등)',
+  BUSINESS_INVESTMENT = '사업 및 투자 자금(사업 투자, 창업 자금 등)',
+  VEHICLE_TRANSPORT = '차량 및 교통',
+  LEISURE = '여가(여행, 취미, 교육 등)',
+  DEBT_REPAYMENT = '채무 상환',
+  OTHER = '기타',
+}
 
 type TSelectedProductProps = {
   type: 'LOAN';
@@ -21,22 +38,15 @@ type TSelectedProductProps = {
 } | null;
 
 export default function Lumpsum() {
+  const { toast } = useToast();
   const router = useRouter();
   const { data } = useContext(DataContext);
   const [amount, setAmount] = useState('');
-  const [reason, setReason] = useState('');
   const [customReason, setCustomReason] = useState('');
   const [selectedBtn, setSelectedBtn] = useState<string | null>(null);
-  const reasons = [
-    '자녀 지원(결혼비용, 학비, 자취/독립 지원 등)',
-    '의료비 지원(본인 및 가족의 의료비 등)',
-    '주거 및 생활비(주거 관련, 생활비 부족 등)',
-    '사업 및 투자 자금(사업 투자, 창업 자금 등)',
-    '차량 및 교통',
-    '여가(여행, 취미, 교육 등)',
-    '채무 상환',
-    '기타',
-  ];
+  const reasons = Object.values(Reason);
+  const [reason, setReason] = useState<Reason | ''>('');
+
   ///api/anthropic/loans
   const [loanItems, setLoanItems] = useState<TRecommendItemProps[]>([]);
   const [clicked, setClicked] = useState(false);
@@ -55,6 +65,16 @@ export default function Lumpsum() {
   const handleChange = (e: { target: { value: string } }) => {
     const rawValue = e.target.value.replace(/[,.원]/g, '');
     setAmount(formatNumber(rawValue));
+  };
+
+  const handleReasonSelect = (selectedValue: string) => {
+    // 'selectedValue'는 Reason enum의 value(예: '자녀 지원(결혼비용, 학비, 자취/독립 지원 등)')
+    const selectedKey = Object.keys(Reason).find(
+      (key) => Reason[key as keyof typeof Reason] === selectedValue
+    );
+    if (selectedKey) {
+      return selectedKey;
+    }
   };
 
   const handleSubmit = async () => {
@@ -76,19 +96,45 @@ export default function Lumpsum() {
     }
     switch (selectedBtn) {
       case 'loanProducts':
-        setLoading(true); // 로딩 시작
+        //더미 데이터
+        // setLoading(true); // 로딩 시작
         setLoanItems(await fetchAntropicLoans(reason, amount));
-        setClicked(true);
-        setTimeout(() => {
-          console.log('10초가 지났습니다!');
-          setLoading(false); // 로딩 종료
-        }, 10);
+        // setClicked(true);
+        // setTimeout(() => {
+        // console.log('10초가 지났습니다!');
+        // setLoading(false); // 로딩 종료
+        // }, 10);
+        /////////////
         break;
       case 'otherAccounts':
-        router.replace(`/home/lumpsum/otherAccount?amount=${amount}`); // 금액 자동으로 넘어가게
+        router.replace(
+          `/home/lumpsum/otherAccount?amount=${amount}&reason=${handleReasonSelect(reason)}&reasonDetail=${customReason}`
+        ); // 금액 자동으로 넘어가게
         break;
       default:
-        router.replace(`/home/wallet/deposit?amount=${amount}`); // 금액 자동으로 넘어가게
+        const fetchData = await fetchAccountSalary();
+        const enumReason = handleReasonSelect(reason);
+        if (amount > fetchData.balance) {
+          toast({
+            title: '하나 월급통장 잔액이 부족합니다.',
+            className:
+              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+          });
+          return;
+        } else {
+          await fetchLumpsum({
+            amount: Number(amount),
+            reason: enumReason || '',
+            source: 'SALARY',
+            reasonDetail: customReason,
+            accountId: fetchData.accountId,
+          });
+          toast({
+            title: '하나 월급통장에서 목돈을 가져오는데 성공했습니다.',
+            className:
+              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+          });
+        }
     }
   };
   const handleProductClick = async (productId: string) => {
@@ -160,7 +206,7 @@ export default function Lumpsum() {
                         name='reason'
                         value={item}
                         checked={reason === item}
-                        onChange={(e) => setReason(e.target.value)}
+                        onChange={() => handleReasonSelect(item)}
                         className={`w-4 h-4 ${
                           reason === item
                             ? 'text-purple-500 border-purple-500'
