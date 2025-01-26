@@ -98,6 +98,7 @@ export default function History() {
       setMonth(month - 1);
     }
   };
+
   const plusDate = () => {
     if (month === 12) {
       setMonth(1);
@@ -183,40 +184,47 @@ export default function History() {
   }, [isFetching, hasNext]);
 
   let lastPrintedDate = '';
+
   return (
-    <div className='p-6 space-y-4 mb-16'>
+    <div className='p-6 space-y-8 mb-28'>
       <NavHeader location={'이번달 입출금 내역'} beforePageUrl={'/home'} />
+
       <div className='w-full h-full flex flex-col items-center gap-4'>
         <div className='w-full flex flex-row gap-x-4 justify-start items-center'>
-          <div className='flex flex-row gap-x-4 font-SCDream5'>
+          <div className='flex flex-row gap-x-4 font-SCDream5 text-[1.25rem]'>
             <Image src={monthLeft} alt={'monthLeft'} onClick={minusDate} />
             {year}년 {month}월
             <Image src={monthRight} alt={'monthRight'} onClick={plusDate} />
           </div>
-          <div className='font-SCDream8 text-xl'>
+          <div className='font-SCDream8 text-[1.375rem]'>
             {historyData.totalExpense.toLocaleString()}원
           </div>
         </div>
-        <Section height='20rem'>
+
+        <Section height='22rem'>
           <div className='w-full flex flex-col items-center gap-y-2'>
-            <div className='w-[90%] flex flex-row justify-between'>
+            <div className='w-[95%] flex justify-between'>
               <div className='flex flex-col gap-y-2'>
                 <div className='font-SCDream5 text-lg'>
                   한 달에 평균 {Math.round(monthlyData.averageExpense / 10000)}
                   만원을 써요
                 </div>
+
                 <div className='font-SCDream3'>
                   하나지갑에 {monthlyData.currentBalance.toLocaleString()}원
                   남았어요
                 </div>
               </div>
+
               <Image src={shopingBag} alt='shopingBag' />
             </div>
-            <div className='w-[90%]'>
+
+            <div className='w-[95%] pt-2'>
               <VerticalBarGraph items={monthlyData.monthlyExpenses} />
             </div>
           </div>
         </Section>
+
         <div className='w-full'>
           {historyData.histories.map((h, idx) => {
             let currentDate = h.historyDateTime.split('T')[0]; // 날짜만 추출
@@ -229,7 +237,7 @@ export default function History() {
 
             if (currentDate !== lastPrintedDate) {
               dateHeader = (
-                <div className='font-SCDream3 text-[0.7rem] mt-3'>
+                <div className='font-SCDream4 text-[.9375rem] mt-3'>
                   {currentDate}
                 </div>
               );
@@ -250,6 +258,7 @@ export default function History() {
             );
           })}
         </div>
+
         {isFetching && (
           <div className='w-full h-12 flex items-center justify-center'>
             로딩 중...
