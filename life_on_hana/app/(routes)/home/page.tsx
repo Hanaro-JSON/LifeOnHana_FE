@@ -221,39 +221,46 @@ export default function Home() {
   }
 
   return (
-    <div className='p-6 space-y-4 mb-28'>
+    <div className='p-6 space-y-8 mb-28'>
       {/* 헤더 */}
       <LogoHeader isMain={true} />
+
       {/* 하나월급 카드 */}
       <MainSection
         name={data.name}
         walletAmount={Math.round(walletAmount / 10000)}
       />
+
       {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
+
       {/* 이번 달 지출 카드 */}
-      <Section height='15rem'>
-        <div className='w-full max-w-full space-y-3'>
-          <div className='font-SCDream2'>
-            이번 달 지출은 &nbsp;
-            <span className='font-SCDream5 underline-offset-1 underline text-xl text-hanapurple'>
+      <Section height='19rem'>
+        <div className='w-full max-w-full space-y-6 my-3'>
+          <div className='font-SCDream3 text-[1.25rem]'>
+            이번 달 지출은&nbsp;
+            <span className='font-SCDream5 text-[1.25rem] text-hanapurple'>
               {Math.round(totalExpense / 10000)}만원
             </span>
             &nbsp;입니다.
           </div>
+
           <BarGraph type={'mydata'} expenseCategories={expenseCategories} />
-          <div className='font-SCDream2 text-xs'>
-            이번 달 받은 이자는 총 &nbsp;
-            <span className='font-SCDream4 underline-offset-1 underline text-sm text-hanapurple'>
+
+          <div className='font-SCDream3 text-[1.0625rem] mt-8'>
+            이번 달 받은 이자는 총&nbsp;
+            <span className='font-SCDream4 text-[1.0625rem] text-hanapurple'>
               {totalInterest.toLocaleString()}원
             </span>
             &nbsp;입니다.
           </div>
-          <div className='border-t-2 flex justify-center items-center h-[2rem]'>
+
+          <div className='border-t-2 flex justify-center items-center h-[2rem] pt-5'>
             <ShortCutBtn url={'/home/history'} variant='spend' />
           </div>
         </div>
       </Section>
+
       {/* 좋아요한 칼럼 카드 */}
       <div className='flex flex-row justify-between items-end'>
         <div className='font-SCDream4 tracking-wide'>
