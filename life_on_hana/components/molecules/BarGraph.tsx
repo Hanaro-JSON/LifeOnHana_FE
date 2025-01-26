@@ -114,6 +114,11 @@ export function BarGraph({
           },
         } satisfies ChartConfig);
 
+  const filteredChartData = Object.entries(chartData[0]).filter(
+    ([, percentage]) => percentage > 0
+  );
+  const lengthOfFilteredData = filteredChartData.length;
+
   return (
     <div className='flex justify-center w-full h-24 items-center'>
       <ChartContainer config={chartConfig} className='h-24 w-full px-2'>
@@ -141,23 +146,17 @@ export function BarGraph({
             content={<ChartLegendContent className='pl-[60px] ' />}
           />
 
-          {Object.entries(chartData[0]).map(([category, percentage], index) => {
-            // Check if percentage is 0, if so, return null to skip rendering
-            if (percentage === 0) return null;
-            const filteredChartData = Object.entries(chartData[0]).filter(
-              ([, percentage]) => percentage > 0
-            );
-            const lengthOfFilteredData = filteredChartData.length;
+          {filteredChartData.map(([category], filteredIndex) => {
             return (
               <Bar
                 key={category}
                 dataKey={category}
                 stackId='a'
-                fill={bluePurpleColors[index % bluePurpleColors.length]} // Assign colors dynamically
+                fill={bluePurpleColors[filteredIndex % bluePurpleColors.length]}
                 radius={
-                  index === 0
+                  filteredIndex === 0
                     ? [4, 0, 0, 4]
-                    : index === lengthOfFilteredData - 1
+                    : filteredIndex === lengthOfFilteredData - 1
                       ? [0, 4, 4, 0]
                       : [0, 0, 0, 0]
                 }

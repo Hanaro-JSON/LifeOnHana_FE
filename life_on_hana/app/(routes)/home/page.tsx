@@ -174,7 +174,10 @@ export default function Home() {
       {/* 헤더 */}
       <LogoHeader isMain={true} />
       {/* 하나월급 카드 */}
-      <MainSection name={data.name} walletAmount={walletAmount / 10000} />
+      <MainSection
+        name={data.name}
+        walletAmount={Math.round(walletAmount / 10000)}
+      />
       {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
       {/* 이번 달 지출 카드 */}
