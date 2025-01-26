@@ -126,7 +126,6 @@ export default function OtherAccount() {
       : 'beforeChooseAccount';
 
   return (
-<<<<<<< HEAD
     <div className='flex flex-col h-screen px-6 pt-6'>
       <div className='sticky z-10'>
         <NavHeader
@@ -134,7 +133,7 @@ export default function OtherAccount() {
           beforePageUrl={'..'}
         />
 
-        <div className='mb-2 px-2'>
+        {/* <div className='mb-2 px-2'>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
 
           <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
@@ -157,18 +156,10 @@ export default function OtherAccount() {
             </div>
           </div>
         </div>
+        
         <div className='mb-2 mt-5 px-2'>
           <div className='text-[1.25rem] font-SCDream5'>출금계좌 선택</div>
-=======
-    <div className='flex flex-col h-screen px-3'>
-      <div className='sticky top-0 z-10'>
-        <div className='pt-6'>
-          <NavHeader
-            location={'타계좌에서 하나 지갑으로 입금하기'}
-            beforePageUrl={'/home/lumpsum'}
-          />
->>>>>>> 15fd1d3 ([style] 🐿️ /home/lumpsum/otherAccount 페이지 디자인 수정)
-        </div>
+        </div> */}
       </div>
 
       <div className='mb-8 px-2'>
