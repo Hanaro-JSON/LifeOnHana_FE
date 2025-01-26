@@ -1,12 +1,12 @@
 export const bluePurpleColors: string[] = [
-  '#6A5ACD', // SlateBlue
-  '#7B68EE', // MediumSlateBlue
-  '#8470FF', // LightSlateBlue
-  '#5F9EA0', // CadetBlue
-  '#4682B4', // SteelBlue
-  '#4169E1', // RoyalBlue
-  '#1E90FF', // DodgerBlue
-  '#00BFFF', // DeepSkyBlue
-  '#ADD8E6', // LightBlue
-  '#B0E0E6', // PowderBlue
+  '#2A3D66', // Deep Navy
+  '#3A5C84', // Steel Blue
+  '#4A6E9F', // Cool Indigo
+  '#5C7B98', // Slate Blue
+  '#7A8C9B', // Light Navy
+  '#3C4A71', // Midnight Blue
+  '#4C5B76', // Dusty Blue
+  '#5D7081', // Shadow Blue
+  '#6A7D89', // Faded Navy
+  '#4E6D92', // Cool Azure
 ];

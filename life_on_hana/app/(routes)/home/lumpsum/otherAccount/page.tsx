@@ -22,6 +22,8 @@ export default function OtherAccount() {
   const [walletAmount, setWalletAmount] = useState<number>(0);
 
   const initialAmount = searchParams.get('amount') || '';
+  const initialReason = searchParams.get('reason') || '';
+  const initialReasonDetail = searchParams.get('reasonDetail') || '';
 
   useEffect(() => {
     const getWallet = async () => {
@@ -85,8 +87,8 @@ export default function OtherAccount() {
       const requestData = {
         amount,
         source: 'OTHER', // 없으면 호출 안됨
-        reason: 'OTHER', // 없으면 호출 안됨
-        reasonDetail: null, // 상세 이유
+        reason: initialReason, // 없으면 호출 안됨
+        reasonDetail: initialReasonDetail, // 상세 이유
         accountId: Number(account.accountId),
       };
       const response = await fetchLumpsum(requestData);
@@ -124,14 +126,12 @@ export default function OtherAccount() {
       : 'beforeChooseAccount';
 
   return (
-    <div className='flex flex-col h-screen px-3'>
-      <div className='sticky top-0 z-10'>
-        <div className='pt-6'>
-          <NavHeader
-            location={'타계좌에서 하나 지갑으로 입금하기'}
-            beforePageUrl={'..'}
-          />
-        </div>
+    <div className='flex flex-col h-screen px-6 pt-6'>
+      <div className='sticky z-10'>
+        <NavHeader
+          location={'타계좌에서 하나 지갑으로 입금하기'}
+          beforePageUrl={'..'}
+        />
 
         <div className='mb-2 px-2'>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>

@@ -71,9 +71,12 @@ export default function OtherAccountFinished() {
   };
 
   return (
-    <div className='flex flex-col px-3'>
-      <div className='pt-6'>
-        <NavHeader location={'하나 지갑 채우기'} beforePageUrl={'.'} />
+    <div className='flex flex-col h-screen px-6 pt-6'>
+      <div className='sticky z-10'>
+        <NavHeader
+          location={'타계좌에서 하나 지갑으로 입금하기'}
+          beforePageUrl={'.'}
+        />
       </div>
 
       <div className='flex-1 flex flex-col items-center pt-3'>
