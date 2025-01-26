@@ -24,12 +24,12 @@ import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductD
 import { useToast } from '@/hooks/use-toast';
 
 export enum Reason {
-  CHILDREN = '자녀 지원(결혼비용, 학비, 자취/독립 지원 등)',
-  MEDICAL = '의료비 지원(본인 및 가족의 의료비 등)',
-  HOUSING = '주거 및 생활비(주거 관련, 생활비 부족 등)',
-  BUSINESS_INVESTMENT = '사업 및 투자 자금(사업 투자, 창업 자금 등)',
+  CHILDREN = '자녀 지원 (결혼, 학비, 독립 지원 등)',
+  MEDICAL = '의료비 지원 (본인 및 가족 의료비 등)',
+  HOUSING = '주거 및 생활비 (주거, 생활비 부족 등)',
+  BUSINESS_INVESTMENT = '사업 및 투자 자금 (투자, 창업 자금 등)',
   VEHICLE_TRANSPORT = '차량 및 교통',
-  LEISURE = '여가(여행, 취미, 교육 등)',
+  LEISURE = '여가 (여행, 취미, 교육 등)',
   DEBT_REPAYMENT = '채무 상환',
   OTHER = '기타',
 }
@@ -162,7 +162,7 @@ export default function Lumpsum() {
         />
       )}
 
-      <Section height='54rem'>
+      <Section height='55rem'>
         <div className='w-full'>
           <div className='space-y-8'>
             <div className='my-3 flex gap-2 font-SCDream3 text-[1.25rem] items-end'>
