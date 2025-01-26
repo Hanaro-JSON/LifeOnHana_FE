@@ -175,22 +175,24 @@ export default function Lumpsum() {
               />
               을
             </div>
-            <div className='flex gap-2 font-SCDream3 text-[1.25rem] items-end justify-end'>
-              <LumpSumBtn
-                variant={'hanaSalaryBank'}
-                isSelected={selectedBtn === 'hanaSalaryBank'}
-                onClick={() => handleBtnClick('hanaSalaryBank')}
-              />
-              <LumpSumBtn
-                variant={'otherAccounts'}
-                isSelected={selectedBtn === 'otherAccounts'}
-                onClick={() => handleBtnClick('otherAccounts')}
-              />
-              <LumpSumBtn
-                variant={'loanProducts'}
-                isSelected={selectedBtn === 'loanProducts'}
-                onClick={() => handleBtnClick('loanProducts')}
-              />
+            <div className='flex gap-1 font-SCDream3 text-[1.25rem] items-end justify-between'>
+              <div className='flex justify-between gap-3'>
+                <LumpSumBtn
+                  variant={'hanaSalaryBank'}
+                  isSelected={selectedBtn === 'hanaSalaryBank'}
+                  onClick={() => handleBtnClick('hanaSalaryBank')}
+                />
+                <LumpSumBtn
+                  variant={'otherAccounts'}
+                  isSelected={selectedBtn === 'otherAccounts'}
+                  onClick={() => handleBtnClick('otherAccounts')}
+                />
+                <LumpSumBtn
+                  variant={'loanProducts'}
+                  isSelected={selectedBtn === 'loanProducts'}
+                  onClick={() => handleBtnClick('loanProducts')}
+                />
+              </div>
               에서
             </div>
 
