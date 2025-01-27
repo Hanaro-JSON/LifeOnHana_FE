@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { fetchArticles, searchArticles } from '@/api';
 import SearchInput from '@/components/molecules/SearchInput';
@@ -25,16 +25,24 @@ const CATEGORY_MAP: Record<string, string> = {
 
 export default function Column() {
   const router = useRouter();
-  const [searchValue, setSearchValue] = useState('');
+  const searchParams = useSearchParams();
+
+  const initialCategory = searchParams.get('category') || '전체보기';
+  const initialSearchValue = searchParams.get('searchValue') || '';
+
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [searchValue, setSearchValue] = useState(initialSearchValue);
+
+  const [articles, setArticles] = useState<TArticleItemProps[]>([]);
   const [filteredArticles, setFilteredArticles] = useState<TArticleItemProps[]>(
     []
   );
-  const [articles, setArticles] = useState<TArticleItemProps[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('전체보기');
-  const underlineRef = useRef<HTMLDivElement>(null);
+
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [isFiltering, setIsFiltering] = useState(false);
+
+  const underlineRef = useRef<HTMLDivElement>(null);
 
   const fetchAllArticles = useCallback(async () => {
     let page = 1;
@@ -42,38 +50,40 @@ export default function Column() {
     let hasNext = true;
     setIsLoading(true);
 
-    while (hasNext) {
-      try {
+    try {
+      while (hasNext) {
         const data = await fetchArticles(page);
         allArticles = [...allArticles, ...data.articles];
         hasNext = data.hasNext;
         page += 1;
-      } catch (error) {
-        console.error('Failed to fetch articles:', error);
-      } finally {
-        setIsLoading(false);
       }
+      setArticles(allArticles);
+      setFilteredArticles(allArticles);
+    } catch (error) {
+      console.error('Failed to fetch articles:', error);
+    } finally {
+      setIsLoading(false);
     }
-
-    setArticles(allArticles);
-    setFilteredArticles(allArticles);
   }, []);
 
   useEffect(() => {
-    fetchAllArticles();
+    void fetchAllArticles();
   }, [fetchAllArticles]);
 
   useEffect(() => {
+    if (articles.length === 0) return;
+
     const timeout = setTimeout(async () => {
+      router.replace(
+        `?category=${selectedCategory}&searchValue=${searchValue}`
+      );
       setIsSearching(true);
 
-      let result = articles;
+      let result: TArticleItemProps[] = [];
 
-      // 카테고리와 검색값 모두 적용
-      if (searchValue) {
-        try {
+      try {
+        if (searchValue) {
           const searchResults = await searchArticles(searchValue);
-
           if (selectedCategory !== '전체보기') {
             result = searchResults.filter(
               (article: TArticle) =>
@@ -82,15 +92,15 @@ export default function Column() {
           } else {
             result = searchResults;
           }
-        } catch (error) {
-          console.error('Failed to search articles:', error);
-          setIsSearching(false);
-          return;
+        } else if (selectedCategory !== '전체보기') {
+          result = articles.filter(
+            (article) => CATEGORY_MAP[article.category] === selectedCategory
+          );
+        } else {
+          result = articles;
         }
-      } else if (selectedCategory !== '전체보기') {
-        result = articles.filter(
-          (article) => CATEGORY_MAP[article.category] === selectedCategory
-        );
+      } catch (error) {
+        console.error('Failed to search articles:', error);
       }
 
       setFilteredArticles(result);
@@ -98,21 +108,30 @@ export default function Column() {
     }, 500);
 
     return () => clearTimeout(timeout);
-  }, [searchValue, selectedCategory, articles]);
+  }, [searchValue, selectedCategory, articles, router]);
 
   const handleCategoryChange = (category: string) => {
-    setIsFiltering(true); // 필터링 로딩 활성화
+    setIsFiltering(true);
+    setFilteredArticles([]);
+
     setSelectedCategory(category);
+    router.replace(`?category=${category}&searchValue=${searchValue}`);
 
     setTimeout(() => {
+      let result: TArticleItemProps[] = [];
       if (category === '전체보기') {
-        setFilteredArticles(articles);
+        result = searchValue
+          ? articles.filter((article) => article.title.includes(searchValue))
+          : articles;
       } else {
-        const filtered = articles.filter(
-          (article) => CATEGORY_MAP[article.category] === category
+        result = articles.filter(
+          (article) =>
+            CATEGORY_MAP[article.category] === category &&
+            (searchValue ? article.title.includes(searchValue) : true)
         );
-        setFilteredArticles(filtered);
       }
+
+      setFilteredArticles(result);
       setIsFiltering(false);
     }, 300);
   };
@@ -128,7 +147,9 @@ export default function Column() {
   }, [selectedCategory]);
 
   const handleArticleClick = (id: number) => {
-    router.push(`/column/${id}`);
+    router.push(
+      `/column/${id}?category=${selectedCategory}&searchValue=${searchValue}`
+    );
   };
 
   const listVariants = {
@@ -143,6 +164,8 @@ export default function Column() {
       },
     }),
   };
+
+  const isInLoadingState = isLoading || isSearching || isFiltering;
 
   return (
     <div>
@@ -188,22 +211,17 @@ export default function Column() {
           </div>
 
           <div className='bg-white p-4 w-full px-[2rem] h-[calc(100vh-18rem)] overflow-y-auto'>
-            {isLoading || isSearching || isFiltering ? ( // 로딩 중일 때 스켈레톤 표시
+            {isInLoadingState ? (
               <div className='w-full flex flex-col items-center gap-4'>
-                {[...Array(10)].map(
-                  (
-                    _,
-                    index // 초기 로딩으로 인한 10 설정 filteredArticles.length
-                  ) => (
-                    <Skeleton
-                      key={index}
-                      style={{ width: 'calc(100vw - 3rem)' }}
-                      height={65}
-                      baseColor='#f7f7f7' //'#F4EBFB'
-                      highlightColor='#eaeaea' //'#e7ddee'
-                    />
-                  )
-                )}
+                {[...Array(10)].map((_, index) => (
+                  <Skeleton
+                    key={index}
+                    style={{ width: 'calc(100vw - 3rem)' }}
+                    height={65}
+                    baseColor='#f7f7f7'
+                    highlightColor='#eaeaea'
+                  />
+                ))}
               </div>
             ) : filteredArticles.length > 0 ? (
               <div className='w-full flex flex-col items-center gap-4'>

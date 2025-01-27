@@ -179,8 +179,8 @@ export default function Detail() {
             mX={90}
             mY={75}
             onChange={(value) => {
-              if (value === 1) handleFontSizeChange(1.0);
-              if (value === 2) handleFontSizeChange(1.3);
+              if (value === 1) handleFontSizeChange(0.8);
+              if (value === 2) handleFontSizeChange(1.0);
               if (value === 3) handleFontSizeChange(1.5);
             }}
           />
