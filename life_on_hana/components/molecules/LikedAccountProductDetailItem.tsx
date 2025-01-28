@@ -102,7 +102,7 @@ export default function LikedAccountProductDetailItem({
   return (
     <div id='modal-background' onClick={handleBackgroundClick} className={bg}>
       <div
-        className='w-[90%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6'
+        className='pt-8 w-[90%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-around p-6'
         onClick={(e) => e.stopPropagation()}
       >
         {/* X 버튼 */}

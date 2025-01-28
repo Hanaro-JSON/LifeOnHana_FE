@@ -292,28 +292,29 @@ export default function Home() {
           }
         />
       </div>
-
-      {selectedProduct?.type === 'LOAN' && (
-        <LikedLoanProductDetailItem
-          {...selectedProduct.data}
-          closeBtn
-          onClose={() => setSelectedProductProps(null)}
-        />
-      )}
-      {selectedProduct?.type === 'SAVINGS' && (
-        <LikedAccountProductDetailItem
-          {...selectedProduct.data}
-          closeBtn
-          onClose={() => setSelectedProductProps(null)}
-        />
-      )}
-      {selectedProduct?.type === 'LIFE' && (
-        <LikedLifeProductDetailItem
-          {...selectedProduct.data}
-          closeBtn
-          onClose={() => setSelectedProductProps(null)}
-        />
-      )}
+      <div className='h-screen'>
+        {selectedProduct?.type === 'LOAN' && (
+          <LikedLoanProductDetailItem
+            {...selectedProduct.data}
+            closeBtn
+            onClose={() => setSelectedProductProps(null)}
+          />
+        )}
+        {selectedProduct?.type === 'SAVINGS' && (
+          <LikedAccountProductDetailItem
+            {...selectedProduct.data}
+            closeBtn
+            onClose={() => setSelectedProductProps(null)}
+          />
+        )}
+        {selectedProduct?.type === 'LIFE' && (
+          <LikedLifeProductDetailItem
+            {...selectedProduct.data}
+            closeBtn
+            onClose={() => setSelectedProductProps(null)}
+          />
+        )}
+      </div>
       <style jsx global>{`
         .overflow-x-auto::-webkit-scrollbar {
           display: none;
