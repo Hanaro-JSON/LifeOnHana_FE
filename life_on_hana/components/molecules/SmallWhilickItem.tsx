@@ -37,7 +37,7 @@ export default function SmallWhilickItem({
   };
 
   return (
-    <div className='w-full h-full pr-1'>
+    <div className='w-full h-full pl-2'>
       <button
         onClick={moveToWhilickEvent}
         className='bg-cover bg-center w-48 h-72 flex flex-col items-center justify-center p-5 relative'
