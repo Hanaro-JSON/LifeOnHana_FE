@@ -48,15 +48,12 @@ export default function LumpSumBtn({
         isSelected
           ? {
               backgroundColor: 'rgba(77, 0, 181, 0.2)',
-              boxShadow:
-                '0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(77, 0, 181, 0.25) inset',
+              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25) inset',
             }
           : undefined
       }
       className={`${commonClassNames} ${
-        isSelected
-          ? 'shadow-inner'
-          : 'shadow-[0px_4px_3px_rgba(77,0,181,0.3)] bg-hanalightpurple'
+        isSelected ? 'shadow-inner' : 'bg-hanalightpurple'
       }`}
     >
       <Image

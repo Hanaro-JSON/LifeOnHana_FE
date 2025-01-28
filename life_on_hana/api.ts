@@ -658,38 +658,39 @@ export const fetchProducts = async ({
 //getMydata
 export const fetchAntropicLoans = async (reason: string, amount: string) => {
   try {
-    // const response = await fetch(
-    //   `${process.env.NEXT_PUBLIC_URL}/api/anthropic/loans`,
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/anthropic/loans`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getApiToken()}`,
+        },
+        body: JSON.stringify({ reason, amount }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`조회 요청 실패: ${response.statusText}`);
+    }
+    const data = await response.json();
+    console.log('🚀 ~ fetchAntropicLoans ~ data:', data);
+    return data.data;
+    // return [
     //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Bearer ${getApiToken()}`,
-    //     },
-    //     body: JSON.stringify({ reason, amount }),
-    //   }
-    // );
-    // if (!response.ok) {
-    //   throw new Error(`조회 요청 실패: ${response.statusText}`);
-    // }
-    // const data = await response.json();
-    // return data.data;
-    return [
-      {
-        productId: '1',
-        name: '상품 1',
-        description: '설명 1',
-        maxAmount: '1000만원',
-        productType: 'LOAN',
-      },
-      {
-        productId: '2',
-        name: '상품 2',
-        description: '설명 2',
-        maxAmount: '20만원',
-        productType: 'LOAN',
-      },
-    ] as TRecommendItemProps[];
+    //     productId: '1',
+    //     name: '상품 1',
+    //     description: '설명 1',
+    //     maxAmount: '1000만원',
+    //     productType: 'LOAN',
+    //   },
+    //   {
+    //     productId: '2',
+    //     name: '상품 2',
+    //     description: '설명 2',
+    //     maxAmount: '20만원',
+    //     productType: 'LOAN',
+    //   },
+    // ] as TRecommendItemProps[];
   } catch (error) {
     console.error('조회 요청 오류:', error);
     throw new Error('조회 요청 중 오류가 발생했습니다.');

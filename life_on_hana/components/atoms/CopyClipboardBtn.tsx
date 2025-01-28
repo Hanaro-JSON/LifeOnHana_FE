@@ -21,7 +21,7 @@ export default function CopyClipboardBtn() {
           toast({
             title: '클립보드에 복사했습니다.',
             className:
-              'flex justify-center fixed top-[74%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
           });
         })
         .catch((err) => {
@@ -29,14 +29,14 @@ export default function CopyClipboardBtn() {
           toast({
             title: '클립보드에 복사를 실패했습니다.',
             className:
-              'flex justify-center fixed top-[74%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
           });
         });
     } else {
       toast({
         title: '클립보드에 복사를 실패했습니다.',
         className:
-          'flex justify-center fixed top-[74%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
       });
     }
   };

@@ -65,9 +65,25 @@ export default function Lumpsum() {
     return Number(value.replaceAll(',', '')).toLocaleString('en-US');
   };
 
-  const handleChange = (e: { target: { value: string } }) => {
-    const rawValue = e.target.value.replace(/[,.원]/g, '');
-    setAmount(formatNumber(rawValue));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/[,.원\s]/g, ''); // 숫자 이외의 문자 제거
+
+    if (rawValue) {
+      const formattedValue = formatNumber(rawValue);
+      setAmount(`${formattedValue} 원`); // 포맷팅 후 " 원" 추가
+    } else {
+      setAmount(''); // 값이 없으면 빈 문자열 설정
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' && amount.endsWith(' 원')) {
+      // Backspace로 " 원"을 지우지 않고 숫자만 줄이기
+      const rawValue = amount.replace(/[,.원\s]/g, '');
+      const newValue = rawValue.slice(0, -1); // 마지막 숫자 제거
+      setAmount(newValue ? `${formatNumber(newValue)} 원` : '');
+      e.preventDefault(); // 기본 Backspace 동작 방지
+    }
   };
 
   const handleReasonSelect = (selectedValue: string) => {
@@ -82,32 +98,40 @@ export default function Lumpsum() {
 
   const handleSubmit = async () => {
     if (!amount) {
-      alert('금액을 입력해주세요.');
+      toast({
+        title: '금액을 입력해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
       return;
     }
     if (!selectedBtn) {
-      alert('출금 계좌를 선택해주세요.');
+      toast({
+        title: '출금 계좌를 선택해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
       return;
     }
     if (!reason) {
-      alert('사용 목적을 선택해주세요.');
+      toast({
+        title: '사용 목적을 선택해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
       return;
     }
     if (reason === '기타' && customReason === '') {
-      alert('사용 목적을 입력해주세요.');
+      toast({
+        title: '사용 목적을 입력해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
       return;
     }
     switch (selectedBtn) {
       case 'loanProducts':
-        //더미 데이터
-        // setLoading(true); // 로딩 시작
         setLoanItems(await fetchAntropicLoans(reason, amount));
-        // setClicked(true);
-        // setTimeout(() => {
-        // console.log('10초가 지났습니다!');
-        // setLoading(false); // 로딩 종료
-        // }, 10);
-        /////////////
         break;
       case 'otherAccounts':
         router.replace(
@@ -121,21 +145,21 @@ export default function Lumpsum() {
           toast({
             title: '하나 월급통장 잔액이 부족합니다.',
             className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
           });
           return;
         } else {
           await fetchLumpsum({
-            amount: Number(amount),
+            amount: Number(amount.replace(/[^\d]/g, '')),
             reason: enumReason || '',
             source: 'SALARY',
             reasonDetail: customReason,
             accountId: fetchData.accountId,
           });
           toast({
-            title: '하나 월급통장에서 목돈을 가져오는데 성공했습니다.',
+            title: '목돈을 가져오는데 성공했습니다.',
             className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-hanapurple text-white w-[90%] text-center opacity-80 rounded-xl p-4',
+              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
           });
         }
     }
@@ -170,8 +194,10 @@ export default function Lumpsum() {
                 type='text'
                 value={amount}
                 className='font-SCDream7 text-hanapurple border-b-2 border-hanapurple w-full text-[1.5625rem] text-right outline-none'
-                placeholder='금액입력'
+                placeholder='금액을 입력해주세요'
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                autoFocus
               />
               을
             </div>
