@@ -226,7 +226,7 @@ export default function Home() {
   }
 
   return (
-    <div className='p-6 space-y-8 mb-28'>
+    <div className='h-[100%] p-6 space-y-8 mb-28'>
       {/* 헤더 */}
       <LogoHeader isMain={true} />
 
@@ -292,7 +292,7 @@ export default function Home() {
           }
         />
       </div>
-      <div className='h-screen'>
+      <div className='h-full'>
         {selectedProduct?.type === 'LOAN' && (
           <LikedLoanProductDetailItem
             {...selectedProduct.data}
