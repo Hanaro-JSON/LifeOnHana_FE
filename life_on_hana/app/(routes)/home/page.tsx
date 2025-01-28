@@ -247,7 +247,7 @@ export default function Home() {
             <span className='font-SCDream5 text-[1.25rem] text-hanapurple'>
               {Math.round(totalExpense / 10000)}만원
             </span>
-            &nbsp;입니다.
+            &nbsp;입니다
           </div>
 
           <BarGraph type={'mydata'} expenseCategories={expenseCategories} />
@@ -257,7 +257,7 @@ export default function Home() {
             <span className='font-SCDream4 text-[1.0625rem] text-hanapurple'>
               {totalInterest.toLocaleString()}원
             </span>
-            &nbsp;입니다.
+            &nbsp;입니다
           </div>
 
           <div className='border-t-2 flex justify-center items-center h-[2rem] pt-5'>
