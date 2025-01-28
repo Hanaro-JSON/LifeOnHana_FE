@@ -28,7 +28,8 @@ const MOCK_DATA = {
   message: '기사 상세 조회 성공',
   data: {
     articleId: 1,
-    title: '새해 소망 여행 울산시 울주군',
+    title:
+      '새해 소망 여행 울산시 울주울산시 울주울산시 울주울산시 울주울산시 울주울산시 울주울산시 울주울산시 울주울산시 울주군1111eklekrlkrlekkfm',
     category: '여행',
     thumbnailS3Key: 'https://hana1qm.com/dataFile/bbs/202513070213460420.jpg',
     content: [

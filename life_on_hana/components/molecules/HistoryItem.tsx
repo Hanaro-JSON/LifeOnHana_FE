@@ -83,11 +83,11 @@ export default function HistoryItem({
           height={50}
         />
         <div className='flex flex-col py-2'>
-          <div className='font-SCDream3 text-[.9375rem]'>
+          <div className='font-SCDream4 text-[.9375rem]'>
             {getLabel(category)}
           </div>
           <div className='font-SCDream5 text-[1.25rem]'>{description}</div>
-          <div className='font-SCDream2 text-[.9375rem]'>
+          <div className='font-SCDream2 text-[.8rem]'>
             {extractTimeWithRegex(historyDatetime)}
           </div>
         </div>

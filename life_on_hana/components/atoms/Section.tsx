@@ -10,7 +10,7 @@ export default function Section({
   const shadowClass = hasShadow
     ? shadowColor === ''
       ? 'shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)]'
-      : `shadow-[0px_4px_3px_${shadowColor}]`
+      : `shadow-[0px_8px_2px_0px_${shadowColor}]`
     : '';
 
   return (

@@ -226,7 +226,7 @@ export default function Home() {
   }
 
   return (
-    <div className='p-6 space-y-8 mb-28'>
+    <div className='h-[100%] p-6 space-y-8 mb-28'>
       {/* 헤더 */}
       <LogoHeader isMain={true} />
 
@@ -247,7 +247,7 @@ export default function Home() {
             <span className='font-SCDream5 text-[1.25rem] text-hanapurple'>
               {Math.round(totalExpense / 10000)}만원
             </span>
-            &nbsp;입니다.
+            &nbsp;입니다
           </div>
 
           <BarGraph type={'mydata'} expenseCategories={expenseCategories} />
@@ -257,7 +257,7 @@ export default function Home() {
             <span className='font-SCDream4 text-[1.0625rem] text-hanapurple'>
               {totalInterest.toLocaleString()}원
             </span>
-            &nbsp;입니다.
+            &nbsp;입니다
           </div>
 
           <div className='border-t-2 flex justify-center items-center h-[2rem] pt-5'>
@@ -292,28 +292,29 @@ export default function Home() {
           }
         />
       </div>
-
-      {selectedProduct?.type === 'LOAN' && (
-        <LikedLoanProductDetailItem
-          {...selectedProduct.data}
-          closeBtn
-          onClose={() => setSelectedProductProps(null)}
-        />
-      )}
-      {selectedProduct?.type === 'SAVINGS' && (
-        <LikedAccountProductDetailItem
-          {...selectedProduct.data}
-          closeBtn
-          onClose={() => setSelectedProductProps(null)}
-        />
-      )}
-      {selectedProduct?.type === 'LIFE' && (
-        <LikedLifeProductDetailItem
-          {...selectedProduct.data}
-          closeBtn
-          onClose={() => setSelectedProductProps(null)}
-        />
-      )}
+      <div className='h-full'>
+        {selectedProduct?.type === 'LOAN' && (
+          <LikedLoanProductDetailItem
+            {...selectedProduct.data}
+            closeBtn
+            onClose={() => setSelectedProductProps(null)}
+          />
+        )}
+        {selectedProduct?.type === 'SAVINGS' && (
+          <LikedAccountProductDetailItem
+            {...selectedProduct.data}
+            closeBtn
+            onClose={() => setSelectedProductProps(null)}
+          />
+        )}
+        {selectedProduct?.type === 'LIFE' && (
+          <LikedLifeProductDetailItem
+            {...selectedProduct.data}
+            closeBtn
+            onClose={() => setSelectedProductProps(null)}
+          />
+        )}
+      </div>
       <style jsx global>{`
         .overflow-x-auto::-webkit-scrollbar {
           display: none;

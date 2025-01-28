@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-import smallWhilick_title from '@/assets/smallWhilick_title.svg';
 import { type TSmallWhilickItemProps } from '@/types/componentTypes';
 import { getCategory } from '@/utils/convertEnumtoString';
 import { useRouter } from 'next/navigation';
@@ -37,21 +35,21 @@ export default function SmallWhilickItem({
   };
 
   return (
-    <div className='w-full h-full pr-1'>
+    <div className='w-full h-full pl-2'>
       <button
         onClick={moveToWhilickEvent}
         className='bg-cover bg-center w-48 h-72 flex flex-col items-center justify-center p-5 relative'
         style={{ backgroundImage: `url(${getSrc(variant)})` }}
         title={title}
       >
-        <Image
+        {/* <Image
           src={smallWhilick_title}
           alt='큰따옴표'
           width={20}
           height={20}
           className='absolute top-10'
           priority
-        />
+        /> */}
         <div className='w-full h-1/2  flex justify-center items-center'>
           <div className='line-clamp text-white font-SCDream6 text-[1.5rem]'>
             {title}

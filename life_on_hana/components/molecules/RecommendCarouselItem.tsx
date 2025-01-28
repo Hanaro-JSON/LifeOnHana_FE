@@ -39,9 +39,9 @@ export function RecommendCarouselItem({
     <div
       onClick={() => onClick(item.productId, item.category ?? '')}
       key={index}
-      className='w-full h-full items-center flex flex-row justify-between'
+      className='w-full h-full items-center flex flex-row justify-between px-3'
     >
-      <div className='flex flex-col flex-[2]'>
+      <div className='flex flex-col flex-[2] '>
         <div className='font-SCDream6 text-[1.5rem] line-clamp-1 overflow-hidden text-ellipsis'>
           {item.name}
         </div>

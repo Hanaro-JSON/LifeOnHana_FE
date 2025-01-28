@@ -1,6 +1,7 @@
 'use client';
 
 import { fetchArticlesLiked } from '@/api';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 import ArticleItem from '@/components/molecules/ArticleItem';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { WhilickCarousel } from '@/components/molecules/WhilickCarousel';
@@ -63,7 +64,7 @@ export default function Columns() {
     <>
       {articles.map(
         ({ articleId, title, category, publishedAt, thumbnailS3Key }) => (
-          <div key={articleId} className='py-3'>
+          <div key={articleId}>
             <ArticleItem
               articleId={articleId}
               title={title}
@@ -79,22 +80,23 @@ export default function Columns() {
   );
 
   return (
-    <div className='p-6 space-y-4 mb-28'>
+    <div className='p-6 w-screen py-6 space-y-4 mb-[3rem]'>
       <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
-
-      <div className='w-full h-full flex flex-col items-center mt-5'>
+      <div className='w-full h-full flex flex-col items-center justify-center mt-5'>
         {likedArticles.length > 0 ? (
           <>
             {Array.from(
               { length: Math.ceil(likedArticles.length / 10) },
               (_, i) => (
                 <div key={i} className='w-full'>
+                  <div className='w-full bg-gray-500 h-[0.02rem]' />
                   <ArticleList
                     articles={likedArticles.slice(i * 10, i * 10 + 5)}
                   />
                   <WhilickCarousel
                     items={likedArticles.slice(i * 10, (i + 1) * 10)}
                   />
+                  <div className='w-full bg-gray-500 h-[0.02rem]' />
                   <ArticleList
                     articles={likedArticles.slice(i * 10 + 5, (i + 1) * 10)}
                   />
@@ -111,8 +113,8 @@ export default function Columns() {
               }}
             ></div>
             {isFetching && (
-              <div className='w-full h-12 flex items-center justify-center'>
-                로딩 중...
+              <div className='w-full'>
+                <LoadingIcon />
               </div>
             )}
           </>

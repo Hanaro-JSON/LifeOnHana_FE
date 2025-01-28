@@ -12,6 +12,7 @@ import { VerticalBarGraph } from '@/components/molecules/VerticalBarGraph';
 import HistoryItem from '@/components/molecules/HistoryItem';
 import { type THistoryItemCategoryProps } from '@/types/componentTypes';
 import { fetchHistory, fetchHistoryMonthly } from '@/api';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 
 const mockData: THistoryMonthly = {
   averageExpense: 250000,
@@ -260,8 +261,8 @@ export default function History() {
         </div>
 
         {isFetching && (
-          <div className='w-full h-12 flex items-center justify-center'>
-            로딩 중...
+          <div className='h-full'>
+            <LoadingIcon />
           </div>
         )}
       </div>
