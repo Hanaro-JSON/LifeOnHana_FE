@@ -8,7 +8,7 @@ import LumpSumBtn from '@/components/molecules/LumpSumBtn';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { DataContext } from '@/hooks/useData';
 import { useRouter } from 'next/navigation';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import {
   type TLikedLoanProductDetailItemProps,
   type TRecommendItemProps,
@@ -22,6 +22,8 @@ import {
 } from '@/api';
 import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
 import { useToast } from '@/hooks/use-toast';
+import WhilickItemLoading from '@/components/molecules/WhilickItemLoading';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 
 export enum Reason {
   CHILDREN = '자녀 지원 (결혼, 학비, 독립 지원 등)',
@@ -129,9 +131,14 @@ export default function Lumpsum() {
       });
       return;
     }
+    setClicked(true);
     switch (selectedBtn) {
       case 'loanProducts':
-        setLoanItems(await fetchAntropicLoans(reason, amount));
+        setLoading(true);
+        setLoanItems(
+          await fetchAntropicLoans(reason, Number(amount.replace(/[^\d]/g, '')))
+        );
+        setLoading(false);
         break;
       case 'otherAccounts':
         router.replace(
@@ -297,15 +304,10 @@ export default function Lumpsum() {
             {data.name}님을 위한 추천 대출 상품
           </div>
 
-          {loading === true ? (
-            <Section height='100'>
-              <Skeleton
-                style={{ width: 'calc(100vw - 3rem)' }}
-                height={100}
-                baseColor='#f7f7f7' //'#F4EBFB'
-                highlightColor='#eaeaea' //'#e7ddee'
-              />
-            </Section>
+          {loading ? (
+            <div className='h-screen'>
+              <LoadingIcon />
+            </div>
           ) : (
             loanItems.map((loanItem, index) => (
               <RecommendItem

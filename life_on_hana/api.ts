@@ -656,7 +656,7 @@ export const fetchProducts = async ({
   }
 };
 //getMydata
-export const fetchAntropicLoans = async (reason: string, amount: string) => {
+export const fetchAntropicLoans = async (reason: string, amount: number) => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/anthropic/loans`,
