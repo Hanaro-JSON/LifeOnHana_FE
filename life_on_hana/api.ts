@@ -278,7 +278,7 @@ export const transferFunds = async (
 export const fetchArticleById = async (id: number) => {
   try {
     const response = await fetch(
-      // `${process.env.NEXT_PUBLIC_URL}/api/articles/${id}`, // [돈 주석]
+      `${process.env.NEXT_PUBLIC_URL}/api/articles/${id}`, // [돈 주석]
       {
         method: 'GET',
         headers: {
@@ -309,7 +309,7 @@ export const fetchEffectAnalysis = async (
 ) => {
   try {
     const response = await fetch(
-      // `${process.env.NEXT_PUBLIC_URL}/api/anthropic/effect`, // [돈 주석]
+      `${process.env.NEXT_PUBLIC_URL}/api/anthropic/effect`, // [돈 주석]
       {
         method: 'POST',
         headers: {
