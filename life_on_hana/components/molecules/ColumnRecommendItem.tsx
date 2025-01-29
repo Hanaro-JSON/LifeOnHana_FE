@@ -33,6 +33,8 @@ export default function ColumnRecommendItem({
         return '문화';
       case 'HOBBY':
         return '취미';
+      case 'LOAN':
+        return '대출';
       default:
         return '';
     }
@@ -52,6 +54,8 @@ export default function ColumnRecommendItem({
         return '/assets/column_recommend_culture.svg';
       case 'HOBBY':
         return '/assets/column_recommend_hobby.svg';
+      case 'LOAN':
+        return '/assets/column_recommend_loan.svg';
       default:
         return '';
     }
