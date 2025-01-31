@@ -58,27 +58,19 @@ export default function ConnectBankItem({
       className='w-full h-[3.75rem] flex items-center justify-between relative cursor-pointer'
     >
       <div className='flex items-center'>
-        <Image
-          className='w-5 h-[.95rem]'
-          src={bankLogo}
-          alt={`${bankName} Logo`}
-          width={20}
-          height={15}
-        />
-        <div className='ml-2 text-black text-[.9375rem] font-SCDream3'>
+        <Image src={bankLogo} alt={`${bankName} Logo`} width={16} height={16} />
+        <div className='ml-2 text-black text-[1.125rem] font-SCDream3'>
           {displayBankName}
         </div>
       </div>
 
-      <div className='w-[.9375rem] h-[.9375rem]'>
-        <Image
-          src={isMydataChecked ? MydataCheckYes : MydataCheckNo}
-          alt={isMydataChecked ? 'Mydata Checked' : 'Mydata Not Checked'}
-          width={20}
-          height={20}
-          className='cursor-pointer'
-        />
-      </div>
+      <Image
+        src={isMydataChecked ? MydataCheckYes : MydataCheckNo}
+        alt={isMydataChecked ? 'Mydata Checked' : 'Mydata Not Checked'}
+        width={16}
+        height={16}
+        className='cursor-pointer'
+      />
     </div>
   );
 }
