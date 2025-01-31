@@ -5,7 +5,7 @@ const LoginLabelInput = forwardRef<HTMLInputElement, TLoginLabelInputProps>(
   ({ label, id, type, name, placeholder, errorMsg }, ref) => {
     return (
       <div className='flex flex-col mb-2'>
-        <label className='text-xs mb-2' htmlFor={id}>
+        <label className='text-[1.125rem] mb-2' htmlFor={id}>
           {label}
         </label>
         <input

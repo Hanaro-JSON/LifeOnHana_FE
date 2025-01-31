@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Btn from '@/components/atoms/Btn';
 import logo from '@/assets/logo.svg';
 import logoText from '@/assets/logoText.svg';
 import { useState, useRef } from 'react';
@@ -105,9 +104,6 @@ export default function SigninPage() {
           <div className='flex flex-col items-center mb-6'>
             <Image src={logo} alt='Logo' className='w-32 mb-2' priority />
             <Image src={logoText} alt='LogoText' className='mb-2' priority />
-            <div className='font-SCDream5 text-[#A6A6A6] text-xs'>
-              소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
-            </div>
           </div>
           <form
             onSubmit={handleLoginSubmit}
@@ -134,7 +130,12 @@ export default function SigninPage() {
               />
             </div>
 
-            <Btn text='로그인' type='submit' />
+            <button
+              className='w-full text-[1.25rem] text-white py-3 rounded-xl font-SCDream5 bg-violet-600 hover:bg-hanapurple'
+              type='submit'
+            >
+              로그인
+            </button>
           </form>
         </div>
       </div>
