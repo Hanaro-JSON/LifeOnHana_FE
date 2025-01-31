@@ -136,8 +136,8 @@ export type TColumnRecommendItemProps = {
 
 export type TConnectBankItemProps = {
   bankName: string;
-  initialIsMydataChecked?: boolean;
   onToggle: (isChecked: boolean) => void;
+  checked?: boolean;
 };
 
 export type THistoryItemCategoryProps =

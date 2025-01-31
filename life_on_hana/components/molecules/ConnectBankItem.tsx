@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import Image from 'next/image';
 import MydataCheckNo from '@/assets/MydataCheckNo.svg';
 import MydataCheckYes from '@/assets/MydataCheckYes.svg';
@@ -14,17 +14,11 @@ import { type TConnectBankItemProps } from '@/types/componentTypes';
 
 export default function ConnectBankItem({
   bankName,
-  initialIsMydataChecked = false,
   onToggle,
+  checked = false,
 }: TConnectBankItemProps) {
-  const [isMydataChecked, setIsMydataChecked] = useState<boolean>(
-    initialIsMydataChecked
-  );
-
   const toggleMydata = () => {
-    const newCheckedState = !isMydataChecked;
-    setIsMydataChecked(newCheckedState);
-    onToggle(newCheckedState);
+    onToggle(!checked);
   };
 
   const bankLogoMap: Record<string, string> = {
@@ -65,8 +59,8 @@ export default function ConnectBankItem({
       </div>
 
       <Image
-        src={isMydataChecked ? MydataCheckYes : MydataCheckNo}
-        alt={isMydataChecked ? 'Mydata Checked' : 'Mydata Not Checked'}
+        src={checked ? MydataCheckYes : MydataCheckNo}
+        alt={checked ? 'Mydata Checked' : 'Mydata Not Checked'}
         width={16}
         height={16}
         className='cursor-pointer'

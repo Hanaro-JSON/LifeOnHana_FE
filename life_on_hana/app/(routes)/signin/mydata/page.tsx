@@ -10,10 +10,6 @@ import LoadingIcon from '@/components/atoms/LoadingIcon';
 export default function Mydata() {
   const router = useRouter();
   const [clickedNum, setClickedNum] = useState(0);
-
-  const handleToggle = (isChecked: boolean) => {
-    setClickedNum((prev) => (isChecked ? prev + 1 : prev - 1));
-  };
   const [isLoading, setIsLoading] = useState(false);
 
   const moveToHomeEvent = () => {
@@ -23,6 +19,42 @@ export default function Mydata() {
         router.replace('/home');
       }
     }, 300);
+  };
+
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({
+    HANA: false,
+    NH: false,
+    SHINHAN: false,
+    KB: false,
+    WOORI: false,
+    TOSS: false,
+    NAVER: false,
+    KAKAO: false,
+  });
+
+  // 단일 항목 선택
+  const handleToggle = (bankName: string, isChecked: boolean) => {
+    setCheckedItems((prev) => {
+      const updated = { ...prev, [bankName]: isChecked };
+      setClickedNum(Object.values(updated).filter(Boolean).length);
+      return updated;
+    });
+  };
+
+  // 전체 선택 버튼 클릭
+  const selectAllEvent = () => {
+    setCheckedItems((prev) => {
+      const allChecked = Object.keys(prev).reduce(
+        (acc, key) => {
+          acc[key] = true;
+          return acc;
+        },
+        {} as { [key: string]: boolean }
+      );
+
+      setClickedNum(Object.keys(allChecked).length);
+      return allChecked;
+    });
   };
 
   return (
@@ -45,19 +77,26 @@ export default function Mydata() {
             필요해요.
           </div>
 
-          <div className='flex items-center gap-3 font-SCDream5 text-[1.25rem] mb-5'>
-            연결되는 데이터
-            <MicroMiniBtn num={clickedNum} />
+          <div className='flex justify-between items-center gap-3 font-SCDream5 text-[1.25rem] mb-5'>
+            <div className='flex items-center gap-3'>
+              연결되는 데이터
+              <MicroMiniBtn num={clickedNum} />
+            </div>
+
+            <button className='text-[.9375rem]' onClick={selectAllEvent}>
+              전체선택
+            </button>
           </div>
+
           <div className='flex flex-col items-center gap-2'>
-            <ConnectBankItem bankName='HANA' onToggle={handleToggle} />
-            <ConnectBankItem bankName='NH' onToggle={handleToggle} />
-            <ConnectBankItem bankName='SHINHAN' onToggle={handleToggle} />
-            <ConnectBankItem bankName='KB' onToggle={handleToggle} />
-            <ConnectBankItem bankName='WOORI' onToggle={handleToggle} />
-            <ConnectBankItem bankName='TOSS' onToggle={handleToggle} />
-            <ConnectBankItem bankName='NAVER' onToggle={handleToggle} />
-            <ConnectBankItem bankName='KAKAO' onToggle={handleToggle} />
+            {Object.keys(checkedItems).map((bank) => (
+              <ConnectBankItem
+                key={bank}
+                bankName={bank}
+                onToggle={(isChecked) => handleToggle(bank, isChecked)}
+                checked={checkedItems[bank]}
+              />
+            ))}
           </div>
         </div>
 
