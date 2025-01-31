@@ -8,7 +8,7 @@ export default function MicroMiniBtn({
   if (num) {
     return (
       <>
-        <div className='flex justify-center items-center border border-hanapurple bg-hanalightpurple text-hanapurple rounded-xl w-[2rem] h-[1.25rem] text-[.9375rem] pt-0.5'>
+        <div className='flex justify-center items-center border border-hanapurple bg-hanalightpurple text-hanapurple rounded-xl w-[2rem] h-[1.25rem] text-[.9375rem] pt-1'>
           {num}
         </div>
       </>
