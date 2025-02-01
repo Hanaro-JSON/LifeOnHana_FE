@@ -38,8 +38,10 @@ export default function Page() {
             style={{ width: 'auto', height: 'auto' }}
             priority
           />
-          <div className='font-SCDream5 text-[1rem] text-white'>
-            소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
+          <div className='font-SCDream5 text-[1.25rem] text-white text-center mt-3'>
+            소득 크레바스에 맞닥뜨린
+            <br />
+            당신을 구해줄 든든한 동반자
           </div>
         </div>
         <Image

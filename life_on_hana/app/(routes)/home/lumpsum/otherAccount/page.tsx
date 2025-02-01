@@ -9,8 +9,10 @@ import HanaBankLogo from '@/assets/HanaBankLogo.svg';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { fetchAccountData, fetchWallet, fetchLumpsum } from '@/api';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 export default function OtherAccount() {
+  const { toast } = useToast();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [otherAccounts, setOtherAccounts] = useState<TAccountDetailItemProps[]>(
@@ -76,7 +78,11 @@ export default function OtherAccount() {
 
   const handleComplete = async () => {
     if (selectedIndex === null || !amounts[selectedIndex]) {
-      alert('계좌와 금액을 선택해주세요.');
+      toast({
+        title: '계좌와 금액을 선택해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
       return;
     }
 
@@ -109,11 +115,19 @@ export default function OtherAccount() {
           )}`
         );
       } else {
-        alert(response.message || '이체 요청이 실패했습니다.');
+        toast({
+          title: '이체 요청이 실패했습니다.',
+          className:
+            'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        });
       }
     } catch (error) {
       console.error('API 요청 오류:', error);
-      alert('요청 처리 중 오류가 발생했습니다.');
+      toast({
+        title: '요청 처리 중 오류가 발생했습니다.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
     }
   };
 

@@ -30,6 +30,7 @@ export default function Btn({
   onClick,
 }: TBtnProps) {
   const btnClasses = `${getBtnClasses(variant)} rounded-xl font-SCDream5`;
+
   return variant === 'needLumpSum' ? (
     <Link href={'/home/lumpsum'} className='flex'>
       <button

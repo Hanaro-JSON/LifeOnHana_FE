@@ -10,6 +10,7 @@ import soundOff from '@/assets/sound-off.svg';
 import useDebounce from '@/hooks/useDebounce';
 import WhilickDownSvg from '@/components/atoms/WhilickDownSvg';
 import { likeArticle } from '@/api';
+import { useToast } from '@/hooks/use-toast';
 
 export default function WhilickItem({
   idx,
@@ -27,6 +28,7 @@ export default function WhilickItem({
   globalFontSize,
   setGlobalFontSize,
 }: TWhilickItemProps) {
+  const { toast } = useToast();
   // 좋아요 수
   const [isLikedNum, setIsLikedNum] = useState(isLiked);
   const [likeCountNum, setLikeCountNum] = useState(likeCount);
@@ -197,7 +199,11 @@ export default function WhilickItem({
       setLikeCountNum(updatedData.likeCount);
     } catch (error) {
       console.error('좋아요 처리 중 오류 발생:', error);
-      alert('좋아요 처리에 실패했습니다. 다시 시도해주세요.');
+      toast({
+        title: '좋아요 처리에 실패했습니다. 다시 시도해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
     }
   };
 

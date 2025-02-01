@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Btn from '@/components/atoms/Btn';
 import logo from '@/assets/logo.svg';
 import logoText from '@/assets/logoText.svg';
 import { useState, useRef } from 'react';
@@ -9,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import LoginLabelInput from '@/components/molecules/LoginLabelInput';
 import { useToast } from '@/hooks/use-toast';
 import { authenticate } from '@/actions/myauth';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 
 type TDataProps = {
   accessTocken: string;
@@ -20,12 +20,13 @@ type TDataProps = {
 export default function SigninPage() {
   const router = useRouter();
   const { toast } = useToast();
-
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const idInputRef = useRef<HTMLInputElement | null>(null);
   const passwordInputRef = useRef<HTMLInputElement | null>(null);
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('로그인 작동함!!!!!');
     e.preventDefault();
     setErrorMsg(null);
 
@@ -78,6 +79,7 @@ export default function SigninPage() {
         if (data.code === 200 && !data.data.isFirst) {
           localStorage.setItem('user', JSON.stringify(data.data));
           router.replace('/home');
+          setIsLogin(true);
         }
         // isFirst 일 때
         else if (data.code === 200 && data.data.isFirst) {
@@ -105,9 +107,6 @@ export default function SigninPage() {
           <div className='flex flex-col items-center mb-6'>
             <Image src={logo} alt='Logo' className='w-32 mb-2' priority />
             <Image src={logoText} alt='LogoText' className='mb-2' priority />
-            <div className='font-SCDream5 text-[#A6A6A6] text-xs'>
-              소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자
-            </div>
           </div>
           <form
             onSubmit={handleLoginSubmit}
@@ -118,7 +117,6 @@ export default function SigninPage() {
                 ref={idInputRef}
                 label='아이디'
                 id='id'
-                type='text'
                 name='id'
                 placeholder='아이디'
                 errorMsg={errorMsg === 'id' ? 'id' : undefined}
@@ -127,17 +125,24 @@ export default function SigninPage() {
                 ref={passwordInputRef}
                 label='비밀번호'
                 id='password'
-                type='password'
                 name='pw'
                 placeholder='비밀번호'
                 errorMsg={errorMsg === 'pw' ? 'pw' : undefined}
               />
             </div>
 
-            <Btn text='로그인' type='submit' />
+            <button
+              className='w-full text-[1.25rem] text-white py-3 rounded-xl font-SCDream5 bg-violet-600 hover:bg-hanapurple'
+              type='submit'
+            >
+              로그인
+            </button>
           </form>
         </div>
       </div>
+
+      {/* home으로 이동 전 로딩 화면 */}
+      {isLogin && <LoadingIcon />}
     </div>
   );
 }
