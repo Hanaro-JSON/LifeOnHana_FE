@@ -25,8 +25,9 @@ export default function AccountDetailItem({
 }: TAccountDetailItemProps) {
   const [checked, setChecked] = useState<boolean>(isAccountChecked);
   const [withdrawalAmount, setWithdrawalAmount] = useState<string>(
-    defaultAmount || ''
-    // ''
+    defaultAmount
+      ? Number(defaultAmount.replace(/\D/g, '')).toLocaleString()
+      : ''
   );
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -43,8 +44,15 @@ export default function AccountDetailItem({
   const formatNumber = (value: string) => {
     if (!value) return '';
     const numericValue = value.replace(/\D/g, '');
-    return Number(numericValue).toLocaleString('en-US');
+    return Number(numericValue).toLocaleString();
   };
+  useEffect(() => {
+    setWithdrawalAmount(
+      defaultAmount
+        ? Number(defaultAmount.replace(/\D/g, '')).toLocaleString()
+        : ''
+    );
+  }, [defaultAmount]);
 
   const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/,/g, '');
@@ -133,7 +141,10 @@ export default function AccountDetailItem({
           <div className='flex items-center justify-start mb-4'>
             <input
               type='text'
-              defaultValue={defaultAmount}
+              value={withdrawalAmount}
+              defaultValue={Number(
+                defaultAmount!.replace(/\D/g, '')
+              ).toLocaleString()}
               onChange={handleAmountChange}
               placeholder={`${balance.toLocaleString()}`}
               className='mt-2 w-[95%] h-[2.3rem] p-2 border border-hanapurple rounded-md text-right text-[1.25rem] font-SCDream8 focus:outline-none focus:border-hanapurple focus:border-2'
