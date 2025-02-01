@@ -26,6 +26,7 @@ export default function SigninPage() {
   const [isLogin, setIsLogin] = useState(false);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('로그인 작동함!!!!!');
     e.preventDefault();
     setErrorMsg(null);
 
@@ -116,7 +117,6 @@ export default function SigninPage() {
                 ref={idInputRef}
                 label='아이디'
                 id='id'
-                type='text'
                 name='id'
                 placeholder='아이디'
                 errorMsg={errorMsg === 'id' ? 'id' : undefined}
@@ -125,7 +125,6 @@ export default function SigninPage() {
                 ref={passwordInputRef}
                 label='비밀번호'
                 id='password'
-                type='password'
                 name='pw'
                 placeholder='비밀번호'
                 errorMsg={errorMsg === 'pw' ? 'pw' : undefined}

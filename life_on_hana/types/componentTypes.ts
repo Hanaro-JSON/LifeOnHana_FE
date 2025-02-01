@@ -215,7 +215,7 @@ export type TLikedLoanProductDetailItemProps = {
 export type TLoginLabelInputProps = {
   label: string;
   id: string;
-  type: 'text' | 'password';
+  type?: 'text' | 'password';
   name: string;
   placeholder: string;
   errorMsg?: string;
