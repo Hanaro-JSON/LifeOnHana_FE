@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import LoginLabelInput from '@/components/molecules/LoginLabelInput';
 import { useToast } from '@/hooks/use-toast';
 import { authenticate } from '@/actions/myauth';
+import LoadingIcon from '@/components/atoms/LoadingIcon';
 
 type TDataProps = {
   accessTocken: string;
@@ -19,10 +20,10 @@ type TDataProps = {
 export default function SigninPage() {
   const router = useRouter();
   const { toast } = useToast();
-
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const idInputRef = useRef<HTMLInputElement | null>(null);
   const passwordInputRef = useRef<HTMLInputElement | null>(null);
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,6 +78,7 @@ export default function SigninPage() {
         if (data.code === 200 && !data.data.isFirst) {
           localStorage.setItem('user', JSON.stringify(data.data));
           router.replace('/home');
+          setIsLogin(true);
         }
         // isFirst 일 때
         else if (data.code === 200 && data.data.isFirst) {
@@ -139,6 +141,9 @@ export default function SigninPage() {
           </form>
         </div>
       </div>
+
+      {/* home으로 이동 전 로딩 화면 */}
+      {isLogin && <LoadingIcon />}
     </div>
   );
 }
