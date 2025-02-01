@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import Image from 'next/image';
 import MydataCheckNo from '@/assets/MydataCheckNo.svg';
 import MydataCheckYes from '@/assets/MydataCheckYes.svg';

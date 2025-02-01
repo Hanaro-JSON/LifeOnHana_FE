@@ -41,18 +41,21 @@ export default function Mydata() {
     });
   };
 
-  // 전체 선택 버튼 클릭
+  // 전체 선택/해제 버튼 클릭
   const selectAllEvent = () => {
     setCheckedItems((prev) => {
+      // 모든 값이 true인지 확인
+      const isAllCheckted = Object.values(prev).every(Boolean);
+
       const allChecked = Object.keys(prev).reduce(
         (acc, key) => {
-          acc[key] = true;
+          acc[key] = isAllCheckted ? false : true;
           return acc;
         },
         {} as { [key: string]: boolean }
       );
 
-      setClickedNum(Object.keys(allChecked).length);
+      setClickedNum(Object.values(allChecked).filter(Boolean).length);
       return allChecked;
     });
   };
@@ -83,7 +86,7 @@ export default function Mydata() {
               <MicroMiniBtn num={clickedNum} />
             </div>
 
-            <button className='text-[.9375rem]' onClick={selectAllEvent}>
+            <button onClick={selectAllEvent} className='text-[.9375rem]'>
               전체선택
             </button>
           </div>
