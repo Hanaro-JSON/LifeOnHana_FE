@@ -1,6 +1,6 @@
 import { type TVerticalBarGraphProps } from './componentTypes';
 
-export enum Reason {
+export enum TLumpsumReason {
   CHILDREN = '자녀 지원 (결혼, 학비, 독립 지원 등)',
   MEDICAL = '의료비 지원 (본인 및 가족 의료비 등)',
   HOUSING = '주거 및 생활비 (주거, 생활비 부족 등)',

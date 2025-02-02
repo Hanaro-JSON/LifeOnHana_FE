@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import Skeleton from 'react-loading-skeleton';
 import Btn from '@/components/atoms/Btn';
 import Section from '@/components/atoms/Section';
 import LumpSumBtn from '@/components/molecules/LumpSumBtn';
@@ -13,7 +12,7 @@ import {
   type TLikedLoanProductDetailItemProps,
   type TRecommendItemProps,
 } from '@/types/componentTypes';
-import { Reason } from '@/types/dataTypes';
+import { TLumpsumReason } from '@/types/dataTypes';
 import { RecommendItem } from '@/components/molecules/RecommendItem';
 import {
   fetchAccountSalary,
@@ -37,8 +36,8 @@ export default function Lumpsum() {
   const [amount, setAmount] = useState('');
   const [customReason, setCustomReason] = useState('');
   const [selectedBtn, setSelectedBtn] = useState<string | null>(null);
-  const reasons = Object.values(Reason);
-  const [reason, setReason] = useState<Reason | ''>('');
+  const reasons = Object.values(TLumpsumReason);
+  const [reason, setReason] = useState<TLumpsumReason | ''>('');
 
   ///api/anthropic/loans
   const [loanItems, setLoanItems] = useState<TRecommendItemProps[]>([]);
@@ -79,8 +78,9 @@ export default function Lumpsum() {
 
   const handleReasonSelect = (selectedValue: string) => {
     // 'selectedValue'는 Reason enum의 value(예: '자녀 지원(결혼비용, 학비, 자취/독립 지원 등)')
-    const selectedKey = Object.keys(Reason).find(
-      (key) => Reason[key as keyof typeof Reason] === selectedValue
+    const selectedKey = Object.keys(TLumpsumReason).find(
+      (key) =>
+        TLumpsumReason[key as keyof typeof TLumpsumReason] === selectedValue
     );
     if (selectedKey) {
       return selectedKey;
