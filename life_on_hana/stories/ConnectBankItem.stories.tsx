@@ -10,7 +10,7 @@ const meta: Meta<typeof ConnectBankItem> = {
       control: 'text',
       description: '은행 이름',
     },
-    initialIsMydataChecked: {
+    checked: {
       control: 'boolean',
       description: 'MyData 체크 여부',
     },
@@ -24,27 +24,27 @@ type Story = StoryObj<typeof ConnectBankItem>;
 export const Default: Story = {
   args: {
     bankName: 'HANA',
-    initialIsMydataChecked: false,
+    checked: false,
   },
 };
 
 export const Checked: Story = {
   args: {
     bankName: 'HANA',
-    initialIsMydataChecked: true,
+    checked: true,
   },
 };
 
 export const SHINHAN: Story = {
   args: {
     bankName: 'SHINHAN',
-    initialIsMydataChecked: false,
+    checked: false,
   },
 };
 
 export const KAKAO: Story = {
   args: {
     bankName: 'KAKAO',
-    initialIsMydataChecked: true,
+    checked: true,
   },
 };
