@@ -764,6 +764,7 @@ export async function fetchWhilickList(
     // alert(`더이상 콘텐츠가 존재하지 않습니다.${error}`);
   }
 }
+
 // 입출금 목록
 export const fetchHistory = async ({
   yearMonth,

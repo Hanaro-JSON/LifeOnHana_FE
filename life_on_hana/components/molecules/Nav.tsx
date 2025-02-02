@@ -51,6 +51,7 @@ export default function Nav() {
                 alt={label}
                 width={24}
                 height={24}
+                style={{ width: 'auto', height: 'auto' }}
                 priority
               />
               <span
