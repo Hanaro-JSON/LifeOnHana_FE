@@ -54,7 +54,7 @@ const getLabel = (category: THistoryItemCategoryProps): string => {
     case 'HEALTH':
       return '의료∙건강∙피트니스';
     case 'FIXED_EXPENSE':
-      return '교통∙자동차/주거∙통신/보험∙세금∙기타금융';
+      return '교통/주거∙통신/보험∙기타금융';
     case 'TRAVEL':
       return '여행∙숙박';
     case 'DEPOSIT':
