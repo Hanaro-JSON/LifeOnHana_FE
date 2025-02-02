@@ -7,8 +7,14 @@ import whilickIcon from '@/assets/whilickIcon.svg';
 export function WhilickCarousel({ items }: { items: TArticlesLiked[] }) {
   return (
     <div className='h-full mt-7 mb-14'>
-      <div className='flex w-full gap-2 font-SCDream5 text-[1.35rem] mb-5'>
-        <Image src={whilickIcon} alt={'whilickIcon'} />
+      <div className='flex items-center w-full gap-2 font-SCDream5 text-[1.35rem] mb-5'>
+        <Image
+          src={whilickIcon}
+          alt={'whilickIcon'}
+          width={20}
+          height={20}
+          style={{ width: 'auto', height: 'auto' }}
+        />
         휘릭으로 보기
       </div>
 
