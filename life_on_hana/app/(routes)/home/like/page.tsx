@@ -92,10 +92,14 @@ export default function Like() {
 
   return (
     <div className='flex flex-col h-screen'>
-      <div className='pt-6 px-6'>
+      <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
         <NavHeader location='좋아요한 상품' beforePageUrl='.' />
       </div>
-      <div className='flex-1 overflow-y-auto px-5 mb-32'>
+
+      <div
+        className='flex-1 overflow-y-auto px-5 mb-32'
+        style={{ marginTop: '5.5rem' }}
+      >
         <div className='flex flex-col gap-4 pb-[10vh]'>
           {products.map((product) => (
             <RecommendItem key={product.productId} {...product} />
