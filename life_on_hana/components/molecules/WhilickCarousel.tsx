@@ -20,14 +20,12 @@ export function WhilickCarousel({ items }: { items: TArticlesLiked[] }) {
         scrollDistance='screen'
       >
         {items.map(({ articleId, title, category }) => (
-          <>
-            <SmallWhilickItem
-              key={articleId}
-              article_id={articleId}
-              title={title}
-              variant={category}
-            />
-          </>
+          <SmallWhilickItem
+            key={articleId}
+            article_id={articleId}
+            title={title}
+            variant={category}
+          />
         ))}
       </Carousel>
     </div>
