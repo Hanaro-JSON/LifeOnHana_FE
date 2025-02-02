@@ -188,9 +188,14 @@ export default function History() {
 
   return (
     <div className='p-6 space-y-8 mb-28'>
-      <NavHeader location={'이번달 입출금 내역'} beforePageUrl={'/home'} />
+      <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
+        <NavHeader location={'이번달 입출금 내역'} beforePageUrl={'/home'} />
+      </div>
 
-      <div className='w-full h-full flex flex-col items-center gap-4'>
+      <div
+        className='w-full h-full flex flex-col items-center gap-4'
+        style={{ marginTop: '4rem' }}
+      >
         <div className='w-full flex flex-row gap-x-4 justify-start items-center'>
           <div className='flex flex-row gap-x-4 font-SCDream5 text-[1.25rem]'>
             <Image src={monthLeft} alt={'monthLeft'} onClick={minusDate} />

@@ -80,9 +80,15 @@ export default function Columns() {
   );
 
   return (
-    <div className='p-6 w-screen py-6 space-y-4 mb-[3rem]'>
-      <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
-      <div className='w-full h-full flex flex-col items-center justify-center mt-5'>
+    <div className='p-6 w-screen py-6 space-y-4 mb-28'>
+      <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
+        <NavHeader location={'좋아요한 칼럼'} beforePageUrl={'/home'} />
+      </div>
+
+      <div
+        className='w-full h-full flex flex-col items-center justify-center mt-5'
+        style={{ marginTop: '3.6rem' }}
+      >
         {likedArticles.length > 0 ? (
           <>
             {Array.from(

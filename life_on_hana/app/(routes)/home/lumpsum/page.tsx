@@ -172,7 +172,9 @@ export default function Lumpsum() {
 
   return (
     <div className='p-6 space-y-8 mb-28'>
-      <NavHeader location={'목돈 가져오기'} beforePageUrl={'/home'} />
+      <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
+        <NavHeader location={'목돈 가져오기'} beforePageUrl={'/home'} />
+      </div>
 
       {selectedProduct?.type === 'LOAN' && (
         <LikedLoanProductDetailItem
@@ -181,102 +183,105 @@ export default function Lumpsum() {
           onClose={() => setSelectedProductProps(null)}
         />
       )}
-
-      <Section height='55rem'>
-        <div className='w-full'>
-          <div className='space-y-8'>
-            <div className='my-3 flex gap-2 font-SCDream3 text-[1.25rem] items-end'>
-              <input
-                type='text'
-                value={amount}
-                className='font-SCDream7 text-hanapurple border-b-2 border-hanapurple w-full text-[1.5625rem] text-right outline-none'
-                placeholder='금액을 입력해주세요'
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                autoFocus
-              />
-              을
-            </div>
-            <div className='flex gap-1 font-SCDream3 text-[1.25rem] items-end justify-between'>
-              <div className='flex justify-between gap-3'>
-                <LumpSumBtn
-                  variant={'hanaSalaryBank'}
-                  isSelected={selectedBtn === 'hanaSalaryBank'}
-                  onClick={() => handleBtnClick('hanaSalaryBank')}
+      <div style={{ marginTop: '4rem' }}>
+        <Section height='55rem'>
+          <div className='w-full'>
+            <div className='space-y-8'>
+              <div className='my-3 flex gap-2 font-SCDream3 text-[1.25rem] items-end'>
+                <input
+                  type='text'
+                  value={amount}
+                  className='font-SCDream7 text-hanapurple border-b-2 border-hanapurple w-full text-[1.5625rem] text-right outline-none'
+                  placeholder='금액을 입력해주세요'
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                  autoFocus
                 />
-                <LumpSumBtn
-                  variant={'otherAccounts'}
-                  isSelected={selectedBtn === 'otherAccounts'}
-                  onClick={() => handleBtnClick('otherAccounts')}
-                />
-                <LumpSumBtn
-                  variant={'loanProducts'}
-                  isSelected={selectedBtn === 'loanProducts'}
-                  onClick={() => handleBtnClick('loanProducts')}
-                />
+                을
               </div>
-              에서
-            </div>
-
-            <Section
-              height='300'
-              bgColor='hanalightpurple'
-              hasShadow
-              shadowColor='rgba(77,0,181,0.3)'
-            >
-              <div className='space-y-4'>
-                {reasons.map((item, index) => (
-                  <div
-                    key={index}
-                    className='space-y-4 flex flex-col cursor-pointer'
-                    onClick={() => setReason(item)}
-                  >
-                    <div className='space-x-3 flex items-center'>
-                      <input
-                        type='radio'
-                        id={`reason-${index}`}
-                        name='reason'
-                        value={item}
-                        checked={reason === item}
-                        onChange={() => handleReasonSelect(item)}
-                        className={`w-4 h-4 ${
-                          reason === item
-                            ? 'text-purple-500 border-purple-500'
-                            : ''
-                        }`}
-                      />
-                      <label
-                        htmlFor={`reason-${index}`}
-                        className={`font-SCDream3 text-[1.125rem] ${
-                          reason === item ? 'text-purple-500' : 'text-gray-800'
-                        }`}
-                      >
-                        {item}
-                      </label>
-                    </div>
-                    {index !== reasons.length - 1 && (
-                      <hr className='border border-gray-200 w-full' />
-                    )}
-                  </div>
-                ))}
-                {reason === '기타' && (
-                  <input
-                    type='text'
-                    placeholder='기타 선택 시, 필수 작성'
-                    value={customReason}
-                    maxLength={30}
-                    onChange={(e) => setCustomReason(e.target.value)}
-                    className='font-SCDream3 text-[1rem] w-full p-2 border border-hanalightpurple rounded-lg focus:border-hanapurple outline-none'
+              <div className='flex gap-1 font-SCDream3 text-[1.25rem] items-end justify-between'>
+                <div className='flex justify-between gap-3'>
+                  <LumpSumBtn
+                    variant={'hanaSalaryBank'}
+                    isSelected={selectedBtn === 'hanaSalaryBank'}
+                    onClick={() => handleBtnClick('hanaSalaryBank')}
                   />
-                )}
+                  <LumpSumBtn
+                    variant={'otherAccounts'}
+                    isSelected={selectedBtn === 'otherAccounts'}
+                    onClick={() => handleBtnClick('otherAccounts')}
+                  />
+                  <LumpSumBtn
+                    variant={'loanProducts'}
+                    isSelected={selectedBtn === 'loanProducts'}
+                    onClick={() => handleBtnClick('loanProducts')}
+                  />
+                </div>
+                에서
               </div>
-            </Section>
-            <div className='w-full flex justify-end font-SCDream3 text-[1.25rem]'>
-              의 이유로
+
+              <Section
+                height='300'
+                bgColor='hanalightpurple'
+                hasShadow
+                shadowColor='rgba(77,0,181,0.3)'
+              >
+                <div className='space-y-4'>
+                  {reasons.map((item, index) => (
+                    <div
+                      key={index}
+                      className='space-y-4 flex flex-col cursor-pointer'
+                      onClick={() => setReason(item)}
+                    >
+                      <div className='space-x-3 flex items-center'>
+                        <input
+                          type='radio'
+                          id={`reason-${index}`}
+                          name='reason'
+                          value={item}
+                          checked={reason === item}
+                          onChange={() => handleReasonSelect(item)}
+                          className={`w-4 h-4 ${
+                            reason === item
+                              ? 'text-purple-500 border-purple-500'
+                              : ''
+                          }`}
+                        />
+                        <label
+                          htmlFor={`reason-${index}`}
+                          className={`font-SCDream3 text-[1.125rem] ${
+                            reason === item
+                              ? 'text-purple-500'
+                              : 'text-gray-800'
+                          }`}
+                        >
+                          {item}
+                        </label>
+                      </div>
+                      {index !== reasons.length - 1 && (
+                        <hr className='border border-gray-200 w-full' />
+                      )}
+                    </div>
+                  ))}
+                  {reason === '기타' && (
+                    <input
+                      type='text'
+                      placeholder='기타 선택 시, 필수 작성'
+                      value={customReason}
+                      maxLength={30}
+                      onChange={(e) => setCustomReason(e.target.value)}
+                      className='font-SCDream3 text-[1rem] w-full p-2 border border-hanalightpurple rounded-lg focus:border-hanapurple outline-none'
+                    />
+                  )}
+                </div>
+              </Section>
+              <div className='w-full flex justify-end font-SCDream3 text-[1.25rem]'>
+                의 이유로
+              </div>
             </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </div>
 
       <Btn
         text={`${

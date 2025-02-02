@@ -21,6 +21,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
 import LoadingIcon from '@/components/atoms/LoadingIcon';
+import Link from 'next/link';
 
 const MOCK_DATA = {
   code: 200,
@@ -255,25 +256,28 @@ export default function Detail() {
           <MoveToBackBtn />
         </span>
       )}
-      <div className='flex flex-col items-center '>
-        <div
-          className={`w-[90%] flex items-center  ${
-            isLoading || !article ? 'mt-8' : '-mt-8'
-          }`}
-        >
-          <LogoHeader isMain={false} />
+
+      <Link href='/column'>
+        <div className='flex flex-col items-center'>
+          <div
+            className={`w-[90%] flex items-center  ${
+              isLoading || !article ? 'mt-8' : '-mt-8'
+            }`}
+          >
+            <LogoHeader isMain={false} />
+          </div>
+          <div className='w-[90%] flex items-center gap-3 mt-2 mb-4'>
+            <Image
+              src={column}
+              alt='column icon'
+              width={20}
+              height={20}
+              priority
+            />
+            <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>
+          </div>
         </div>
-        <div className='w-[90%] flex items-center gap-3 mt-2 mb-4'>
-          <Image
-            src={column}
-            alt='column icon'
-            width={20}
-            height={20}
-            priority
-          />
-          <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>
-        </div>
-      </div>
+      </Link>
 
       <div className='w-full flex flex-col'>
         <div className='w-full h-[80vh] overflow-y-auto'>

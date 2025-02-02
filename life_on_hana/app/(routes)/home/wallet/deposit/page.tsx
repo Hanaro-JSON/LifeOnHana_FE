@@ -93,13 +93,13 @@ export default function Deposit() {
       : 'beforeChooseAccount';
 
   return (
-    <div className='flex flex-col h-screen px-3'>
+    <div className='flex flex-col h-screen p-6'>
       <div className='sticky top-0 z-10'>
-        <div className='pt-6'>
-          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'..'} />
+        <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
+          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
         </div>
 
-        <div className='mb-2 px-2'>
+        <div className='mb-2 px-2' style={{ marginTop: '4rem' }}>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
 
           {mainAccount && (
@@ -124,7 +124,7 @@ export default function Deposit() {
                   </div>
                 </div>
               </div>
-              <div className='text-right font-SCDream8 text-[1rem] mr-4 mb-2'>
+              <div className='text-right font-SCDream8 text-[1.25rem] mr-4 mb-2'>
                 {mainAccount.balance.toLocaleString()} 원
               </div>
             </div>

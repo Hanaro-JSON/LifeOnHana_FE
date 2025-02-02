@@ -22,7 +22,7 @@ const getBtnClasses = (variant: string) => {
   }
 };
 
-export default function Btn({
+export default function BasicBtn({
   type,
   text,
   url,
