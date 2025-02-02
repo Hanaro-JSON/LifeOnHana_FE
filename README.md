@@ -26,32 +26,32 @@
 ## 🖼️ 화면 구성
 | 초기화면 | 홈 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/>
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/>
 |스플래시, 로그인, 마이데이터 수집 | 홈, 좋아요한 칼럼, 좋아요한 상품|
 
 | 하나지갑 관리하기 | 하나지갑 충전하기 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> |
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
 | 금액숨김, 막대-원 그래프 | 하나지갑 정보 수정에 따른 예상 자산 흐름 변화 |
 
 | 목돈 가져오기 | 하나지갑 충전하기 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> |
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
 | 금액숨김, 막대-원 그래프 | 하나지갑 정보 수정에 따른 예상 자산 흐름 변화 |
 
 | 이번달 입출금 내역 |
 |:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> | 
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | 
 | 월별 입출금 내역  | 
 
 | 칼럼 | 칼럼 상세보기 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> |
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
 | 칼럼 리스트 및 좋아요 기능, 글씨크기 조절, 최상단으로 이동 | 칼럼 읽기, 좋아요/공유 기능, 용어 설명 기능, 관련 상품 및 AI 추천 정보 제공 |
 
 | 휘릭 | 휘릭 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="400"/> |
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
 | 좋아요/공유 기능, 무한스크롤 | 칼럼 상세보기로 이동, 글씨 크기 및 말 속도 조절 기능 |
 <br />
 
