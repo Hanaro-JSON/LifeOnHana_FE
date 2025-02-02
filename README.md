@@ -7,7 +7,8 @@
 ## 목차
 - [ ⏰ FE 시간 관리 ](#-FE-시간-관리)
 - [ 📚 기술 스택 ](#-기술-스택)
-- [ 🎨 화면 구성 ](#-화면-구성)
+- [ 🖼️ 화면 구성 ](#-화면-구성)
+- [ 🎨 Storybook ](#-Storybook)
 - [ 🤗 FE 팀원 ](#-FE-팀원)
 <br />
 
@@ -22,7 +23,7 @@
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white">
 <br />
 
-## 🎨 화면 구성
+## 🖼️ 화면 구성
 | 초기화면 | 홈 |
 |:---:|:---:|
 | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="450"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="450"/>
@@ -53,6 +54,12 @@
 | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="450"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="450"/> |
 | 좋아요/공유 기능, 무한스크롤 | 칼럼 상세보기로 이동, 글씨 크기 및 말 속도 조절 기능 |
 <br />
+
+## 🎨 Storybook
+![31](https://github.com/user-attachments/assets/2703d981-1660-47bb-8f52-671286b3845d)
+```javascript
+pnpm storybook
+```
 
 ## 🤗 FE 팀원
 <table>
