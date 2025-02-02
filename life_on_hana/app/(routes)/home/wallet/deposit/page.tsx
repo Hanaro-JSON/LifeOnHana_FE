@@ -95,9 +95,11 @@ export default function Deposit() {
   return (
     <div className='flex flex-col h-screen p-6'>
       <div className='sticky top-0 z-10'>
-        <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
+        <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
+          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
+        </div>
 
-        <div className='mb-2 px-2'>
+        <div className='mb-2 px-2' style={{ marginTop: '4rem' }}>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
 
           {mainAccount && (
