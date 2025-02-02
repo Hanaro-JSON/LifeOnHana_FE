@@ -96,7 +96,7 @@ export default function Deposit() {
     <div className='flex flex-col h-screen px-3'>
       <div className='sticky top-0 z-10'>
         <div className='pt-6'>
-          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'..'} />
+          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
         </div>
 
         <div className='mb-2 px-2'>
@@ -124,7 +124,7 @@ export default function Deposit() {
                   </div>
                 </div>
               </div>
-              <div className='text-right font-SCDream8 text-[1rem] mr-4 mb-2'>
+              <div className='text-right font-SCDream8 text-[1.25rem] mr-4 mb-2'>
                 {mainAccount.balance.toLocaleString()} 원
               </div>
             </div>
