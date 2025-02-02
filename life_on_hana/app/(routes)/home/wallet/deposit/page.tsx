@@ -93,11 +93,9 @@ export default function Deposit() {
       : 'beforeChooseAccount';
 
   return (
-    <div className='flex flex-col h-screen px-3'>
+    <div className='flex flex-col h-screen p-6'>
       <div className='sticky top-0 z-10'>
-        <div className='pt-6'>
-          <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
-        </div>
+        <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
 
         <div className='mb-2 px-2'>
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>

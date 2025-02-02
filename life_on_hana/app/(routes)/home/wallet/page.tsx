@@ -288,76 +288,81 @@ export default function Wallet() {
   };
 
   return (
-    <div className='p-6 space-y-8 mb-28'>
-      <NavHeader location={'하나 지갑 관리하기'} beforePageUrl={'/home'} />
-      <Section>
-        <div className='w-full space-y-3'>
-          <div className='pb-4 w-full flex flex-row justify-between items-center'>
-            <div className='font-SCDream7 text-[1.5625rem]'>
-              {data.name}님의 자산
-            </div>
-            <MicroMiniBtn
-              text={hideAmount ? '금액 보기' : '금액 숨김'}
-              onClick={() => setHideAmount((prev) => !prev)}
-            />
-          </div>
-          <div className='w-full font-SCDream3 text-[1.25rem]'>
-            나의 총 자산
-          </div>
-          <div className='w-full flex flex-row justify-between items-center'>
-            {hideAmount ? (
-              <div className='font-SCDream8 text-3xl text-gray-400'>
-                금액 숨김
-              </div>
-            ) : (
-              <div className='font-SCDream8 text-3xl'>
-                {mydata.totalAsset.toLocaleString()}원
-              </div>
-            )}
+    <div className='p-6 space-y-8 mt-50 mb-28'>
+      <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
+        <NavHeader location={'하나 지갑 관리하기'} beforePageUrl={'/home'} />
+      </div>
 
-            <GraphToggle initialState={'bar'} onToggle={setGraphType} />
-          </div>
-          <div>
-            {graphType == 'bar' ? (
-              <BarGraph
-                type={'statistics'}
-                depositPercentage={mydata.depositPercentage}
-                savingsPercentage={mydata.savingsPercentage}
-                loanPercentage={mydata.loanPercentage}
-                stockPercentage={mydata.stockPercentage}
-                realEstatePercentage={mydata.realEstatePercentage}
+      <div style={{ marginTop: '4rem' }}>
+        <Section>
+          <div className='w-full space-y-3'>
+            <div className='pb-4 w-full flex flex-row justify-between items-center'>
+              <div className='font-SCDream7 text-[1.5625rem]'>
+                {data.name}님의 자산
+              </div>
+              <MicroMiniBtn
+                text={hideAmount ? '금액 보기' : '금액 숨김'}
+                onClick={() => setHideAmount((prev) => !prev)}
               />
-            ) : (
-              <CircleGraph
-                type={'statistics'}
-                depositPercentage={mydata.depositPercentage}
-                savingsPercentage={mydata.savingsPercentage}
-                loanPercentage={mydata.loanPercentage}
-                stockPercentage={mydata.stockPercentage}
-                realEstatePercentage={mydata.realEstatePercentage}
-              />
-            )}
-          </div>
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
-            <div>월평균 고정지출</div>
+            </div>
+            <div className='w-full font-SCDream3 text-[1.25rem]'>
+              나의 총 자산
+            </div>
+            <div className='w-full flex flex-row justify-between items-center'>
+              {hideAmount ? (
+                <div className='font-SCDream8 text-3xl text-gray-400'>
+                  금액 숨김
+                </div>
+              ) : (
+                <div className='font-SCDream8 text-3xl'>
+                  {mydata.totalAsset.toLocaleString()}원
+                </div>
+              )}
+
+              <GraphToggle initialState={'bar'} onToggle={setGraphType} />
+            </div>
             <div>
-              <span className='font-SCDream5 text-[1.0625rem]'>
-                {averageExpense.toLocaleString()}
-              </span>
-              원
+              {graphType == 'bar' ? (
+                <BarGraph
+                  type={'statistics'}
+                  depositPercentage={mydata.depositPercentage}
+                  savingsPercentage={mydata.savingsPercentage}
+                  loanPercentage={mydata.loanPercentage}
+                  stockPercentage={mydata.stockPercentage}
+                  realEstatePercentage={mydata.realEstatePercentage}
+                />
+              ) : (
+                <CircleGraph
+                  type={'statistics'}
+                  depositPercentage={mydata.depositPercentage}
+                  savingsPercentage={mydata.savingsPercentage}
+                  loanPercentage={mydata.loanPercentage}
+                  stockPercentage={mydata.stockPercentage}
+                  realEstatePercentage={mydata.realEstatePercentage}
+                />
+              )}
+            </div>
+            <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
+              <div>월평균 고정지출</div>
+              <div>
+                <span className='font-SCDream5 text-[1.0625rem]'>
+                  {averageExpense.toLocaleString()}
+                </span>
+                원
+              </div>
+            </div>
+            <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
+              <div>나의 국민연금 수령 연도</div>
+              <div>
+                <span className='font-SCDream5 text-[1.0625rem]'>
+                  {mydata.pensionStart}
+                </span>
+                년
+              </div>
             </div>
           </div>
-          <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
-            <div>나의 국민연금 수령 연도</div>
-            <div>
-              <span className='font-SCDream5 text-[1.0625rem]'>
-                {mydata.pensionStart}
-              </span>
-              년
-            </div>
-          </div>
-        </div>
-      </Section>
+        </Section>
+      </div>
 
       <Section bgColor='hanalightpurple' height='10rem'>
         <div className='w-full flex justify-between'>
