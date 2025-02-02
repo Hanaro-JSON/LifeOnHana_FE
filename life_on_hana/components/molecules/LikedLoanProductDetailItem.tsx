@@ -59,7 +59,7 @@ export default function LikedLoanProductDetailItem({
   };
 
   const bg = closeBtn
-    ? 'fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50'
+    ? 'h-screen fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50'
     : '';
 
   return (

@@ -1,5 +1,16 @@
 import { type TVerticalBarGraphProps } from './componentTypes';
 
+export enum TLumpsumReason {
+  CHILDREN = '자녀 지원 (결혼, 학비, 독립 지원 등)',
+  MEDICAL = '의료비 지원 (본인 및 가족 의료비 등)',
+  HOUSING = '주거 및 생활비 (주거, 생활비 부족 등)',
+  BUSINESS_INVESTMENT = '사업 및 투자 자금 (투자, 창업 자금 등)',
+  VEHICLE_TRANSPORT = '차량 및 교통',
+  LEISURE = '여가 (여행, 취미, 교육 등)',
+  DEBT_REPAYMENT = '채무 상환',
+  OTHER = '기타',
+}
+
 export type THistoryMonthly = {
   averageExpense: number;
   currentBalance: number;

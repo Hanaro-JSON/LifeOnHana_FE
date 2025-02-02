@@ -12,9 +12,9 @@
 // ];
 export const bluePurpleColors: string[] = [
   '#4609AE',
-  '#936ECD',
   '#0C0D0E',
+  '#936ECD',
+  '#E9E1F4',
   '#575759',
   '#23045C',
-  '#E9E1F4',
 ];

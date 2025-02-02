@@ -15,7 +15,7 @@ import {
   ChartTooltip,
 } from '@/components/ui/chart';
 import { type TLineGraphProps } from '@/types/componentTypes';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const chartConfig = {
   totalasset: {
@@ -36,15 +36,22 @@ export function LineGraph({
   pensionStart,
   balance,
 }: TLineGraphProps) {
-  const getMonths = (end: string) => {
-    const tempStartD = startDate.split('-');
-    const tempEndD = end.split('-');
-    const months =
-      Number(tempEndD[0]) * 12 +
-      Number(tempEndD[1]) -
-      (Number(tempStartD[0]) * 12 + Number(tempStartD[1]));
-    return months;
-  };
+  const balanceRef = useRef(balance);
+  const totalAssetRef = useRef(totalAsset);
+  const pensionStartRef = useRef(pensionStart);
+
+  const getMonths = useCallback(
+    (end: string) => {
+      const tempStartD = startDate.split('-');
+      const tempEndD = end.split('-');
+      const months =
+        Number(tempEndD[0]) * 12 +
+        Number(tempEndD[1]) -
+        (Number(tempStartD[0]) * 12 + Number(tempStartD[1]));
+      return months;
+    },
+    [startDate]
+  );
 
   const [chartData, setChartData] = useState<
     {
@@ -63,20 +70,16 @@ export function LineGraph({
 
       const months = getMonths(endDate);
 
-      let currentBalance = balance;
-      let currentTotalAsset = totalAsset;
+      let currentBalance = balanceRef.current;
+      let currentTotalAsset = totalAssetRef.current;
 
-      // 국민연금 수령연도 이후 10년까지 그래프로 보여주고 싶다면,
-      // const pensionStartMonths = getMonths(pensionStart + '-01') + 120;
-      // const biggerMonth =
-      //   months > pensionStartMonths ? months : pensionStartMonths;
       const data = [];
       for (let i = 0; i <= months; i++) {
         const year = startYear + Math.floor((startMonth + i - 1) / 12);
         const month = ((startMonth + i - 1) % 12) + 1;
         const formattedMonth = `${year}년 ${month}월`;
 
-        if (year == Number(pensionStart) && month == 1) {
+        if (year == Number(pensionStartRef.current) && month == 1) {
           data.push({
             yearMonth: formattedMonth,
             description: '국민연금 수령',
@@ -100,14 +103,13 @@ export function LineGraph({
         }
         currentBalance -= walletAmount;
         currentTotalAsset -= walletAmount;
-        if (year >= Number(pensionStart)) currentBalance += 669523;
+        if (year >= Number(pensionStartRef.current)) currentBalance += 669523;
       }
       const essentialData = [data[0]];
       let essentialDataflag = true;
       for (let i = 0; i < data.length; i++) {
         if (essentialDataflag && data[i].totalAsset <= 0) {
-          const temp = { ...data[i], description: '잔액부족' };
-          essentialData.push(temp);
+          essentialData.push({ ...data[i], description: '잔액부족' });
           essentialDataflag = false;
         } else if (data[i].description === '국민연금 수령') {
           essentialData.push(data[i]);
@@ -119,7 +121,7 @@ export function LineGraph({
 
     const tempChartData = generateChartData();
     setChartData(tempChartData);
-  }, [startDate, endDate, walletAmount]);
+  }, [endDate, walletAmount, getMonths, startDate]);
 
   return (
     <ChartContainer config={chartConfig}>

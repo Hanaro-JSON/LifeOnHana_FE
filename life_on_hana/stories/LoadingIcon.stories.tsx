@@ -6,8 +6,9 @@ const meta: Meta<typeof LoadingIcon> = {
   component: LoadingIcon,
   tags: ['autodocs'],
   argTypes: {
-    type: {
-      control: {},
+    bgColor: {
+      control: 'text',
+      description: '배경색',
     },
   },
   decorators: [
