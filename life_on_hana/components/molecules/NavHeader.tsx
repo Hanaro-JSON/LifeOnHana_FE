@@ -11,7 +11,12 @@ export function NavHeader({
   return (
     <div className='relative flex flex-row items-center mb-6'>
       <Link href={beforePageUrl}>
-        <Image src={arrowLeft} alt='before' width={10} height={10} />
+        <Image
+          src={arrowLeft}
+          alt='before'
+          height={10}
+          style={{ width: 10, height: 'auto' }}
+        />
       </Link>
       <div className='w-full justify-center flex items-center font-Hana2bold text-[1.5625rem]'>
         {location}
