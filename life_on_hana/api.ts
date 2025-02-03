@@ -1,5 +1,5 @@
 import {
-  type TRecommendItemProps,
+  // type TRecommendItemProps,
   type TArticleItemProps,
 } from '@/types/componentTypes';
 import {
@@ -657,6 +657,7 @@ export const fetchProducts = async ({
 };
 //getMydata
 export const fetchAntropicLoans = async (reason: string, amount: number) => {
+  console.log('🚀 ~ fetchAntropicLoans ~ response:', reason, amount);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/anthropic/loans`,
