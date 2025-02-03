@@ -61,7 +61,7 @@ export function LogoHeader({ isMain }: { isMain: boolean }) {
         </div>
       </Link>
       {isMain === true && (
-        <button onClick={handleSignout}>
+        <button type='button' onClick={handleSignout}>
           <Image src={signoutbtn} alt='signoutbtn' width={18} height={18} />
         </button>
       )}
