@@ -228,13 +228,17 @@ export default function Home() {
   return (
     <div className='h-[100%] p-6 space-y-8 mb-28'>
       {/* 헤더 */}
-      <LogoHeader isMain={true} />
+      <div className='fixed top-0 left-0 py-6 px-6 w-full bg-background z-50'>
+        <LogoHeader isMain={true} />
+      </div>
 
       {/* 하나월급 카드 */}
-      <MainSection
-        name={data.name}
-        walletAmount={Math.round(walletAmount / 10000)}
-      />
+      <div style={{ marginTop: '4rem' }}>
+        <MainSection
+          name={data.name}
+          walletAmount={Math.round(walletAmount / 10000)}
+        />
+      </div>
 
       {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
