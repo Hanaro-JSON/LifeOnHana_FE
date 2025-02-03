@@ -29,7 +29,7 @@
 ## 🖼️ 화면 구성
 | 초기화면 | 홈 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/>
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://github.com/user-attachments/assets/ef5c089a-7e59-4c87-834f-28f2ba023e42" width="350"/>
 |스플래시, 로그인, 마이데이터 수집 | 홈, 좋아요한 칼럼, 좋아요한 상품|
 
 | 하나지갑 관리하기 | 하나지갑 충전하기 |
@@ -39,7 +39,7 @@
 
 | 이번달 입출금 내역 |
 |:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | 
+| <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
 | 월별 입출금 내역  | 
 
 | 칼럼 | 칼럼 상세보기 |
