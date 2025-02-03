@@ -63,7 +63,12 @@ export default function LikedLoanProductDetailItem({
     : '';
 
   return (
-    <div id='modal-background' onClick={handleBackgroundClick} className={bg}>
+    <div
+      id='modal-background'
+      onClick={handleBackgroundClick}
+      className={bg}
+      style={{ marginTop: 0 }}
+    >
       <div
         className='w-[90%] min-h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-around p-6'
         onClick={(e) => e.stopPropagation()}
