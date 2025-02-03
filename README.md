@@ -39,7 +39,7 @@
 
 | 이번달 입출금 내역 |
 |:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | 
+| <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
 | 월별 입출금 내역  | 
 
 | 칼럼 | 칼럼 상세보기 |
