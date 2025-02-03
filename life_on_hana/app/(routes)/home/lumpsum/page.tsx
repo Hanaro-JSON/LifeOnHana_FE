@@ -153,10 +153,11 @@ export default function Lumpsum() {
             accountId: fetchData.accountId,
           });
           toast({
-            title: '목돈을 가져오는데 성공했습니다.',
+            title: '목돈을 가져오는 데 성공했습니다.',
             className:
               'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
           });
+          router.replace('/home');
         }
     }
   };
