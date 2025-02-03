@@ -372,7 +372,10 @@ export default function Wallet() {
               하나 월급통장 잔액
             </div>
             <div className='font-SCDream7 text-[1.6rem]'>
-              {mydata.salaryAccount.balance.toLocaleString()}원
+              {Math.round(
+                Number(mydata.salaryAccount.balance)
+              ).toLocaleString()}
+              원
             </div>
           </div>
         </div>

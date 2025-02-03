@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import signoutbtn from '@/assets/signoutBtn.svg';
 import { mySignOut } from '@/actions/myauth';
-import { useRouter } from 'next/navigation';
 import { getApiToken } from '@/api';
 import { useContext } from 'react';
 import { DataContext } from '@/hooks/useData';
@@ -10,7 +9,6 @@ import Link from 'next/link';
 export function LogoHeader({ isMain }: { isMain: boolean }) {
   const { data } = useContext(DataContext);
 
-  const router = useRouter();
   const handleSignout = async () => {
     // next-auth
     mySignOut();
@@ -44,7 +42,7 @@ export function LogoHeader({ isMain }: { isMain: boolean }) {
 
       if (data.code === 200) {
         localStorage.removeItem('user');
-        router.replace('/');
+        // router.replace('/signin');
       } else if (data.code === 400) {
         console.error(data.message);
       }
