@@ -292,7 +292,7 @@ export default function WhilickItem({
 
         {/* 클립보드복사, 좋아요 */}
         <div className='absolute right-10 bottom-48 z-50 flex items-center gap-4'>
-          <CopyClipboardBtn />
+          <CopyClipboardBtn articleId={articleId} />
           <IsLike
             likeCount={likeCountNum}
             isLiked={isLikedNum}
