@@ -54,7 +54,7 @@
 
 | 휘릭 | 휘릭 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
+| <img src="![휘릭 (1)](https://github.com/user-attachments/assets/2a19717e-6eb8-4ddf-9478-b5674b588b28)" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
 | 좋아요/공유 기능, 무한스크롤 | 칼럼 상세보기로 이동, 글씨 크기 및 말 속도 조절 기능 |
 <br />
 
