@@ -44,7 +44,7 @@
 
 | 목돈 가져오기 | 이번달 입출금 내역 |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | <img src="" width="350"/> |
+| <img src="https://github.com/user-attachments/assets/f3e07b4f-590c-4bef-ba46-8732f0807531" width="350"/> | <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
 | 대출 상품에서 목돈 가져오기 | 월별 입출금 내역 |
 
 | 칼럼 상세보기 | 칼럼 관련 상품 및 AI 추천 정보 제공 |
