@@ -10,7 +10,7 @@ const variantConfig = {
     class2: '',
   },
   spend: {
-    text: '내 지출내역 구체적으로 보기',
+    text: '내 입출금 내역 구체적으로 보기',
     class1: 'text-[1rem]',
     class2: '',
   },
