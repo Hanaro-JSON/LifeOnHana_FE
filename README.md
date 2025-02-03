@@ -34,7 +34,7 @@
 
 | 하나지갑 관리하기 | 하나지갑 수정과 예상 자산 흐름 변화 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://github.com/user-attachments/assets/1d3ce9f3-0e55-40bf-91d9-48406b768867" width="350"/> |
+| <img src="https://github.com/user-attachments/assets/1328950d-46d3-44ab-bd5f-5415094b2576" width="350"/> | <img src="https://github.com/user-attachments/assets/1d3ce9f3-0e55-40bf-91d9-48406b768867" width="350"/> |
 | 금액숨김, 막대-원 그래프 | 하나지갑 정보 수정에 따른 예상 자산 흐름 변화 |
 
 | 하나지갑 충전하기 | 목돈 가져오기 |
