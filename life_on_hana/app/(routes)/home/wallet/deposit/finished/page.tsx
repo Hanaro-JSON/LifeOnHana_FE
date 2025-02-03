@@ -75,10 +75,8 @@ export default function Finished() {
     accountFormatMap[bank]?.(accountNumber) || accountNumber;
 
   return (
-    <div className='flex flex-col px-3'>
-      <div className='pt-6'>
-        <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
-      </div>
+    <div className='flex flex-col p-6'>
+      <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
 
       <div className='flex-1 flex flex-col items-center pt-3'>
         <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1 min-h-[52rem] w-[95%]'>
@@ -138,9 +136,8 @@ export default function Finished() {
           <div className='w-[100%] mx-auto border-b-2 border-b-hanagray my-5'></div>
 
           <div className='text-[.8rem] font-SCDream2'>
-            이체결과 오류 혹은 오픈뱅킹 공동시스템으로 인한 지연이 발생할 경우,
-            <br />
-            고객센터(0000-1111)로 문의해 주세요.
+            이체결과 오류 혹은 오픈뱅킹 공동시스템으로 인한 <br />
+            지연이 발생할 경우, 고객센터(0000-1111)로 문의해 주세요.
           </div>
 
           <div className='mt-4 font-SCDream3 text-[1.1rem]'>출금계좌</div>
