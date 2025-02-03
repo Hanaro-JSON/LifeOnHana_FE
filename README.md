@@ -52,10 +52,10 @@
 | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
 | 좋아요, 글씨크기 조절, 최상단으로 이동 | 좋아요/공유 기능, 용어 설명 기능 |
 
-| 휘릭 | 휘릭 |
+| 휘릭 | 휘릭에서 칼럼 상세보기 |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/ffc76841-ba83-435b-ad88-787be8d29fb8" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
-| 좋아요/공유 기능, 무한스크롤 | 칼럼 상세보기로 이동, 글씨 크기 및 말 속도 조절 기능 |
+| <img src="https://github.com/user-attachments/assets/fc7209de-3d3c-439d-b4f2-a4740fec7b76" width="350"/> | <img src="https://github.com/user-attachments/assets/e6fdfd66-685c-4c3c-b39d-56009c8d5d9f" width="350"/> |
+| 좋아요/공유 기능, 무한스크롤, 글씨 크기 및 말 속도 조절 | 칼럼 상세보기로 이동 |
 <br />
 
 ## 🎨 Storybook
