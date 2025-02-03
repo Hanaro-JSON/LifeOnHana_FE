@@ -83,6 +83,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
             alt='mainSectionImg'
             width={100}
             height={100}
+            style={{ width: 100, height: 'auto' }}
             priority
             className='absolute bottom-5 right-0'
           />
