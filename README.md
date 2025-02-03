@@ -29,23 +29,28 @@
 ## 🖼️ 화면 구성
 | 초기화면 | 홈 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://github.com/user-attachments/assets/ef5c089a-7e59-4c87-834f-28f2ba023e42" width="350"/>
+| <img src="" width="350"/> | <img src="https://github.com/user-attachments/assets/ef5c089a-7e59-4c87-834f-28f2ba023e42" width="350"/>
 |스플래시, 로그인, 마이데이터 수집 | 홈, 좋아요한 칼럼, 좋아요한 상품|
 
-| 하나지갑 관리하기 | 하나지갑 충전하기 |
+| 하나지갑 관리하기 | 하나지갑 수정과 예상 자산 흐름 변화 |
 |:---:|:---:|
-| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
+| <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://github.com/user-attachments/assets/1d3ce9f3-0e55-40bf-91d9-48406b768867" width="350"/> |
 | 금액숨김, 막대-원 그래프 | 하나지갑 정보 수정에 따른 예상 자산 흐름 변화 |
+
+| 하나지갑 충전하기 | 목돈 가져오기 |
+|:---:|:---:|
+| <img src="" width="350"/> | <img src="" width="350"/> |
+| 하나지갑 충전하기 | 목돈 가져오기 |
 
 | 이번달 입출금 내역 |
 |:---:|
 | <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
 | 월별 입출금 내역  | 
 
-| 칼럼 | 칼럼 상세보기 |
+| 칼럼 상세보기 | 칼럼 관련 상품 및 AI 추천 정보 제공 |
 |:---:|:---:|
 | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> | <img src="https://user-images.githubusercontent.com/80824750/208456048-acbf44a8-cd71-4132-b35a-500047adbe1c.gif" width="350"/> |
-| 칼럼 리스트 및 좋아요 기능, 글씨크기 조절, 최상단으로 이동 | 좋아요/공유 기능, 용어 설명 기능, 관련 상품 및 AI 추천 정보 제공 |
+| 좋아요, 글씨크기 조절, 최상단으로 이동 | 좋아요/공유 기능, 용어 설명 기능 |
 
 | 휘릭 | 휘릭 |
 |:---:|:---:|
