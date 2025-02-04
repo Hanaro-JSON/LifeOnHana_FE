@@ -133,7 +133,6 @@ export default function OtherAccountFinished() {
 
           <div className='text-[.8rem] font-SCDream2'>
             이체결과 오류 혹은 오픈뱅킹 공동시스템으로 인한 지연이 발생할 경우,
-            <br />
             고객센터(0000-1111)로 문의해 주세요.
           </div>
 

@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import AccountDetailItem from '@/components/molecules/AccountDetailItem';
 import Btn from '@/components/atoms/Btn';
 import { type TAccountDetailItemProps } from '@/types/componentTypes';
-import HanaBankLogo from '@/assets/HanaBankLogo.svg';
 import { NavHeader } from '@/components/molecules/NavHeader';
-import { fetchAccountData, fetchWallet, fetchLumpsum } from '@/api';
+import { fetchAccountData, fetchLumpsum } from '@/api';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 
@@ -21,23 +19,10 @@ export default function OtherAccount() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [amounts, setAmounts] = useState<{ [key: number]: string }>({});
   const [isExceeding, setIsExceeding] = useState<boolean>(false);
-  const [walletAmount, setWalletAmount] = useState<number>(0);
 
   const initialAmount = searchParams.get('amount') || '';
   const initialReason = searchParams.get('reason') || '';
   const initialReasonDetail = searchParams.get('reasonDetail') || '';
-
-  useEffect(() => {
-    const getWallet = async () => {
-      try {
-        const fetchData = await fetchWallet();
-        setWalletAmount(fetchData.walletAmount);
-      } catch (error) {
-        console.error('Error fetching:', error);
-      }
-    };
-    getWallet();
-  }, []);
 
   useEffect(() => {
     const loadAccountData = async () => {
@@ -144,56 +129,8 @@ export default function OtherAccount() {
       <div className='sticky z-10'>
         <NavHeader
           location={'타계좌에서 하나 지갑으로 입금하기'}
-          beforePageUrl={'..'}
+          beforePageUrl={'.'}
         />
-
-        {/* <div className='mb-2 px-2'>
-          <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
-
-          <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
-            <div className='h-8 flex gap-2 mt-1 ml-1'>
-              <Image
-                className='w-9 h-9'
-                src={HanaBankLogo}
-                alt='Hana Logo'
-                width={50}
-                height={50}
-              />
-              <div className='ml-1'>
-                <div className='font-SCDream5 text-[1.1rem] mb-1'>
-                  하나 지갑
-                </div>
-              </div>
-            </div>
-            <div className='text-right font-SCDream8 text-[1rem] mr-4 mb-2'>
-              {walletAmount.toLocaleString()} 원
-            </div>
-          </div>
-        </div>
-        
-        <div className='mb-2 mt-5 px-2'>
-          <div className='text-[1.25rem] font-SCDream5'>출금계좌 선택</div>
-        </div> */}
-      </div>
-
-      <div className='mb-8 px-2'>
-        <div className='text-[1.25rem] font-SCDream5 mb-4'>입금계좌</div>
-
-        <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
-          <div className='h-8 flex items-center gap-2 mt-1 ml-1'>
-            <Image
-              className='w-9 h-9'
-              src={HanaBankLogo}
-              alt='Hana Logo'
-              width={50}
-              height={50}
-            />
-            <div className='font-SCDream5 text-[1.25rem]'>하나 지갑</div>
-          </div>
-          <div className='text-right font-SCDream8 text-[1.375rem] mr-4 mb-2'>
-            {walletAmount.toLocaleString()} 원
-          </div>
-        </div>
       </div>
 
       <div className='mb-2 mt-5 px-2'>
