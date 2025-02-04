@@ -29,7 +29,7 @@
 ## 🖼️ 화면 구성
 | 초기화면 | 홈 |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/0d4af31b-61aa-4e62-a0b0-5733f90ccf94" width="350"/> | <img src="https://github.com/user-attachments/assets/ef5c089a-7e59-4c87-834f-28f2ba023e42" width="350"/>
+| <img src="https://github.com/user-attachments/assets/0d4af31b-61aa-4e62-a0b0-5733f90ccf94" width="350"/> | <img src="https://github.com/user-attachments/assets/feed5654-f91f-4a66-bbc0-ada3c9a67a1c" width="350"/>
 |스플래시, 로그인, 마이데이터 수집 | 홈, 좋아요한 칼럼, 좋아요한 상품|
 
 | 하나지갑 관리하기 | 하나지갑 수정과 예상 자산 흐름 변화 |
@@ -39,12 +39,12 @@
 
 | 하나지갑 충전하기 | 목돈 가져오기 |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/8f6341d6-b537-4c04-9eca-f4d5ca94fb32" width="350"/> | <img src="https://github.com/user-attachments/assets/54ee61d7-6047-4d4b-8024-a87735359a39" width="350"/> |
+| <img src="" width="350"/> | <img src="" width="350"/> |
 | 하나지갑 충전하기 | 하나 월급 통장/다른 통장에서 목돈 가져오기 |
 
 | 목돈 가져오기 | 이번달 입출금 내역 |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/f3e07b4f-590c-4bef-ba46-8732f0807531" width="350"/> | <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
+| <img src="https://github.com/user-attachments/assets/f3e07b4f-590c-4bef-ba46-8732f0807531" width="350"/> | <img src="" width="350"/> | 
 | 대출 상품에서 목돈 가져오기 | 월별 입출금 내역 |
 
 | 칼럼 상세보기 | 칼럼 관련 상품 및 AI 추천 정보 제공 |
@@ -62,7 +62,7 @@
 ```javascript
 pnpm storybook
 ```
-![storybook](https://github.com/user-attachments/assets/98fe8651-ed7c-4888-a02d-ab82bc18f4e8)
+![LIFE on HANA_ppt진짜진짜](https://github.com/user-attachments/assets/3117513a-9dad-4e13-93e0-e3ffbccf150d)
 
 13개의 atom components, 22개의 molecule components
 
