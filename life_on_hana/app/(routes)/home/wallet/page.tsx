@@ -117,9 +117,8 @@ export default function Wallet() {
     ) {
       toast({
         title:
-          '설정하신 지급 금액은 현재 하나 월급통장 내에서 지급 불가능합니다.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+          '설정하신 지급 금액은 현재 하나 월급통장 내에서 지급 불가능합니다',
+        className: 'toast-danger ',
       });
       return;
     }

@@ -48,9 +48,8 @@ export default function SigninPage() {
     if (!authId || !password) {
       setErrorMsg('id');
       toast({
-        title: '아이디와 비밀번호를 입력해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '아이디와 비밀번호를 입력해주세요',
+        className: 'toast-default',
       });
     } else {
       try {

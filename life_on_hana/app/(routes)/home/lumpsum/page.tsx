@@ -89,33 +89,29 @@ export default function Lumpsum() {
   const handleSubmit = async () => {
     if (!amount) {
       toast({
-        title: '금액을 입력해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '금액을 입력해주세요',
+        className: 'toast-default',
       });
       return;
     }
     if (!selectedBtn) {
       toast({
-        title: '출금 계좌를 선택해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '출금 계좌를 선택해주세요',
+        className: 'toast-default',
       });
       return;
     }
     if (!reason) {
       toast({
-        title: '사용 목적을 선택해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '사용 목적을 선택해주세요',
+        className: 'toast-default',
       });
       return;
     }
     if (reason === '기타' && customReason === '') {
       toast({
-        title: '사용 목적을 입력해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '사용 목적을 입력해주세요',
+        className: 'toast-default',
       });
       return;
     }
@@ -138,9 +134,8 @@ export default function Lumpsum() {
         const enumReason = handleReasonSelect(reason);
         if (amount > fetchData.balance) {
           toast({
-            title: '하나 월급통장 잔액이 부족합니다.',
-            className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+            title: '하나 월급통장 잔액이 부족합니다',
+            className: 'toast-default',
           });
           return;
         } else {
@@ -152,9 +147,8 @@ export default function Lumpsum() {
             accountId: fetchData.accountId,
           });
           toast({
-            title: '목돈을 가져오는 데 성공했습니다.',
-            className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+            title: '목돈을 가져오는 데 성공했습니다',
+            className: 'toast-default',
           });
           router.replace('/home');
         }
