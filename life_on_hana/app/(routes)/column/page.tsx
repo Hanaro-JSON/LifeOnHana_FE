@@ -26,7 +26,7 @@ const CATEGORY_MAP: Record<string, string> = {
 export default function Column() {
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const initialCategory = searchParams.get('category') || '전체보기';
   const initialSearchValue = searchParams.get('searchValue') || '';
 
@@ -130,6 +130,16 @@ export default function Column() {
     setFilteredArticles([]);
 
     setSelectedCategory(category);
+
+    // 선택된 버튼이 중앙에 오도록 스크롤
+    if (buttonRefs.current[category]) {
+      buttonRefs.current[category]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+
     router.replace(`?category=${category}&searchValue=${searchValue}`);
 
     try {
@@ -220,6 +230,9 @@ export default function Column() {
               <button
                 key={category}
                 id={category}
+                ref={(el) => {
+                  buttonRefs.current[category] = el;
+                }}
                 className={`${
                   selectedCategory === category ? 'font-bold' : 'opacity-45'
                 } mr-6 last:mr-0 text-[1.2rem] font-SCDream5 relative`}
