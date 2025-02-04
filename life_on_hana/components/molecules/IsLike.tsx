@@ -7,7 +7,7 @@ import { type TIsLikeProps } from '@/types/componentTypes';
 export default function IsLike({
   likeCount: initialLikeCount,
   isLiked: initialIsLiked,
-  // onClick,
+  onClick,
 }: TIsLikeProps) {
   const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
   const [likeCount, setLikeCount] = useState<number>(initialLikeCount);
@@ -17,14 +17,14 @@ export default function IsLike({
     setLikeCount(initialLikeCount);
   }, [initialIsLiked, initialLikeCount]);
 
-  // const toggleLike = () => {
-  //   if (onClick) {
-  //     onClick();
-  //   } else {
-  //     setIsLiked(!isLiked);
-  //     setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
-  //   }
-  // };
+  const toggleLike = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      setIsLiked(!isLiked);
+      setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
+    }
+  };
 
   return (
     <div className='w-[3rem]'>
@@ -35,7 +35,7 @@ export default function IsLike({
             alt={isLiked ? 'Liked' : 'Not Liked'}
             width={24}
             height={24}
-            // onClick={toggleLike}
+            onClick={toggleLike}
             className='cursor-pointer'
           />
         </div>
