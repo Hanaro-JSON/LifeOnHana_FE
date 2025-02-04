@@ -526,7 +526,7 @@ export const fetchLumpsum = async (data: {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${getApiToken()}`, // 토큰 추가
+      Authorization: `Bearer ${getApiToken()}`,
     },
     body: JSON.stringify(data),
   });
@@ -536,8 +536,6 @@ export const fetchLumpsum = async (data: {
   }
 
   const responseData = await response.json();
-  console.log('🚀 ~ responseData:', responseData);
-  console.log('🚀 ~ response:', data);
   return responseData;
 };
 
@@ -572,7 +570,7 @@ export const fetchPutWallet = async (props: {
   startDate: string;
   endDate: string;
 }) => {
-  const newWallet = { ...props }; // 객체 복사
+  const newWallet = { ...props };
   delete (newWallet as { walletId?: number }).walletId;
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/wallet`, {
@@ -651,7 +649,6 @@ export const fetchProducts = async ({
 };
 //getMydata
 export const fetchAntropicLoans = async (reason: string, amount: number) => {
-  console.log('🚀 ~ fetchAntropicLoans ~ response:', reason, amount);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/anthropic/loans`,
@@ -668,24 +665,7 @@ export const fetchAntropicLoans = async (reason: string, amount: number) => {
       throw new Error(`조회 요청 실패: ${response.statusText}`);
     }
     const data = await response.json();
-    console.log('🚀 ~ fetchAntropicLoans ~ data:', data);
     return data.data;
-    // return [
-    //   {
-    //     productId: '1',
-    //     name: '상품 1',
-    //     description: '설명 1',
-    //     maxAmount: '1000만원',
-    //     productType: 'LOAN',
-    //   },
-    //   {
-    //     productId: '2',
-    //     name: '상품 2',
-    //     description: '설명 2',
-    //     maxAmount: '20만원',
-    //     productType: 'LOAN',
-    //   },
-    // ] as TRecommendItemProps[];
   } catch (error) {
     console.error('조회 요청 오류:', error);
     throw new Error('조회 요청 중 오류가 발생했습니다.');
@@ -765,7 +745,6 @@ export async function fetchWhilickList(
     }
   } catch (error) {
     console.error('휘릭 불러오기 실패', error);
-    // alert(`더이상 콘텐츠가 존재하지 않습니다.${error}`);
   }
 }
 
@@ -790,7 +769,6 @@ export const fetchHistory = async ({
         },
       }
     );
-    console.log('🚀 ~ response:', response);
 
     if (!response.ok) {
       throw new Error(`${page}페이지 불러오기 실패`);

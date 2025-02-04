@@ -17,7 +17,6 @@ export default function AdjustBtn({
 }: TAdjustBtnProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // 바깥 클릭 시 닫기
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (

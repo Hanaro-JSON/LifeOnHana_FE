@@ -105,7 +105,6 @@ export default function LikedAccountProductDetailItem({
         className='pt-8 w-[90%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-around p-6'
         onClick={(e) => e.stopPropagation()}
       >
-        {/* X 버튼 */}
         <div className='absolute top-3 right-3 flex justify-end items-center w-full gap-2'>
           {closeBtn && (
             <button onClick={handleCloseClick} className='p-1'>
@@ -114,7 +113,6 @@ export default function LikedAccountProductDetailItem({
           )}
         </div>
 
-        {/* 제목 */}
         <div className='flex items-center gap-3 -mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start mb-2'>
           <button
             onClick={handleLikeToggle}
@@ -131,7 +129,6 @@ export default function LikedAccountProductDetailItem({
           {name}
         </div>
 
-        {/* 내용 */}
         <div className='w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-center overflow-y-auto min-h-fit max-h-[6rem] mb-2'>
           <p className='text-left'>{description}</p>
         </div>
@@ -169,7 +166,6 @@ export default function LikedAccountProductDetailItem({
           </div>
         </div>
 
-        {/* 적금 계산 입력 폼 */}
         <div className='flex flex-col text-[1rem]'>
           <div className='flex items-center'>
             <input
@@ -208,7 +204,6 @@ export default function LikedAccountProductDetailItem({
                   max={savingsInfo.maxInterestRate}
                   step='0.1'
                 />
-                {/* 화살표 버튼 */}
                 <div className=''>
                   <div className='flex flex-col'>
                     <button
@@ -252,7 +247,6 @@ export default function LikedAccountProductDetailItem({
           </div>
         </div>
 
-        {/* 버튼 */}
         <div className='mt-4 w-full flex justify-center'>
           <div className='w-full'>
             <Btn text={'상품정보 자세히보기'} url={link} />

@@ -60,7 +60,7 @@ export default function Column() {
       setArticles(allArticles);
       setFilteredArticles(allArticles);
     } catch (error) {
-      console.error('Failed to fetch articles:', error);
+      console.error('칼럼 불러오기 오류:', error);
     } finally {
       setIsLoading(false);
     }

@@ -3,7 +3,6 @@ import moveToTopBtn from '@/assets/moveToTopBtn.svg';
 
 export default function MoveToTopBtn() {
   const handleScroll = () => {
-    // 우선 특정 컨테이너(.overflow-y-auto)를 대상으로 스크롤 시도
     const scrollableContainer = document.querySelector('.overflow-y-auto');
 
     if (scrollableContainer) {
@@ -12,7 +11,6 @@ export default function MoveToTopBtn() {
         behavior: 'smooth',
       });
     } else {
-      // 특정 컨테이너가 없으면 전역 스크롤(window)로 처리
       if (!window.scrollY) return;
 
       window.scrollTo({

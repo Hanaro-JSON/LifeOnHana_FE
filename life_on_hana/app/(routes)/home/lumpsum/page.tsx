@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import Btn from '@/components/atoms/Btn';
@@ -7,7 +6,7 @@ import LumpSumBtn from '@/components/molecules/LumpSumBtn';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { DataContext } from '@/hooks/useData';
 import { useRouter } from 'next/navigation';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   type TLikedLoanProductDetailItemProps,
   type TRecommendItemProps,
@@ -23,7 +22,6 @@ import {
 import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
 import { useToast } from '@/hooks/use-toast';
 import LoadingIcon from '@/components/atoms/LoadingIcon';
-import IsLike from '@/components/molecules/IsLike';
 
 type TSelectedProductProps = {
   type: 'LOAN';
@@ -57,13 +55,13 @@ export default function Lumpsum() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value.replace(/[,.원\s]/g, ''); // 숫자 이외의 문자 제거
+    const rawValue = e.target.value.replace(/[,.원\s]/g, '');
 
     if (rawValue) {
       const formattedValue = formatNumber(rawValue);
-      setAmount(`${formattedValue} 원`); // 포맷팅 후 " 원" 추가
+      setAmount(`${formattedValue} 원`);
     } else {
-      setAmount(''); // 값이 없으면 빈 문자열 설정
+      setAmount('');
     }
   };
 
@@ -162,20 +160,15 @@ export default function Lumpsum() {
         }
     }
   };
-  // const [isLiked, setIsLiked] = useState(false);
   const handleProductClick = async (productId: string) => {
     try {
       const data = await fetchLoanProductDetails(Number(productId));
-      console.log('🚀 ~ handleProductClick ~ data:', data);
-      // setIsLiked(data.data.isLiked);
-      console.log(selectedProduct);
       setSelectedProductProps({
         type: 'LOAN',
         data: { ...data.data, isLiked: data.data.isLiked },
       });
-      console.log(selectedProduct);
     } catch (error) {
-      console.error('Error fetching product details:', error);
+      console.error('상품 자세히 보기 오류:', error);
     }
   };
 

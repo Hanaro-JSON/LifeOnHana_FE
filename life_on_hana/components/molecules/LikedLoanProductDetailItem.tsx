@@ -22,7 +22,6 @@ export default function LikedLoanProductDetailItem({
   const [liked, setLiked] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    console.log('되나요');
     if (isLiked != undefined) {
       setLiked(isLiked);
     }
@@ -78,7 +77,6 @@ export default function LikedLoanProductDetailItem({
         className='w-[90%] min-h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-around p-6'
         onClick={(e) => e.stopPropagation()}
       >
-        {/* X 버튼 */}
         <div className='absolute top-3 right-3 flex justify-end items-center w-full gap-2'>
           {closeBtn && (
             <button onClick={handleCloseClick} className='p-1'>
@@ -87,7 +85,6 @@ export default function LikedLoanProductDetailItem({
           )}
         </div>
 
-        {/* 제목 및 좋아요 버튼 */}
         <div className='flex items-center gap-3 -mt-[0.5rem] text-[1.5rem] font-SCDream8 text-left self-start'>
           <button
             onClick={handleLikeToggle}
@@ -104,12 +101,10 @@ export default function LikedLoanProductDetailItem({
           {name}
         </div>
 
-        {/* 내용 */}
         <div className='w-[100%] text-[1.2rem] font-SCDream3 overflow-y-auto'>
           {description}
         </div>
 
-        {/* 상세정보: 특징/대상/한도/기간 */}
         <div className='space-y-4 mt-2'>
           {[
             { label: '특징', content: feature },
@@ -138,7 +133,6 @@ export default function LikedLoanProductDetailItem({
           ))}
         </div>
 
-        {/* 버튼 */}
         <div className='mt-4 w-full flex justify-center'>
           <div className='w-full'>
             <Btn text={'상품정보 자세히보기'} url={link} />

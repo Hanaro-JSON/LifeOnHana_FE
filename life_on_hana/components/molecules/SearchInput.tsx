@@ -14,12 +14,12 @@ export default function SearchInput({
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
-    onChange?.(newValue); // 부모 컴포넌트로 검색값 전달
+    onChange?.(newValue);
   };
 
   const removeAllValue = () => {
     setInputValue('');
-    onChange?.(''); // 검색값 초기화
+    onChange?.('');
   };
 
   return (

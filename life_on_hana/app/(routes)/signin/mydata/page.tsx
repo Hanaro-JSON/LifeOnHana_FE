@@ -32,7 +32,6 @@ export default function Mydata() {
     KAKAO: false,
   });
 
-  // 단일 항목 선택
   const handleToggle = (bankName: string, isChecked: boolean) => {
     setCheckedItems((prev) => {
       const updated = { ...prev, [bankName]: isChecked };
@@ -41,10 +40,8 @@ export default function Mydata() {
     });
   };
 
-  // 전체 선택/해제 버튼 클릭
   const selectAllEvent = () => {
     setCheckedItems((prev) => {
-      // 모든 값이 true인지 확인
       const isAllCheckted = Object.values(prev).every(Boolean);
 
       const allChecked = Object.keys(prev).reduce(

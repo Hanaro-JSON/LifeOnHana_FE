@@ -46,7 +46,6 @@ export function RecommendItem({
       <div className='w-full flex flex-row justify-between' onClick={onClick}>
         <div className='flex flex-col gap-2'>
           <div className='font-SCDream8 text-[1.2rem] line-clamp-1 overflow-hidden text-ellipsis'>
-            {/* [{productType}] 무슨 카테고리인지  */}
             {name}
           </div>
           <div className='font-SCDream3 text-[1rem] max-w-[90%] line-clamp-2 overflow-hidden text-ellipsis'>

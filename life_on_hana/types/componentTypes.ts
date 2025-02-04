@@ -90,7 +90,7 @@ export type TAccountDetailItemProps = {
   balance: number;
   isAccountChecked?: boolean;
   onSelect?: (checked: boolean) => void;
-  onAmountChange?: (isExceeding: boolean, amount?: string) => void; // amount 추가
+  onAmountChange?: (isExceeding: boolean, amount?: string) => void;
   defaultAmount?: string;
 };
 
@@ -99,8 +99,8 @@ export type TArticleAIRecommendDetailItemProps = {
   name: string;
   link: string;
   closeBtn?: boolean;
-  productId?: number; //추가
-  ai?: string; // storybook 용도 (AI 받아옴)
+  productId?: number;
+  ai?: string;
 };
 
 export type TArticleItemProps = {
@@ -130,8 +130,8 @@ export type TColumnMainImgItemProps = {
 export type TColumnRecommendItemProps = {
   variant: string;
   name: string;
-  onClick?: () => void; // 추가
-  isSelected?: boolean; //추가
+  onClick?: () => void;
+  isSelected?: boolean;
 };
 
 export type TConnectBankItemProps = {

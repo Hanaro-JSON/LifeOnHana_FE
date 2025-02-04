@@ -38,7 +38,7 @@ export default function Columns() {
 
       setHasNext(data.hasNext ?? false);
     } catch (error) {
-      console.error('Failed to fetch articles:', error);
+      console.error('기사 불러오기 오류:', error);
     } finally {
       setIsFetching(false);
     }
@@ -55,7 +55,7 @@ export default function Columns() {
   }, [fetchAllArticles, isFetching]);
 
   useEffect(() => {
-    fetchAllArticles(); // 초기 데이터 로드
+    fetchAllArticles();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [fetchAllArticles, handleScroll]);

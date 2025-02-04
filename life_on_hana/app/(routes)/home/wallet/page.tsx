@@ -80,7 +80,7 @@ export default function Wallet() {
         const fetchData = (await fetchUsersMydata()) as TGetUsersMydata;
         setMyData(fetchData);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('데이터 불러오기 오류:', error);
       }
     };
 
@@ -92,7 +92,7 @@ export default function Wallet() {
         setEditSalary(fetchData.walletAmount.toLocaleString());
         if (fetchData.endDate !== null) setOneHundredDefaultText(<></>);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('지갑 정보 조회 오류:', error);
       }
     };
 
@@ -102,7 +102,7 @@ export default function Wallet() {
         setAverageExpense(fetchData.averageExpense);
         if (fetchData.endDate !== null) setOneHundredDefaultText(<></>);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('히스토리 불러오기 오류:', error);
       }
     };
     getMydata();
@@ -143,10 +143,10 @@ export default function Wallet() {
     const numericValue = Number(rawValue);
 
     if (!isNaN(numericValue)) {
-      setEditSalary(formatNumber(rawValue)); // 포맷팅된 문자열 업데이트
+      setEditSalary(formatNumber(rawValue));
       setEditWallet((prev) => ({
         ...prev,
-        walletAmount: numericValue, // 숫자 상태 업데이트
+        walletAmount: numericValue,
       }));
     }
   };
@@ -276,7 +276,7 @@ export default function Wallet() {
                   behavior: 'smooth',
                   block: 'start',
                 });
-              }, 100); // 애니메이션 효과를 위해 살짝 지연
+              }, 100);
             }}
           />
           <div className='font-SCDream2 text-sm'>
@@ -408,7 +408,6 @@ export default function Wallet() {
             )}
           </div>
 
-          {/* 지급 기간 */}
           <div className='flex flex-row justify-between w-full font-SCDream3 text-[1rem]'>
             <div>지급 기간</div>
             {isEditing ? (
@@ -436,7 +435,6 @@ export default function Wallet() {
           </div>
           {oneHundredDefaultText}
 
-          {/* 하나 급여일 */}
           <div className='flex flex-row justify-between w-full font-SCDream3 text-[1rem]'>
             <div>하나 급여일</div>
             {isEditing ? (
@@ -479,7 +477,6 @@ export default function Wallet() {
             )}
           </div>
 
-          {/* 지급 금액 */}
           <div className='flex flex-row justify-between w-full font-SCDream3 text-[1rem]'>
             <div>지급 금액</div>
             {isEditing ? (

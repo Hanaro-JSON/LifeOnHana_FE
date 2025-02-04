@@ -32,10 +32,10 @@ export default function OpenDescriptionItem({
       left: isLeft
         ? rect.left -
           event.currentTarget.offsetParent!.getBoundingClientRect().left -
-          150 // 왼쪽 방향
+          150
         : rect.left -
           event.currentTarget.offsetParent!.getBoundingClientRect().left +
-          rect.width, // 오른쪽 방향
+          rect.width,
     });
 
     setIsOpen(true);
@@ -47,7 +47,6 @@ export default function OpenDescriptionItem({
 
   return (
     <div className='relative inline-block'>
-      {/* 아이콘 */}
       <div className='flex'>
         <Image
           onClick={openDescriptionEvent}
@@ -57,7 +56,6 @@ export default function OpenDescriptionItem({
         />
       </div>
 
-      {/* 팝업 */}
       {isOpen && popupPosition && (
         <div
           className='absolute'

@@ -13,7 +13,6 @@ import KBBankLogo from '@/assets/KBBankLogo.svg';
 import { type TAccountDetailItemProps } from '@/types/componentTypes';
 
 export default function AccountDetailItem({
-  // accountId,
   bank,
   accountNumber,
   accountName,
