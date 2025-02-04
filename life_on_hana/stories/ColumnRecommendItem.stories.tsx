@@ -9,49 +9,35 @@ const meta: Meta<typeof ColumnRecommendItem> = {
     variant: { type: 'string', description: '카테고리' },
     name: { type: 'string', description: "칼럼 내 '관련 있는 정보'명" },
   },
+  decorators: [
+    (Story) => (
+      <div className='w-1/4'>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof ColumnRecommendItem>;
 
-export const RealEstate: Story = {
+export const SAVINGS: Story = {
   args: {
-    variant: 'REAL_ESTATE',
-    name: '토지거래허가구역',
+    variant: 'SAVINGS',
+    name: '예적금',
   },
 };
 
-export const Investment: Story = {
+export const LOAN: Story = {
   args: {
-    variant: 'INVESTMENT',
-    name: '월배당 ETF',
+    variant: 'LOAN',
+    name: '대출',
   },
 };
 
-export const InheritanceGift: Story = {
+export const LIFE: Story = {
   args: {
-    variant: 'INHERITANCE_GIFT',
-    name: '보험금청구권 신탁',
-  },
-};
-
-export const Travel: Story = {
-  args: {
-    variant: 'TRAVEL',
-    name: '보홀 5일 #비그랜드 #고래상어투어',
-  },
-};
-
-export const Culture: Story = {
-  args: {
-    variant: 'CULTURE',
-    name: '<바람아 분다, 가라> - 한강',
-  },
-};
-
-export const Hobby: Story = {
-  args: {
-    variant: 'HOBBY',
-    name: '‘동년배 친구’를 사귀고 싶다면, ‘오이’ & ‘시놀’',
+    variant: 'LIFE',
+    name: '라이프',
   },
 };

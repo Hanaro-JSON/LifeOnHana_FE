@@ -35,7 +35,7 @@ export const Loan: Story = {
     productId: '1',
     name: '대출 상품',
     description: '최대 한도와 조건이 좋은 대출 상품입니다.',
-    maxAmount: '1억 원',
+    maxAmount: '100000000',
     productType: 'LOAN',
   },
 };
