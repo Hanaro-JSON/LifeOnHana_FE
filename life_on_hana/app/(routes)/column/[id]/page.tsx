@@ -40,19 +40,6 @@ export default function Detail() {
   const [article, setArticle] = useState<TArticleDetail | null>(null);
 
   const isLoadingRef = useRef(false);
-  //   const loadArticle = async () => {
-  //     try {
-  //       const data = await fetchArticleById(Number(params.id));
-  //       setArticle(data);
-  //       setIsLiked(data.data.isLiked);
-  //       setLikeCount(data.data.likeCount);
-  //     } catch (error) {
-  //       console.error('칼럼 조회 오류', error);
-  //     }
-  //   };
-
-  //   loadArticle();
-  // }, [params.id, router]);
 
   useEffect(() => {
     const loadArticle = async () => {
@@ -159,16 +146,16 @@ export default function Detail() {
         </span>
       )}
 
-      <Link href='/column'>
-        <div className='flex flex-col items-center'>
-          <div
-            className={`w-[90%] flex items-center  ${
-              isLoading || !article ? 'mt-8' : '-mt-8'
-            }`}
-          >
-            <LogoHeader isMain={false} />
-          </div>
-          <div className='w-[90%] flex items-center gap-3 mt-2 mb-4'>
+      <div className='flex flex-col items-center'>
+        <div
+          className={`w-[90%] flex items-center  ${
+            isLoading || !article ? 'mt-8' : '-mt-8'
+          }`}
+        >
+          <LogoHeader isMain={false} />
+        </div>
+        <div className='w-[90%]'>
+          <Link href='/column' className='flex items-center gap-3 mt-2 mb-4'>
             <Image
               src={column}
               alt='column icon'
@@ -176,10 +163,10 @@ export default function Detail() {
               height={20}
               priority
             />
-            <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>
-          </div>
+            <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>{' '}
+          </Link>
         </div>
-      </Link>
+      </div>
 
       <div className='w-full flex flex-col'>
         <div className='w-full h-[80vh] overflow-y-auto'>
