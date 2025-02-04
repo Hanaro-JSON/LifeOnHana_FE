@@ -13,6 +13,7 @@ import HistoryItem from '@/components/molecules/HistoryItem';
 import { type THistoryItemCategoryProps } from '@/types/componentTypes';
 import { fetchHistory, fetchHistoryMonthly } from '@/api';
 import LoadingIcon from '@/components/atoms/LoadingIcon';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 const mockData: THistoryMonthly = {
   averageExpense: 250000,
@@ -212,8 +213,8 @@ export default function History() {
             <div className='w-[95%] flex justify-between'>
               <div className='flex flex-col gap-y-2'>
                 <div className='font-SCDream5 text-lg'>
-                  한 달에 평균 {Math.round(monthlyData.averageExpense / 10000)}
-                  만원을 써요
+                  한 달에 평균 {formatCurrency(monthlyData.averageExpense)}을
+                  써요
                 </div>
 
                 <div className='font-SCDream3'>
