@@ -86,7 +86,7 @@ export default function Finished() {
 
           <div className='text-center'>
             <div className='font-Hana2bold text-[1.5rem]'>
-              채우기가 완료되었습니다.
+              채우기가 완료되었습니다
             </div>
             <div className='w-[100%] mx-auto border-b-2 border-b-hanagray my-5'></div>
 

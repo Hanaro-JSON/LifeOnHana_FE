@@ -84,13 +84,28 @@ export default function Column() {
       try {
         if (searchValue) {
           const searchResults = await searchArticles(searchValue);
+
+          const updatedResults = searchResults.map(
+            (searchArticle: TArticle) => {
+              const existingArticle = articles.find(
+                (article) => article.articleId === searchArticle.articleId
+              );
+              return {
+                ...searchArticle,
+                isLiked: existingArticle
+                  ? existingArticle.isLiked
+                  : searchArticle.isLiked,
+              };
+            }
+          );
+
           if (selectedCategory !== '전체보기') {
-            result = searchResults.filter(
+            result = updatedResults.filter(
               (article: TArticle) =>
                 CATEGORY_MAP[article.category] === selectedCategory
             );
           } else {
-            result = searchResults;
+            result = updatedResults;
           }
         } else if (selectedCategory !== '전체보기') {
           result = articles.filter(
@@ -100,7 +115,7 @@ export default function Column() {
           result = articles;
         }
       } catch (error) {
-        console.error('Failed to search articles:', error);
+        console.error('검색 오류:', error);
       }
 
       setFilteredArticles(result);
@@ -110,12 +125,20 @@ export default function Column() {
     return () => clearTimeout(timeout);
   }, [searchValue, selectedCategory, articles, router]);
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = async (category: string) => {
     setIsFiltering(true);
     setFilteredArticles([]);
 
     setSelectedCategory(category);
     router.replace(`?category=${category}&searchValue=${searchValue}`);
+
+    try {
+      await fetchAllArticles();
+    } catch (error) {
+      console.error('카테고리 변경 오류:', error);
+    } finally {
+      setIsFiltering(false);
+    }
 
     setTimeout(() => {
       let result: TArticleItemProps[] = [];

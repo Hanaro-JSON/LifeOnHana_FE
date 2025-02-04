@@ -18,7 +18,7 @@ export function RecommendItem({
               <>
                 <div className='font-SCDream8 text-[1.1rem]'>최대</div>
                 <div className='font-SCDream8 text-[1rem] text-hanapurple whitespace-nowrap'>
-                  {maxAmount.toLocaleString()}
+                  {maxAmount.toLocaleString()}원
                 </div>
               </>
             )}

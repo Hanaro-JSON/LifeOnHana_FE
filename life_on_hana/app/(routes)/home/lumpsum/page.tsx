@@ -23,6 +23,7 @@ import {
 import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
 import { useToast } from '@/hooks/use-toast';
 import LoadingIcon from '@/components/atoms/LoadingIcon';
+import IsLike from '@/components/molecules/IsLike';
 
 type TSelectedProductProps = {
   type: 'LOAN';
@@ -161,16 +162,26 @@ export default function Lumpsum() {
         }
     }
   };
-
+  // const [isLiked, setIsLiked] = useState(false);
   const handleProductClick = async (productId: string) => {
     try {
       const data = await fetchLoanProductDetails(Number(productId));
-      setSelectedProductProps({ type: 'LOAN', data: data.data });
+      console.log('🚀 ~ handleProductClick ~ data:', data);
+      // setIsLiked(data.data.isLiked);
+      console.log(selectedProduct);
+      setSelectedProductProps({
+        type: 'LOAN',
+        data: { ...data.data, isLiked: data.data.isLiked },
+      });
+      console.log(selectedProduct);
     } catch (error) {
       console.error('Error fetching product details:', error);
     }
   };
 
+  useEffect(() => {
+    console.log(selectedProduct);
+  }, [selectedProduct]);
   return (
     <div className='p-6 space-y-8 mb-28'>
       <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>

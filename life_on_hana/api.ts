@@ -23,7 +23,7 @@ export const fetchLikedProducts = async (page: number | undefined) => {
     //home에서 호출하는 api
     const token = getApiToken();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/users/liked/products?limit=10`,
+      `${process.env.NEXT_PUBLIC_URL}/api/users/liked/products`,
       {
         method: 'GET',
         headers: {
@@ -39,6 +39,7 @@ export const fetchLikedProducts = async (page: number | undefined) => {
     const fetchData = await response.json();
     return fetchData.data.products;
   }
+
   //home/like에서 호출하는 api
   let allLikedProducts: THomeLikeProduct[] = [];
   let hasNext = true;
@@ -650,6 +651,7 @@ export const fetchProducts = async ({
 };
 //getMydata
 export const fetchAntropicLoans = async (reason: string, amount: number) => {
+  console.log('🚀 ~ fetchAntropicLoans ~ response:', reason, amount);
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/anthropic/loans`,

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import arrowRight from '@/assets/arrow-right.svg';
 import { type TMainSectionProps } from '@/types/componentTypes';
 import { useState, useEffect } from 'react';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 const variants = [
   {
@@ -60,7 +61,7 @@ export default function MainSection({ name, walletAmount }: TMainSectionProps) {
                   월급
                 </div>
                 <div className='font-SCDream8 text-[1.75rem]'>
-                  {walletAmount}만원
+                  {formatCurrency(walletAmount)}
                 </div>
               </div>
             </div>

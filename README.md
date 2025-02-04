@@ -2,7 +2,7 @@
 
 ### 디지털 하나로 4기 - 비대면 금융 서비스 개발 프로젝트
 
-<h1> 🧗🏻 소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자, <br/> 라이프 온 하나 (LIFE on HANA) </h1>
+<h2> 🧗🏻 소득 크레바스에 맞닥뜨린 당신을 구해줄 든든한 동반자, <br/> 라이프 온 하나 (LIFE on HANA) </h2>
 
 ![리드미배너](https://github.com/user-attachments/assets/ecba6c49-18e4-4f21-9cd2-fa7c2ee7846b)
 
@@ -39,13 +39,13 @@
 
 | 하나지갑 충전하기 | 목돈 가져오기 |
 |:---:|:---:|
-| <img src="" width="350"/> | <img src="" width="350"/> |
-| 하나지갑 충전하기 | 목돈 가져오기 |
+| <img src="https://github.com/user-attachments/assets/8f6341d6-b537-4c04-9eca-f4d5ca94fb32" width="350"/> | <img src="https://github.com/user-attachments/assets/54ee61d7-6047-4d4b-8024-a87735359a39" width="350"/> |
+| 하나지갑 충전하기 | 하나 월급 통장/다른 통장에서 목돈 가져오기 |
 
-| 이번달 입출금 내역 |
-|:---:|
-| <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
-| 월별 입출금 내역  | 
+| 목돈 가져오기 | 이번달 입출금 내역 |
+|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/f3e07b4f-590c-4bef-ba46-8732f0807531" width="350"/> | <img src="https://github.com/user-attachments/assets/03b69c54-4419-493f-9b52-d86101123de4" width="350"/> | 
+| 대출 상품에서 목돈 가져오기 | 월별 입출금 내역 |
 
 | 칼럼 상세보기 | 칼럼 관련 상품 및 AI 추천 정보 제공 |
 |:---:|:---:|
@@ -59,10 +59,12 @@
 <br />
 
 ## 🎨 Storybook
-![31](https://github.com/user-attachments/assets/2703d981-1660-47bb-8f52-671286b3845d)
 ```javascript
 pnpm storybook
 ```
+![storybook](https://github.com/user-attachments/assets/98fe8651-ed7c-4888-a02d-ab82bc18f4e8)
+
+13개의 atom components, 22개의 molecule components
 
 ## 🤗 FE 팀원
 <table>

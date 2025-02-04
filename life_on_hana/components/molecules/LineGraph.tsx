@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/chart';
 import { type TLineGraphProps } from '@/types/componentTypes';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 const chartConfig = {
   totalasset: {
@@ -135,7 +136,7 @@ export function LineGraph({
         <YAxis
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `${value / 100000}만원`}
+          tickFormatter={(value) => `${formatCurrency(value)}`}
         />
         <ChartTooltip
           cursor={false}
@@ -152,8 +153,8 @@ export function LineGraph({
                   }}
                 >
                   <strong>{data.yearMonth}</strong>
-                  <p>총 자산: {data.totalAsset / 10000}만원</p>
-                  <p>하나월급통장: {data.totalHanaSalary / 10000}만원</p>
+                  <p>총 자산: {formatCurrency(data.totalAsset)}</p>
+                  <p>하나월급통장: {formatCurrency(data.totalHanaSalary)}</p>
                 </div>
               );
             }
