@@ -57,8 +57,8 @@ export default function Like() {
         description: product.description,
         minAmount: product.minAmount ?? undefined,
         maxAmount: product.maxAmount ?? undefined,
-        basicInterest_rate: product.basicInterestRate ?? undefined,
-        maxInterest_rate: product.maxInterestRate ?? undefined,
+        basicInterestRate: product.basicInterestRate ?? undefined,
+        maxInterestRate: product.maxInterestRate ?? undefined,
         productType:
           product.category === 'LOAN'
             ? ('LOAN' as const)

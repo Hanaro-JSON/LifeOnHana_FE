@@ -243,8 +243,8 @@ export type TRecommendCarouselItemProps = {
   description: string;
   minAmount?: string;
   maxAmount?: string;
-  basicInterest_rate?: number;
-  maxInterest_rate?: number;
+  basicInterestRate?: number;
+  maxInterestRate?: number;
   maxPeriod?: string;
   productType: 'LOAN' | 'SAVINGS' | 'LIFE';
   onClick?: () => void;
@@ -259,8 +259,8 @@ export type TRecommendItemProps = {
   description: string;
   minAmount?: string;
   maxAmount?: string;
-  basicInterest_rate?: number;
-  maxInterest_rate?: number;
+  basicInterestRate?: number;
+  maxInterestRate?: number;
   maxPeriod?: string;
   productType: 'LOAN' | 'SAVINGS' | 'LIFE';
   onClick?: () => void;
