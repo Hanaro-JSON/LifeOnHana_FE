@@ -142,9 +142,6 @@ export default function AccountDetailItem({
             <input
               type='text'
               value={withdrawalAmount}
-              defaultValue={Number(
-                defaultAmount!.replace(/\D/g, '')
-              ).toLocaleString()}
               onChange={handleAmountChange}
               placeholder={`${balance.toLocaleString()}`}
               className='mt-2 w-[95%] h-[2.3rem] p-2 border border-hanapurple rounded-md text-right text-[1.25rem] font-SCDream8 focus:outline-none focus:border-hanapurple focus:border-2'
