@@ -320,34 +320,39 @@ export default function Detail() {
                 <div className='font-SCDream5 text-[15px] my-3'>
                   관련있는 상품
                 </div>
-                <div className='flex gap-5'>
-                  <div className='w-[90%]'>
-                    <ColumnRecommendItem
-                      variant={article.data.relatedProducts[0].category}
-                      name={article.data.relatedProducts[0].name}
-                      isSelected={
-                        selectedProduct?.productId ===
-                        article.data.relatedProducts[0].productId
-                      }
-                      onClick={() =>
-                        handleProductClick(article.data.relatedProducts[0])
-                      }
-                    />
+                {article.data.relatedProducts.length == 0 ? (
+                  <></>
+                ) : (
+                  <div className='flex gap-5'>
+                    <div className='w-[90%]'>
+                      <ColumnRecommendItem
+                        variant={article.data.relatedProducts[0].category}
+                        name={article.data.relatedProducts[0].name}
+                        isSelected={
+                          selectedProduct?.productId ===
+                          article.data.relatedProducts[0].productId
+                        }
+                        onClick={() =>
+                          handleProductClick(article.data.relatedProducts[0])
+                        }
+                      />
+                    </div>
+                    <div className='w-[90%]'>
+                      <ColumnRecommendItem
+                        variant={article.data.relatedProducts[1].category}
+                        name={article.data.relatedProducts[1].name}
+                        isSelected={
+                          selectedProduct?.productId ===
+                          article.data.relatedProducts[1].productId
+                        }
+                        onClick={() =>
+                          handleProductClick(article.data.relatedProducts[1])
+                        }
+                      />
+                    </div>
                   </div>
-                  <div className='w-[90%]'>
-                    <ColumnRecommendItem
-                      variant={article.data.relatedProducts[1].category}
-                      name={article.data.relatedProducts[1].name}
-                      isSelected={
-                        selectedProduct?.productId ===
-                        article.data.relatedProducts[1].productId
-                      }
-                      onClick={() =>
-                        handleProductClick(article.data.relatedProducts[1])
-                      }
-                    />
-                  </div>
-                </div>
+                )}
+
                 <div className='font-SCDream5 text-[15px] my-3 mt-9'>
                   {data.name}님의 AI 맞춤 정보
                 </div>
