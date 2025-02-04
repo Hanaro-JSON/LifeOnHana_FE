@@ -2,20 +2,368 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Hana2bold';
+  src: url('./fonts/Hana2-Bold.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Hana2cm';
+  src: url('./fonts/Hana2-CM.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Hana2heavy';
+  src: url('./fonts/Hana2-Heavy.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Hana2light';
+  src: url('./fonts/Hana2-Light.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Hana2medium';
+  src: url('./fonts/Hana2-Medium.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Hana2regular';
+  src: url('./fonts/Hana2-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
+@font-face {
+  font-family: 'SCDream1';
+  src: url('./fonts/SCDream1.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream2';
+  src: url('./fonts/SCDream2.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream3';
+  src: url('./fonts/SCDream3.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream4';
+  src: url('./fonts/SCDream4.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream5';
+  src: url('./fonts/SCDream5.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream6';
+  src: url('./fonts/SCDream6.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream7';
+  src: url('./fonts/SCDream7.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream8';
+  src: url('./fonts/SCDream8.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SCDream9';
+  src: url('./fonts/SCDream9.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --hanalightgreen: #ebf9f6;
+    --hanagreen: #099a96;
+    --hanadeepgreen: #148071;
+    --hanalightpurple: #f4ebfb;
+    --hanapurple: #4d00b5;
+    --hanagray: #b1bbc0;
+    --hanadeepgray: #a6a6a6;
+    --red: #f74c21;
+    --chart-1: 221.2 83.2% 53.3%;
+    --chart-2: 212 95% 68%;
+    --chart-3: 216 92% 60%;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 0.75rem; /* 기본 값 */
+  font-family: 'font-SCDream4';
+  background-color: var(--background);
+}
+
+@media (min-width: 48rem) {
+  html {
+    font-size: 1rem; /* 태블릿 이상 */
+  }
+}
+
+@media (min-width: 64rem) {
+  html {
+    font-size: 1.125rem; /* 데스크탑 */
+  }
+}
+
+html {
+  font-family: 'SCDream2';
+  --background: #f1f0f2;
+}
+
+a {
+  text-decoration: none;
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(-90deg, #4d00b5 0%, #ffffff 100%);
+  border-radius: 0.3125rem;
+  height: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: #4d00b5;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background: #4d00b5;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+.dynamic-fill.white {
+  color: white;
+}
+
+.dynamic-fill.black {
+  color: black;
+}
+
+input[type='radio'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='radio']:checked {
+  background-color: var(--hanapurple);
+  border: 1px solid var(--hanapurple);
+  /* box-shadow: 0 0 0 1.6px var(--hanapurple); */
+}
+
+/* 휘릭 하단 스크롤 유도 */
+@-webkit-keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: rgb(255, 255, 255);
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: transparent;
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+@keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: rgb(255, 255, 255);
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: transparent;
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+.whilick-down-1 {
+  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
+}
+
+@-webkit-keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: transparent;
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: rgb(255, 255, 255);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+@keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: transparent;
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: rgb(255, 255, 255);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+.whilick-down-2 {
+  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
+}
+
+@keyframes animate-svg-fill-1 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: rgb(255, 255, 255);
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: transparent;
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+.whilick-down-1 {
+  -webkit-animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-1 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
+}
+
+@-webkit-keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: transparent;
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: rgb(255, 255, 255);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+@keyframes animate-svg-fill-2 {
+  0% {
+    fill: transparent;
+  }
+  25% {
+    fill: transparent;
+  }
+  50% {
+    fill: rgb(255, 255, 255);
+  }
+  75% {
+    fill: rgb(255, 255, 255);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+.whilick-down-2 {
+  -webkit-animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715)
+    0s infinite;
+  animation: animate-svg-fill-2 3s cubic-bezier(0.47, 0, 0.745, 0.715) 0s
+    infinite;
+}
+
+/* 로딩 스피너 */
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
 }
