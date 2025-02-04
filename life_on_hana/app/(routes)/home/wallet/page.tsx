@@ -210,7 +210,6 @@ export default function Wallet() {
             </span>
             입니다. <br />
             <span className='font-SCDream5 text-[1.0625rem]'>
-              {/* &nbsp;{Math.floor(need / mydata.totalAsset)}개월 이후 */}
               {Math.floor(mydata.salaryAccount.balance / wallet.walletAmount)}
               {/* 하나 월급 통장 잔액 / 내가 설정한 지급 금액 */}
               개월 이후
