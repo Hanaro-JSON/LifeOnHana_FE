@@ -35,23 +35,33 @@ export default function Detail() {
   const [isLoading] = useState(false);
   const aiRecommendRef = useRef<HTMLDivElement>(null);
 
-  const [, setIsLiked] = useState(false);
-  const [, setLikeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState<boolean | null>(null);
+  const [likeCount, setLikeCount] = useState(-1);
   const [article, setArticle] = useState<TArticleDetail | null>(null);
 
-  const isLikedRef = useRef(false);
-  const likeCountRef = useRef(0);
   const isLoadingRef = useRef(false);
+  //   const loadArticle = async () => {
+  //     try {
+  //       const data = await fetchArticleById(Number(params.id));
+  //       setArticle(data);
+  //       setIsLiked(data.data.isLiked);
+  //       setLikeCount(data.data.likeCount);
+  //     } catch (error) {
+  //       console.error('칼럼 조회 오류', error);
+  //     }
+  //   };
+
+  //   loadArticle();
+  // }, [params.id, router]);
 
   useEffect(() => {
     const loadArticle = async () => {
       try {
         const data = await fetchArticleById(Number(params.id));
         setArticle(data);
-        setIsLiked(data.data.isLiked);
-        setLikeCount(data.data.likeCount);
-        isLikedRef.current = data.data.isLiked;
-        likeCountRef.current = data.data.likeCount;
+
+        setIsLiked((prev) => (prev === null ? data.data.isLiked : prev));
+        setLikeCount((prev) => (prev === -1 ? data.data.likeCount : prev));
       } catch (error) {
         console.error('칼럼 조회 오류', error);
       }
@@ -61,26 +71,16 @@ export default function Detail() {
   }, [params.id, router]);
 
   const handleLikeToggle = async () => {
-    if (isLoading) return;
     if (isLoadingRef.current) return;
-
     isLoadingRef.current = true;
 
-    try {
-      const response = await likeArticle(
-        Number(params.id),
-        !isLikedRef.current
-      );
-      isLikedRef.current = response.isLiked;
-      likeCountRef.current = response.likeCount;
+    const newIsLiked = !isLiked;
+    const newLikeCount = newIsLiked ? likeCount + 1 : likeCount - 1;
+    setIsLiked(newIsLiked);
+    setLikeCount(newLikeCount);
 
-      setIsLiked(response.isLiked);
-      setLikeCount(response.likeCount);
-      document.getElementById('like-count')!.innerText =
-        response.likeCount.toString();
-      document
-        .getElementById('like-icon')!
-        .classList.toggle('liked', response.isLiked);
+    try {
+      await likeArticle(Number(params.id), newIsLiked);
     } catch (error) {
       console.error('좋아요 상태 변경 중 오류:', error);
     } finally {
@@ -236,8 +236,8 @@ export default function Detail() {
             ) : (
               <>
                 <IsLike
-                  likeCount={likeCountRef.current}
-                  isLiked={isLikedRef.current}
+                  likeCount={likeCount}
+                  isLiked={isLiked!}
                   onClick={handleLikeToggle}
                 />
                 <div className='mb-2'>
