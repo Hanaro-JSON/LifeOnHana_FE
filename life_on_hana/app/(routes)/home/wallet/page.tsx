@@ -377,7 +377,7 @@ export default function Wallet() {
 
       <Section bgColor='hanalightpurple' height='10rem'>
         <div className='w-full flex justify-between'>
-          <Image src={snake} alt={'snake'} />
+          <Image src={snake} alt={'snake'} priority />
           <div className='flex flex-col justify-center items-end gap-y-2'>
             <div className='font-SCDream5 text-[1.3125rem]'>
               하나 월급통장 잔액
