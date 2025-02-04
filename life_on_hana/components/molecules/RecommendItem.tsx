@@ -1,11 +1,12 @@
 import { type TRecommendItemProps } from '@/types/componentTypes';
 import Section from '@/components/atoms/Section';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 export function RecommendItem({
   name,
   description,
   maxAmount,
-  maxInterest_rate,
+  maxInterestRate,
   productType,
   onClick,
 }: TRecommendItemProps) {
@@ -17,8 +18,8 @@ export function RecommendItem({
             {maxAmount && (
               <>
                 <div className='font-SCDream8 text-[1.1rem]'>최대</div>
-                <div className='font-SCDream8 text-[1rem] text-hanapurple whitespace-nowrap'>
-                  {maxAmount.toLocaleString()}원
+                <div className='font-SCDream8 text-[1.2rem] text-hanapurple whitespace-nowrap'>
+                  {formatCurrency(Number(maxAmount))}
                 </div>
               </>
             )}
@@ -31,7 +32,7 @@ export function RecommendItem({
               연(세전,1년)
             </div>
             <div className='font-SCDream8 text-[1.1rem] text-hanapurple whitespace-nowrap'>
-              최고 ~{maxInterest_rate}%
+              최고 ~{maxInterestRate}%
             </div>
           </div>
         );
