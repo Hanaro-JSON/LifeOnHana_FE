@@ -193,7 +193,7 @@ export default function Wallet() {
 
     const need = getMonths() * wallet.walletAmount - getKookmin;
 
-    if (need > mydata.totalAsset) {
+    if (need > mydata.salaryAccount.balance) {
       // 돈 부족
       return (
         <div className='flex flex-col gap-y-8'>
@@ -213,7 +213,9 @@ export default function Wallet() {
             </span>
             입니다. <br />
             <span className='font-SCDream5 text-[1.0625rem]'>
-              &nbsp;{Math.floor(need / mydata.totalAsset)}개월 이후
+              {Math.floor(mydata.salaryAccount.balance / wallet.walletAmount)}
+              {/* 하나 월급 통장 잔액 / 내가 설정한 지급 금액 */}
+              개월 이후
             </span>
             부터 잔액이 부족하게 됩니다.
           </div>
@@ -374,7 +376,7 @@ export default function Wallet() {
       </div>
 
       <Section bgColor='hanalightpurple' height='10rem'>
-        <div className='w-full flex justify-between '>
+        <div className='w-full flex justify-between'>
           <Image src={snake} alt={'snake'} />
           <div className='flex flex-col justify-center items-end gap-y-2'>
             <div className='font-SCDream5 text-[1.3125rem]'>
@@ -389,6 +391,7 @@ export default function Wallet() {
           </div>
         </div>
       </Section>
+
       <Section>
         <div className='w-full space-y-2'>
           <div className='pb-4 w-full flex flex-row justify-between items-center'>
