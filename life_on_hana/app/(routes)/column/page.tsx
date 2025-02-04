@@ -85,7 +85,6 @@ export default function Column() {
         if (searchValue) {
           const searchResults = await searchArticles(searchValue);
 
-          // 🔹 기존 articles에서 isLiked 상태를 유지하면서 검색 결과와 병합
           const updatedResults = searchResults.map(
             (searchArticle: TArticle) => {
               const existingArticle = articles.find(
@@ -95,7 +94,7 @@ export default function Column() {
                 ...searchArticle,
                 isLiked: existingArticle
                   ? existingArticle.isLiked
-                  : searchArticle.isLiked, // 기존 좋아요 상태 유지
+                  : searchArticle.isLiked,
               };
             }
           );
@@ -116,7 +115,7 @@ export default function Column() {
           result = articles;
         }
       } catch (error) {
-        console.error('Failed to search articles:', error);
+        console.error('검색 오류:', error);
       }
 
       setFilteredArticles(result);
@@ -126,46 +125,6 @@ export default function Column() {
     return () => clearTimeout(timeout);
   }, [searchValue, selectedCategory, articles, router]);
 
-  // useEffect(() => {
-  //   if (articles.length === 0) return;
-
-  //   const timeout = setTimeout(async () => {
-  //     router.replace(
-  //       `?category=${selectedCategory}&searchValue=${searchValue}`
-  //     );
-  //     setIsSearching(true);
-
-  //     let result: TArticleItemProps[] = [];
-
-  //     try {
-  //       if (searchValue) {
-  //         const searchResults = await searchArticles(searchValue);
-  //         if (selectedCategory !== '전체보기') {
-  //           result = searchResults.filter(
-  //             (article: TArticle) =>
-  //               CATEGORY_MAP[article.category] === selectedCategory
-  //           );
-  //         } else {
-  //           result = searchResults;
-  //         }
-  //       } else if (selectedCategory !== '전체보기') {
-  //         result = articles.filter(
-  //           (article) => CATEGORY_MAP[article.category] === selectedCategory
-  //         );
-  //       } else {
-  //         result = articles;
-  //       }
-  //     } catch (error) {
-  //       console.error('Failed to search articles:', error);
-  //     }
-
-  //     setFilteredArticles(result);
-  //     setIsSearching(false);
-  //   }, 500);
-
-  //   return () => clearTimeout(timeout);
-  // }, [searchValue, selectedCategory, articles, router]);
-
   const handleCategoryChange = async (category: string) => {
     setIsFiltering(true);
     setFilteredArticles([]);
@@ -174,13 +133,9 @@ export default function Column() {
     router.replace(`?category=${category}&searchValue=${searchValue}`);
 
     try {
-      // 🔹 카테고리를 변경할 때 최신 데이터를 다시 불러오기
       await fetchAllArticles();
     } catch (error) {
-      console.error(
-        'Failed to fetch latest articles on category change:',
-        error
-      );
+      console.error('카테고리 변경 오류:', error);
     } finally {
       setIsFiltering(false);
     }
