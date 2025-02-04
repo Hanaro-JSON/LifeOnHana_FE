@@ -21,20 +21,12 @@ export default function ColumnRecommendItem({
 
   const getCategory = (variant: string) => {
     switch (variant) {
-      case 'REAL_ESTATE':
-        return '부동산';
-      case 'INVESTMENT':
-        return '투자';
-      case 'INHERITANCE_GIFT':
-        return '상속∙증여';
-      case 'TRAVEL':
-        return '여행';
-      case 'CULTURE':
-        return '문화';
-      case 'HOBBY':
-        return '취미';
+      case 'SAVINGS':
+        return '예적금';
       case 'LOAN':
         return '대출';
+      case 'LIFE':
+        return '라이프';
       default:
         return '';
     }
@@ -42,18 +34,10 @@ export default function ColumnRecommendItem({
 
   const getSrc = (variant: string) => {
     switch (variant) {
-      case 'REAL_ESTATE':
+      case 'SAVINGS':
         return '/assets/column_recommend_realEstate.svg';
-      case 'INVESTMENT':
-        return '/assets/column_recommend_investment.svg';
-      case 'INHERITANCE_GIFT':
-        return '/assets/column_recommend_inheritanceGift.svg';
-      case 'TRAVEL':
-        return '/assets/column_recommend_travel.svg';
-      case 'CULTURE':
+      case 'LIFE':
         return '/assets/column_recommend_culture.svg';
-      case 'HOBBY':
-        return '/assets/column_recommend_hobby.svg';
       case 'LOAN':
         return '/assets/column_recommend_loan.svg';
       default:
