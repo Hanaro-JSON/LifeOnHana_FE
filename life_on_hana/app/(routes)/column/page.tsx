@@ -194,8 +194,14 @@ export default function Column() {
     <div>
       <div className='flex flex-col items-center pt-5'>
         <div className='w-full flex items-center gap-3 mb-4 px-[1rem]'>
-          <Image src={column} alt='column icon' width={25} height={22} />
-          <div className='text-[1.8rem] font-Hana2bold'>칼럼</div>
+          <Image
+            src={column}
+            alt='column icon'
+            width={20}
+            style={{ width: 20, height: 'auto' }}
+            priority
+          />
+          <div className='text-[1.5rem] font-Hana2bold'>칼럼</div>
         </div>
       </div>
 
