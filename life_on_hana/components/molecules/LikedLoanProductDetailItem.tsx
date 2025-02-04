@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useEffect } from 'react';
 import Btn from '../atoms/Btn';
 import X from '../../assets/X.svg';
 import Image from 'next/image';
@@ -19,9 +19,14 @@ export default function LikedLoanProductDetailItem({
   productId,
   onClose,
 }: TLikedLoanProductDetailItemProps) {
-  const [liked, setLiked] = useState({ isLiked });
+  const [liked, setLiked] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
+  useEffect(() => {
+    console.log('되나요');
+    if (isLiked != undefined) {
+      setLiked(isLiked);
+    }
+  }, [isLiked]);
   const handleBackgroundClick = (e: MouseEvent) => {
     if (closeBtn && (e.target as HTMLElement).id === 'modal-background') {
       onClose?.();
@@ -59,7 +64,7 @@ export default function LikedLoanProductDetailItem({
   };
 
   const bg = closeBtn
-    ? 'h-screen fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50'
+    ? 'h-full fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50'
     : '';
 
   return (
