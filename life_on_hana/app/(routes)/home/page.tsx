@@ -33,6 +33,7 @@ import {
 import LikedLoanProductDetailItem from '@/components/molecules/LikedLoanProductDetailItem';
 import LikedAccountProductDetailItem from '@/components/molecules/LikedAccountProductDetailItem';
 import LikedLifeProductDetailItem from '@/components/molecules/LikedLifeProductDetail';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 type TSelectedProductProps =
   | {
@@ -234,10 +235,7 @@ export default function Home() {
 
       {/* 하나월급 카드 */}
       <div style={{ marginTop: '4rem' }}>
-        <MainSection
-          name={data.name}
-          walletAmount={Math.round(walletAmount / 10000)}
-        />
+        <MainSection name={data.name} walletAmount={walletAmount} />
       </div>
 
       {/* 목돈 버튼 */}
@@ -249,7 +247,7 @@ export default function Home() {
           <div className='font-SCDream3 text-[1.25rem]'>
             이번 달 지출은&nbsp;
             <span className='font-SCDream5 text-[1.25rem] text-hanapurple'>
-              {Math.round(totalExpense / 10000)}만원
+              {formatCurrency(totalExpense)}
             </span>
             &nbsp;입니다
           </div>

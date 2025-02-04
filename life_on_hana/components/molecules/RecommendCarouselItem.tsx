@@ -1,6 +1,7 @@
 import React from 'react';
 import CarouselSection from '@/components/atoms/CarouselSection';
 import { type TRecommendCarouselItemProps } from '@/types/componentTypes';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 export function RecommendCarouselItem({
   items,
@@ -17,7 +18,7 @@ export function RecommendCarouselItem({
           <div className='flex flex-col items-end '>
             <div className='font-SCDream8 text-[1rem]'>최대</div>
             <div className='font-SCDream8 text-[1.2rem] text-[#4D00B5]'>
-              {Math.round(Number(item.maxAmount) / 10000)}만원
+              {formatCurrency(Number(item.maxAmount))}
             </div>
           </div>
         );
