@@ -26,7 +26,6 @@ export default function SigninPage() {
   const [isLogin, setIsLogin] = useState(false);
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('로그인 작동함!!!!!');
     e.preventDefault();
     setErrorMsg(null);
 
@@ -36,7 +35,6 @@ export default function SigninPage() {
     if (result.error) {
       setErrorMsg(result.error);
 
-      // 특정 필드로 포커스 이동
       if (result.error === 'id' && idInputRef.current) {
         idInputRef.current.focus();
       } else if (result.error === 'pw' && passwordInputRef.current) {

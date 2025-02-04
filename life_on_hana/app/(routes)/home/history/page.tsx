@@ -81,9 +81,9 @@ export default function History() {
   const [historyData, setHistoryData] = useState<THistory>(historyMockData);
   const [year, setYear] = useState<number>(() => new Date().getFullYear());
   const [month, setMonth] = useState<number>(() => new Date().getMonth() + 1);
-  const [page, setPage] = useState(1); // 현재 페이지 번호
-  const [hasNext, setHasNext] = useState(true); // 다음 페이지 여부
-  const [isFetching, setIsFetching] = useState(false); // 데이터 로드 중 여부
+  const [page, setPage] = useState(1);
+  const [hasNext, setHasNext] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     const getHistoryMonthly = async () => {
@@ -125,8 +125,8 @@ export default function History() {
       ...prevData,
       histories: [],
     }));
-    setPage(1); // 페이지를 1로 초기화
-    setHasNext(true); // 새로운 달의 데이터를 가져오기 위해 리셋
+    setPage(1);
+    setHasNext(true);
   }, [year, month]);
 
   useEffect(() => {
@@ -161,7 +161,7 @@ export default function History() {
 
         setHasNext(fetchData.page < fetchData.totalPages);
       } catch (error) {
-        console.error('Error fetching history:', error);
+        console.error('히스토리 불러오기 오류:', error);
       } finally {
         setIsFetching(false);
       }
@@ -170,7 +170,6 @@ export default function History() {
     getHistory();
   }, [year, month, page, hasNext, isFetching]);
 
-  // 스크롤 이벤트 등록
   useEffect(() => {
     const handleScroll = () => {
       if (isFetching || !hasNext) return;

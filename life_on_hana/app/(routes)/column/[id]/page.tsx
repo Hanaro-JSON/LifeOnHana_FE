@@ -183,7 +183,6 @@ export default function Detail() {
 
       <div className='w-full flex flex-col'>
         <div className='w-full h-[80vh] overflow-y-auto'>
-          {/* 상단 헤더 이미지 영역 */}
           <div className='relative w-full h-[150px]'>
             {isLoading || !article ? (
               <>
@@ -229,7 +228,6 @@ export default function Detail() {
             </div>
           </div>
 
-          {/* 좋아요, 공유 영역 */}
           <div className='flex justify-end items-center m-4'>
             {isLoading || !article ? (
               <></>
@@ -247,7 +245,6 @@ export default function Detail() {
             )}
           </div>
 
-          {/* 본문, 관련 상품 영역 */}
           <div className=' w-[90%] flex flex-col mx-auto -z-50'>
             {isLoading || !article ? (
               <>

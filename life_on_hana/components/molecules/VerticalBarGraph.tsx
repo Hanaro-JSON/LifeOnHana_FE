@@ -44,7 +44,6 @@ export function VerticalBarGraph(items: { items: TVerticalBarGraphProps[] }) {
           top: 20,
         }}
       >
-        {/* <CartesianGrid vertical={false} /> */}
         <XAxis
           dataKey='month'
           tickLine={false}

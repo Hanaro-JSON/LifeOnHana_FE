@@ -6,7 +6,6 @@ import invisible from '@/assets/invisible.png';
 
 const LoginLabelInput = forwardRef<HTMLInputElement, TLoginLabelInputProps>(
   ({ label, id, type = 'text', name, placeholder, errorMsg }, ref) => {
-    // 비밀번호 숨김 기능
     const [inputState, setInputState] = useState(name === 'pw');
     const changeInputStateEvent = () => {
       if (name !== 'pw') return;

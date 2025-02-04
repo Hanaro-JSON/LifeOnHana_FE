@@ -57,7 +57,6 @@ export default function Home() {
   const [totalExpense, setTotalExpense] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
   const [expenseCategories, setExpenseCategories] = useState([]);
-  // 칼럼 목록 조회
   const [articles, setArticles] = useState<TArticleItemProps[]>([]);
   const [RecommendCarouselColumnItems, setRecommendCarouselColumnItems] =
     useState<TRecommendCarouselColumnProps[]>([]);
@@ -73,7 +72,7 @@ export default function Home() {
         const fetchData = await fetchUsersInfo();
         setInfo({ name: fetchData.name, birth: fetchData.birth });
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('사용자 데이터 가져오기 오류:', error);
       }
     };
 
@@ -82,7 +81,7 @@ export default function Home() {
         const fetchData = await fetchWallet();
         setWalletAmount(fetchData.walletAmount);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('지갑 가져오기 오류:', error);
       }
     };
 
@@ -93,7 +92,7 @@ export default function Home() {
         setTotalInterest(fetchData.totalInterest);
         setExpenseCategories(fetchData.expenseCategories);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('히스토리 가져오기 오류:', error);
       }
     };
 
@@ -102,7 +101,7 @@ export default function Home() {
         const fetchData = await fetchUsersNickname();
         setCategory(fetchData.category);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('이름 가져오기 오류:', error);
       }
     };
 
@@ -111,7 +110,7 @@ export default function Home() {
         const fetchData = await fetchLikedProducts(undefined);
         setCarouselItems(fetchData);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('상품 좋아요 오류:', error);
       }
     };
 
@@ -134,7 +133,7 @@ export default function Home() {
         }
         setArticles(fetchData.articles);
       } catch (error) {
-        console.error('Error fetching:', error);
+        console.error('기사 좋아요 오류:', error);
       }
     };
 
@@ -167,7 +166,7 @@ export default function Home() {
         setSelectedProductProps({ type: 'LIFE', data: data.data });
       }
     } catch (error) {
-      console.error('Error fetching product details:', error);
+      console.error('상품 자세히 보기 오류:', error);
     }
   };
 
@@ -228,20 +227,16 @@ export default function Home() {
 
   return (
     <div className='h-[100%] p-6 space-y-8 mb-28'>
-      {/* 헤더 */}
       <div className='fixed top-0 left-0 py-6 px-6 w-full bg-background z-50'>
         <LogoHeader isMain={true} />
       </div>
 
-      {/* 하나월급 카드 */}
       <div style={{ marginTop: '4rem' }}>
         <MainSection name={data.name} walletAmount={walletAmount} />
       </div>
 
-      {/* 목돈 버튼 */}
       <Btn text={'급하게 목돈이 필요하세요?'} variant='needLumpSum' />
 
-      {/* 이번 달 지출 카드 */}
       <Section height='19rem'>
         <div className='w-full max-w-full space-y-6 my-3'>
           <div className='font-SCDream3 text-[1.25rem]'>
@@ -268,7 +263,6 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 좋아요한 칼럼 카드 */}
       <div className='flex flex-col space-y-3'>
         <div className='font-SCDream4 text-[1.25rem]'>
           {data.name}님은 {categoryToNickname(category)}
@@ -279,7 +273,6 @@ export default function Home() {
         <FullImgCarousel items={RecommendCarouselColumnItems} />
       </div>
 
-      {/* 추천 상품 카드 */}
       <div className='flex flex-col space-y-3'>
         <div className='font-SCDream4 text-[1.25rem]'>
           {data.name}님을 위한 추천 상품

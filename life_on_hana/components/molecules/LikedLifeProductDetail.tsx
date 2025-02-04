@@ -56,7 +56,6 @@ export default function LikedLifeProductDetailItem({
         className='pt-10 w-[90%] min-h-[60%] h-[60%] relative bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col items-start justify-between p-6'
         onClick={(e) => e.stopPropagation()}
       >
-        {/* X 버튼 */}
         <div className='absolute top-3 right-3 flex justify-end items-center w-full gap-2'>
           {closeBtn && (
             <button onClick={handleCloseClick} className='p-1'>
@@ -65,7 +64,6 @@ export default function LikedLifeProductDetailItem({
           )}
         </div>
 
-        {/* 제목 */}
         <div className='flex gap-3 -mt-[0.5rem] justify-start mb-2 w-full'>
           <button
             onClick={handleLikeToggle}
@@ -82,12 +80,10 @@ export default function LikedLifeProductDetailItem({
           <div className='w-5/6 text-[1.5rem] font-SCDream8'>{name}</div>
         </div>
 
-        {/* 내용 */}
         <div className='w-[100%] text-[1.2rem] font-SCDream3 leading-normal text-left overflow-y-auto max-h-[19rem] flex-grow'>
           <p>{description}</p>
         </div>
 
-        {/* 버튼 */}
         <div className='mt-4 w-full flex justify-center'>
           <div className='w-full'>
             <Btn text={'상품정보 자세히보기'} url={link} />

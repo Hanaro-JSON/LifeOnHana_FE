@@ -17,15 +17,6 @@ export default function IsLike({
     setLikeCount(initialLikeCount);
   }, [initialIsLiked, initialLikeCount]);
 
-  // const toggleLike = () => {
-  //   if (onClick) {
-  //     onClick();
-  //   } else {
-  //     setIsLiked(!isLiked);
-  //     setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
-  //   }
-  // };
-
   return (
     <div className='w-[3rem]'>
       <div className='flex flex-col items-center'>

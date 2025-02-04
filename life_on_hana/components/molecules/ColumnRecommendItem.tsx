@@ -13,7 +13,6 @@ export default function ColumnRecommendItem({
   const clickEvent = () => {
     setIsClicked(!isClicked);
 
-    // 부모에서 넘겨받은 onClick 콜백이 있다면 호출
     if (onClick) {
       onClick();
     }

@@ -18,7 +18,6 @@ export default function OtherAccountFinished() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // URL로 전달된 데이터 파싱
   const transferData = (() => {
     try {
       const rawData = searchParams.get('transferData');
@@ -30,7 +29,7 @@ export default function OtherAccountFinished() {
   })();
 
   if (!transferData) {
-    router.push('/'); // 데이터가 없으면 기본 페이지로 이동
+    router.push('/');
     return null;
   }
 
@@ -67,7 +66,7 @@ export default function OtherAccountFinished() {
     accountFormatMap[bank]?.(accountNumber) || accountNumber;
 
   const handleConfirm = () => {
-    router.push('/home'); // 확인 버튼 클릭 시 홈으로 이동
+    router.push('/home');
   };
 
   return (
@@ -107,24 +106,11 @@ export default function OtherAccountFinished() {
             <span>입금계좌</span>
             <span>
               <div className='flex items-center'>
-                {/* <Image
-                      className='w-10 h-10'
-                      src={getBankLogo(toAccount.bank)}
-                      alt={`${toAccount.bank} Logo`}
-                      width={60}
-                      height={60}
-                    /> */}
                 <div>
                   <div className='font-SCDream3 text-[1rem] text-right'>
                     {toAccount.accountName}
                   </div>
-                  {/* <div className='text-[0.9rem]'>하나지갑이라 계좌번호x</div> */}
                 </div>
-              </div>
-              <div className='text-right mt-1 mr-2'>
-                <span className='font-SCDream4 text-[1rem]'>
-                  {/* 잔액 {toAccount.balance.toLocaleString()} 원 */}
-                </span>
               </div>
             </span>
           </div>

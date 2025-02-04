@@ -28,7 +28,7 @@ export default function ArticleItem({
       const response = await likeArticle(articleId, newLikedState);
       setLiked(response.isLiked);
     } catch (error) {
-      console.error('Error toggling like status:', error);
+      console.error('좋아요 상태 오류:', error);
     } finally {
       setIsLoading(false);
     }

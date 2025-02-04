@@ -1,8 +1,6 @@
 import NextAuth, { User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 
-// const secret = 'your-secret-key';
-
 export const {
   handlers: { GET, POST },
   auth,

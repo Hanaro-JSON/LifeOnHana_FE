@@ -42,7 +42,7 @@ export default function OtherAccount() {
         (acc, _, idx) => ({ ...acc, [idx]: initialAmount }),
         {}
       );
-      setAmounts(updatedAmounts); // 모든 계좌에 초기 금액 설정
+      setAmounts(updatedAmounts);
     }
   }, [initialAmount, otherAccounts]);
 
@@ -77,15 +77,15 @@ export default function OtherAccount() {
     try {
       const requestData = {
         amount,
-        source: 'OTHER', // 없으면 호출 안됨
-        reason: initialReason, // 없으면 호출 안됨
-        reasonDetail: initialReasonDetail, // 상세 이유
+        source: 'OTHER',
+        reason: initialReason,
+        reasonDetail: initialReasonDetail,
         accountId: Number(account.accountId),
       };
       const response = await fetchLumpsum(requestData);
 
       if (response.code === 200) {
-        const { balance } = response.data; // 응답에서 balance 추출
+        const { balance } = response.data;
         router.push(
           `/home/lumpsum/otherAccount/otherAccountFinished?transferData=${encodeURIComponent(
             JSON.stringify({
