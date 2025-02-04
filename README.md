@@ -59,10 +59,12 @@
 <br />
 
 ## 🎨 Storybook
-![31](https://github.com/user-attachments/assets/2703d981-1660-47bb-8f52-671286b3845d)
 ```javascript
 pnpm storybook
 ```
+![storybook](https://github.com/user-attachments/assets/98fe8651-ed7c-4888-a02d-ab82bc18f4e8)
+
+13개의 atom components, 22개의 molecule components
 
 ## 🤗 FE 팀원
 <table>
