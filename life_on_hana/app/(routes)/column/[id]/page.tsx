@@ -22,7 +22,6 @@ import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
 import LoadingIcon from '@/components/atoms/LoadingIcon';
 import Link from 'next/link';
-import { TArticleDetail } from '@/types/dataTypes';
 
 export default function Detail() {
   const { data } = useContext(DataContext);
