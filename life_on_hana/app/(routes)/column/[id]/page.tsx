@@ -17,6 +17,7 @@ import OpenDescriptionItem from '@/components/atoms/OpenDescriptionItem';
 import { formatDate } from '@/utils/formatDate';
 import { LogoHeader } from '@/components/molecules/LogoHeader';
 import { useParams, useRouter } from 'next/navigation';
+import { type TArticleDetail } from '@/types/dataTypes';
 import { fetchArticleById, likeArticle } from '@/api';
 import { DataContext } from '@/hooks/useData';
 import LoadingIcon from '@/components/atoms/LoadingIcon';

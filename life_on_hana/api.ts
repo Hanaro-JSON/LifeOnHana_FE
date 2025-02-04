@@ -1,12 +1,5 @@
-import {
-  // type TRecommendItemProps,
-  type TArticleItemProps,
-} from '@/types/componentTypes';
-import {
-  type THomeLikeProduct,
-  type TWhilickContents,
-  type TWhilickData,
-} from '@/types/dataTypes';
+import { type TArticleItemProps } from '@/types/componentTypes';
+import { type THomeLikeProduct, type TWhilickData } from '@/types/dataTypes';
 import { Dispatch, SetStateAction } from 'react';
 import { type THistory } from '@/types/dataTypes';
 
@@ -722,9 +715,7 @@ export const fetchRefreshToken = async () => {
 export async function fetchWhilickList(
   page: number = 0,
   articleIdData: string | null,
-  wholeData: TWhilickContents[],
-  setWhilickData: Dispatch<SetStateAction<TWhilickData | undefined>>,
-  setWholeData: Dispatch<SetStateAction<TWhilickContents[]>>
+  setWhilickData: Dispatch<SetStateAction<TWhilickData | null>>
 ) {
   const getChangableApi = (page: number) => {
     if (articleIdData) {
@@ -735,7 +726,7 @@ export async function fetchWhilickList(
     }
   };
   const apiUrl = `${process.env.NEXT_PUBLIC_URL}${getChangableApi(page)}`;
-  console.log('apiUrl: ', apiUrl);
+  console.log('apiUrl >>> ', apiUrl);
 
   try {
     const currentToken = getApiToken();
@@ -753,8 +744,19 @@ export async function fetchWhilickList(
       throw new Error(`Error: ${response.status}`);
     } else {
       const data = await response.json();
-      setWhilickData(data.data);
-      setWholeData([...wholeData, ...data.data.contents]);
+
+      // 기존 데이터와 합쳐서 whilickData 업데이트
+      setWhilickData((prev) => {
+        if (!prev) {
+          return data.data;
+        }
+
+        return {
+          ...prev,
+          contents: [...prev.contents, ...data.data.contents],
+          pageable: prev.pageable ?? data.data.pageable, // 기존 pageable 유지 (없으면 새 데이터 사용)
+        };
+      });
 
       // articleIdData가 있었을 경우, fetch 후에 해당 데이터 삭제
       if (articleIdData) {

@@ -351,6 +351,7 @@ export type TWhilickItemProps = {
   globalFontSize: number;
   setGlobalFontSize: React.Dispatch<React.SetStateAction<number>>;
   onContentChange?: () => void;
+  onLikeToggle?: (articleId: number, currentIsLiked: boolean) => void;
 };
 
 export type TLoadingIconProps = {

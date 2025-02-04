@@ -134,7 +134,19 @@ export type TArticleDetail = {
 };
 
 export type TWhilickData = {
-  contents: TWhilickContents[];
+  contents: {
+    articleId: number;
+    title: string;
+    isLiked: boolean;
+    likeCount: number;
+    text: {
+      paragraphId: number;
+      content: string;
+      startTime: number;
+      endTime: number;
+    }[];
+    ttsUrl: string;
+  }[];
   pageable: {
     first: boolean;
     last: boolean;
@@ -143,18 +155,4 @@ export type TWhilickData = {
     totalElements: number;
     totalPages: number;
   };
-};
-
-export type TWhilickContents = {
-  articleId: number;
-  title: string;
-  isLiked: boolean;
-  likeCount: number;
-  text: {
-    paragraphId: number;
-    content: string;
-    startTime: number;
-    endTime: number;
-  }[];
-  ttsUrl: string;
 };
