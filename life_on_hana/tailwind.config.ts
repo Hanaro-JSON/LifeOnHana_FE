@@ -18,7 +18,7 @@ export default {
         hanapurple: 'var(--hanapurple)',
         hanagray: 'var(--hanagray)',
         hanadeepgray: 'var(--hanadeepgray)',
-        red: 'var(--red)',
+        hanared: 'var(--hanared)',
         background: 'var(--background)',
       },
       fontFamily: {

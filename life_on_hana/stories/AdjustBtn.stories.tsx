@@ -17,6 +17,19 @@ const meta: Meta<typeof AdjustBtn> = {
     mX: { control: { type: 'number' }, description: '버튼 X 위치' },
     mY: { control: { type: 'number' }, description: '버튼 Y 위치' },
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          minHeight: '50px',
+          padding: '30px',
+          boxSizing: 'border-box',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;

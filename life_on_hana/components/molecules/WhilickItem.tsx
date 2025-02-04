@@ -44,8 +44,7 @@ export default function WhilickItem({
       console.error('좋아요 처리 중 오류 발생:', error);
       toast({
         title: '좋아요 처리에 실패했습니다. 다시 시도해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        className: 'toast-danger',
       });
     }
   };

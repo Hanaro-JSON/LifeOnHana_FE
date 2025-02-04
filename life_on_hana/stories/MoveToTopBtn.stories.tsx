@@ -6,6 +6,19 @@ const meta: Meta<typeof MoveToTopBtn> = {
   component: MoveToTopBtn,
   tags: ['autodocs'],
   argTypes: {},
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          minHeight: '50px',
+          padding: '30px',
+          boxSizing: 'border-box',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
