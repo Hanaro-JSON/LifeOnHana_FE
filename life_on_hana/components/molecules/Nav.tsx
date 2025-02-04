@@ -33,8 +33,8 @@ export default function Nav() {
   const router = useSelectedLayoutSegments();
   const segment = router[1];
 
-  const lableClassNames = `font-SCDream3 text-[.625rem] text-hanagray mt-1`;
-  const clickedLableClassNames = `font-SCDream3 text-[.625rem] text-white mt-1`;
+  const lableClassNames = `font-SCDream3 text-[.8125rem] text-hanagray mt-1`;
+  const clickedLableClassNames = `font-SCDream3 text-[.8125rem] text-white mt-1`;
 
   return (
     <>
