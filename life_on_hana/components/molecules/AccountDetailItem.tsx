@@ -110,7 +110,7 @@ export default function AccountDetailItem({
     <div className='w-[24.5625rem] flex flex-col justify-between relative p-1 border-b'>
       <div className='flex items-center mb-1 mt-1'>
         <Image
-          className='w-7 h-7 -mt-5'
+          className='w-7 h-7 -mt-5 '
           src={bankLogo}
           alt={`${bank} Logo`}
           width={20}
@@ -154,7 +154,7 @@ export default function AccountDetailItem({
         </div>
       )}
 
-      <div className='absolute top-3 right-[0.1rem] w-[1.7rem] h-[1.7rem]'>
+      <div className='absolute top-4 right-[0.1rem] w-[1.7rem] h-[1.7rem] mr-1'>
         <Image
           src={checked ? AccountCheckYes : AccountCheckNo}
           alt={checked ? 'Account Checked' : 'Account Not Checked'}

@@ -93,7 +93,7 @@ export default function HistoryItem({
         </div>
       </div>
       <div className='font-SCDream5 text-[1.25rem]'>
-        {isExpense ? '+' : '-'}&nbsp;
+        {isExpense ? '-' : '+'}&nbsp;
         {amount.toLocaleString()} 원
       </div>
     </div>

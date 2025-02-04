@@ -321,7 +321,7 @@ export default function Lumpsum() {
                 name={loanItem.name}
                 description={loanItem.description}
                 maxAmount={loanItem.maxAmount}
-                maxInterest_rate={loanItem.maxInterest_rate}
+                maxInterestRate={loanItem.maxInterestRate}
                 productType={loanItem.productType}
                 productId={loanItem.productId}
                 onClick={() => handleProductClick(loanItem.productId)}

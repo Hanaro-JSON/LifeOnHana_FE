@@ -152,7 +152,7 @@ export default function ArticleAIRecommendDetailItem({
             </div>
 
             {/* 제목 */}
-            <div className='-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start flex gap-2'>
+            {/* <div className='-mt-[0.5rem] text-[1.2rem] font-SCDream8 text-left self-start flex gap-2'>
               <button
                 onClick={handleLikeToggle}
                 disabled={isLoading}
@@ -166,6 +166,22 @@ export default function ArticleAIRecommendDetailItem({
                 />
               </button>
               {name}
+            </div> */}
+
+            <div className='flex gap-3 -mt-[0.5rem] justify-start mb-2 w-full'>
+              <button
+                onClick={handleLikeToggle}
+                disabled={isLoading}
+                className='w-1/8 focus:outline-none'
+              >
+                <Image
+                  src={liked ? HeartYes : HeartNo}
+                  alt={liked ? 'Liked' : 'Not Liked'}
+                  width={22}
+                  height={22}
+                />
+              </button>
+              <div className='w-5/6 text-[1.5rem] font-SCDream8'>{name}</div>
             </div>
 
             {/* 내용 */}

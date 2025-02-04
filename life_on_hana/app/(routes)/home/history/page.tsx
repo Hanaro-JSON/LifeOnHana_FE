@@ -190,7 +190,7 @@ export default function History() {
   return (
     <div className='p-6 space-y-8 mb-28'>
       <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
-        <NavHeader location={'이번달 입출금 내역'} beforePageUrl={'/home'} />
+        <NavHeader location={'하나 지갑 내역'} beforePageUrl={'/home'} />
       </div>
 
       <div
@@ -213,17 +213,20 @@ export default function History() {
             <div className='w-[95%] flex justify-between'>
               <div className='flex flex-col gap-y-2'>
                 <div className='font-SCDream5 text-lg'>
-                  한 달에 평균 {formatCurrency(monthlyData.averageExpense)}을
-                  써요
+                  한 달에 평균 {''}
+                  {formatCurrency(
+                    Math.floor(monthlyData.averageExpense / 10000) * 10000
+                  )}
+                  을 써요
                 </div>
 
-                <div className='font-SCDream3'>
-                  하나지갑에 {monthlyData.currentBalance.toLocaleString()}원
-                  남았어요
+                <div className='font-SCDream3 -mt-1'>
+                  현재 {monthlyData.currentBalance.toLocaleString()}원 남았어요
                 </div>
               </div>
-
-              <Image src={shopingBag} alt='shopingBag' />
+              <div className='-mr-6'>
+                <Image src={shopingBag} alt='shopingBag' />
+              </div>
             </div>
 
             <div className='w-[95%] pt-2'>

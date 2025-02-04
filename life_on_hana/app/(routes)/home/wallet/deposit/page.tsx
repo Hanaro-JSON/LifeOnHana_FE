@@ -103,8 +103,8 @@ export default function Deposit() {
           <div className='text-[1.25rem] font-SCDream5 mb-2'>입금계좌</div>
 
           {mainAccount && (
-            <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
-              <div className='h-8 flex gap-2 mt-1 ml-1'>
+            <div className='p-3 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1'>
+              <div className='h-12 flex gap-2 mt-1 ml-1'>
                 <Image
                   className='w-11 h-11'
                   src={HanaBankLogo}
@@ -125,7 +125,7 @@ export default function Deposit() {
                 </div>
               </div>
               <div className='text-right font-SCDream8 text-[1.25rem] mr-4 mb-2'>
-                {mainAccount.balance.toLocaleString()} 원
+                {Math.trunc(mainAccount.balance).toLocaleString()} 원
               </div>
             </div>
           )}

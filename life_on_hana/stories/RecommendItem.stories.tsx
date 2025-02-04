@@ -21,7 +21,7 @@ const meta: Meta<typeof RecommendItem> = {
     maxAmount: {
       control: 'text',
     },
-    maxInterest_rate: {
+    maxInterestRate: {
       control: 'number',
     },
   },
@@ -45,7 +45,7 @@ export const Savings: Story = {
     productId: '2',
     name: '적금 상품',
     description: '높은 금리의 적금 상품입니다.',
-    maxInterest_rate: 3.5,
+    maxInterestRate: 3.5,
     productType: 'SAVINGS',
   },
 };
