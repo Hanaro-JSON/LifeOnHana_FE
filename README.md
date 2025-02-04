@@ -49,8 +49,8 @@
 
 | 칼럼 상세보기 (1) | 칼럼 상세보기 (2) |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/b31f19cb-7cf1-4328-a020-0689498834ef" width="350"/> | <img src="" width="350"/> |
-| 좋아요/공유, 글씨크기 조절, 최상단으로 이동, 용어 설명 기능 | 칼럼 관련 상품 및 AI 추천 정보 제공 |
+| <img src="https://github.com/user-attachments/assets/b31f19cb-7cf1-4328-a020-0689498834ef" width="350"/> | <img src="https://github.com/user-attachments/assets/f7a0d4ae-6bb4-4acc-a9b1-1672bc4e47b1" width="350"/> |
+| 좋아요/공유, 글씨크기 조절, 최상단으로 이동 | 용어 설명, 칼럼 관련 상품 및 AI 추천 정보 제공 |
 
 | 휘릭 | 휘릭에서 칼럼 상세보기 |
 |:---:|:---:|
