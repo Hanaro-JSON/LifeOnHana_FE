@@ -42,11 +42,8 @@ export default function Whilick() {
 
   useEffect(() => {
     console.log('whilickItemTop', whilickItemTop);
-  }, [whilickItemTop]);
-
-  useEffect(() => {
     console.log('whilickData: ', whilickData);
-  }, [whilickData]);
+  }, [whilickItemTop, whilickData]);
 
   // ---------------------------- first fetch ----------------------------
   useEffect(() => {
@@ -86,6 +83,25 @@ export default function Whilick() {
       });
     }
   });
+
+  // ----------------------- whilick 좋아요 --------------------------------
+
+  const handleLikeUpdate = (
+    articleId: number,
+    isLiked: boolean,
+    likeCount: number
+  ) => {
+    setWhilickData((prev) => {
+      if (!prev) return prev;
+
+      return {
+        ...prev,
+        contents: prev.contents.map((item) =>
+          item.articleId === articleId ? { ...item, isLiked, likeCount } : item
+        ),
+      };
+    });
+  };
 
   return (
     <>
@@ -134,6 +150,7 @@ export default function Whilick() {
                   setGlobalAudioSpeed={setGlobalAudioSpeed}
                   globalFontSize={globalFontSize}
                   setGlobalFontSize={setGlobalFontSize}
+                  onLikeUpdate={handleLikeUpdate}
                 />
               )
             )}

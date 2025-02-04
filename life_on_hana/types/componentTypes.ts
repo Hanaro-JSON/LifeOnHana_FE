@@ -351,9 +351,13 @@ export type TWhilickItemProps = {
   globalFontSize: number;
   setGlobalFontSize: React.Dispatch<React.SetStateAction<number>>;
   onContentChange?: () => void;
-  onLikeToggle?: (articleId: number, currentIsLiked: boolean) => void;
+  onLikeUpdate: (
+    articleId: number,
+    isLiked: boolean,
+    likeCount: number
+  ) => void;
 };
 
 export type TLoadingIconProps = {
-  bgColor?: string; // 배경 색상을 위한 props
+  bgColor?: string;
 };

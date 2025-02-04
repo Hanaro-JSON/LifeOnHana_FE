@@ -9,8 +9,8 @@ import soundOn from '@/assets/sound-on.svg';
 import soundOff from '@/assets/sound-off.svg';
 import useDebounce from '@/hooks/useDebounce';
 import WhilickDownSvg from '@/components/atoms/WhilickDownSvg';
-// import { likeArticle } from '@/api';
-// import { useToast } from '@/hooks/use-toast';
+import { likeArticle } from '@/api';
+import { useToast } from '@/hooks/use-toast';
 
 export default function WhilickItem({
   idx,
@@ -27,30 +27,28 @@ export default function WhilickItem({
   setGlobalAudioSpeed,
   globalFontSize,
   setGlobalFontSize,
+  onLikeUpdate,
 }: TWhilickItemProps) {
-  // const { toast } = useToast();
+  const { toast } = useToast();
   // 좋아요 수
-  // const [isLikeClicked, setIsLikeClicked] = useState<boolean>(isLiked);
-  // const [likeCountNum, setLikeCountNum] = useState<number>(likeCount);
+  const [isLikeClicked, setIsLikeClicked] = useState<boolean>(isLiked);
+  const [likeCountNum, setLikeCountNum] = useState<number>(likeCount);
 
-  // const handleLikeToggle = async (
-  //   articleId: number,
-  //   currentIsLiked: boolean
-  // ) => {
-  //   try {
-  //     // 좋아요 상태 토글 (현재 상태의 반대로)
-  //     const updatedData = await likeArticle(articleId, !currentIsLiked);
-  //     setIsLikeClicked(updatedData.isLiked);
-  //     setLikeCountNum(updatedData.likeCount);
-  //   } catch (error) {
-  //     console.error('좋아요 처리 중 오류 발생:', error);
-  //     toast({
-  //       title: '좋아요 처리에 실패했습니다. 다시 시도해주세요.',
-  //       className:
-  //         'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
-  //     });
-  //   }
-  // };
+  const handleLikeToggle = async () => {
+    try {
+      const updatedData = await likeArticle(articleId, isLiked);
+      setIsLikeClicked(updatedData.isLiked);
+      setLikeCountNum(updatedData.likeCount);
+      onLikeUpdate(articleId, updatedData.isLiked, updatedData.likeCount); // 부모 업데이트
+    } catch (error) {
+      console.error('좋아요 처리 중 오류 발생:', error);
+      toast({
+        title: '좋아요 처리에 실패했습니다. 다시 시도해주세요.',
+        className:
+          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+      });
+    }
+  };
 
   // AdjustBtn 둘다 열림 방지
   const [openedAdjustBtn, setOpenedAdjustBtn] = useState<string | null>(null);
@@ -294,7 +292,11 @@ export default function WhilickItem({
         {/* 클립보드복사, 좋아요 */}
         <div className='absolute right-10 bottom-48 z-50 flex items-center gap-4'>
           <CopyClipboardBtn articleId={articleId} />
-          <IsLike likeCount={likeCount} isLiked={isLiked} />
+          <IsLike
+            likeCount={likeCountNum}
+            isLiked={isLikeClicked}
+            onClick={handleLikeToggle}
+          />
         </div>
 
         {/* 글씨크기조절, TTS속도조절 */}
