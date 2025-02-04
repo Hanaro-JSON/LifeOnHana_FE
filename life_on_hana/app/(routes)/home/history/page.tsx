@@ -203,6 +203,9 @@ export default function History() {
             {year}년 {month}월
             <Image src={monthRight} alt={'monthRight'} onClick={plusDate} />
           </div>
+          <div className='font-SCDream8 text-[1.375rem]'>
+            {historyData.totalExpense.toLocaleString()}원
+          </div>
         </div>
 
         <Section height='22rem'>
@@ -216,14 +219,9 @@ export default function History() {
                   )}
                   을 써요
                 </div>
-                <div className='font-SCDream3'>
-                  이번 달에 {''}
-                  {historyData.totalExpense.toLocaleString()}원을 사용하셨어요
-                </div>
 
-                <div className='font-SCDream3 -mt-2'>
-                  하나지갑에 {monthlyData.currentBalance.toLocaleString()}원
-                  남았어요
+                <div className='font-SCDream3 -mt-1'>
+                  현재 {monthlyData.currentBalance.toLocaleString()}원 남았어요
                 </div>
               </div>
               <div className='-mr-6'>
