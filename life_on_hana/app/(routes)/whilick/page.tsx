@@ -77,9 +77,8 @@ export default function Whilick() {
   useEffect(() => {
     if (whilickItemTop === 103) {
       toast({
-        title: '더이상 콘텐츠가 없습니다.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '더이상 콘텐츠가 없습니다',
+        className: 'toast-default',
       });
     }
   });

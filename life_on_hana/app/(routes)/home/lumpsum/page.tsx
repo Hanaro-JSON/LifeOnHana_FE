@@ -6,7 +6,7 @@ import LumpSumBtn from '@/components/molecules/LumpSumBtn';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { DataContext } from '@/hooks/useData';
 import { useRouter } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import {
   type TLikedLoanProductDetailItemProps,
   type TRecommendItemProps,
@@ -89,33 +89,29 @@ export default function Lumpsum() {
   const handleSubmit = async () => {
     if (!amount) {
       toast({
-        title: '금액을 입력해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '금액을 입력해주세요',
+        className: 'toast-default',
       });
       return;
     }
     if (!selectedBtn) {
       toast({
-        title: '출금 계좌를 선택해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '출금 계좌를 선택해주세요',
+        className: 'toast-default',
       });
       return;
     }
     if (!reason) {
       toast({
-        title: '사용 목적을 선택해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '사용 목적을 선택해주세요',
+        className: 'toast-default',
       });
       return;
     }
     if (reason === '기타' && customReason === '') {
       toast({
-        title: '사용 목적을 입력해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '사용 목적을 입력해주세요',
+        className: 'toast-default',
       });
       return;
     }
@@ -138,9 +134,8 @@ export default function Lumpsum() {
         const enumReason = handleReasonSelect(reason);
         if (amount > fetchData.balance) {
           toast({
-            title: '하나 월급통장 잔액이 부족합니다.',
-            className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+            title: '하나 월급통장 잔액이 부족합니다',
+            className: 'toast-default',
           });
           return;
         } else {
@@ -152,9 +147,8 @@ export default function Lumpsum() {
             accountId: fetchData.accountId,
           });
           toast({
-            title: '목돈을 가져오는 데 성공했습니다.',
-            className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+            title: '목돈을 가져오는 데 성공했습니다',
+            className: 'toast-default',
           });
           router.replace('/home');
         }
@@ -172,9 +166,16 @@ export default function Lumpsum() {
     }
   };
 
+  const loanSectionRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    console.log(selectedProduct);
-  }, [selectedProduct]);
+    if (clicked && selectedBtn === 'loanProducts') {
+      loanSectionRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  }, [clicked, selectedBtn, loanItems]);
+
   return (
     <div className='p-6 space-y-8 mb-28'>
       <div className='fixed top-0 left-0 pt-6 px-6 w-full bg-background z-50'>
@@ -297,34 +298,36 @@ export default function Lumpsum() {
         onClick={handleSubmit}
       />
 
-      {clicked && selectedBtn === 'loanProducts' && loanItems ? (
-        <div className='space-y-4'>
-          <div className='font-SCDream5 text-xl'>
-            {data.name}님을 위한 추천 대출 상품
-          </div>
-
-          {loading ? (
-            <div className='h-screen'>
-              <LoadingIcon />
+      <div ref={loanSectionRef}>
+        {clicked && selectedBtn === 'loanProducts' && loanItems ? (
+          <div className='space-y-4'>
+            <div className='font-SCDream5 text-xl'>
+              {data.name}님을 위한 추천 대출 상품
             </div>
-          ) : (
-            loanItems.map((loanItem, index) => (
-              <RecommendItem
-                key={index}
-                name={loanItem.name}
-                description={loanItem.description}
-                maxAmount={loanItem.maxAmount}
-                maxInterestRate={loanItem.maxInterestRate}
-                productType={loanItem.productType}
-                productId={loanItem.productId}
-                onClick={() => handleProductClick(loanItem.productId)}
-              />
-            ))
-          )}
-        </div>
-      ) : (
-        <></>
-      )}
+
+            {loading ? (
+              <div className='h-screen'>
+                <LoadingIcon />
+              </div>
+            ) : (
+              loanItems.map((loanItem, index) => (
+                <RecommendItem
+                  key={index}
+                  name={loanItem.name}
+                  description={loanItem.description}
+                  maxAmount={loanItem.maxAmount}
+                  maxInterestRate={loanItem.maxInterestRate}
+                  productType={loanItem.productType}
+                  productId={loanItem.productId}
+                  onClick={() => handleProductClick(loanItem.productId)}
+                />
+              ))
+            )}
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }

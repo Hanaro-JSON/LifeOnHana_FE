@@ -42,7 +42,6 @@ export function LogoHeader({ isMain }: { isMain: boolean }) {
 
       if (data.code === 200) {
         localStorage.removeItem('user');
-        // router.replace('/signin');
       } else if (data.code === 400) {
         console.error(data.message);
       }

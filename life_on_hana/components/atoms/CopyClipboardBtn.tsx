@@ -27,24 +27,21 @@ export default function CopyClipboardBtn({
         .writeText(currentUrl)
         .then(() => {
           toast({
-            title: '클립보드에 복사했습니다.',
-            className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+            title: '클립보드에 복사했습니다',
+            className: 'toast-default',
           });
         })
         .catch((err) => {
           console.error('주소 복사 실패:', err);
           toast({
-            title: '클립보드에 복사를 실패했습니다.',
-            className:
-              'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+            title: '클립보드에 복사를 실패했습니다',
+            className: 'toast-danger',
           });
         });
     } else {
       toast({
-        title: '클립보드에 복사를 실패했습니다.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '클립보드에 복사를 실패했습니다',
+        className: 'toast-danger',
       });
     }
   };

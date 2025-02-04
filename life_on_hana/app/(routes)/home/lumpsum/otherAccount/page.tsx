@@ -64,9 +64,8 @@ export default function OtherAccount() {
   const handleComplete = async () => {
     if (selectedIndex === null || !amounts[selectedIndex]) {
       toast({
-        title: '계좌와 금액을 선택해주세요.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '계좌와 금액을 선택해주세요',
+        className: 'toast-default',
       });
       return;
     }
@@ -101,17 +100,15 @@ export default function OtherAccount() {
         );
       } else {
         toast({
-          title: '이체 요청이 실패했습니다.',
-          className:
-            'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+          title: '이체 요청이 실패했습니다',
+          className: 'toast-danger',
         });
       }
     } catch (error) {
       console.error('API 요청 오류:', error);
       toast({
-        title: '요청 처리 중 오류가 발생했습니다.',
-        className:
-          'flex justify-center fixed top-[80%] left-[50%] transform -translate-x-[50%] bg-white text-hanapurple w-[90%] text-center rounded-xl p-7',
+        title: '요청 처리 중 오류가 발생했습니다',
+        className: 'toast-danger',
       });
     }
   };
