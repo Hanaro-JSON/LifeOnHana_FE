@@ -4,7 +4,7 @@ import MicroMiniBtn from '@/components/atoms/MicroMiniBtn';
 import Section from '@/components/atoms/Section';
 import { NavHeader } from '@/components/molecules/NavHeader';
 import { DataContext } from '@/hooks/useData';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { type TGetWallet, type TGetUsersMydata } from '@/types/dataTypes';
 import GraphToggle from '@/components/atoms/GraphToggle';
 import { BarGraph } from '@/components/molecules/BarGraph';
@@ -70,6 +70,9 @@ export default function Wallet() {
   const [editWallet, setEditWallet] = useState(wallet);
   const [editSalary, setEditSalary] = useState<string>();
   const [averageExpense, setAverageExpense] = useState(0);
+
+  //희망 금액 설정 버튼 클릭시 상단이동
+  const walletInfoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getMydata = async () => {
@@ -266,6 +269,12 @@ export default function Wallet() {
             text={'희망 금액 및 기간 다시 설정하기'}
             onClick={() => {
               setIsEditing(!isEditing);
+              setTimeout(() => {
+                walletInfoRef.current?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                });
+              }, 100); // 애니메이션 효과를 위해 살짝 지연
             }}
           />
           <div className='font-SCDream2 text-sm'>
@@ -343,7 +352,7 @@ export default function Wallet() {
               )}
             </div>
             <div className='flex flex-row justify-between w-full font-SCDream3 text-[1.0625rem]'>
-              <div>월평균 고정지출</div>
+              <div ref={walletInfoRef}>월평균 고정지출</div>
               <div>
                 <span className='font-SCDream5 text-[1.0625rem]'>
                   {averageExpense.toLocaleString()}
@@ -365,7 +374,7 @@ export default function Wallet() {
       </div>
 
       <Section bgColor='hanalightpurple' height='10rem'>
-        <div className='w-full flex justify-between'>
+        <div className='w-full flex justify-between '>
           <Image src={snake} alt={'snake'} />
           <div className='flex flex-col justify-center items-end gap-y-2'>
             <div className='font-SCDream5 text-[1.3125rem]'>
@@ -380,7 +389,6 @@ export default function Wallet() {
           </div>
         </div>
       </Section>
-
       <Section>
         <div className='w-full space-y-2'>
           <div className='pb-4 w-full flex flex-row justify-between items-center'>
