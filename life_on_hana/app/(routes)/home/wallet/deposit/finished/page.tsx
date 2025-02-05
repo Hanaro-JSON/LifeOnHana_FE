@@ -76,7 +76,7 @@ export default function Finished() {
 
   return (
     <div className='flex flex-col p-6'>
-      <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'.'} />
+      <NavHeader location={'하나 월급통장 채우기'} beforePageUrl={'/lumpsum'} />
 
       <div className='flex-1 flex flex-col items-center pt-3'>
         <div className='p-4 bg-white rounded-[.9375rem] shadow-[0rem_.25rem_.25rem_0rem_rgba(0,0,0,0.25)] flex flex-col gap-1 min-h-[52rem] w-[95%]'>
